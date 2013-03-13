@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>My Awesome Game</title>
+		<!-- basic stuff -->
+        <script src='js/core/constants.js'></script>
+        <script src='js/core/utils.js'></script>
+        <!-- libs -->
+        <script src='js/libs/jquery-min.js'></script>
+        <script src='js/libs/crafty.js'></script>
+        <!-- basic scenes -->
+        <script src='js/scenes/loading.js'></script>
+        <script src='js/scenes/menu.js'></script>
+        <script src='js/scenes/game.js'></script>
+        <!-- structure elements -->
+        <script src='js/modules/board.js'></script>
+        <script src='js/modules/shots.js'></script>
+        <script src='js/modules/player.js'></script>
+        <!-- debug test shot scenes -->
+        <script src='js/scenes/test/p2p.js'></script>
+        <script src='js/scenes/test/laser.js'></script>
+        <script src='js/scenes/test/homing.js'></script>
+		<!-- start file -->
+        <script src='js/core/ProjectCyclone.js'></script>
+		
+        <script>
+            $(document).ready(function() {
+                ProjectCyclone.start();
+            });
+        </script>
+    </head> 
+    <body> 
+    </body> 
+</html>
