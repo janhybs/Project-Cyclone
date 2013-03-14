@@ -1,4 +1,6 @@
 Project-Cyclone
 ===============
 
-HTML5 tower defense game.
+Awesome HTML5 tower defense game.
+
+...
