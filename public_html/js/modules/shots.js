@@ -10,6 +10,9 @@ window.shot = {
             case SHOT_HOMING:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, laser'.format (SHOT_ABS, type))
                         .attr ({w: W / 2, h: H / 2});
+            case SHOT_SPLASH:
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}, shot'.format (SHOT_ABS, type))
+                        .attr ({w: 1, h: 1});
         }
     }
 };
@@ -60,6 +63,7 @@ Crafty.c (SHOT_ABS, {
     }
 });
 
+
 Crafty.c (SHOT_P2P, {
     create: function (speed, angle) {
         this.speed = speed !== undefined ? speed : NaN;
@@ -70,12 +74,13 @@ Crafty.c (SHOT_P2P, {
 
         this.x += this.xstep;
         this.y += this.ystep;
+
+        //# destroy rutine
         if (this.ttl-- <= 0) {
             this.destroy ();
         }
     },
     //#
-
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.x = this.startPoint.x;
@@ -105,8 +110,11 @@ Crafty.c (SHOT_P2P, {
         this.xstep = Math.cos (this.angle) * this.speed;
         this.ystep = Math.sin (this.angle) * this.speed;
         return this;
-    },
+    }
 });
+
+
+
 Crafty.c (SHOT_LASER, {
     create: function (angle) {
         this.angle = angle !== undefined ? angle : NaN;
@@ -140,8 +148,11 @@ Crafty.c (SHOT_LASER, {
         this.xstep = Math.cos (this.angle) * this.speed;
         this.ystep = Math.sin (this.angle) * this.speed;
         return this;
-    },
+    }
 });
+
+
+
 Crafty.c (SHOT_HOMING, {
     create: function (speed, curving) {
         this.speed = speed !== undefined ? speed : NaN;
@@ -158,6 +169,8 @@ Crafty.c (SHOT_HOMING, {
         this.x += this.xstep;
         this.y += this.ystep;
         this.rotation = (this.aprox / PI) * 180;
+
+        //# destroy rutine
         if (this.ttl-- <= 0) {
             this.destroy ();
         }
@@ -189,5 +202,58 @@ Crafty.c (SHOT_HOMING, {
     setCurving: function (value) {
         this.curving = value;
         return this;
+    }
+});
+
+
+
+Crafty.c (SHOT_SPLASH, {
+    create: function (growth, radius) {
+        this.growth = growth !== undefined ? growth : 25;
+        this.radius = radius !== undefined ? radius : 100;
     },
+    //#
+    enterFrame: function () {
+
+        if (this.w < this.radius) {
+            this.w += (this.radius - this.w) / this.growth + this.radius / 100;
+            this.h = this.w;
+
+            //# bound check
+            if (this.w > this.radius)
+                this.w = this.h = this.radius;
+
+            this.x = this.startPoint.x - this.w / 2;
+            this.y = this.startPoint.y - this.h / 2;
+        }
+
+        //# destroy rutine
+        if (this.ttl-- <= 0) {
+            this.destroy ();
+        }
+    },
+    //#
+    start: function () {
+        if (this.startPoint !== null) {
+            this.x = this.startPoint.x;
+            this.y = this.startPoint.y;
+            this.bind ("EnterFrame", this.enterFrame);
+        }
+    },
+    //#
+    getGrowth: function () {
+        return this.growth;
+    },
+    setGrowth: function (value) {
+        this.growth = value;
+        return this;
+    },
+    //#
+    getRadius: function () {
+        return this.radius;
+    },
+    setRadius: function (value) {
+        this.radius = value;
+        return this;
+    }
 });

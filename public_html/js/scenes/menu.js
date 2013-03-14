@@ -40,7 +40,7 @@ Crafty.scene (SCENE_MENU, function () {
             });
         
         
-    Crafty.e ("2D, DOM, Text, Mouse").attr ({w: Crafty.viewport.width, h: 20, x: 0, y: 270})
+    Crafty.e ("2D, DOM, Text, Mouse").attr ({w: Crafty.viewport.width, h: 20, x: 0, y: 320})
             .text ("splash test")
             .css ({"text-align": "center"})
             .bind ('MouseUp',
