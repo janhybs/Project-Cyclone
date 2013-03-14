@@ -9,8 +9,8 @@ var SCENE_LASER_TEST = 'laser-test';
 var SCENE_HOMING_TEST = 'homing-test';
 
 //screen size
-var screenWidth = 960;
-var screenHeight = 640;
+var SCREEN_WIDTH = 960;
+var SCREEN_HEIGHT = 640;
 
 //size
 var W = 32;
