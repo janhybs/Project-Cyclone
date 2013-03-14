@@ -7,6 +7,7 @@ var SCENE_LOADING = 'loading';
 var SCENE_P2P_TEST = 'p2p-test';
 var SCENE_LASER_TEST = 'laser-test';
 var SCENE_HOMING_TEST = 'homing-test';
+var SCENE_SPLASH_TEST = 'splash-test';
 
 //screen size
 var SCREEN_WIDTH = 960;
