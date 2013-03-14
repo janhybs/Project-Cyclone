@@ -60,19 +60,37 @@ window.addEventListener ('mousemove', function (e) {
 });
 
 if (!String.prototype.format) {
-  String.prototype.format = function() {
-    var args = arguments;
-    return this.replace(/{(\d+)}/g, function(match, number) { 
-      return typeof args[number] !== 'undefined' ? args[number] : match
-      ;
-    });
-  };
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace (/{(\d+)}/g, function (match, number) {
+            return typeof args[number] !== 'undefined' ? args[number] : match;
+        });
+    };
 }
 
 window.toPoint = function (o) {
     if (o.hasOwnProperty ('x') && o.hasOwnProperty ('y'))
         return o;
     return {x: o[0], y: o[1]};
+};
+
+window.toDamage = function (o) {
+    if (typeof o !== 'object')
+        return toDamage ([o]);
+    var props = ['basic', 'fire', 'watter', 'poison'];
+
+    //# array (probably)
+    if (o.length) {
+        var r = {};
+        for (var i = 0, l = props.length; i < l; i++)
+            r[props[i]] = o[i] || 0;
+        return r;
+        //# object (keep reference)
+    } else {
+        for (var i = 0, l = props.length; i < l; i++)
+            o[props[i]] = o[props[i]] || 0;
+        return o;
+    }
 };
 
 window.radDist = function (a, b, f) {
