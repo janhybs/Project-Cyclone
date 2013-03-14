@@ -2,24 +2,25 @@ window.shot = {
     get: function (type) {
         switch (type) {
             case SHOT_P2P:
-                return Crafty.e ('2D, Canvas, Image, ' + SHOT_ABS + ', ' + type + ', shot')
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}, shot'.format (SHOT_ABS, type))
                         .attr ({w: W, h: H});
             case SHOT_LASER:
-                return Crafty.e ('2D, Canvas, Image, ' + SHOT_ABS + ', ' + type)
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
                         .attr ({w: W, h: H});
             case SHOT_HOMING:
-                return Crafty.e ('2D, Canvas, Image, ' + SHOT_ABS + ', ' + type + ', laser')
-                        .attr ({w: W/2, h: H/2});
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}, laser'.format (SHOT_ABS, type))
+                        .attr ({w: W / 2, h: H / 2});
         }
     }
 };
 
 
 Crafty.c (SHOT_ABS, {
-    abstractCreate: function (startPoint, endPoint, ttl) {
+    abstractCreate: function (startPoint, endPoint, ttl, damage) {
         this.startPoint = toPoint (startPoint);
         this.endPoint = toPoint (endPoint);
         this.ttl = ttl !== undefined ? ttl * FRAME_RATE : 10 * FRAME_RATE;
+        this.damage = damage !== undefined ? damage : toDamage (0);
     },
     init: function () {
         this.ttl = 10 * FRAME_RATE;
@@ -48,6 +49,14 @@ Crafty.c (SHOT_ABS, {
     setTTL: function (value) {
         this.ttl = value;
         return this;
+    },
+    //#
+    getDamage: function () {
+        return this.damage;
+    },
+    setDamage: function (value) {
+        this.damage = toDamage (value);
+        return this;
     }
 });
 
@@ -61,7 +70,6 @@ Crafty.c (SHOT_P2P, {
 
         this.x += this.xstep;
         this.y += this.ystep;
-
         if (this.ttl-- <= 0) {
             this.destroy ();
         }
@@ -75,7 +83,6 @@ Crafty.c (SHOT_P2P, {
             this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x);
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
-
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
@@ -100,8 +107,6 @@ Crafty.c (SHOT_P2P, {
         return this;
     },
 });
-
-
 Crafty.c (SHOT_LASER, {
     create: function (angle) {
         this.angle = angle !== undefined ? angle : NaN;
@@ -123,7 +128,6 @@ Crafty.c (SHOT_LASER, {
             this.laser.y = this.y + H / 2 / 2;
             this.laser.origin (W / 2 / 2, H / 2 / 2);
             this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x);
-
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
@@ -138,10 +142,6 @@ Crafty.c (SHOT_LASER, {
         return this;
     },
 });
-
-
-
-
 Crafty.c (SHOT_HOMING, {
     create: function (speed, curving) {
         this.speed = speed !== undefined ? speed : NaN;
@@ -153,16 +153,11 @@ Crafty.c (SHOT_HOMING, {
 
         this.angle = Math.atan2 (this.endPoint.y - this.y - H, this.endPoint.x - this.x - W);
         this.aprox = radDist (this.aprox, this.angle, this.curving);
-
         this.xstep = Math.cos (this.aprox) * this.speed;
         this.ystep = Math.sin (this.aprox) * this.speed;
-
         this.x += this.xstep;
         this.y += this.ystep;
-
         this.rotation = (this.aprox / PI) * 180;
-        
-
         if (this.ttl-- <= 0) {
             this.destroy ();
         }
@@ -175,7 +170,6 @@ Crafty.c (SHOT_HOMING, {
             this.angle = Math.atan2 (this.endPoint.y - this.y - H, this.endPoint.x - this.x - W);
             this.aprox = this.angle;
             this.t = 0;
-
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
