@@ -11,11 +11,12 @@ Crafty.scene (SCENE_SPLASH_TEST, function () {
     board.createGate (p0);
     setInterval (function () {
         var s = shot.get (SHOT_SPLASH);
-        s.setStartPoint ([Crafty.math.randomInt (50, SCREEN_WIDTH/2-50), Crafty.math.randomInt (50, SCREEN_HEIGHT-50)]);
-        s.create (20, 300);
+        s.setStartPoint ([Crafty.math.randomInt (50, SCREEN_WIDTH-50), Crafty.math.randomInt (50, SCREEN_HEIGHT-50)]);
+        s.create (20, 32);
         s.setTTL (2 * FRAME_RATE);
+        s.setFrameCount (16);
         s.start ();
-    }, 150);
+    }, 50);
 //
 //
 //
@@ -23,11 +24,12 @@ Crafty.scene (SCENE_SPLASH_TEST, function () {
     board.createGate (p1);
     setInterval (function () {
         var s = shot.get (SHOT_SPLASH);
-        s.setStartPoint ([Crafty.math.randomInt (SCREEN_WIDTH/2, SCREEN_WIDTH-50), Crafty.math.randomInt (50, SCREEN_HEIGHT-50)]);
-        s.create (10, Crafty.math.randomInt(50, 100));
+        s.setStartPoint ([SCREEN_WIDTH/2, SCREEN_HEIGHT/2]);
+        s.create (1, 240);
         s.setTTL (1 * FRAME_RATE);
+        s.setFrameCount (16);
         s.start ();
-    }, 20);
+    }, 1000);
 
 
 });
