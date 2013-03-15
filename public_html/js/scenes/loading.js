@@ -10,7 +10,10 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/characters.png',
         'images/cat.gif',
         'images/shot.png',
-		'images/laser-cat.png',
+	'images/laser-cat.png',
+        'images/exp-simple-32(16).png',
+        'images/exp-complex-32(16).png',
+        'images/exp-complex-64(25).png',
         'images/debug.png'];
 
     Crafty.load (images, function () {
@@ -43,4 +46,16 @@ Crafty.sprite (32, 'images/shot.png', {
 
 Crafty.sprite (16, 'images/laser-cat.png', {
     laser: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-complex-32(16).png', {
+    exp_complex_32_16: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-complex-64(25).png', {
+    exp_complex_64_25: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-simple-32(16).png', {
+    exp_simple_32_16: [0, 0],
 });
