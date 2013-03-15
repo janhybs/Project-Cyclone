@@ -11,7 +11,7 @@ window.shot = {
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, laser'.format (SHOT_ABS, type))
                         .attr ({w: W / 2, h: H / 2});
             case SHOT_SPLASH:
-                return Crafty.e ('2D, Canvas, Image, {0}, {1}, shot'.format (SHOT_ABS, type))
+                return Crafty.e ('2D, Canvas, Image, SpriteAnimation, {0}, {1}, exp_simple_32_16'.format (SHOT_ABS, type))
                         .attr ({w: 1, h: 1});
         }
     }
@@ -238,6 +238,7 @@ Crafty.c (SHOT_SPLASH, {
             this.x = this.startPoint.x;
             this.y = this.startPoint.y;
             this.bind ("EnterFrame", this.enterFrame);
+            this.animate ('splash-growth', 10, -1);
         }
     },
     //#
@@ -254,6 +255,17 @@ Crafty.c (SHOT_SPLASH, {
     },
     setRadius: function (value) {
         this.radius = value;
+        return this;
+    },
+    //#
+    setFrameCount: function (value) {
+        this.frameCount = value;
+        this.animate ('splash-growth', [
+            [0,0], [1,0], [2,0], [3,0],
+            [0,1], [1,1], [2,1], [3,1],
+            [0,2], [1,2], [2,2], [3,2],
+            [0,3], [1,3], [2,3], [3,3]
+        ]);
         return this;
     }
 });
