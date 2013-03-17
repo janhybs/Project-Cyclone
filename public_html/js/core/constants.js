@@ -29,6 +29,29 @@ var FRAME_RATE = 25;
 var RAD = Math.PI * 2;
 var PI = Math.PI;
 
-//player
+/********************
+ * PLAYER CONSTANTS *
+ ********************
+ */
+//players
 var PLAYER_ABS = 'AbstractPlayer';
 var PLAYER_DEBUG = 'DebugPlayer';
+
+//player events
+var PLAYER_DIRECTION = "PlayerDirection";
+
+//player directions
+var NO_DIRECTION = 0;
+var UP_DIRECTION = 1;
+var DOWN_DIRECTION = 2;
+var RIGHT_DIRECTION = 3;
+var LEFT_DIRECTION = 4;
+
+//walking
+var WALK_UP = "walkUp";
+var WALK_DOWN = "walkDown";
+var WALK_LEFT = "walkLeft";
+var WALK_RIGHT = "walkRight";
+
+//others
+var LAST_STEPS_COUNT = 3;
