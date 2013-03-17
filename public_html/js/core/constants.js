@@ -37,6 +37,10 @@ var PI = Math.PI;
 var PLAYER_ABS = 'AbstractPlayer';
 var PLAYER_DEBUG = 'DebugPlayer';
 
+//player size
+var PLAYER_HEIGHT = 24;
+var PLAYER_WIDTH = 24;
+
 //player events
 var PLAYER_DIRECTION = "PlayerDirection";
 

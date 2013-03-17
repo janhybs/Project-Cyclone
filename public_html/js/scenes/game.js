@@ -27,4 +27,6 @@ Crafty.scene (SCENE_GAME, function () {
 
 
     }, null, 'text');
+    //test player
+    var pl = player.create(PLAYER_DEBUG);
 });

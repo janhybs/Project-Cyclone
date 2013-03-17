@@ -8,8 +8,8 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, Multiway, SpriteAnimation, player, KeyBoard, PlayerControls, ' + PLAYER_ABS + ', ' + type)
-                        .attr({w: 32, h: 32});
+                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, ' + PLAYER_ABS + ', ' + type)
+                        .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
     }
@@ -22,8 +22,8 @@ window.player = {
 Crafty.c('PlayerControls', {
     //move definition
     move: {left: false, right: false, up: false, down: false},
-    //default speed
-    speedPX: 4,
+    //default speed in pixels
+    speedPX: 2,
     //init method
     init: function(speed) {
         if (speed)
@@ -33,19 +33,33 @@ Crafty.c('PlayerControls', {
 
         //move with new frames
         this.bind('EnterFrame', function() {
-            pX = this.x;
-            pY = this.y;
-            if (this.move.right)
+            var move = this.move;
+            if (move.right) {
                 this.x += this.speedPX;
-            else if (this.move.left)
+                if(!this.isPlaying(WALK_RIGHT))
+                    Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
+            }
+            if (move.left) {
                 this.x -= this.speedPX;
-            else if (this.move.up)
+                if(!this.isPlaying(WALK_LEFT))
+                    Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
+            }
+            if (move.up) {
                 this.y -= this.speedPX;
-            else if (this.move.down)
+                if(!this.isPlaying(WALK_UP))
+                    Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
+            }
+            if (move.down) {
                 this.y += this.speedPX;
-            else
+                if(!this.isPlaying(WALK_DOWN))
+                    Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
+            }
+            if (!move.right && !move.left && !move.up && !move.down) {
+                if(this.isPlaying())
+                    Crafty.trigger(PLAYER_DIRECTION, NO_DIRECTION);
                 return;
-            this.repairPosition(pX, pY);
+            } else
+                this.repairPosition(this.x, this.y, move);
             //bind key down
         }).bind('KeyDown', function(e) {
             this.move.right = this.move.left = this.move.down = this.move.up = false;
@@ -71,7 +85,86 @@ Crafty.c('PlayerControls', {
                 this.move.down = false;
 
         });
-    }});
+    }
+});
+
+/*
+ * Player animation component.
+ * ---------------------------
+ */
+Crafty.c('PlayerAnimate', {
+    //speed of animation
+    speedAnim: 10,
+    //last move
+    lastMove: NO_DIRECTION,
+    //init method
+    init: function() {
+        this.animate(WALK_LEFT, 0, 1, 3)
+                .animate(WALK_RIGHT, 0, 2, 3)
+                .animate(WALK_UP, 0, 3, 3)
+                .animate(WALK_DOWN, 0, 0, 3)
+                .bind(PLAYER_DIRECTION,
+                function(direction) {
+                    var speedAnim = this.speedAnim;
+                    switch (direction) {
+                        case NO_DIRECTION:
+                            if(this.lastMove !== NO_DIRECTION)
+                                this.doLastStep(this.lastMove);
+                            this.lastMove = NO_DIRECTION;
+                            break;
+                        case UP_DIRECTION:
+                            if (!this.isPlaying(WALK_UP))
+                                this.stop().animate(WALK_UP, speedAnim, -1);
+                            this.lastMove = UP_DIRECTION;
+                            break;
+                        case DOWN_DIRECTION:
+                            if (!this.isPlaying(WALK_DOWN))
+                                this.stop().animate(WALK_DOWN, speedAnim, -1);
+                            this.lastMove = DOWN_DIRECTION;
+                            break;
+                        case RIGHT_DIRECTION:
+                            if (!this.isPlaying(WALK_RIGHT))
+                                this.stop().animate(WALK_RIGHT, speedAnim, -1);
+                            this.lastMove = RIGHT_DIRECTION;
+                            break;
+                        case LEFT_DIRECTION:
+                            if (!this.isPlaying(WALK_LEFT))
+                                this.stop().animate(WALK_LEFT, speedAnim, -1);
+                            this.lastMove = LEFT_DIRECTION;
+                            break;
+                    }
+                });
+    },
+    //method normalized last step
+    doLastStep: function(lastMove) {
+        switch (lastMove) {
+            case UP_DIRECTION:
+                this.stop();
+                this.sprite(0, 3);
+                this.lastMove = UP_DIRECTION;
+                break;
+            case DOWN_DIRECTION:
+                this.stop();
+                this.sprite(0, 0);
+                this.lastMove = DOWN_DIRECTION;
+                break;
+            case RIGHT_DIRECTION:
+                this.stop();
+                this.sprite(0, 2);
+                this.lastMove = RIGHT_DIRECTION;
+                break;
+            case LEFT_DIRECTION:
+                this.stop();
+                this.sprite(0, 1);
+                this.lastMove = LEFT_DIRECTION;
+                break;
+        }
+    },
+    //setter for speed animation
+    setSpeedOfAnimation: function(speedAnim) {
+        this.speedAnim = speedAnim;
+    }
+});
 
 /*
  * Abstract player component.
@@ -82,19 +175,33 @@ Crafty.c(PLAYER_ABS, {
     init: function() {
 
     },
-    
     //repair position after change x or y (collision detect, etc.)
-    repairPosition: function(fromX, fromY) {
+    repairPosition: function(fromX, fromY, move) {
         //path detection
-        if (this.hit('path')) {
-            this.attr({x: fromX, y: fromY});
+        if (this.hit('path') || this.x < 0 || this.x > SCREEN_WIDTH - PLAYER_WIDTH || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
+            if(move.left) {
+                this.attr({x: fromX+1, y: fromY});
+                this.repairPosition(this.x, this.y, move);
+            }
+            if(move.right) {
+                this.attr({x: fromX-1, y: fromY});
+                this.repairPosition(this.x, this.y, move);
+            }
+            if(move.up) {
+                this.attr({x: fromX, y: fromY+1});
+                this.repairPosition(this.x, this.y, move);
+            }
+            if(move.down) {
+                this.attr({x: fromX, y: fromY-1});
+                this.repairPosition(this.x, this.y, move);
+            }
         }
+        
         //over screen protection
-        if (this.x < 0 || this.x > screenWidth - W || this.y < 0 || this.y > screenHeight - H) {
+        if (this.x < 0 || this.x > SCREEN_WIDTH - PLAYER_WIDTH || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
             this.attr({x: fromX, y: fromY});
         }
     },
-        
     //set position method    
     setPosition: function(x, y) {
         this.x = x;
@@ -110,33 +217,6 @@ Crafty.c(PLAYER_ABS, {
 Crafty.c(PLAYER_DEBUG, {
     //init method
     init: function() {
-        this.multiway(4, {W: -90, S: 90, D: 0, A: 180});
-        this.animate("go_left", 1,0,1)
-            .animate("go_right", 0,0,0)
-            .animate("go_up", 2,0,2)
-            .animate("go_down", 3,0,3)
-            .bind("NewDirection",
-                    function (direction) {
-                        console.log('dudu');
-                        if (direction.x < 0) {
-                            if (!this.isPlaying("go_left"))
-                                this.stop().animate("go_left", 10, -1);
-                        }
-                        if (direction.x > 0) {
-                            if (!this.isPlaying("go_right"))
-                                this.stop().animate("go_right", 10, -1);
-                        }
-                        if (direction.y < 0) {
-                            if (!this.isPlaying("go_up"))
-                                this.stop().animate("go_up", 10, -1);
-                        }
-                        if (direction.y > 0) {
-                            if (!this.isPlaying("go_down"))
-                                this.stop().animate("go_down", 10, -1);
-                        }
-                        if(!direction.x && !direction.y) {
-                            this.stop();
-                        }
-                });
+        this.speedPX = 5;
     }
 });
