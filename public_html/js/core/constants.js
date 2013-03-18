@@ -43,6 +43,8 @@ var PLAYER_WIDTH = 24;
 
 //player events
 var PLAYER_DIRECTION = "PlayerDirection";
+var PLAYER_START_MOVE = "PlayerStartMove";
+var PLAYER_STOP_MOVE = "PlayerStopMove";
 
 //player directions
 var NO_DIRECTION = 0;
@@ -56,6 +58,9 @@ var WALK_UP = "walkUp";
 var WALK_DOWN = "walkDown";
 var WALK_LEFT = "walkLeft";
 var WALK_RIGHT = "walkRight";
+
+//sounds
+var PLAYER_STEP_SOUND = "step";
 
 //others
 var LAST_STEPS_COUNT = 3;

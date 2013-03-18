@@ -4,6 +4,7 @@ Crafty.scene (SCENE_LOADING, function () {
             .text ('Loading')
             .css ({'text-align': 'center'});
 
+    //images
     var images = [
         'images/bg.jpg',
         'images/dungeon.png',
@@ -15,13 +16,22 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
         'images/debug.png'];
-
-    Crafty.load (images, function () {
+    
+    //sounds
+    var sounds = [
+        'sounds/player/step.wav',
+    ];
+    
+    Crafty.load (images.concat(sounds), function () {
         Crafty.scene (SCENE_MENU);
     });
 
 });
 
+/***********
+ * SPRITES *
+ ***********
+ */
 
 Crafty.sprite (32, 'images/dungeon.png', {
     path: [0, 1],
@@ -58,4 +68,13 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
 
 Crafty.sprite (32, 'images/exp-simple-32(16).png', {
     exp_simple_32_16: [0, 0],
+});
+
+/**********
+ * SOUNDS *
+ **********
+ */
+
+Crafty.audio.add({
+    step: ["sounds/player/step.wav"]
 });
