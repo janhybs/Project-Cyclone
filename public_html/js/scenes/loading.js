@@ -22,7 +22,7 @@ Crafty.scene (SCENE_LOADING, function () {
         'sounds/player/step.wav',
     ];
     
-    Crafty.load (images.concat(sounds), function () {
+    Crafty.load ([].concat(images, sounds), function () {
         Crafty.scene (SCENE_MENU);
     });
 
