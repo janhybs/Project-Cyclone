@@ -15,8 +15,13 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
         'images/debug.png'];
+    
+    var sounds = [
+        'sounds/intro.mp3',
+        'sounds/snd.wav',
+    ];
 
-    Crafty.load (images, function () {
+    Crafty.load ([].concat(images, sounds), function () {
         Crafty.scene (SCENE_MENU);
     });
 
@@ -59,3 +64,6 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
 Crafty.sprite (32, 'images/exp-simple-32(16).png', {
     exp_simple_32_16: [0, 0],
 });
+
+Crafty.audio.add ('intro', 'sounds/intro.mp3');
+Crafty.audio.add ('snd', 'sounds/snd.wav');

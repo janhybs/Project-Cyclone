@@ -1,4 +1,7 @@
 Crafty.scene (SCENE_MENU, function () {
+    
+    Crafty.audio.play ('intro', 1);
+    Crafty.audio.play ('snd', -1);
 
     Crafty.e ("2D, DOM, Image, _background")
             .attr ({w: Crafty.viewport.width, h: Crafty.viewport.height})
