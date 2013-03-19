@@ -4,7 +4,7 @@ Crafty.scene (SCENE_LOADING, function () {
             .text ('Loading')
             .css ({'text-align': 'center'});
 
-    //images
+    //image files
     var images = [
         'images/bg.jpg',
         'images/dungeon.png',
@@ -17,7 +17,7 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-complex-64(25).png',
         'images/debug.png'];
     
-    //sounds
+    //sound files
     var sounds = [
         'sounds/player/step.wav',
     ];
