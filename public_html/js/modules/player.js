@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, ' + PLAYER_ABS + ', ' + type)
+                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -55,8 +55,12 @@ Crafty.c('PlayerControls', {
                     Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
             }
             if (!move.right && !move.left && !move.up && !move.down) {
-                if(this.isPlaying())
+                if(this.isPlaying()) {
+                    //stop animation
                     Crafty.trigger(PLAYER_DIRECTION, NO_DIRECTION);
+                    //player stops to move
+                    Crafty.trigger(PLAYER_STOP_MOVE);
+                }
                 return;
             } else
                 this.repairPosition(this.x, this.y, move);
@@ -72,6 +76,9 @@ Crafty.c('PlayerControls', {
                 this.move.up = true;
             if (e.key === Crafty.keys['DOWN_ARROW'])
                 this.move.down = true;
+
+            //player starts to move
+            Crafty.trigger(PLAYER_START_MOVE);
 
             //bind key up
         }).bind('KeyUp', function(e) {
@@ -167,6 +174,35 @@ Crafty.c('PlayerAnimate', {
 });
 
 /*
+ * Player sounds component.
+ * -------------------------
+ */
+Crafty.c('PlayerSounds', {
+    //playing variable
+    isStepping: false,
+            
+    //init method
+    init: function() {
+        //player starts move
+        this.bind(PLAYER_START_MOVE, function() {
+            if(!this.isStepping) {
+                console.log("START MOVE");
+                this.isStepping = true;
+                Crafty.audio.play(PLAYER_STEP_SOUND, -1);
+            }
+        });
+        //player stops move
+        this.bind(PLAYER_STOP_MOVE, function() {
+            if(this.isStepping) {
+                console.log("STOP MOVE");
+                this.isStepping = false;
+                Crafty.audio.stop(PLAYER_STEP_SOUND);
+            }
+        });
+    }
+});
+
+/*
  * Abstract player component.
  * --------------------------
  */
@@ -217,6 +253,6 @@ Crafty.c(PLAYER_ABS, {
 Crafty.c(PLAYER_DEBUG, {
     //init method
     init: function() {
-        this.speedPX = 5;
+        this.speedPX = 3;
     }
 });
