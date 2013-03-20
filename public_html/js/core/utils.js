@@ -109,3 +109,9 @@ window.activeSceneMouseClick = function() {
         Crafty.trigger(SCENE_MOUSE_CLICK_EVENT);
     });
 };
+
+//method for activating special type of cursor for active scene
+//(for queries - Pavel)
+window.activeSceneCursor = function(cursorType) {
+    $('#cr-stage').css('cursor', cursorType); 
+};

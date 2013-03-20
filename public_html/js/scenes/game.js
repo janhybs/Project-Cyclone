@@ -4,6 +4,9 @@ Crafty.scene (SCENE_GAME, function () {
 
     //mouse click activating for this scene
     activeSceneMouseClick();
+    
+    //add special cursor (fire-cursor)
+    activeSceneCursor('crosshair');
 
     jQuery.get ('levels/level-01.xml', function (data) {
         var xmldata = $.xml2json (data);
