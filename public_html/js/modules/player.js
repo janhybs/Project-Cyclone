@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, {0}, {1}'.format(PLAYER_ABS, type))
+                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -80,7 +80,7 @@ Crafty.c('PlayerControls', {
             //player starts to move
             Crafty.trigger(PLAYER_START_MOVE);
 
-            //bind key up
+        //bind key up
         }).bind('KeyUp', function(e) {
             if (e.key === Crafty.keys['RIGHT_ARROW'])
                 this.move.right = false;
@@ -92,6 +92,31 @@ Crafty.c('PlayerControls', {
                 this.move.down = false;
 
         });
+    }
+});
+
+/*
+ * Player fire component.
+ * ---------------------------
+ */
+Crafty.c('PlayerFire', {
+    //actual weapon type
+    actualWeapon: SHOT_P2P,
+    //shot speed
+    shotSpeed: 5,
+    
+    //init method
+    init: function() {
+        this.bind(SCENE_MOUSE_CLICK_EVENT, this.doFire)
+    },
+    
+    //fire method
+    doFire: function() {
+        var h = shot.get (this.actualWeapon);
+        h.setStartPoint ([this.x, this.y]);
+        h.setEndPoint (mousePos);
+        h.create (this.shotSpeed);
+        h.start ();
     }
 });
 
