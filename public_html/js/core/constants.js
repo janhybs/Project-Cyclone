@@ -13,9 +13,17 @@ var SCENE_LASER_TEST = 'laser-test';
 var SCENE_HOMING_TEST = 'homing-test';
 var SCENE_SPLASH_TEST = 'splash-test';
 var SCENE_P2P_TOWER_TEST = 'tower-p2p-test';
+var SCENE_ENEMY_TEST = 'enemy-test';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
+
+/***********
+ * ENEMIES *
+ ***********
+ */
+var ENEMY_ABS = 'enemyAbstract';
+var ENEMY_SIMPLE = 'enemySimple';
 
 /*********
  * SIZES *
@@ -33,7 +41,7 @@ var H = 32;
  * SHOOTS *
  **********
  */
-var SHOT_ABS = 'Abstract';
+var SHOT_ABS = 'shotAbstract';
 var SHOT_P2P = 'P2P';
 var SHOT_LASER = 'Laser';
 var SHOT_SPLASH = 'Splash';

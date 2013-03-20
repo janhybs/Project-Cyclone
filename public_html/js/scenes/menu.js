@@ -58,4 +58,13 @@ Crafty.scene (SCENE_MENU, function () {
             function() {
                 Crafty.scene(SCENE_P2P_TOWER_TEST);
             });
+        
+   
+    Crafty.e("2D, DOM, Text, Mouse").attr({w: Crafty.viewport.width, h: 20, x: 0, y: 420})
+            .text("enemy test")
+            .css({"text-align": "center"})
+            .bind('MouseUp',
+            function() {
+                Crafty.scene(SCENE_ENEMY_TEST);
+            });
 });
