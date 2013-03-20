@@ -12,6 +12,7 @@ var SCENE_P2P_TEST = 'p2p-test';
 var SCENE_LASER_TEST = 'laser-test';
 var SCENE_HOMING_TEST = 'homing-test';
 var SCENE_SPLASH_TEST = 'splash-test';
+var SCENE_P2P_TOWER_TEST = 'tower-p2p-test';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
@@ -42,6 +43,13 @@ var SHOT_HOMING = 'Homing';
 var FRAME_RATE = 25;
 var RAD = Math.PI * 2;
 var PI = Math.PI;
+
+/**********
+ * TOWERS *
+ **********
+ */
+var TOWER_P2P = 'P2PT';
+var TOWER_ABS = 'AbstractT';
 
 /********************
  * PLAYER CONSTANTS *

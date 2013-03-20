@@ -50,4 +50,12 @@ Crafty.scene (SCENE_MENU, function () {
             function () {
                 Crafty.scene (SCENE_SPLASH_TEST);
             });
+   
+    Crafty.e("2D, DOM, Text, Mouse").attr({w: Crafty.viewport.width, h: 20, x: 0, y: 370})
+            .text("tower test")
+            .css({"text-align": "center"})
+            .bind('MouseUp',
+            function() {
+                Crafty.scene(SCENE_P2P_TOWER_TEST);
+            });
 });
