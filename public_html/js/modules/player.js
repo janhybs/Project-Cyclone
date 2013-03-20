@@ -68,13 +68,13 @@ Crafty.c('PlayerControls', {
         }).bind('KeyDown', function(e) {
             this.move.right = this.move.left = this.move.down = this.move.up = false;
 
-            if (e.key === Crafty.keys['RIGHT_ARROW'])
+            if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D'])
                 this.move.right = true;
-            if (e.key === Crafty.keys['LEFT_ARROW'])
+            if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A'])
                 this.move.left = true;
-            if (e.key === Crafty.keys['UP_ARROW'])
+            if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W'])
                 this.move.up = true;
-            if (e.key === Crafty.keys['DOWN_ARROW'])
+            if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S'])
                 this.move.down = true;
 
             //player starts to move
@@ -82,15 +82,14 @@ Crafty.c('PlayerControls', {
 
         //bind key up
         }).bind('KeyUp', function(e) {
-            if (e.key === Crafty.keys['RIGHT_ARROW'])
+            if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D'])
                 this.move.right = false;
-            if (e.key === Crafty.keys['LEFT_ARROW'])
+            if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A'])
                 this.move.left = false;
-            if (e.key === Crafty.keys['UP_ARROW'])
+            if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W'])
                 this.move.up = false;
-            if (e.key === Crafty.keys['DOWN_ARROW'])
+            if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S'])
                 this.move.down = false;
-
         });
     }
 });
