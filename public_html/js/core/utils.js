@@ -101,3 +101,11 @@ window.radDist = function (a, b, f) {
     }
     return a + dif / f;
 };
+
+//method for activating mouse click over whole scene
+//you can catch SCENE_MOUSE_CLICK_EVENT (for queries - Pavel)
+window.activeSceneMouseClick = function() {
+    Crafty.addEvent(this, Crafty.stage.elem, "mousedown", function(e) {
+        Crafty.trigger(SCENE_MOUSE_CLICK_EVENT);
+    });
+};

@@ -1,3 +1,7 @@
+/***************
+ * GAME SCENES *
+ ***************
+ */
 //scenes
 var SCENE_GAME = 'game';
 var SCENE_MENU = 'menu';
@@ -9,6 +13,13 @@ var SCENE_LASER_TEST = 'laser-test';
 var SCENE_HOMING_TEST = 'homing-test';
 var SCENE_SPLASH_TEST = 'splash-test';
 
+//events
+var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
+
+/*********
+ * SIZES *
+ *********
+ */
 //screen size
 var SCREEN_WIDTH = 960;
 var SCREEN_HEIGHT = 640;
@@ -17,7 +28,10 @@ var SCREEN_HEIGHT = 640;
 var W = 32;
 var H = 32;
 
-//shots
+/**********
+ * SHOOTS *
+ **********
+ */
 var SHOT_ABS = 'Abstract';
 var SHOT_P2P = 'P2P';
 var SHOT_LASER = 'Laser';

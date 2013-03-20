@@ -2,11 +2,8 @@ Crafty.scene (SCENE_GAME, function () {
 
     Crafty.background ('#F00');
 
-
-    Crafty.e ("2D, DOM, Text")
-            .attr ({w: Crafty.viewport.width, h: 20, x: 0, y: 120})
-            .text ("GAME")
-            .css ({"text-align": "center"});
+    //mouse click activating for this scene
+    activeSceneMouseClick();
 
     jQuery.get ('levels/level-01.xml', function (data) {
         var xmldata = $.xml2json (data);
@@ -27,6 +24,7 @@ Crafty.scene (SCENE_GAME, function () {
 
 
     }, null, 'text');
+    
     //test player
     var pl = player.create(PLAYER_DEBUG);
 });

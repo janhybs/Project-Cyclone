@@ -186,7 +186,6 @@ Crafty.c('PlayerSounds', {
         //player starts move
         this.bind(PLAYER_START_MOVE, function() {
             if(!this.isStepping) {
-                console.log("START MOVE");
                 this.isStepping = true;
                 Crafty.audio.play(PLAYER_STEP_SOUND, -1);
             }
@@ -194,7 +193,6 @@ Crafty.c('PlayerSounds', {
         //player stops move
         this.bind(PLAYER_STOP_MOVE, function() {
             if(this.isStepping) {
-                console.log("STOP MOVE");
                 this.isStepping = false;
                 Crafty.audio.stop(PLAYER_STEP_SOUND);
             }
