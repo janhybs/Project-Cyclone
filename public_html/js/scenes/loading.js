@@ -67,6 +67,10 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
     exp_complex_64_25: [0, 0],
 });
 
+Crafty.sprite (32, 'images/exp-simple-32(16).png', {
+    exp_simple_32_16: [0, 0],
+});
+
 
 
 /************
