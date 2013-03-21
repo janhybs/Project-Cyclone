@@ -15,6 +15,7 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-simple-32(16).png',
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
+        'images/enemy.png',
         'images/debug.png'];
     
     //sound files
@@ -66,9 +67,7 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
     exp_complex_64_25: [0, 0],
 });
 
-Crafty.sprite (32, 'images/exp-simple-32(16).png', {
-    exp_simple_32_16: [0, 0],
-});
+
 
 /************
  *  SOUNDS  *
@@ -77,4 +76,14 @@ Crafty.sprite (32, 'images/exp-simple-32(16).png', {
 
 Crafty.audio.add({
     step: ["sounds/player/step.wav"]
+});
+
+
+/*************
+ *  ENEMIES  *
+ *************
+ */
+
+Crafty.sprite ('images/enemy.png', {
+    enemy: [0, 0, 33, 37],
 });
