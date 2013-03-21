@@ -1,7 +1,36 @@
+/**
+ * Method parses board data in the following format
+ * yyyyy
+ * yyyyy
+ * yyyyy
+ * where 'y' is one char representing board tile. Split is being done 
+ * by white char. 
+ * @param {String} data arra
+ * @returns Array of rows
+ */
 window.parseBoard = function (data) {
     return data.toString ().split (/\s+/);
 };
 
+/**
+ * Method multiples each point in array by W and H value
+ * @param {Array} a
+ * @returns {Array}
+ */
+window.enlargePath = function (a) {
+    for (var i = 0, l = a.length; i < l; i++) {
+        a[i].x = a[i].x * W;
+        a[i].y = a[i].y * H;
+    }
+    return a;
+};
+
+/**
+ * Parse path data and returns array of points
+ * @param {string} data in the following format (comma and space as separators)
+ * x,y x,y x,y
+ * @returns array of points from given data
+ */
 window.splitPath = function (data) {
     var ps = data.toString ().split (/\s+/);
     var result = [];
@@ -12,6 +41,11 @@ window.splitPath = function (data) {
     return result;
 };
 
+/**
+ * Method transforms given array of points using interpolation
+ * Only one property between two points in given array can differ
+ * @param {array} data array of points
+ */
 window.expandPath = function (data) {
     var result = [];
 
@@ -43,6 +77,12 @@ window.expandPath = function (data) {
     return result;
 };
 
+/**
+ * Parse path data and returns array of path
+ * @param {Array} data in the following format (comma and space as separators)
+ * ['x,y x,y x,y'], ['x,y x,y x,y'], ...
+ * @returns complete (interpolace included) array of path
+ */
 window.parsePaths = function (data) {
     var result = [];
 
@@ -68,12 +108,25 @@ if (!String.prototype.format) {
     };
 }
 
+/**
+ * Convert array or object to object with 'x' and 'y' properties
+ * @param {Array|Object} o array or object
+ * @returns Point with 'x' an 'y' property, if object has these 
+ * properties, reference is kept (no change)
+ */
 window.toPoint = function (o) {
     if (o.hasOwnProperty ('x') && o.hasOwnProperty ('y'))
         return o;
     return {x: o[0], y: o[1]};
 };
 
+/**
+ * Converts object (array, number, object) into defined object with
+ * exact representation (surely has desired properties)
+ * @param {Array|Number|Object} o array, number, object
+ * @returns {toDamage} desired object representation, if object has these 
+ * properties, reference is kept (no change)
+ */
 window.toDamage = function (o) {
     if (typeof o !== 'object')
         return toDamage ([o]);
@@ -93,8 +146,18 @@ window.toDamage = function (o) {
     }
 };
 
+
+/**
+ * Method calculate distance between two angle (a, b)
+ * Optimaze this distance to smalles representation
+ * 
+ * @param {Number} a start angle
+ * @param {Number} b end angle
+ * @param {Number} f step
+ * @returns part way angle from 'a' to 'b' in distance/'f' step
+ */
 window.radDist = function (a, b, f) {
-    dif = b - a;
+    var dif = b - a;
     dif = dif % RAD;
     if (dif !== dif % (RAD / 2)) {
         dif = (dif < 0) ? dif + RAD : dif - RAD;
@@ -104,14 +167,25 @@ window.radDist = function (a, b, f) {
 
 //method for activating mouse click over whole scene
 //you can catch SCENE_MOUSE_CLICK_EVENT (for queries - Pavel)
-window.activeSceneMouseClick = function() {
-    Crafty.addEvent(this, Crafty.stage.elem, "mousedown", function(e) {
-        Crafty.trigger(SCENE_MOUSE_CLICK_EVENT);
+window.activeSceneMouseClick = function () {
+    Crafty.addEvent (this, Crafty.stage.elem, "mousedown", function (e) {
+        Crafty.trigger (SCENE_MOUSE_CLICK_EVENT);
     });
 };
 
 //method for activating special type of cursor for active scene
 //(for queries - Pavel)
-window.activeSceneCursor = function(cursorType) {
-    $('#cr-stage').css('cursor', cursorType); 
+window.activeSceneCursor = function (cursorType) {
+    $ ('#cr-stage').css ('cursor', cursorType);
+};
+
+
+/**
+ * Method calculatesEuclidean distance of given points
+ * @param {Point} p1
+ * @param {Point} p2
+ * @returns {Number} Euclidean distance of two points
+ */
+window.distance = function (p1, p2) {
+    return Math.sqrt (Math.pow (p1.x - p2.x, 2) + Math.pow (p1.y - p2.y, 2));
 };
