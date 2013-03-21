@@ -1,22 +1,28 @@
 Crafty.c (ENEMY_ABS, {
-    abstractCreate: function (resistance, health, shield, speed, path) {
+    create: function (path, speed, resistance, health, shield, random) {
+        this.path = path !== undefined ? path : null;
+        this.speed = speed !== undefined ? speed : 3;
         this.resistance = resistance !== undefined ? toDamage (resistance) : toDamage (0);
         this.health = health !== undefined ? health : 100;
         this.shield = shield !== undefined ? shield : 0;
-        this.speed = speed !== undefined ? speed : 3;
-        this.path = path !== undefined ? path : null;
+        this.random = random !== undefined ? random : 10;
     },
     init: function () {
         this.resistance = toDamage (0);
         this.health = 100;
         this.shield = 0;
         this.speed = 32;
-        this.path = enlargePath (expandPath (splitPath ('0,0 1,0 1,8 8,8 12,8 12,14 15,14 15,0 16,0 16,6')));
+        this.random = 10;
+        this.path = null;
 
-        //# current point and next point to go
+        //# current point, next point to go
         this._cp = null;
         this._np = null;
+
+        //# point to go, randomness included
+        this.coords = {x: 0, y: 0};
         //# block index (starting at zeroth)
+        this._bi = 0;
     },
     enterFrame: function () {
 
@@ -33,26 +39,42 @@ Crafty.c (ENEMY_ABS, {
     start: function () {
         //# assigning first two path blocks
         this._bi = 0;
-        this.findDirection (this._bi);
+        this._cp = this.path[0];
         this.x = this._cp.x;
         this.y = this._cp.y;
+        this.findDirection (this._bi);
         this.bind ("EnterFrame", this.enterFrame);
     },
     findDirection: function (bi) {
-        if (bi+1 >= this.path.length) {
-            this._bi = 0;
-            this.findDirection (this._bi);
+        if (bi + 1 >= this.path.length) {
+            this.doSplash ();
+            this.destroy ();
             return;
         }
         this._cp = this.path[bi + 0];
         this._np = this.path[bi + 1];
-        this.angle = Math.atan2 (this._np.y - this.y, this._np.x - this.x);
+
+        //# randomness in movement
+        this.coords = {x: this._np.x, y: this._np.y};
+        this.coords.x = this._np.x + Crafty.math.randomInt (-this.random, +this.random);
+        this.coords.y = this._np.y + Crafty.math.randomInt (-this.random, +this.random);
+
+        //# angle and x/y step
+        this.angle = Math.atan2 (this.coords.y - this.y, this.coords.x - this.x);
         this.xstep = Math.cos (this.angle) * this.speed;
         this.ystep = Math.sin (this.angle) * this.speed;
     },
+    doSplash: function () {
+        var s = shot.get (SHOT_SPLASH);
+        s.setStartPoint (this);
+        s.create (20, 64);
+        s.setTTL (2 * FRAME_RATE);
+        s.setFrameCount (16);
+        s.start ();
+    },
     isAtNextStop: function () {
-        var d = distance (this, this._np);
-        return d < 5;
+        var d = distance (this, this.coords);
+        return d < this.speed * 2;
     },
     //#
     getResistance: function () {
@@ -93,12 +115,18 @@ Crafty.c (ENEMY_ABS, {
     setPath: function (value) {
         this.path = value;
         return this;
-    }
+    },
+    getRandom: function () {
+        return this.random;
+    },
+    setRandom: function (value) {
+        this.random = value;
+        return this;
+    },
 });
 
 
 Crafty.c (ENEMY_SIMPLE, {
     init: function () {
-        console.log ('-enemy');
     }
 });
