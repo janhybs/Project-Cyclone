@@ -4,10 +4,18 @@ window.tower = {
             case TOWER_MACHINEGUN:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
                         .attr({w: W, h: H});
-                /*
-                 return Crafty.e('2D, Canvas, Image, {0}, {1}, P2P'.format(TOWER_ABS, type))
-                 .attr({w: W, h: H});
-                 */
+            case TOWER_FLAMETHROWER:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
+                        .attr({w: W, h: H});
+            case TOWER_LASER:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, cat'.format(TOWER_ABS, TOWER_P2P, type))
+                        .attr({w: W, h: H});
+            case TOWER_HOMING_MISSILE:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, cat'.format(TOWER_ABS, TOWER_HOMING, type))
+                        .attr({w: W, h: H});
+            case TOWER_CHAIN_LASER:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, cat'.format(TOWER_ABS, TOWER_P2P, type))
+                        .attr({w: W, h: H});
         }
     }
 };
@@ -100,6 +108,51 @@ Crafty.c(TOWER_P2P, {
     }
 });
 
+Crafty.c(TOWER_HOMING, {
+    abstractCreate: function(endPoint, curving) {
+        this.endPoint = toPoint(endPoint);
+        this.curving = curving !== undefined ? curving : NaN;
+    },
+    getEndPoint: function() {
+        return this.endPoint;
+    },
+    setEndPoint: function(value) {
+        this.endPoint = toPoint(value);
+        return this;
+    },
+    getCurving: function() {
+        return this.curving;
+    },
+    setCurving: function(value) {
+        this.curving = curving;
+        return this;
+    }
+});
+
+Crafty.c(TOWER_HOMING_MISSILE, {
+    create: function() {
+        this.damage = HM_DAMAGE;
+        this.outputDamage = HM_OUTPUT_DAMAGE;
+        this.rate = HM_RATE;
+        this.range = HM_RANGE;
+        this.price = HM_PRICE;
+        this.curving = HM_CURVING;
+    },
+    fire: function() {
+        var s = shot.get(SHOT_HOMING);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        s.setDamage(this.damage);
+        s.setTTL(this.range);
+        s.create(this.rate, this.curving);
+        s.start();
+    },
+    upgrade: function() {
+        this.setLevel(this.level + 1);
+        //upgrade sequence - dohodnout
+    }
+});
+
 Crafty.c(TOWER_MACHINEGUN, {
     create: function() {
         this.damage = MG_DAMAGE;
@@ -116,6 +169,99 @@ Crafty.c(TOWER_MACHINEGUN, {
         s.setTTL(this.range);
         s.create(this.rate);
         s.start();
+    },
+    upgrade: function() {
+        this.setLevel(this.level + 1);
+        //upgrade sequence - dohodnout
+    }
+});
+
+Crafty.c(TOWER_FLAMETHROWER, {
+    create: function() {
+        this.damage = FT_DAMAGE;
+        this.outputDamage = FT_OUTPUT_DAMAGE;
+        this.rate = FT_RATE;
+        this.range = FT_RANGE;
+        this.price = FT_PRICE;
+    },
+    fire: function() {
+        var s = shot.get(SHOT_P2P);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        s.setDamage(this.damage);
+        s.setTTL(this.range);
+        s.create(this.rate);
+        s.start();
+// IN PROGRESS
+//        var s2 = shot.get(SHOT_P2P);
+//        s2.setStartPoint([this.startPoint.x, this.startPoint.y]);
+//        s2.setEndPoint([this.endPoint.x, this.endPoint.y]);
+//        s2.setDamage(this.damage);
+//        s2.setTTL(this.range);
+//        s2.create(this.rate);
+//        s2.start();
+//
+//        var s3 = shot.get(SHOT_P2P);
+//        s3.setStartPoint([this.startPoint.x, this.startPoint.y]);
+//        s3.setEndPoint([this.endPoint.x, this.endPoint.y]);
+//        s3.setDamage(this.damage);
+//        s3.setTTL(this.range);
+//        s3.create(this.rate);
+//        s3.start();
+    },
+    upgrade: function() {
+        this.setLevel(this.level + 1);
+        //upgrade sequence - dohodnout
+    }
+});
+
+Crafty.c(TOWER_LASER, {
+    create: function() {
+        this.damage = L_DAMAGE;
+        this.outputDamage = L_OUTPUT_DAMAGE;
+        this.rate = L_RATE;
+        this.range = L_RANGE;
+        this.price = L_PRICE;
+    },
+    fire: function() {
+        var s = shot.get(SHOT_LASER);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        s.setDamage(this.damage);
+        s.setTTL(this.range);
+        s.create();
+        s.start();
+    },
+    upgrade: function() {
+        this.setLevel(this.level + 1);
+    }
+});
+
+Crafty.c(TOWER_CHAIN_LASER, {
+    create: function(endpoint) {
+        this.damage = CHL_DAMAGE;
+        this.outputDamage = CHL_OUTPUT_DAMAGE;
+        this.rate = CHL_RATE;
+        this.range = CHL_RANGE;
+        this.price = CHL_PRICE;
+        this.endPoint2 = toPoint(endpoint);
+    },
+    fire: function() {
+        var s = shot.get(SHOT_LASER);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        s.setDamage(this.damage);
+        s.setTTL(this.range);
+        s.create();
+        s.start();
+        
+        var s2 = shot.get(SHOT_LASER);
+        s2.setStartPoint([this.endPoint.x, this.endPoint.y]);
+        s2.setEndPoint([this.endPoint2.x, this.endPoint2.y]);
+        s2.setDamage(this.damage);
+        s2.setTTL(this.range);
+        s2.create();
+        s2.start();
     },
     upgrade: function() {
         this.setLevel(this.level + 1);

@@ -59,15 +59,45 @@ var PI = Math.PI;
 
 var TOWER_ABS = 'AbstractTower';
 var TOWER_P2P = 'P2PTower';
+var TOWER_HOMING = 'HomingTower'
 var DEFAULT_PRICE = 100;
 var MAX_LEVEL = 5;
 
 var TOWER_MACHINEGUN = 'MachineGunTower';
 var MG_DAMAGE = [1, 0, 0, 0];
 var MG_OUTPUT_DAMAGE = 10;
-var MG_RATE = 10;
+var MG_RATE = 5;
 var MG_RANGE = 25;
 var MG_PRICE = 100;
+
+var TOWER_LASER = 'LaserTower';
+var L_DAMAGE = [0, 0, 1, 0];
+var L_OUTPUT_DAMAGE = 20;
+var L_RATE = 10;
+var L_RANGE = 80;
+var L_PRICE = 200;
+
+var TOWER_FLAMETHROWER = 'FlamethrowerTower';
+var FT_DAMAGE = [0, 1, 0, 0];
+var FT_OUTPUT_DAMAGE = 20;
+var FT_RATE = 8;
+var FT_RANGE = 10;
+var FT_PRICE = 200;
+
+var TOWER_HOMING_MISSILE = 'HomingMissileTower';
+var HM_DAMAGE = [1, 0, 0, 0];
+var HM_OUTPUT_DAMAGE = 50;
+var HM_RATE = 2;
+var HM_RANGE = 100;
+var HM_PRICE = 500;
+var HM_CURVING = 30;
+
+var TOWER_CHAIN_LASER = 'ChainLaserTower';
+var CHL_DAMAGE = [0, 0, 1, 0];
+var CHL_OUTPUT_DAMAGE = 10;
+var CHL_RATE = 10;
+var CHL_RANGE = 40;
+var CHL_PRICE = 300;
 
 /********************
  * PLAYER CONSTANTS *
