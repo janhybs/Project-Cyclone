@@ -43,7 +43,14 @@ Crafty.c (ENEMY_ABS, {
         this.x = this._cp.x;
         this.y = this._cp.y;
         this.findDirection (this._bi);
+        this.requires ('Collision');
         this.bind ("EnterFrame", this.enterFrame);
+        this.onHit (SHOT_P2P, function (array) {
+            for (var i = 0, l = array.length; i < l; i++)
+                array[i].obj.destroy ();
+            this.doSplash ();
+            this.destroy ();
+        });
     },
     findDirection: function (bi) {
         if (bi + 1 >= this.path.length) {
@@ -68,7 +75,7 @@ Crafty.c (ENEMY_ABS, {
         var s = shot.get (SHOT_SPLASH);
         s.setStartPoint (this);
         s.create (20, 64);
-        s.setTTL (2 * FRAME_RATE);
+        s.setTTL (FRAME_RATE);
         s.setFrameCount (16);
         s.start ();
     },

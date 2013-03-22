@@ -88,6 +88,7 @@ Crafty.c (SHOT_P2P, {
             this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x);
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
+            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
@@ -182,7 +183,7 @@ Crafty.c (SHOT_HOMING, {
             this.y = this.startPoint.y;
             this.angle = Math.atan2 (this.endPoint.y - this.y - H, this.endPoint.x - this.x - W);
             this.aprox = this.angle;
-            this.t = 0;
+            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
@@ -237,6 +238,7 @@ Crafty.c (SHOT_SPLASH, {
         if (this.startPoint !== null) {
             this.x = this.startPoint.x;
             this.y = this.startPoint.y;
+            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.animate ('splash-growth', 10, -1);
         }

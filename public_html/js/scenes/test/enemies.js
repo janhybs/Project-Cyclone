@@ -16,6 +16,13 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
         }
     }, 100);
 
+    var t = tower.get (TOWER_P2P);
+    t.setStartPoint ([SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2]);
+    setInterval (function () {
+        t.setEndPoint ([Crafty.math.randomInt (0, SCREEN_WIDTH), Crafty.math.randomInt (0, SCREEN_HEIGHT)]);
+        t.shoot ();
+    }, 30);
+
     setInterval (function () {
         var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
         e.attr ({w: 33 * (.7), h: 37 * (.7)});
