@@ -68,17 +68,26 @@ Crafty.c('PlayerControls', {
         }).bind('KeyDown', function(e) {
             this.move.right = this.move.left = this.move.down = this.move.up = false;
 
-            if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D'])
+            if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D']) {
                 this.move.right = true;
-            if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A'])
+                //player starts to move
+                Crafty.trigger(PLAYER_START_MOVE);
+            }
+            if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A']) {
                 this.move.left = true;
-            if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W'])
+                //player starts to move
+                Crafty.trigger(PLAYER_START_MOVE);
+            }
+            if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W']) {
                 this.move.up = true;
-            if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S'])
+                //player starts to move
+                Crafty.trigger(PLAYER_START_MOVE);
+            }
+            if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S']) {
                 this.move.down = true;
-
-            //player starts to move
-            Crafty.trigger(PLAYER_START_MOVE);
+                //player starts to move
+                Crafty.trigger(PLAYER_START_MOVE);
+            }
 
         //bind key up
         }).bind('KeyUp', function(e) {
