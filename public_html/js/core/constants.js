@@ -56,8 +56,18 @@ var PI = Math.PI;
  * TOWERS *
  **********
  */
-var TOWER_P2P = 'P2PT';
-var TOWER_ABS = 'AbstractT';
+
+var TOWER_ABS = 'AbstractTower';
+var TOWER_P2P = 'P2PTower';
+var DEFAULT_PRICE = 100;
+var MAX_LEVEL = 5;
+
+var TOWER_MACHINEGUN = 'MachineGunTower';
+var MG_DAMAGE = [1, 0, 0, 0];
+var MG_OUTPUT_DAMAGE = 10;
+var MG_RATE = 10;
+var MG_RANGE = 25;
+var MG_PRICE = 100;
 
 /********************
  * PLAYER CONSTANTS *
