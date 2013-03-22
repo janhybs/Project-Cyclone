@@ -16,6 +16,12 @@ window.tower = {
             case TOWER_CHAIN_LASER:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, cat'.format(TOWER_ABS, TOWER_P2P, type))
                         .attr({w: W, h: H});
+            case TOWER_ELECTRIC_AURA:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, cat'.format(TOWER_ABS, TOWER_SPLASH, type))
+                        .attr({w: W, h: H});
+            case TOWER_CANNON:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, {3}, cat'.format(TOWER_ABS, TOWER_P2P, TOWER_SPLASH, type))
+                        .attr({w: W, h: H});
         }
     }
 };
@@ -27,7 +33,7 @@ Crafty.c(TOWER_ABS, {
         this.damage = damage !== undefined ? damage : toDamage(0);
         this.rate = rate !== undefined ? rate : NaN;
         this.range = range !== undefined ? range : NaN;
-        this.outputDamage !== undefined ? outputDamage : NaN;
+        this.outputDamage = outputDamage !== undefined ? outputDamage : NaN;
         this.level = 1;
         this.price = price !== undefined ? price : DEFAULT_PRICE;
     },
@@ -126,6 +132,51 @@ Crafty.c(TOWER_HOMING, {
     setCurving: function(value) {
         this.curving = curving;
         return this;
+    }
+});
+
+Crafty.c(TOWER_SPLASH, {
+    abstractCreate: function(growth, radius) {
+        this.growth = growth !== undefined ? growth : NaN;
+        this.radius = radius !== undefined ? radius : NaN;
+    },
+    getGrowth: function() {
+        return this.growth;
+    },
+    setGrowth: function(growth) {
+        this.growth = growth;
+        return this;
+    },
+    getRadius: function() {
+        return this.radius;
+    },
+    setRadois: function(radius) {
+        this.radius = radius;
+        return this;
+    }
+});
+
+Crafty.c(TOWER_ELECTRIC_AURA, {
+    create: function() {
+        this.damage = EA_DAMAGE;
+        this.outputDamage = EA_OUTPUT_DAMAGE;
+        this.rate = EA_RATE;
+        this.range = EA_RANGE;
+        this.price = EA_PRICE;
+        this.growth = EA_GROWTH;
+        this.radius = EA_RADIUS;
+    },
+    fire: function() {
+        var s = shot.get(SHOT_SPLASH);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setDamage(this.damage);
+        s.setTTL(this.range);
+        s.create(this.growth, this.radius);
+        s.start();
+    },
+    upgrade: function() {
+        this.setLevel(this.level + 1);
+        //upgrade sequence - dohodnout
     }
 });
 
@@ -237,6 +288,7 @@ Crafty.c(TOWER_LASER, {
     }
 });
 
+//generalize input
 Crafty.c(TOWER_CHAIN_LASER, {
     create: function(endpoint) {
         this.damage = CHL_DAMAGE;
@@ -254,7 +306,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
         s.setTTL(this.range);
         s.create();
         s.start();
-        
+
         var s2 = shot.get(SHOT_LASER);
         s2.setStartPoint([this.endPoint.x, this.endPoint.y]);
         s2.setEndPoint([this.endPoint2.x, this.endPoint2.y]);

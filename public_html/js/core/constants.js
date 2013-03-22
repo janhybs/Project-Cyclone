@@ -59,7 +59,8 @@ var PI = Math.PI;
 
 var TOWER_ABS = 'AbstractTower';
 var TOWER_P2P = 'P2PTower';
-var TOWER_HOMING = 'HomingTower'
+var TOWER_HOMING = 'HomingTower';
+var TOWER_SPLASH = 'SplashTower';
 var DEFAULT_PRICE = 100;
 var MAX_LEVEL = 5;
 
@@ -98,6 +99,24 @@ var CHL_OUTPUT_DAMAGE = 10;
 var CHL_RATE = 10;
 var CHL_RANGE = 40;
 var CHL_PRICE = 300;
+
+var TOWER_ELECTRIC_AURA = 'ElectricAuraTower';
+var EA_DAMAGE = [0, 0, 1, 0];
+var EA_OUTPUT_DAMAGE = 10;
+var EA_RATE = 10;
+var EA_RANGE = 40;
+var EA_PRICE = 300;
+var EA_GROWTH = 10;
+var EA_RADIUS = 40;
+
+var TOWER_CANNON = 'CannonTower';
+var C_DAMAGE = [0, 1, 0, 0];
+var C_OUTPUT_DAMAGE = 100;
+var C_RATE = 30;
+var C_RANGE = 80;
+var C_PRICE = 300;
+var C_GROWTH = 20;
+var C_RADIUS = 80;
 
 /********************
  * PLAYER CONSTANTS *
