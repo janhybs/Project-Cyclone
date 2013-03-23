@@ -5,37 +5,55 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     var path2 = enlargePath (expandPath (splitPath ('25,18 1,18')));
     var path3 = enlargePath (splitPath ('25,0 20,15'));
 
-
-
-    setInterval (function () {
-        if (new Date ().getSeconds () % 2 === 0) {
+    var timer = Crafty.e ('Timer');
+    
+    for (var i = 0; i < SCREEN_WIDTH; i+= W) {
+        for (var j = 0; j < SCREEN_HEIGHT; j+= H) {
             var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-            e.attr ({w: 33 * (.7), h: 37 * (.7)});
-            e.create (path1, 3.0);
-            e.start ();
-        }
-    }, 100);
+            e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
+            e.x = i;
+            e.y = j;
+        }    
+    }
 
-    var t = tower.get (TOWER_P2P);
-    t.setStartPoint ([SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2]);
-    setInterval (function () {
-        t.setEndPoint ([Crafty.math.randomInt (0, SCREEN_WIDTH), Crafty.math.randomInt (0, SCREEN_HEIGHT)]);
-        t.shoot ();
-    }, 30);
+    var radius = 0;
+    timer.repeat (function () {
+        var e = getEntities (ENEMY_ABS, [SCREEN_WIDTH/2, SCREEN_HEIGHT/2], radius);
+        console.log (e);
+        for (var i = 0, l = e.length; i < l; i++)
+            e[i].alpha = (e[i].alpha - 0.05) < 0 ? 1 : (e[i].alpha - 0.05);
+        radius = (radius + 20) > SCREEN_WIDTH/4 ? 0 : (radius + 20);
+    }, 10);
 
-    setInterval (function () {
-        var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-        e.attr ({w: 33 * (.7), h: 37 * (.7)});
-        e.create (path2, 3.0, 0, 0, 0, 24);
-        e.start ();
-    }, 60);
+//    timer.repeat ( function () {
+//        if (new Date ().getSeconds () % 2 === 0) {
+//            var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+//            e.attr ({w: 33 * (.7), h: 37 * (.7)});
+//            e.create (path1, 3.0);
+//            e.start ();
+//        }
+//    }, 100);
+
+//    var t = tower.get (TOWER_P2P);
+//    t.setStartPoint ([SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2]);
+//    timer.repeat ( function () {
+//        t.setEndPoint ([Crafty.math.randomInt (0, SCREEN_WIDTH), Crafty.math.randomInt (0, SCREEN_HEIGHT)]);
+//        t.shoot ();
+//    }, 30);
+
+//    timer.repeat ( function () {
+//        var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+//        e.attr ({w: 33 * (.7), h: 37 * (.7)});
+//        e.create (path2, 3.0, 0, 0, 0, 24);
+//        e.start ();
+//    }, 60);
 
 
-    setInterval (function () {
-        var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-        e.attr ({w: 33 * (.7), h: 37 * (.7)});
-        e.create (path3, 3.0, 0, 0, 0, 0);
-        e.start ();
-    }, 150);
+//    timer.repeat ( function () {
+//        var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+//        e.attr ({w: 33 * (.7), h: 37 * (.7)});
+//        e.create (path3, 3.0, 0, 0, 0, 0);
+//        e.start ();
+//    }, 150);
 
 });

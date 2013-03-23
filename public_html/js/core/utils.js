@@ -189,3 +189,19 @@ window.activeSceneCursor = function (cursorType) {
 window.distance = function (p1, p2) {
     return Math.sqrt (Math.pow (p1.x - p2.x, 2) + Math.pow (p1.y - p2.y, 2));
 };
+
+
+window.getEntities = function (selector, startPoint, radius) {
+    var e = Crafty (selector);
+    var s = toPoint (startPoint);
+    var c = new Crafty.circle (s.x, s.y, radius);
+    var r = [];
+
+    var tmp;
+    for (var i = 0, l = e.length; i < l; i++) {
+        tmp = Crafty (e[i]);
+        if (c.containsPoint (tmp.x, tmp.y))
+            r.push (tmp);
+    }
+    return r;
+};
