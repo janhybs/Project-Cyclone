@@ -181,7 +181,7 @@ window.activeSceneCursor = function (cursorType) {
 
 
 /**
- * Method calculatesEuclidean distance of given points
+ * Method calculates Euclidean distance of given points
  * @param {Point} p1
  * @param {Point} p2
  * @returns {Number} Euclidean distance of two points

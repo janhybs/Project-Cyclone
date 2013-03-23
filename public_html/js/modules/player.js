@@ -24,6 +24,8 @@ Crafty.c('PlayerControls', {
     move: {left: false, right: false, up: false, down: false},
     //default speed in pixels
     speedPX: 2,
+    //last pressed move key
+    lastKey: NO_DIRECTION, 
     //init method
     init: function(speed) {
         if (speed)
@@ -34,27 +36,27 @@ Crafty.c('PlayerControls', {
         //move with new frames
         this.bind('EnterFrame', function() {
             var move = this.move;
-            if (move.right) {
+            if (this.lastKey === RIGHT_DIRECTION) {
                 this.x += this.speedPX;
                 if(!this.isPlaying(WALK_RIGHT))
                     Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
             }
-            if (move.left) {
+            else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
                 if(!this.isPlaying(WALK_LEFT))
                     Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
             }
-            if (move.up) {
+            else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
                 if(!this.isPlaying(WALK_UP))
                     Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
             }
-            if (move.down) {
+            else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
                 if(!this.isPlaying(WALK_DOWN))
                     Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
             }
-            if (!move.right && !move.left && !move.up && !move.down) {
+            else if (this.lastKey === NO_DIRECTION) {
                 if(this.isPlaying()) {
                     //stop animation
                     Crafty.trigger(PLAYER_DIRECTION, NO_DIRECTION);
@@ -64,41 +66,57 @@ Crafty.c('PlayerControls', {
                 return;
             } else
                 this.repairPosition(this.x, this.y, move);
-            //bind key down
+        //bind key down
         }).bind('KeyDown', function(e) {
-            this.move.right = this.move.left = this.move.down = this.move.up = false;
-
             if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D']) {
                 this.move.right = true;
+                //this.move.left = false;
+                this.lastKey = RIGHT_DIRECTION;
                 //player starts to move
                 Crafty.trigger(PLAYER_START_MOVE);
             }
             if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A']) {
                 this.move.left = true;
+                //this.move.right = false;
+                this.lastKey = LEFT_DIRECTION;
                 //player starts to move
                 Crafty.trigger(PLAYER_START_MOVE);
             }
             if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W']) {
                 this.move.up = true;
+                //this.move.down = false;
+                this.lastKey = UP_DIRECTION;
                 //player starts to move
                 Crafty.trigger(PLAYER_START_MOVE);
             }
             if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S']) {
                 this.move.down = true;
+                //this.move.up = false;
+                this.lastKey = DOWN_DIRECTION;
                 //player starts to move
                 Crafty.trigger(PLAYER_START_MOVE);
             }
 
         //bind key up
         }).bind('KeyUp', function(e) {
-            if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D'])
+            if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D']) {
                 this.move.right = false;
-            if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A'])
+            }
+            if (e.key === Crafty.keys['LEFT_ARROW'] || e.key === Crafty.keys['A']) {
                 this.move.left = false;
-            if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W'])
+            }
+            if (e.key === Crafty.keys['UP_ARROW'] || e.key === Crafty.keys['W']) {
                 this.move.up = false;
-            if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S'])
+            }
+            if (e.key === Crafty.keys['DOWN_ARROW'] || e.key === Crafty.keys['S']) {
                 this.move.down = false;
+            }
+            //last move activation
+            if(this.move.up) this.lastKey = UP_DIRECTION;
+            else if(this.move.down) this.lastKey = DOWN_DIRECTION;
+            else if(this.move.right) this.lastKey = RIGHT_DIRECTION;
+            else if(this.move.left) this.lastKey = LEFT_DIRECTION;
+            else this.lastKey = NO_DIRECTION;
         });
     }
 });
