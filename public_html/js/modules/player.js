@@ -40,21 +40,25 @@ Crafty.c('PlayerControls', {
                 this.x += this.speedPX;
                 if(!this.isPlaying(WALK_RIGHT))
                     Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
+                this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
                 if(!this.isPlaying(WALK_LEFT))
                     Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
+                this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
                 if(!this.isPlaying(WALK_UP))
                     Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
+                this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
                 if(!this.isPlaying(WALK_DOWN))
                     Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
+                this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === NO_DIRECTION) {
                 if(this.isPlaying()) {
@@ -64,8 +68,7 @@ Crafty.c('PlayerControls', {
                     Crafty.trigger(PLAYER_STOP_MOVE);
                 }
                 return;
-            } else
-                this.repairPosition(this.x, this.y, move);
+            }
         //bind key down
         }).bind('KeyDown', function(e) {
             if (e.key === Crafty.keys['RIGHT_ARROW'] || e.key === Crafty.keys['D']) {
@@ -264,19 +267,19 @@ Crafty.c(PLAYER_ABS, {
     repairPosition: function(fromX, fromY, move) {
         //path detection
         if (this.hit('path') || this.x < 0 || this.x > SCREEN_WIDTH - PLAYER_WIDTH || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
-            if(move.left) {
+            if(move === LEFT_DIRECTION) {
                 this.attr({x: fromX+1, y: fromY});
                 this.repairPosition(this.x, this.y, move);
             }
-            if(move.right) {
+            else if(move === RIGHT_DIRECTION) {
                 this.attr({x: fromX-1, y: fromY});
                 this.repairPosition(this.x, this.y, move);
             }
-            if(move.up) {
+            else if(move === UP_DIRECTION) {
                 this.attr({x: fromX, y: fromY+1});
                 this.repairPosition(this.x, this.y, move);
             }
-            if(move.down) {
+            else if(move === DOWN_DIRECTION) {
                 this.attr({x: fromX, y: fromY-1});
                 this.repairPosition(this.x, this.y, move);
             }
@@ -303,5 +306,44 @@ Crafty.c(PLAYER_DEBUG, {
     //init method
     init: function() {
         this.speedPX = 3;
+    }
+});
+
+/*
+ * Soldier player.
+ * ---------------
+ */
+Crafty.c(PLAYER_SOLDIER, {
+    //init method
+    init: function() {
+        this.speedPX = 3;
+        this.actualWeapon = SHOT_P2P;
+        this.shotSpeed = 5;
+    }
+});
+
+/*
+ * Homing player.
+ * --------------
+ */
+Crafty.c(PLAYER_HOMING, {
+    //init method
+    init: function() {
+        this.speedPX = 4;
+        this.actualWeapon = SHOT_HOMING;
+        this.shotSpeed = 7;
+    }
+});
+
+/*
+ * Laser player.
+ * --------------
+ */
+Crafty.c(PLAYER_LASER, {
+    //init method
+    init: function() {
+        this.speedPX = 5;
+        this.actualWeapon = SHOT_LASER;
+        this.shotSpeed = 4;
     }
 });

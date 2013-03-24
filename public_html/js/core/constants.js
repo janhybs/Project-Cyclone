@@ -125,6 +125,9 @@ var C_RADIUS = 80;
 //players
 var PLAYER_ABS = 'AbstractPlayer';
 var PLAYER_DEBUG = 'DebugPlayer';
+var PLAYER_SOLDIER = 'SoldierPlayer';
+var PLAYER_HOMING = 'HomingPlayer';
+var PLAYER_LASER = 'LaserPlayer';
 
 //player size
 var PLAYER_HEIGHT = 24;
