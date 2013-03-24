@@ -28,6 +28,9 @@ Crafty.scene (SCENE_GAME, function () {
 
     }, null, 'text');
     
+    //add panel to scene
+    var panel = gamePanel.create();
+    
     //test player
     var pl = player.create(PLAYER_HOMING);
 });

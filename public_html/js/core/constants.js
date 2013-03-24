@@ -56,7 +56,6 @@ var PI = Math.PI;
  * TOWERS *
  **********
  */
-
 var TOWER_ABS = 'AbstractTower';
 var TOWER_P2P = 'P2PTower';
 var TOWER_HOMING = 'HomingTower';
@@ -156,3 +155,15 @@ var PLAYER_STEP_SOUND = "step";
 
 //others
 var LAST_STEPS_COUNT = 3;
+
+/************************
+ * GAME PANEL CONSTANTS *
+ ************************
+ */
+//panel components
+var GAME_PANEL_COMPONENT = "gamePanelComp";
+var GAME_PANEL_CONTENT = "gamePanelContent";
+
+//panel properties
+var PANEL_WIDTH = 150;
+var PANEL_BG_COLOR = "#888888";
