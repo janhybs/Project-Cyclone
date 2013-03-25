@@ -65,9 +65,10 @@ Crafty.c (SHOT_ABS, {
 
 
 Crafty.c (SHOT_P2P, {
-    create: function (speed, angle) {
+    create: function (speed, angle, spreading) {
         this.speed = speed !== undefined ? speed : NaN;
         this.angle = angle !== undefined ? angle : NaN;
+        this.spreading = spreading !== undefined ? (spreading / 180) * PI : 0;
     },
     //#
     enterFrame: function () {
@@ -85,7 +86,15 @@ Crafty.c (SHOT_P2P, {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.x = this.startPoint.x;
             this.y = this.startPoint.y;
-            this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x);
+            this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x) - this.spreading / 2 + Math.random () * this.spreading;
+            this.xstep = Math.cos (this.angle) * this.speed;
+            this.ystep = Math.sin (this.angle) * this.speed;
+            this.requires ('Collision');
+            this.bind ("EnterFrame", this.enterFrame);
+        } else if (this.startPoint !== null && !isNaN (this.angle)) {
+            this.x = this.startPoint.x;
+            this.y = this.startPoint.y;
+            this.angle = this.angle - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
             this.requires ('Collision');
@@ -107,9 +116,17 @@ Crafty.c (SHOT_P2P, {
         return this.angle;
     },
     setAngle: function (value) {
-        this.angle = value;
+        this.angle = (value / 180) * PI  - this.spreading / 2 + Math.random () * this.spreading;
         this.xstep = Math.cos (this.angle) * this.speed;
         this.ystep = Math.sin (this.angle) * this.speed;
+        return this;
+    },
+    //#
+    getSpreading: function () {
+        return this.spreading;
+    },
+    setSpreading: function (value) {
+        this.spreading = (value / 180) * PI;
         return this;
     }
 });
@@ -263,10 +280,10 @@ Crafty.c (SHOT_SPLASH, {
     setFrameCount: function (value) {
         this.frameCount = value;
         this.animate ('splash-growth', [
-            [0,0], [1,0], [2,0], [3,0],
-            [0,1], [1,1], [2,1], [3,1],
-            [0,2], [1,2], [2,2], [3,2],
-            [0,3], [1,3], [2,3], [3,3]
+            [0, 0], [1, 0], [2, 0], [3, 0],
+            [0, 1], [1, 1], [2, 1], [3, 1],
+            [0, 2], [1, 2], [2, 2], [3, 2],
+            [0, 3], [1, 3], [2, 3], [3, 3]
         ]);
         return this;
     }
