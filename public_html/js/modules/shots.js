@@ -28,6 +28,13 @@ Crafty.c (SHOT_ABS, {
     init: function () {
         this.ttl = 10 * FRAME_RATE;
         this.startPoint = this.endPoint = null;
+        this.damage = toDamage (0);
+        this.visible = false;
+        this.isValid = true;
+    },
+    //#
+    invalidate: function () {
+        this.isValid = false;
     },
     //#
     getStartPoint: function () {
@@ -102,6 +109,11 @@ Crafty.c (SHOT_P2P, {
         }
     },
     //#
+    doDestroy: function () {
+        doSplash (this);
+        this.destroy ();
+    },
+    //#
     getSpeed: function () {
         return this.speed;
     },
@@ -116,7 +128,7 @@ Crafty.c (SHOT_P2P, {
         return this.angle;
     },
     setAngle: function (value) {
-        this.angle = (value / 180) * PI  - this.spreading / 2 + Math.random () * this.spreading;
+        this.angle = (value / 180) * PI - this.spreading / 2 + Math.random () * this.spreading;
         this.xstep = Math.cos (this.angle) * this.speed;
         this.ystep = Math.sin (this.angle) * this.speed;
         return this;
@@ -204,6 +216,18 @@ Crafty.c (SHOT_HOMING, {
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
+    //# when destroyed, release SPLASH shot
+    doDestroy: function () {
+        doSplash (this);
+        var s = shot.get (SHOT_SPLASH);
+        s.setStartPoint (this);
+        s.create (20, 64);
+        s.setTTL (FRAME_RATE);
+        s.setFrameCount (16);
+        s.setDamage (this.getDamage ());
+        s.start ();
+        this.destroy ();
+    },
     //#
     getAngle: function () {
         return this.angle;
@@ -229,6 +253,7 @@ Crafty.c (SHOT_SPLASH, {
     create: function (growth, radius) {
         this.growth = growth !== undefined ? growth : 25;
         this.radius = radius !== undefined ? radius : 100;
+        this.nextIsInvalid = false;
     },
     //#
     enterFrame: function () {
@@ -249,6 +274,16 @@ Crafty.c (SHOT_SPLASH, {
         if (this.ttl-- <= 0) {
             this.destroy ();
         }
+
+        //#
+        if (this.nextIsInvalid)
+            this.isValid = false;
+    },
+    //# invalidation will be set in next EnterFrame round
+    //# so this shot can be used on more than one enemy
+    //# at the same time
+    invalidate: function () {
+        this.nextIsInvalid = true;
     },
     //#
     start: function () {
