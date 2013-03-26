@@ -47,6 +47,9 @@ var SHOT_LASER = 'Laser';
 var SHOT_SPLASH = 'Splash';
 var SHOT_HOMING = 'Homing';
 
+var REZISTANCE = 100;
+var BENEFIT_SHIELD = 2;
+
 //utils
 var FRAME_RATE = 25;
 var RAD = Math.PI * 2;
