@@ -130,7 +130,7 @@ window.toPoint = function (o) {
 window.toDamage = function (o) {
     if (typeof o !== 'object')
         return toDamage ([o]);
-    var props = ['basic', 'fire', 'watter', 'poison'];
+    var props = ['basic', 'fire', 'electric', 'poison', 'ice'];
 
     //# array (probably)
     if (o.length) {
@@ -204,4 +204,14 @@ window.getEntities = function (selector, startPoint, radius) {
             r.push (tmp);
     }
     return r;
+};
+
+
+window.doSplash = function (point) {
+    var s = shot.get (SHOT_SPLASH);
+    s.setStartPoint (point);
+    s.create (20, 64);
+    s.setTTL (FRAME_RATE);
+    s.setFrameCount (16);
+    s.start ();
 };
