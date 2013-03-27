@@ -262,6 +262,8 @@ Crafty.c('PlayerSounds', {
  * --------------------------
  */
 Crafty.c(PLAYER_ABS, {
+    //level of player
+    level: 0,
     //init method
     init: function() {
 
@@ -322,19 +324,6 @@ Crafty.c(PLAYER_SOLDIER, {
         this.speedPX = 3;
         this.actualWeapon = SHOT_P2P;
         this.shotSpeed = 5;
-    }
-});
-
-/*
- * Homing player.
- * --------------
- */
-Crafty.c(PLAYER_HOMING, {
-    //init method
-    init: function() {
-        this.speedPX = 4;
-        this.actualWeapon = SHOT_HOMING;
-        this.shotSpeed = 7;
     }
 });
 
