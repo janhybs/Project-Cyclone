@@ -73,7 +73,17 @@ var MG_OUTPUT_DAMAGE = 10;
 var MG_RATE = 5;
 var MG_RANGE = 25;
 var MG_SPREADING = 0;
+var MG_TTL = 25;
 var MG_PRICE = 100;
+
+var TOWER_CANNON = 'CannonTower';
+var C_DAMAGE = [1, 0, 0, 0, 0];
+var C_OUTPUT_DAMAGE = 50;
+var C_RATE = 1;
+var C_RANGE = 75;
+var C_SPREADING = 0;
+var C_TTL = 75;
+var C_PRICE = 200;
 
 var TOWER_FLAMETHROWER = 'FlamethrowerTower';
 var FT_DAMAGE = [0, 1, 0, 0, 0];
@@ -81,6 +91,7 @@ var FT_OUTPUT_DAMAGE = 20;
 var FT_RATE = 8;
 var FT_RANGE = 10;
 var FT_SPREADING = 15;
+var FT_TTL = 10;
 var FT_PRICE = 200;
 
 var TOWER_BEAM_LASER = 'BeamLaserTower';
@@ -88,6 +99,7 @@ var L_DAMAGE = [0, 0, 1, 0, 0];
 var L_OUTPUT_DAMAGE = 20;
 var L_RATE = 10;
 var L_RANGE = 80;
+var L_TTL = 80;
 var L_PRICE = 200;
 
 var TOWER_CHAIN_LASER = 'ChainLaserTower';
@@ -95,6 +107,7 @@ var CHL_DAMAGE = [0, 0, 1, 0, 0];
 var CHL_OUTPUT_DAMAGE = 10;
 var CHL_RATE = 10;
 var CHL_RANGE = 40;
+var CHL_TTL = 40;
 var CHL_PRICE = 300;
 
 var TOWER_HOMING_MISSILE = 'HomingMissileTower';
@@ -102,6 +115,7 @@ var HM_DAMAGE = [1, 0, 0, 0, 0];
 var HM_OUTPUT_DAMAGE = 50;
 var HM_RATE = 2;
 var HM_RANGE = 100;
+var HM_TTL = 100;
 var HM_PRICE = 500;
 var HM_CURVING = 30;
 
@@ -111,6 +125,7 @@ var EA_DAMAGE = [0, 0, 1, 0, 0];
 var EA_OUTPUT_DAMAGE = 10;
 var EA_RATE = 10;
 var EA_RANGE = 40;
+var EA_TTL = 40;
 var EA_PRICE = 300;
 var EA_GROWTH = 10;
 var EA_RADIUS = 40;
