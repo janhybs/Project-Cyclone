@@ -67,4 +67,12 @@ Crafty.scene (SCENE_MENU, function () {
             function() {
                 Crafty.scene(SCENE_ENEMY_TEST);
             });
+            
+    Crafty.e("2D, DOM, Text, Mouse").attr({w: Crafty.viewport.width, h: 20, x: 0, y: 470})
+            .text("player level up")
+            .css({"text-align": "center"})
+            .bind('MouseUp',
+            function() {
+                Crafty.scene(SCENE_LEVEL_UP);
+            });
 });

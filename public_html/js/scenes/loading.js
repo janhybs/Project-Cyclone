@@ -16,7 +16,9 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
         'images/enemy.png',
-        'images/debug.png'];
+        'images/debug.png',
+        'images/laser_hero.png',
+        'images/soldier_hero.png'];
     
     //sound files
     var sounds = [

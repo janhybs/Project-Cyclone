@@ -158,6 +158,7 @@ var PLAYER_STEP_SOUND = "step";
 
 //others
 var LAST_STEPS_COUNT = 3;
+var LEVEL_UP_TEXT = "Your level was increased!";
 
 /************************
  * GAME PANEL CONSTANTS *
