@@ -6,6 +6,7 @@
 var SCENE_GAME = 'game';
 var SCENE_MENU = 'menu';
 var SCENE_LOADING = 'loading';
+var SCENE_LEVEL_UP = 'playerLevelUp';
 
 //debug scenes
 var SCENE_P2P_TEST = 'p2p-test';
