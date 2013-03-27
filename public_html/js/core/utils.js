@@ -165,11 +165,14 @@ window.radDist = function (a, b, f) {
     return a + dif / f;
 };
 
-//method for activating mouse click over whole scene
+//method for activating mouse click over whole scene without panel
 //you can catch SCENE_MOUSE_CLICK_EVENT (for queries - Pavel)
 window.activeSceneMouseClick = function () {
     Crafty.addEvent (this, Crafty.stage.elem, "mousedown", function (e) {
-        Crafty.trigger (SCENE_MOUSE_CLICK_EVENT);
+        if(mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
+            Crafty.trigger (SCENE_MOUSE_CLICK_EVENT);
+            console.log("piko");
+        }
     });
 };
 
