@@ -133,6 +133,8 @@ Crafty.c('PlayerFire', {
     actualWeapon: SHOT_P2P,
     //shot speed
     shotSpeed: 5,
+    //shot damage
+    shotDamage: 1,
     
     //init method
     init: function() {
@@ -141,11 +143,12 @@ Crafty.c('PlayerFire', {
     
     //fire method
     doFire: function() {
-        var h = shot.get (this.actualWeapon);
-        h.setStartPoint ([this.x, this.y]);
-        h.setEndPoint (mousePos);
-        h.create (this.shotSpeed);
-        h.start ();
+        var s = shot.get(this.actualWeapon);
+        s.setStartPoint([this.x, this.y]);
+        s.setEndPoint(mousePos);
+        s.setDamage(this.shotDamage);
+        s.create(this.shotSpeed);
+        s.start();
     }
 });
 

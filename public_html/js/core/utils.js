@@ -171,7 +171,6 @@ window.activeSceneMouseClick = function () {
     Crafty.addEvent (this, Crafty.stage.elem, "mousedown", function (e) {
         if(mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
             Crafty.trigger (SCENE_MOUSE_CLICK_EVENT);
-            console.log("piko");
         }
     });
 };
