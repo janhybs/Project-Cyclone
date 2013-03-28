@@ -9,11 +9,17 @@ Crafty.c (ENEMY_ABS, {
     },
     init: function () {
         this.resistance = toDamage (0);
-        this.health = 100;
         this.shield = 0;
         this.speed = 32;
         this.random = 10;
         this.path = null;
+
+        this.healthChanged = false;
+        this.maxHealth = 0;
+        this.previousHealth = 0;
+        this._health = 100;
+        this.__defineGetter__ ('health', this.getHealth);
+        this.__defineSetter__ ('health', this.setHealth);
 
         //# current point, next point to go
         this._cp = null;
@@ -27,8 +33,15 @@ Crafty.c (ENEMY_ABS, {
     enterFrame: function () {
 
         //# moving
-        this.x += this.xstep;
-        this.y += this.ystep;
+        if (this.speed > 0) {
+            this.x += this.xstep * this.speed;
+            this.y += this.ystep * this.speed;
+        }
+
+        if (this.healthChanged) {
+            this.healthChanged = false;
+            this.trigger ('HealthChanged', {previous: this.previousHealth, current: this._health});
+        }
 
         //# if enemy has reached next point (block)
         //# generate next coords (xstep, ystep)
@@ -42,6 +55,7 @@ Crafty.c (ENEMY_ABS, {
         this._cp = this.path[0];
         this.x = this._cp.x;
         this.y = this._cp.y;
+        this.maxHealth = this.health;
         this.findDirection (this._bi);
         this.requires ('Collision');
         this.bind ("EnterFrame", this.enterFrame);
@@ -147,8 +161,7 @@ Crafty.c (ENEMY_ABS, {
     //#
     findDirection: function (bi) {
         if (bi + 1 >= this.path.length) {
-            this.doSplash ();
-            this.destroy ();
+            return this.processDeath ('end');
             return;
         }
         this._cp = this.path[bi + 0];
@@ -161,8 +174,8 @@ Crafty.c (ENEMY_ABS, {
 
         //# angle and x/y step
         this.angle = Math.atan2 (this.coords.y - this.y, this.coords.x - this.x);
-        this.xstep = Math.cos (this.angle) * this.speed;
-        this.ystep = Math.sin (this.angle) * this.speed;
+        this.xstep = Math.cos (this.angle);
+        this.ystep = Math.sin (this.angle);
     },
     isAtNextStop: function () {
         var d = distance (this, this.coords);
@@ -178,10 +191,14 @@ Crafty.c (ENEMY_ABS, {
     },
     //#
     getHealth: function () {
-        return this.health;
+        return this._health;
     },
     setHealth: function (value) {
-        this.health = value;
+        if (this._health === value)
+            return;
+        this._health = value;
+        this.previousHealth = this._health;
+        this.healthChanged = true;
         return this;
     },
     //#
@@ -214,7 +231,7 @@ Crafty.c (ENEMY_ABS, {
     setRandom: function (value) {
         this.random = value;
         return this;
-    },
+    }
 });
 
 
