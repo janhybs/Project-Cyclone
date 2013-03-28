@@ -1,31 +1,21 @@
 Crafty.scene (SCENE_LASER_TEST, function () {
 
     Crafty.background ('#333');
+    Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH, h: SCREEN_HEIGHT, alpha: 0.25}).image ("images/sq.jpg", "repeat");
 
-    var p0 = {x: 2, y: 2};
+    var p0 = {x: 12, y: 8};
     var p1 = {x: 5, y: 5};
     var p2 = {x: 10, y: 10};
+    var p = [p0, p1, p2];
 
-    //# cat laser tower #1
-    board.createGate (p0);
-    var l = shot.get (SHOT_LASER);
-    l.setStartPoint ([p0.x * W, p0.y * H]);
-    l.setEndPoint (mousePos);
-    l.create ();
-    l.start ();
-
-
-
-    //# cat tower #2
-    board.createGate (p1);
-    var l1 = shot.get (SHOT_LASER);
-    l1.setStartPoint ([p1.x * W, p1.y * H]);
-    l1.setEndPoint ([Math.random () * 920 + 20, Math.random () * 600 + 20]);
-    l1.create ();
-    l1.start ();
-
-    setInterval (function () {
-        l1.setEndPoint ([Math.random () * 920 + 20, Math.random () * 600 + 20]);
-    }, 500);
-
+    for (var i = 0; i < 3; i++) {
+        var g = board.createGate (p[i]);
+        var l = shot.get (SHOT_LASER);
+        g.z = 100;
+        l.z = 99;
+        l.setStartPoint ([p[i].x * W, p[i].y * H]);
+        l.setEndPoint (mousePos);
+        l.create ("images/laser-0{0}.png".format (i + 1));
+        l.start ();
+    }
 });
