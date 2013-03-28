@@ -6,7 +6,7 @@ window.shot = {
                         .attr ({w: W, h: H});
             case SHOT_LASER:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
-                        .attr ({w: W, h: H});
+                        .attr ({w: 10, h: 10});
             case SHOT_HOMING:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, laser'.format (SHOT_ABS, type))
                         .attr ({w: W / 2, h: H / 2});
@@ -29,7 +29,7 @@ Crafty.c (SHOT_ABS, {
         this.ttl = 10 * FRAME_RATE;
         this.startPoint = this.endPoint = null;
         this.damage = toDamage (0);
-        this.visible = false;
+        this.visible = true;
         this.isValid = true;
     },
     //#
@@ -93,7 +93,8 @@ Crafty.c (SHOT_P2P, {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.x = this.startPoint.x;
             this.y = this.startPoint.y;
-            this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x) - this.spreading / 2 + Math.random () * this.spreading;
+            this.shiftPoint = toPoint ([this.startPoint.x + this.w / 2, this.startPoint.y + this.h / 2]);
+            this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x) - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
             this.requires ('Collision');
@@ -146,26 +147,31 @@ Crafty.c (SHOT_P2P, {
 
 
 Crafty.c (SHOT_LASER, {
-    create: function (angle) {
-        this.angle = angle !== undefined ? angle : NaN;
-        this.laser = Crafty.e ("2D, Canvas, Image").image ("images/laser-cat.png", "repeat");
+    create: function (laser) {
+        this.angle = NaN;
+        this.laser = Crafty.e ("2D, Canvas, Image").image (laser !== undefined ? laser : "images/laser-01.png", "repeat");
     },
     //#
     enterFrame: function () {
-        this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x);
-        this.laser.w = W / 2 / 2 + Math.sqrt (Math.pow (this.startPoint.x - this.endPoint.x, 2) + Math.pow (this.startPoint.y - this.endPoint.y, 2));
-        this.laser.h = H / 2;
+        this.x = this.endPoint.x - this.w / 2;
+        this.y = this.endPoint.y - this.h / 2;
+        this.angle = Math.atan2 (
+                (this.endPoint.y - this.shiftPoint.y),
+                (this.endPoint.x - this.shiftPoint.x));
+        this.laser.w = this.len + distance (this.shiftPoint, this.endPoint);
         this.laser.rotation = (this.angle * 180) / Math.PI;
     },
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
-            this.x = this.startPoint.x;
-            this.y = this.startPoint.y;
-            this.laser.x = this.x + W / 2 / 2;
-            this.laser.y = this.y + H / 2 / 2;
-            this.laser.origin (W / 2 / 2, H / 2 / 2);
-            this.angle = Math.atan2 (this.endPoint.y - this.y, this.endPoint.x - this.x);
+            this.laser.z = this.z;
+            this.laser.x = this.startPoint.x + W / 2;
+            this.laser.y = this.startPoint.y;
+            this.laser.h = H;
+            this.laser.w = W;
+            this.laser.origin (0, this.laser.h / 2);
+            this.shiftPoint = toPoint ([this.startPoint.x + this.laser.w / 2, this.startPoint.y + this.laser.h / 2]);
+            this.len = 0;
             this.bind ("EnterFrame", this.enterFrame);
         }
     },
