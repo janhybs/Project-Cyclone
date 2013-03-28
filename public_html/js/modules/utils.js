@@ -112,3 +112,42 @@ Crafty.c ("Timer", {
         this._delays[id].triggered = true;
     }
 });
+
+
+
+
+/**@
+ * #Crafty HealthBar
+ * @category Utilities
+ */
+Crafty.c ('HealthBar', {
+    init: function () {
+        this.healthbar = Crafty.e ('2D, Canvas').attr ({w: W, h: H});
+        this.healthbarHeight = 6;
+        this.healthbarWidth = W;
+        var _this = this;
+
+        this.healthbar.draw = function (e) {
+            var ctx = Crafty.canvas.context;
+            var x = _this.x + (_this.w - _this.healthbarWidth) / 2;
+            var t = _this.health / _this.maxHealth;
+            t = (t > 1 ? 1 : t < 0 ? 0 : t);
+
+            //# match position
+            _this.healthbar.x = _this.x;
+            _this.healthbar.y = _this.y;
+            _this.healthbar.z = _this.z + 1;
+
+            //# draw
+            ctx.beginPath ();
+            ctx.setFillColor ('#F00');
+            ctx.fillRect (x, _this.y + H, _this.healthbarWidth * t, _this.healthbarHeight);
+            ctx.setStrokeColor ('#000');
+            ctx.strokeRect (x, _this.y + H, _this.healthbarWidth, _this.healthbarHeight);
+            ctx.closePath ();
+        };
+
+        this.bind ('Move', this.healthbar.draw);
+        this.bind ('HealthChanged', this.healthbar.draw);
+    }
+});
