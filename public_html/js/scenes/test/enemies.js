@@ -1,29 +1,46 @@
 Crafty.scene (SCENE_ENEMY_TEST, function () {
 
-    Crafty.background ('#BBB');
+    Crafty.background ('#333');
+    Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH, h: SCREEN_HEIGHT, alpha: 0.25}).image ("images/sq.jpg", "repeat");
+
     var path1 = enlargePath (expandPath (splitPath ('0,0 1,0 1,8 8,8 12,8 12,14 15,14 15,0 19,0 19,6')));
     var path2 = enlargePath (expandPath (splitPath ('25,18 1,18')));
     var path3 = enlargePath (splitPath ('25,0 20,15'));
 
     var timer = Crafty.e ('Timer');
-    
-    for (var i = 0; i < SCREEN_WIDTH; i+= W) {
-        for (var j = 0; j < SCREEN_HEIGHT; j+= H) {
-            var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-            e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
-            e.x = i;
-            e.y = j;
-        }    
-    }
 
-    var radius = 0;
-    timer.repeat (function () {
-        var e = getEntities (ENEMY_ABS, [SCREEN_WIDTH/2, SCREEN_HEIGHT/2], radius);
-        console.log (e);
-        for (var i = 0, l = e.length; i < l; i++)
-            e[i].alpha = (e[i].alpha - 0.05) < 0 ? 1 : (e[i].alpha - 0.05);
-        radius = (radius + 20) > SCREEN_WIDTH/4 ? 0 : (radius + 20);
-    }, 10);
+
+    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+    e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
+    e.create (path1, 3.0, 0, 100, 0, 0);
+    e.name = 'e0';
+    e.start ();
+    e.requires ('HealthBar');
+    e.health /= 2;
+
+    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+    e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
+    e.create (path1, 0.5, 0, 100, 0, 0);
+    e.start ();
+    e.name = 'e1';
+    e.requires ('HealthBar');
+//    for (var i = 0; i < SCREEN_WIDTH; i+= W) {
+//        for (var j = 0; j < SCREEN_HEIGHT; j+= H) {
+//            var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+//            e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
+//            e.x = i;
+//            e.y = j;
+//        }    
+//    }
+//
+//    var radius = 0;
+//    timer.repeat (function () {
+//        var e = getEntities (ENEMY_ABS, [SCREEN_WIDTH/2, SCREEN_HEIGHT/2], radius);
+//        console.log (e);
+//        for (var i = 0, l = e.length; i < l; i++)
+//            e[i].alpha = (e[i].alpha - 0.05) < 0 ? 1 : (e[i].alpha - 0.05);
+//        radius = (radius + 20) > SCREEN_WIDTH/4 ? 0 : (radius + 20);
+//    }, 10);
 
 //    timer.repeat ( function () {
 //        if (new Date ().getSeconds () % 2 === 0) {
