@@ -1,6 +1,7 @@
 Crafty.scene (SCENE_P2P_TEST, function () {
 
     Crafty.background ('#333');
+    Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH, h: SCREEN_HEIGHT, alpha: 0.25}).image ("images/sq.jpg", "repeat");
 
     var p0 = {x: 2, y: 2};
     var p1 = {x: 12, y: 8};
