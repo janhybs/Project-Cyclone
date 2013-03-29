@@ -131,6 +131,16 @@ var EA_PRICE = 300;
 var EA_GROWTH = 10;
 var EA_RADIUS = 40;
 
+/**********
+ * AIMING *
+ **********
+ */
+
+var AIMING_MOST_HEALTH = 'MostHealthAim';
+var AIMING_LEAST_HEALTH = 'LeastHealthAim';
+var AIMING_CLOSEST = 'ClosestAim';
+var AIMING_FURTHEST = 'FurthestAim';
+
 /********************
  * PLAYER CONSTANTS *
  ********************
