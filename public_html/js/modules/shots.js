@@ -8,8 +8,8 @@ window.shot = {
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
                         .attr ({w: 10, h: 10});
             case SHOT_HOMING:
-                return Crafty.e ('2D, Canvas, Image, {0}, {1}, laser'.format (SHOT_ABS, type))
-                        .attr ({w: W / 2, h: H / 2});
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}, rocket'.format (SHOT_ABS, type))
+                        .attr ({w: 40 * .7, h: 25 * .7});
             case SHOT_SPLASH:
                 return Crafty.e ('2D, Canvas, Image, SpriteAnimation, {0}, {1}, exp_simple_32_16'.format (SHOT_ABS, type))
                         .attr ({w: 1, h: 1});
@@ -90,18 +90,20 @@ Crafty.c (SHOT_P2P, {
     },
     //#
     start: function () {
-        if (this.startPoint !== null && this.endPoint !== null) {
-            this.x = this.startPoint.x;
-            this.y = this.startPoint.y;
+
+        if (this.startPoint !== null) {
+            this.x = this.startPoint.x + (W - this.w) / 2;
+            this.y = this.startPoint.y + (H - this.h) / 2;
+        }
+
+        if (this.endPoint !== null) {
             this.shiftPoint = toPoint ([this.startPoint.x + this.w / 2, this.startPoint.y + this.h / 2]);
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x) - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
-        } else if (this.startPoint !== null && !isNaN (this.angle)) {
-            this.x = this.startPoint.x;
-            this.y = this.startPoint.y;
+        } else if (!isNaN (this.angle)) {
             this.angle = this.angle - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
@@ -198,7 +200,8 @@ Crafty.c (SHOT_HOMING, {
     //#
     enterFrame: function () {
 
-        this.angle = Math.atan2 (this.endPoint.y - this.y - H, this.endPoint.x - this.x - W);
+        this.shiftPoint = toPoint ([this.x + this.w / 2, this.y + this.h / 2]);
+        this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
         this.aprox = radDist (this.aprox, this.angle, this.curving);
         this.xstep = Math.cos (this.aprox) * this.speed;
         this.ystep = Math.sin (this.aprox) * this.speed;
@@ -214,9 +217,11 @@ Crafty.c (SHOT_HOMING, {
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
-            this.x = this.startPoint.x;
-            this.y = this.startPoint.y;
-            this.angle = Math.atan2 (this.endPoint.y - this.y - H, this.endPoint.x - this.x - W);
+            this.x = this.startPoint.x + (W - this.w) / 2;
+            this.y = this.startPoint.y + (H - this.h) / 2;
+            this.origin (this.w / 2, this.h / 2);
+            this.shiftPoint = toPoint ([this.x + this.w / 2, this.y + this.h / 2]);
+            this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
             this.aprox = this.angle;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
