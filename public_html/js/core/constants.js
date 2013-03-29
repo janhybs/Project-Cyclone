@@ -48,7 +48,7 @@ var SHOT_LASER = 'Laser';
 var SHOT_SPLASH = 'Splash';
 var SHOT_HOMING = 'Homing';
 
-var REZISTANCE = 100;
+var REZISTANCE = 1.00;
 var BENEFIT_SHIELD = 2;
 
 //utils
