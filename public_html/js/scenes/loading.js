@@ -17,6 +17,7 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-complex-64(25).png',
         'images/enemy.png',
         'images/debug.png',
+        'images/rocket.png',
         'images/laser_hero.png',
         'images/soldier_hero.png'];
     
@@ -72,6 +73,12 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
 Crafty.sprite (32, 'images/exp-simple-32(16).png', {
     exp_simple_32_16: [0, 0],
 });
+
+
+Crafty.sprite ('images/rocket.png', {
+    rocket: [0, 0, 40, 25],
+});
+
 
 
 
