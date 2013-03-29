@@ -20,6 +20,9 @@ Crafty.c (ENEMY_ABS, {
         this._health = 100;
         this.__defineGetter__ ('health', this.getHealth);
         this.__defineSetter__ ('health', this.setHealth);
+        this.__defineGetter__ ('center', function () {
+            return toPoint ([this.x + this.w / 2, this.y + this.h / 2]);
+        });
 
         //# current point, next point to go
         this._cp = null;
@@ -45,18 +48,21 @@ Crafty.c (ENEMY_ABS, {
 
         //# if enemy has reached next point (block)
         //# generate next coords (xstep, ystep)
-        if (this.isAtNextStop ()) {
+        if (this.path !== null && this.isAtNextStop ()) {
             this.findDirection (++this._bi);
         }
     },
     start: function () {
         //# assigning first two path blocks
-        this._bi = 0;
-        this._cp = this.path[0];
-        this.x = this._cp.x;
-        this.y = this._cp.y;
+        if (this.path !== null) {
+            this._bi = 0;
+            this._cp = this.path[0];
+            this.x = this._cp.x;
+            this.y = this._cp.y;
+            this.findDirection (this._bi);
+        }
+
         this.maxHealth = this.health;
-        this.findDirection (this._bi);
         this.requires ('Collision');
         this.bind ("EnterFrame", this.enterFrame);
         this.onHit (SHOT_ABS, this.processHit);
@@ -69,7 +75,7 @@ Crafty.c (ENEMY_ABS, {
     //#
     processHit: function (shots) {
         for (var i = 0, l = shots.length; i < l; i++) {
-            var s = shots[i];
+            var s = shots[i].obj;
 
             //# was routine already done?
             if (!s.isValid)
@@ -93,7 +99,7 @@ Crafty.c (ENEMY_ABS, {
 
 
             //# SPLASH routine
-            if (s.has (SHOT_SPLASH)) {
+            if (s.has (SHOT_SPLASH) && s.checkHit (this)) {
                 this.transferDamage (s);
 
                 if (this.isDead ())
@@ -148,7 +154,7 @@ Crafty.c (ENEMY_ABS, {
             }
         } else {
             //# health substraction
-            this.health -= dmg.electric * (REZISTANCE - res.basic)
+            this.health -= (REZISTANCE - res.electric) * dmg.electric
                     + (REZISTANCE - res.basic) * dmg.basic
                     + (REZISTANCE - res.fire) * dmg.fire
                     + (REZISTANCE - res.poison) * dmg.poison
