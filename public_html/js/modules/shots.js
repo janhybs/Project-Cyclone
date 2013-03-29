@@ -12,7 +12,7 @@ window.shot = {
                         .attr ({w: 40 * .7, h: 25 * .7});
             case SHOT_SPLASH:
                 return Crafty.e ('2D, Canvas, Image, SpriteAnimation, {0}, {1}, exp_simple_32_16'.format (SHOT_ABS, type))
-                        .attr ({w: 1, h: 1});
+                        .attr ({w: W, h: H});
         }
     }
 };
@@ -261,32 +261,20 @@ Crafty.c (SHOT_HOMING, {
 
 
 Crafty.c (SHOT_SPLASH, {
-    create: function (growth, radius) {
-        this.growth = growth !== undefined ? growth : 25;
+    create: function (radius) {
         this.radius = radius !== undefined ? radius : 100;
+        this.w = this.h = this.radius;
         this.nextIsInvalid = false;
     },
     //#
     enterFrame: function () {
-
-        if (this.w < this.radius) {
-            this.w += (this.radius - this.w) / this.growth + this.radius / 100;
-            this.h = this.w;
-
-            //# bound check
-            if (this.w > this.radius)
-                this.w = this.h = this.radius;
-
-            this.x = this.startPoint.x - this.w / 2;
-            this.y = this.startPoint.y - this.h / 2;
-        }
 
         //# destroy rutine
         if (this.ttl-- <= 0) {
             this.destroy ();
         }
 
-        //#
+        //# should fix hurting multiple enemies at once
         if (this.nextIsInvalid)
             this.isValid = false;
     },
@@ -299,20 +287,16 @@ Crafty.c (SHOT_SPLASH, {
     //#
     start: function () {
         if (this.startPoint !== null) {
-            this.x = this.startPoint.x;
-            this.y = this.startPoint.y;
+            this.x = this.startPoint.x + (W - this.w) / 2;
+            this.y = this.startPoint.y + (H - this.h) / 2;
+            this.center = toPoint ([this.startPoint.x + W/2, this.startPoint.y + H/2]);
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
-            this.animate ('splash-growth', 10, -1);
         }
     },
     //#
-    getGrowth: function () {
-        return this.growth;
-    },
-    setGrowth: function (value) {
-        this.growth = value;
-        return this;
+    checkHit: function (enemy) {
+        return distance (this.center, enemy.center) <= this.radius / 2;
     },
     //#
     getRadius: function () {
@@ -322,15 +306,4 @@ Crafty.c (SHOT_SPLASH, {
         this.radius = value;
         return this;
     },
-    //#
-    setFrameCount: function (value) {
-        this.frameCount = value;
-        this.animate ('splash-growth', [
-            [0, 0], [1, 0], [2, 0], [3, 0],
-            [0, 1], [1, 1], [2, 1], [3, 1],
-            [0, 2], [1, 2], [2, 2], [3, 2],
-            [0, 3], [1, 3], [2, 3], [3, 3]
-        ]);
-        return this;
-    }
 });
