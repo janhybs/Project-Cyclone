@@ -97,7 +97,6 @@ Crafty.c ("Timer", {
             repeat: true
         }) - 1;
     },
-        
     /**@
      * #.clearTimer
      * @comp Crafty Time
@@ -125,7 +124,13 @@ Crafty.c ('HealthBar', {
         this.healthbar = Crafty.e ('2D, Canvas').attr ({w: W, h: H});
         this.healthbarHeight = 6;
         this.healthbarWidth = W;
+        this.healthbarPosition = this.h;
+        this.healthbarColor = "#F00";
         var _this = this;
+
+        this.bind ('Death', function () {
+            _this.healthbar.destroy ();
+        });
 
         this.healthbar.draw = function (e) {
             var ctx = Crafty.canvas.context;
@@ -140,10 +145,10 @@ Crafty.c ('HealthBar', {
 
             //# draw
             ctx.beginPath ();
-            ctx.setFillColor ('#F00');
-            ctx.fillRect (x, _this.y + H, _this.healthbarWidth * t, _this.healthbarHeight);
+            ctx.setFillColor (_this.healthbarColor);
+            ctx.fillRect (x, _this.y + _this.healthbarPosition, _this.healthbarWidth * t, _this.healthbarHeight);
             ctx.setStrokeColor ('#000');
-            ctx.strokeRect (x, _this.y + H, _this.healthbarWidth, _this.healthbarHeight);
+            ctx.strokeRect (x, _this.y + _this.healthbarPosition, _this.healthbarWidth, _this.healthbarHeight);
             ctx.closePath ();
         };
 

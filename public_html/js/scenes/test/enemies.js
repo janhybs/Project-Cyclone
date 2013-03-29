@@ -13,16 +13,17 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
     e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
     e.create (path1, 3.0, 0, 100, 0, 0);
-    e.name = 'e0';
     e.start ();
     e.requires ('HealthBar');
-    e.health /= 2;
+    e.health /= 1.5;
+    e.healthbarHeight = 12;
+    e.healthbarWidth = 2*W;
+    e.healthbarColor = "#60F";
 
     var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-    e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
+    e.attr ({w: 33 * (0.6), h: 37 * (0.6)});
     e.create (path1, 0.5, 0, 100, 0, 0);
     e.start ();
-    e.name = 'e1';
     e.requires ('HealthBar');
 //    for (var i = 0; i < SCREEN_WIDTH; i+= W) {
 //        for (var j = 0; j < SCREEN_HEIGHT; j+= H) {

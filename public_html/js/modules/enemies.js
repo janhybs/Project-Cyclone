@@ -61,8 +61,9 @@ Crafty.c (ENEMY_ABS, {
         this.bind ("EnterFrame", this.enterFrame);
         this.onHit (SHOT_ABS, this.processHit);
     },
-    processDeath: function (killerShot) {
+    processDeath: function (reason) {
         doSplash (this);
+        this.trigger ('Death', null);
         this.destroy ();
     },
     //#
