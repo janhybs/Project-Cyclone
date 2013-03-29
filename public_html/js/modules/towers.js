@@ -41,7 +41,7 @@ Crafty.c(TOWER_ABS, {
         this.outputDamage = outputDamage !== undefined ? outputDamage : NaN;
         this.level = 1;
         this.price = price !== undefined ? price : DEFAULT_PRICE;
-        this.ttl = ttl !== undefined ? ttl : 10; 
+        this.ttl = ttl !== undefined ? ttl : 10;
     },
     init: function() {
         this.startPoint = null;
@@ -201,17 +201,8 @@ Crafty.c(TOWER_MACHINEGUN, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (!elems) {
-            var minDistance = Number.MAX_VALUE;
-            var element = 0;
-            var tempDist;
-            for (elem in elems) {
-                tempDist = distance(elem, this.startPoint)
-                if (tempDist < minDistance) {
-                    minDistance = tempDist;
-                    element = elem;
-                }
-            }
-            this.endPoint = element;
+            var aim = aiming.get(AIMING_CLOSEST);
+            this.endPoint = aim.getElement(elems, this.startPoint);
             fire();
         }
     },
@@ -245,17 +236,8 @@ Crafty.c(TOWER_CANNON, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (!elems) {
-            var minDistance = Number.MAX_VALUE;
-            var element = 0;
-            var tempDist;
-            for (elem in elems) {
-                tempDist = distance(elem, this.startPoint)
-                if (tempDist < minDistance) {
-                    minDistance = tempDist;
-                    element = elem;
-                }
-            }
-            this.endPoint = element;
+            var aim = aiming.get(AIMING_FURTHEST);
+            this.endPoint = aim.getElement(elems, this.startPoint);
             fire();
         }
     },
@@ -289,17 +271,8 @@ Crafty.c(TOWER_FLAMETHROWER, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (!elems) {
-            var minDistance = Number.MAX_VALUE;
-            var element = 0;
-            var tempDist;
-            for (elem in elems) {
-                tempDist = distance(elem, this.startPoint)
-                if (tempDist < minDistance) {
-                    minDistance = tempDist;
-                    element = elem;
-                }
-            }
-            this.endPoint = element;
+            var aim = aiming.get(AIMING_LEAST_HEALTH);
+            this.endPoint = aim.getElement(elems);
             fire();
         }
     },
@@ -334,17 +307,8 @@ Crafty.c(TOWER_BEAM_LASER, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (!elems) {
-            var minDistance = Number.MAX_VALUE;
-            var element = 0;
-            var tempDist;
-            for (elem in elems) {
-                tempDist = distance(elem, this.startPoint)
-                if (tempDist < minDistance) {
-                    minDistance = tempDist;
-                    element = elem;
-                }
-            }
-            this.endPoint = element;
+            var aim = aiming.get(AIMING_MOST_HEALTH);
+            this.endPoint = aim.getElement(elems);
             fire();
         }
     },
@@ -376,17 +340,8 @@ Crafty.c(TOWER_CHAIN_LASER, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (!elems) {
-            var minDistance = Number.MAX_VALUE;
-            var element = 0;
-            var tempDist;
-            for (elem in elems) {
-                tempDist = distance(elem, this.startPoint)
-                if (tempDist < minDistance) {
-                    minDistance = tempDist;
-                    element = elem;
-                }
-            }
-            this.endPoint = element;
+            var aim = aiming.get(AIMING_CLOSEST);
+            this.endPoint = aim.getElement(elems, this.startPoint);
             fire();
         }
     },
@@ -420,17 +375,8 @@ Crafty.c(TOWER_HOMING_MISSILE, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (!elems) {
-            var minDistance = Number.MAX_VALUE;
-            var element = 0;
-            var tempDist;
-            for (elem in elems) {
-                tempDist = distance(elem, this.startPoint)
-                if (tempDist < minDistance) {
-                    minDistance = tempDist;
-                    element = elem;
-                }
-            }
-            this.endPoint = element;
+            var aim = aiming.get(AIMING_FURTHEST);
+            this.endPoint = aim.getElement(elems, this.startPoint);
             fire();
         }
     },
