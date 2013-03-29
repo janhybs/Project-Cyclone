@@ -201,7 +201,8 @@ window.getEntities = function (selector, startPoint, radius) {
 
     var tmp;
     for (var i = 0, l = e.length; i < l; i++) {
-        tmp = Crafty (e[i]);
+        //# watch out for center
+        tmp = Crafty (e[i]).center;
         if (c.containsPoint (tmp.x, tmp.y))
             r.push (tmp);
     }
@@ -212,8 +213,7 @@ window.getEntities = function (selector, startPoint, radius) {
 window.doSplash = function (point) {
     var s = shot.get (SHOT_SPLASH);
     s.setStartPoint (point);
-    s.create (20, 64);
+    s.create (W);
     s.setTTL (FRAME_RATE);
-    s.setFrameCount (16);
     s.start ();
 };
