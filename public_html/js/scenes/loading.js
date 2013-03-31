@@ -42,10 +42,6 @@ Crafty.scene (SCENE_LOADING, function () {
  ***********
  */
 
-Crafty.sprite (310, 'images/range_circle.png', {
-    playerRange: [0, 0],
-});
-
 Crafty.sprite (32, 'images/dungeon.png', {
     path: [0, 1],
     wall: [17, 0],

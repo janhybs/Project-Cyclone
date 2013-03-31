@@ -41,24 +41,28 @@ Crafty.c('PlayerControls', {
                 if(!this.isPlaying(WALK_RIGHT))
                     Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
+                this.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
                 if(!this.isPlaying(WALK_LEFT))
                     Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
+                this.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
                 if(!this.isPlaying(WALK_UP))
                     Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
+                this.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
                 if(!this.isPlaying(WALK_DOWN))
                     Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
+                this.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === NO_DIRECTION) {
                 if(this.isPlaying()) {
@@ -241,13 +245,19 @@ Crafty.c('PlayerRangePointer', {
     visible: true,
     //transparency: 0.0 - 1.0
     transparency: 0.9,
+    //pointer diameter
+    diameter: 0,
     //init method
     init: function() {
-        this.requires("Image").image('images/range_circle.png');
+        this.diameter = 49 * this.shotRange;
+        this.z = 1;
+        this.requires('Image').image('images/range_circle.png');
     },
     //redraw range pointer method
-    redrawRangePointer: function() {
-        
+    redrawRangePointer: function(x, y) {
+        this.w = this.h= this.diameter;
+        this.x = x;
+        this.y = y;
     }
 });
 
