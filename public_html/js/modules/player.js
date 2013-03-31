@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
+                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, PlayerRangePointer, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -135,6 +135,8 @@ Crafty.c('PlayerFire', {
     shotSpeed: 5,
     //shot damage
     shotDamage: 1,
+    //shot range
+    shotRange: 2,
     
     //init method
     init: function() {
@@ -227,6 +229,25 @@ Crafty.c('PlayerAnimate', {
     //setter for speed animation
     setSpeedOfAnimation: function(speedAnim) {
         this.speedAnim = speedAnim;
+    }
+});
+
+/*
+ * Player range pointer.
+ * ---------------------
+ */
+Crafty.c('PlayerRangePointer', {
+    //visible variable
+    visible: true,
+    //transparency: 0.0 - 1.0
+    transparency: 0.9,
+    //init method
+    init: function() {
+        this.requires("Image").image('images/range_circle.png');
+    },
+    //redraw range pointer method
+    redrawRangePointer: function() {
+        
     }
 });
 
