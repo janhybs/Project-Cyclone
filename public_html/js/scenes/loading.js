@@ -19,7 +19,9 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/debug.png',
         'images/rocket.png',
         'images/laser_hero.png',
-        'images/soldier_hero.png'];
+        'images/soldier_hero.png',
+        'images/left_arrow.png',
+        'images/right_arrow.png'];
     
     //sound files
     var sounds = [
