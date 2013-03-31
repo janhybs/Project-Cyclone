@@ -179,6 +179,7 @@ var PLAYER_STEP_SOUND = "step";
 //others
 var LAST_STEPS_COUNT = 3;
 var LEVEL_UP_TEXT = "Your level was increased!";
+var AVAILABLE_POINTS_TEXT = "Your free points: ";
 
 /************************
  * GAME PANEL CONSTANTS *

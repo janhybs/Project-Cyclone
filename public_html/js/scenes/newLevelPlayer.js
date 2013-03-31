@@ -10,4 +10,8 @@ Crafty.scene (SCENE_LEVEL_UP, function () {
     //image of hero
     Crafty.e("2D, DOM, Image").attr({x: 440, y: 100, w: Crafty.viewport.width, h: 100})
              .image("images/soldier_hero.png");
+  
+    //text about level up
+    var playerPoints = Crafty.e("2D, DOM, Text").attr({y: 220 ,w: Crafty.viewport.width})
+            .text(AVAILABLE_POINTS_TEXT + "2").css({'text-align': 'center', 'font-family': 'Arial', 'font-size': '20px'});
 });
