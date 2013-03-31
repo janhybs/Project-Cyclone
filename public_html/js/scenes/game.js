@@ -6,7 +6,7 @@ Crafty.scene (SCENE_GAME, function () {
     activeSceneMouseClick();
     
     //add special cursor (fire-cursor)
-    activeSceneCursor('crosshair');
+    activeSceneCursor('url(/Project-Cyclone/images/crosshair.png),default');
 
     jQuery.get ('levels/level-01.xml', function (data) {
         var xmldata = $.xml2json (data);
