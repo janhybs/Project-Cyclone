@@ -191,3 +191,12 @@ var GAME_PANEL_CONTENT = "gamePanelContent";
 //panel properties
 var PANEL_WIDTH = 150;
 var PANEL_BG_COLOR = "#888888";
+
+
+/********************************
+ * LOCAL STORAGE DATA CONSTANTS *
+ ********************************
+ */
+//player parts
+var PLAYER_DAMAGE = "_Damage";
+var PLAYER_RANGE = "_Range";
