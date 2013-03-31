@@ -23,7 +23,8 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/left_arrow.png',
         'images/right_arrow.png',
         'images/left_arrow_active.png',
-        'images/right_arrow_active.png'];
+        'images/right_arrow_active.png',
+        'images/range_circle.png'];
     
     //sound files
     var sounds = [
