@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, PlayerRangePointer, {0}, {1}'.format(PLAYER_ABS, type))
+                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -41,28 +41,28 @@ Crafty.c('PlayerControls', {
                 if(!this.isPlaying(WALK_RIGHT))
                     Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.redrawRangePointer(this.x, this.y);
+                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
                 if(!this.isPlaying(WALK_LEFT))
                     Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.redrawRangePointer(this.x, this.y);
+                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
                 if(!this.isPlaying(WALK_UP))
                     Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.redrawRangePointer(this.x, this.y);
+                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
                 if(!this.isPlaying(WALK_DOWN))
                     Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.redrawRangePointer(this.x, this.y);
+                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === NO_DIRECTION) {
                 if(this.isPlaying()) {
@@ -140,7 +140,7 @@ Crafty.c('PlayerFire', {
     //shot damage
     shotDamage: 1,
     //shot range
-    shotRange: 2,
+    shotRange: 5,
     
     //init method
     init: function() {
@@ -244,20 +244,26 @@ Crafty.c('PlayerRangePointer', {
     //visible variable
     visible: true,
     //transparency: 0.0 - 1.0
-    transparency: 0.9,
+    transparency: 0.4,
     //pointer diameter
     diameter: 0,
     //init method
     init: function() {
-        this.diameter = 49 * this.shotRange;
+        this.w = this.h= this.diameter;
+        this.alpha = this.transparency;
         this.z = 1;
-        this.requires('Image').image('images/range_circle.png');
+        this.requires('playerRange');
     },
     //redraw range pointer method
     redrawRangePointer: function(x, y) {
-        this.w = this.h= this.diameter;
-        this.x = x;
-        this.y = y;
+        this.x = x - this.diameter/2 + PLAYER_WIDTH/2;
+        this.y = y - this.diameter/2 + PLAYER_HEIGHT/2;
+    },
+    
+    //set size
+    setDiameter: function(dia) {
+       this.diameter = 32 * dia;
+       this.w = this.h= this.diameter;
     }
 });
 
@@ -297,7 +303,10 @@ Crafty.c(PLAYER_ABS, {
     level: 0,
     //init method
     init: function() {
-
+        //add range pointer
+        this.rangePointer = Crafty.e("2D, Canvas, PlayerRangePointer");
+        this.rangePointer.setDiameter(this.shotRange);
+        this.rangePointer.redrawRangePointer(0,0);
     },
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {
