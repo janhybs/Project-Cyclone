@@ -130,7 +130,7 @@ window.toPoint = function (o) {
 window.toDamage = function (o) {
     if (typeof o !== 'object')
         return toDamage ([o]);
-    var props = ['basic', 'fire', 'electric', 'poison', 'ice'];
+    var props = DAMAGE_PROP;
 
     //# array (probably)
     if (o.length) {
