@@ -14,6 +14,8 @@ Crafty.c (ENEMY_ABS, {
         this.random = 10;
         this.path = null;
 
+        this.slowShot = null;
+
         this.healthChanged = false;
         this.maxHealth = 0;
         this.previousHealth = 0;
@@ -35,10 +37,18 @@ Crafty.c (ENEMY_ABS, {
     },
     enterFrame: function () {
 
+        var spd = this.speed;
+        if (this.slowShot !== null) {
+            spd *= 1 - this.slowShot.slow;
+
+            if (--this.slowShot.duration === 0)
+                this.slowShot = null;
+        }
+
         //# moving
-        if (this.speed > 0) {
-            this.x += this.xstep * this.speed;
-            this.y += this.ystep * this.speed;
+        if (spd > 0) {
+            this.x += this.xstep * spd;
+            this.y += this.ystep * spd;
         }
 
         if (this.healthChanged) {
@@ -86,9 +96,9 @@ Crafty.c (ENEMY_ABS, {
             if (s.has (SHOT_P2P)) {
                 this.transferDamage (s);
 
+                s.doDestroy ();
                 if (this.isDead ())
                     return this.processDeath (s);
-                s.doDestroy ();
             }
 
 
@@ -123,6 +133,16 @@ Crafty.c (ENEMY_ABS, {
     transferDamage: function (shot) {
         var dmg = shot.getDamage ();
         var res = this.getResistance ();
+
+        //# is valid periodic shot
+        if (dmg.period > 0 && dmg.repeat > 0 && dmg.value > 0)
+            ;
+
+        //# is valid slow shot
+        if (dmg.slow > 0 && (dmg.duration > 0 || dmg.duration === -1) && Math.random () < dmg.chance)
+            if (this.slowShot === null || this.slowShot.slow <= dmg.slow)
+                this.slowShot = {'slow': dmg.slow, 'duration': dmg.duration};
+
 
         //# shield left? if so, apply electric
         if (this.shield > 0) {

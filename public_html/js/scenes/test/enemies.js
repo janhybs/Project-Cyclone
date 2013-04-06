@@ -10,21 +10,33 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     var timer = Crafty.e ('Timer');
 
 
-    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-    e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
-    e.create (path1, 3.0, 0, 100, 0, 0);
-    e.start ();
-    e.requires ('HealthBar');
-    e.health /= 1.5;
-    e.healthbarHeight = 12;
-    e.healthbarWidth = 2*W;
-    e.healthbarColor = "#60F";
+//    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+//    e.attr ({w: 33 * (1.0), h: 37 * (1.0)});
+//    e.create (path1, 1.0, 0, 100, 0, 0);
+//    e.start ();
+//    e.requires ('HealthBar');
+//    e.health /= 1.5;
 
-    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
-    e.attr ({w: 33 * (0.6), h: 37 * (0.6)});
-    e.create (path1, 0.5, 0, 100, 0, 0);
-    e.start ();
-    e.requires ('HealthBar');
+    timer.repeat (function () {
+        var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+        e.attr ({w: 33 * (0.6), h: 37 * (0.6)});
+        e.create (path1, 1.0, 0, 100);
+        e.start ();
+        e.requires ('HealthBar');
+    }, 1000);
+
+    timer.repeat (function () {
+        var s = shot.get (SHOT_P2P);
+        s.setStartPoint ([14 * W, 9 * H]);
+        s.setEndPoint (mousePos);
+        s.create (15);
+        s.setDamage ([
+            20, 0, 0, 0, 0,
+            0, 0, 0,
+            0.85, 1, FRAME_RATE * 10]);
+        s.start ();
+    }, 500);
+//    e.requires ('HealthBar');
 //    for (var i = 0; i < SCREEN_WIDTH; i+= W) {
 //        for (var j = 0; j < SCREEN_HEIGHT; j+= H) {
 //            var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
