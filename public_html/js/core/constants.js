@@ -53,7 +53,7 @@ var BENEFIT_SHIELD = 2;
 var DAMAGE_PROP = [
     'basic', 'fire', 'electric', 'poison', 'ice', // basic damage types
     'period', 'repeat', 'value', // poison and fire can repeat itself
-    'slow' // how much to slow down 0.0 - 1.0
+    'slow', 'chance', 'duration' // how much to slow down 0.0 - 1.0, chance 0.0 - 1.0
 ];
 
 //utils
