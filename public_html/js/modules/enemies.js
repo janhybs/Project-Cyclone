@@ -11,10 +11,12 @@ Crafty.c (ENEMY_ABS, {
         this.resistance = toDamage (0);
         this.shield = 0;
         this.speed = 32;
+        this.spd = this.speed;
         this.random = 10;
         this.path = null;
 
         this.slowShot = null;
+        this.hurtShot = null;
 
         this.healthChanged = false;
         this.maxHealth = 0;
@@ -37,18 +39,35 @@ Crafty.c (ENEMY_ABS, {
     },
     enterFrame: function () {
 
-        var spd = this.speed;
+        this.spd = this.speed;
+
+        //# slow shot
         if (this.slowShot !== null) {
-            spd *= 1 - this.slowShot.slow;
+            this.spd *= 1 - this.slowShot.slow;
 
             if (--this.slowShot.duration === 0)
                 this.slowShot = null;
         }
 
+
+        //# hurt shot
+        if (this.hurtShot !== null) {
+            if (++this.hurtShot.count === this.hurtShot.period) {
+                this.hurtShot.count = 0;
+                this.transferDamage (toDamage (this.hurtShot.value));
+
+                if (this.isDead ())
+                    return this.processDeath (this.hurtShot);
+
+                if (--this.hurtShot.repeat === 0)
+                    this.hurtShot = null;
+            }
+        }
+
         //# moving
-        if (spd > 0) {
-            this.x += this.xstep * spd;
-            this.y += this.ystep * spd;
+        if (this.spd > 0) {
+            this.x += this.xstep * this.spd;
+            this.y += this.ystep * this.spd;
         }
 
         if (this.healthChanged) {
@@ -94,7 +113,7 @@ Crafty.c (ENEMY_ABS, {
 
             //# P2P routine
             if (s.has (SHOT_P2P)) {
-                this.transferDamage (s);
+                this.transferDamage (s.getDamage ());
 
                 s.doDestroy ();
                 if (this.isDead ())
@@ -110,7 +129,7 @@ Crafty.c (ENEMY_ABS, {
 
             //# SPLASH routine
             if (s.has (SHOT_SPLASH) && s.checkHit (this)) {
-                this.transferDamage (s);
+                this.transferDamage (s.getDamage ());
 
                 if (this.isDead ())
                     return this.processDeath (s);
@@ -121,7 +140,7 @@ Crafty.c (ENEMY_ABS, {
 
             //# LASER routine
             if (s.has (SHOT_LASER)) {
-                this.transferDamage (s);
+                this.transferDamage (s.getDamage ());
 
                 if (this.isDead ())
                     return this.processDeath (s);
@@ -130,16 +149,19 @@ Crafty.c (ENEMY_ABS, {
 
         }
     },
-    transferDamage: function (shot) {
-        var dmg = shot.getDamage ();
+    transferDamage: function (dmg) {
         var res = this.getResistance ();
 
         //# is valid periodic shot
-        if (dmg.period > 0 && dmg.repeat > 0 && dmg.value > 0)
-            ;
+        if (dmg.period > 0 && dmg.repeat > 0 && dmg.value !== 0)
+            if (this.hurtShot === null || this.hurtShot.value <= dmg.value)
+                this.hurtShot = {
+                    'value': dmg.value, 'repeat': dmg.repeat,
+                    'period': dmg.period, 'count': 0
+                };
 
         //# is valid slow shot
-        if (dmg.slow > 0 && (dmg.duration > 0 || dmg.duration === -1) && Math.random () < dmg.chance)
+        if (dmg.slow !== 0 && (dmg.duration > 0 || dmg.duration === -1) && Math.random () < dmg.chance)
             if (this.slowShot === null || this.slowShot.slow <= dmg.slow)
                 this.slowShot = {'slow': dmg.slow, 'duration': dmg.duration};
 
@@ -206,7 +228,7 @@ Crafty.c (ENEMY_ABS, {
     },
     isAtNextStop: function () {
         var d = distance (this, this.coords);
-        return d < this.speed * 2;
+        return d < this.spd * 2;
     },
     //#
     getResistance: function () {

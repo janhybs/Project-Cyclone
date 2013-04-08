@@ -32,8 +32,8 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
         s.create (15);
         s.setDamage ([
             20, 0, 0, 0, 0,
-            0, 0, 0,
-            0.85, 1, FRAME_RATE * 10]);
+            5, 30, 2,
+            0.5, 1, FRAME_RATE * 10]);
         s.start ();
     }, 500);
 //    e.requires ('HealthBar');
