@@ -114,6 +114,58 @@ Crafty.c ("Timer", {
 
 
 
+/**@
+ * #Crafty Time
+ * @category Utilities
+ */
+Crafty.c ("Framer", {
+    init: function () {
+        this._delays = [];
+        this.bind ("EnterFrame", function () {
+            for (var index in this._delays) {
+                var item = this._delays[index];
+
+                if (item.repeat !== 0 && --item.count === 0) {
+                    item.func.call (this);
+                    if (--item.repeat !== 0) {
+                        item.count = item.frames;
+                    }
+                }
+            }
+        });
+    },
+    delay: function (func, frames) {
+        return this._delays.push ({
+            count: Math.floor (frames),
+            func: func,
+            frames: Math.floor (frames),
+            repeat: 1
+        }) - 1;
+    },
+    repeat: function (func, frames, repeat) {
+        return this._delays.push ({
+            count: Math.floor (frames),
+            func: func,
+            frames: Math.floor (frames),
+            repeat: repeat || -1
+        }) - 1;
+    },
+    /**@
+     * #.clearTimer
+     * @comp Crafty Time
+     * @sign public this.clearTimer (int id)
+     * @param id - delay/repeat id
+     * 
+     * This method will abort delay/repeat with given id
+     * 
+     */
+    clearTimer: function (id) {
+        this._delays[id].repeat = false;
+        this._delays[id].triggered = true;
+    }
+});
+
+
 
 /**@
  * #Crafty HealthBar

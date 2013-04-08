@@ -7,7 +7,7 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     var path2 = enlargePath (expandPath (splitPath ('25,18 1,18')));
     var path3 = enlargePath (splitPath ('25,0 20,15'));
 
-    var timer = Crafty.e ('Timer');
+    var timer = Crafty.e ('Framer');
 
 
 //    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
@@ -23,7 +23,7 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
         e.create (path1, 1.0, 0, 100);
         e.start ();
         e.requires ('HealthBar');
-    }, 1000);
+    }, FRAME_RATE);
 
     timer.repeat (function () {
         var s = shot.get (SHOT_P2P);
@@ -35,7 +35,7 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
             5, 30, 2,
             0.5, 1, FRAME_RATE * 10]);
         s.start ();
-    }, 500);
+    }, FRAME_RATE / 5);
 //    e.requires ('HealthBar');
 //    for (var i = 0; i < SCREEN_WIDTH; i+= W) {
 //        for (var j = 0; j < SCREEN_HEIGHT; j+= H) {
