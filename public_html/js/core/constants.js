@@ -72,6 +72,21 @@ var ENEMY_SPEED = {
 };
 
 
+//# wobble (random movement)
+var ENEMY_WOBBLE = {
+    no: 0,
+    normal: 5,
+    drunk: 10,
+    high: 20
+};
+
+
+
+//# images
+var ENEMY_IMAGE = {
+    normal: 'enemy'
+};
+
 /*********
  * SIZES *
  *********
