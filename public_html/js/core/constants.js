@@ -24,7 +24,53 @@ var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
  ***********
  */
 var ENEMY_ABS = 'enemyAbstract';
-var ENEMY_SIMPLE = 'enemySimple';
+
+//# types
+var ENEMY_TYPE = {
+    no: [0, 0, 0, 0, 0],
+    normal: [1, 0, 0, 0, 0],
+    fire: [0, 1, 0, 0, 0],
+    electric: [0, 0, 1, 0, 0],
+    poison: [0, 0, 0, 1, 0],
+    ice: [0, 0, 0, 0, 1]
+};
+
+//# sizes
+var ENEMY_SIZE = {
+    tiny: 0 + 1 / 3,
+    small: 0 + 2 / 3,
+    normal: 1,
+    large: 1 + 1 / 3,
+    huge: 1 + 2 / 3,
+    boss: 4
+};
+
+//# health
+var ENEMY_HEALTH = {
+    weak: 50,
+    normal: 100,
+    strong: 500,
+    boss: 2000
+};
+
+//# sizes
+var ENEMY_SHIELD = {
+    no: 0,
+    weak: 20,
+    normal: 50,
+    strong: 100,
+    boss: 500
+};
+
+//# speed
+var ENEMY_SPEED = {
+    snail: 1 / 3,
+    slow: 2 / 3,
+    normal: 1,
+    fast: 2,
+    lighbolt: 3
+};
+
 
 /*********
  * SIZES *
