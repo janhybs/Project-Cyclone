@@ -124,6 +124,15 @@ arrayMerge = function () {
     return r;
 };
 
+setMerge = function () {
+    var s = arguments;
+    var r = {};
+    for (var p in s)
+        for (var q in s[p])
+            r[q] = s[p][q];
+    return r;
+};
+
 /**
  * Convert array or object to object with 'x' and 'y' properties
  * @param {Array|Object} o array or object
