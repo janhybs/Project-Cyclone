@@ -108,6 +108,22 @@ if (!String.prototype.format) {
     };
 }
 
+arrayMult = function (a, n) {
+    var r = new Array (a.length);
+    for (var i in a)
+        r[i] = a[i] * n;
+    return r;
+};
+
+arrayMerge = function () {
+    var args = arguments;
+    var r = new Array (args[0].length);
+    for (var i in args)
+        for (var j in args[i])
+            r[j] = (r[j] === undefined ? 0 : r[j]) + args[i][j];
+    return r;
+};
+
 /**
  * Convert array or object to object with 'x' and 'y' properties
  * @param {Array|Object} o array or object
@@ -169,7 +185,7 @@ window.radDist = function (a, b, f) {
 //you can catch SCENE_MOUSE_CLICK_EVENT (for queries - Pavel)
 window.activeSceneMouseClick = function () {
     Crafty.addEvent (this, Crafty.stage.elem, "mousedown", function (e) {
-        if(mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
+        if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
             Crafty.trigger (SCENE_MOUSE_CLICK_EVENT);
         }
     });
