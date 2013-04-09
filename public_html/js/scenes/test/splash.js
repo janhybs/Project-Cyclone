@@ -24,7 +24,7 @@ Crafty.scene (SCENE_SPLASH_TEST, function () {
 
     for (var i = 0; i < SCREEN_WIDTH; i += 1 * W) {
         for (var j = 0; j < SCREEN_HEIGHT; j += 1 * H) {
-            var e = Crafty.e ('2D, Canvas, Image, {0}, {1}, enemy'.format (ENEMY_ABS, ENEMY_SIMPLE));
+            var e = Crafty.e ('2D, Canvas, Image, {0}, enemy'.format (ENEMY_ABS));
             e.attr ({w: W / 2, h: H / 2});
             e.create (null, 0, 0, 100, 0, 0);
             e.x = i + (W - e.w) / 2;

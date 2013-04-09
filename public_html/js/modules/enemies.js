@@ -1,3 +1,26 @@
+window.enemy = {};
+enemy.create = function (o) {
+
+    var _health, _shield, _speed, _resistance, _size, _image, _random, _path;
+
+    _path = o.path !== undefined ? o.path : null;
+    _health = o.health !== undefined ? o.health : ENEMY_HEALTH.normal;
+    _shield = o.shield !== undefined ? o.shield : ENEMY_SHIELD.normal;
+    _speed = o.speed !== undefined ? o.speed : ENEMY_SPEED.normal;
+    _resistance = toDamage (o.resistance !== undefined ? o.resistance : ENEMY_TYPE.no);
+    _size = o.size !== undefined ? o.size : ENEMY_SIZE.normal;
+    _image = o.image !== undefined ? o.image : 'enemy';
+    _random = o.random !== undefined ? o.random : 10;
+
+    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (ENEMY_ABS, _image));
+    e.w *= _size;
+    e.h *= _size;
+    e.create (_path, _speed, _resistance, _health, _shield, _random);
+    return e;
+};
+
+
+
 Crafty.c (ENEMY_ABS, {
     create: function (path, speed, resistance, health, shield, random) {
         this.path = path !== undefined ? path : null;
@@ -92,6 +115,7 @@ Crafty.c (ENEMY_ABS, {
         }
 
         this.maxHealth = this.health;
+        this.maxShield = this.shield;
         this.requires ('Collision');
         this.bind ("EnterFrame", this.enterFrame);
         this.onHit (SHOT_ABS, this.processHit);
@@ -280,11 +304,5 @@ Crafty.c (ENEMY_ABS, {
     setRandom: function (value) {
         this.random = value;
         return this;
-    }
-});
-
-
-Crafty.c (ENEMY_SIMPLE, {
-    init: function () {
     }
 });
