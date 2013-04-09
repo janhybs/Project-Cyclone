@@ -1,34 +1,25 @@
 window.enemy = {};
-enemy.create = function (o) {
+enemy.create = function (generator) {
 
-    var _health, _shield, _speed, _resistance, _size, _image, _random, _path;
+    var o = setMerge (enemy.preset (), generator);
 
-    _path = o.path !== undefined ? o.path : null;
-    _health = o.health !== undefined ? o.health : ENEMY_HEALTH.normal;
-    _shield = o.shield !== undefined ? o.shield : ENEMY_SHIELD.normal;
-    _speed = o.speed !== undefined ? o.speed : ENEMY_SPEED.normal;
-    _resistance = toDamage (o.resistance !== undefined ? o.resistance : ENEMY_TYPE.no);
-    _size = o.size !== undefined ? o.size : ENEMY_SIZE.normal;
-    _image = o.image !== undefined ? o.image : 'enemy';
-    _random = o.random !== undefined ? o.random : 10;
-
-    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (ENEMY_ABS, _image));
-    e.w *= _size;
-    e.h *= _size;
-    e.create (_path, _speed, _resistance, _health, _shield, _random);
+    var e = Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (ENEMY_ABS, o.image));
+    e.w *= o.size;
+    e.h *= o.size;
+    e.create (o.path, o.speed, o.resistance, o.health, o.shield, o.wobble);
     return e;
 };
 
 
 
 Crafty.c (ENEMY_ABS, {
-    create: function (path, speed, resistance, health, shield, random) {
+    create: function (path, speed, resistance, health, shield, wobble) {
         this.path = path !== undefined ? path : null;
         this.speed = speed !== undefined ? speed : 3;
         this.resistance = resistance !== undefined ? toDamage (resistance) : toDamage (0);
         this.health = health !== undefined ? health : 100;
         this.shield = shield !== undefined ? shield : 0;
-        this.random = random !== undefined ? random : 10;
+        this.wobble = wobble !== undefined ? wobble : 10;
     },
     init: function () {
         this.resistance = toDamage (0);
@@ -242,8 +233,8 @@ Crafty.c (ENEMY_ABS, {
 
         //# randomness in movement
         this.coords = {x: this._np.x, y: this._np.y};
-        this.coords.x = this._np.x + Crafty.math.randomInt (-this.random, +this.random);
-        this.coords.y = this._np.y + Crafty.math.randomInt (-this.random, +this.random);
+        this.coords.x = this._np.x + Crafty.math.randomInt (-this.wobble, +this.wobble);
+        this.coords.y = this._np.y + Crafty.math.randomInt (-this.wobble, +this.wobble);
 
         //# angle and x/y step
         this.angle = Math.atan2 (this.coords.y - this.y, this.coords.x - this.x);
@@ -298,11 +289,11 @@ Crafty.c (ENEMY_ABS, {
         this.path = value;
         return this;
     },
-    getRandom: function () {
-        return this.random;
+    getWobble: function () {
+        return this.wobble;
     },
-    setRandom: function (value) {
-        this.random = value;
+    setWobble: function (value) {
+        this.wobble = value;
         return this;
     }
 });
