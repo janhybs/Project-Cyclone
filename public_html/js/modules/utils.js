@@ -174,10 +174,11 @@ Crafty.c ("Framer", {
 Crafty.c ('HealthBar', {
     init: function () {
         this.healthbar = Crafty.e ('2D, Canvas').attr ({w: W, h: H});
-        this.healthbarHeight = 6;
-        this.healthbarWidth = W;
+        this.healthbarHeight = 4;
+        this.healthbarWidth = this.w;
         this.healthbarPosition = this.h;
-        this.healthbarColor = "#F00";
+        this.healthbarColor = "#C00";
+        this.healthbarShieldColor = "#00C";
         var _this = this;
 
         this.bind ('Death', function () {
@@ -187,7 +188,8 @@ Crafty.c ('HealthBar', {
         this.healthbar.draw = function (e) {
             var ctx = Crafty.canvas.context;
             var x = _this.x + (_this.w - _this.healthbarWidth) / 2;
-            var t = _this.health / _this.maxHealth;
+            var c = _this.maxShield === 0 || _this.shield === 0 ? _this.healthbarColor : _this.healthbarShieldColor;
+            var t = _this.maxShield === 0 || _this.shield === 0 ? _this.health / _this.maxHealth : _this.shield / _this.maxShield;
             t = (t > 1 ? 1 : t < 0 ? 0 : t);
 
             //# match position
@@ -197,10 +199,12 @@ Crafty.c ('HealthBar', {
 
             //# draw
             ctx.beginPath ();
-            ctx.setFillColor (_this.healthbarColor);
+            ctx.setFillColor ('#333');
+            ctx.globalAlpha = 0.75;
+            ctx.fillRect (x, _this.y + _this.healthbarPosition, _this.healthbarWidth, _this.healthbarHeight);
+            ctx.globalAlpha = 1;
+            ctx.setFillColor (c);
             ctx.fillRect (x, _this.y + _this.healthbarPosition, _this.healthbarWidth * t, _this.healthbarHeight);
-            ctx.setStrokeColor ('#000');
-            ctx.strokeRect (x, _this.y + _this.healthbarPosition, _this.healthbarWidth, _this.healthbarHeight);
             ctx.closePath ();
         };
 
