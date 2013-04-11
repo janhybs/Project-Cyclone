@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    </head>
+    <body>
+        <div id="scene-new-game" class="page">
+            <h2>Welcome to</h2>
+            <h1>Project-Cyclone</h1>
+
+            <form>
+                <div id="new-game-p2p">
+                    <img src="images/pages/gun-256.png" />
+                    <input type="text" value="GunMan" name="new-game-p2p" />
+                </div>
+                <div id="new-game-laser">
+                    <img src="images/pages/diamond-256.png" />
+                    <input type="text" value="LaserMan" name="new-game-laser" />
+                </div>
+            </form>
+
+            <button id="scene-new-game-next" onclick="
+                    Crafty.scene (SCENE_MENU);
+                    $ ('#cr-stage').show ();
+                    $ ('#webview').hide ();">Continue</button>
+        </div>
+    </body>
+</html>

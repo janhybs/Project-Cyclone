@@ -1,0 +1,44 @@
+/*
+    ---------------- INIT -----------------
+*/
+div, form, body {
+    margin: 0; padding: 0;
+}
+
+.page {
+    border: 1px solid red;
+    width: 960px;
+    height: 640px;
+    text-align: center;
+    font-family: 'Verdana';
+    position: absolute;
+}
+
+/*
+    --------------- NEW GAME ----------------
+*/
+
+#new-game-p2p > *, #new-game-laser > * {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+#new-game-p2p, #new-game-laser {
+    display: inline-block;
+}
+
+#new-game-p2p {
+    margin-left: 150px;
+    margin-right: 140px;
+}
+
+#new-game-laser {
+    margin-right: 150px;
+}
+
+#scene-new-game-next {
+    margin-top: 30px;
+    width: 320px;
+    height: 60px;
+}
