@@ -6,8 +6,5 @@ ProjectCyclone = {
         Crafty.scene (SCENE_LOADING);
 
         $ ('#cr-stage').before ($ ('<div id="webview"></div>')[0]);
-        $ ('#webview').load ('pages.html #scene-new-game');
-        
-        $ ('#cr-stage').hide ();
     }
 };

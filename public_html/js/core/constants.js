@@ -7,8 +7,11 @@ var SCENE_GAME = 'game';
 var SCENE_MENU = 'menu';
 var SCENE_LOADING = 'loading';
 var SCENE_LEVEL_UP = 'playerLevelUp';
+var SCENE_NEW_GAME = 'newGame';
+var SCENE_CONTINUE = 'continue';
 
 //debug scenes
+var SCENE_DEBUG_MENU = 'debugMenu';
 var SCENE_P2P_TEST = 'p2p-test';
 var SCENE_LASER_TEST = 'laser-test';
 var SCENE_HOMING_TEST = 'homing-test';

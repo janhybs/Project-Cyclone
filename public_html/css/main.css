@@ -15,25 +15,39 @@ div, form, body {
 }
 
 /*
+    --------------- MENU ----------------
+*/
+#scene-menu-to-new-game,
+#scene-menu-to-continue,
+#scene-menu-to-debug-menu {
+    width: 320px;
+    height: 60px;
+    display: block;
+    margin: 15px auto 0 auto;
+}
+
+/*
     --------------- NEW GAME ----------------
 */
 
-#new-game-p2p > *, #new-game-laser > * {
+#scene-new-game-p2p > *,
+#scene-new-game-laser > * {
     display: block;
     width: 100%;
     text-align: center;
 }
 
-#new-game-p2p, #new-game-laser {
+#scene-new-game-p2p,
+#scene-new-game-laser {
     display: inline-block;
 }
 
-#new-game-p2p {
+#scene-new-game-p2p {
     margin-left: 150px;
     margin-right: 140px;
 }
 
-#new-game-laser {
+#scene-new-game-laser {
     margin-right: 150px;
 }
 

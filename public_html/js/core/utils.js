@@ -242,3 +242,21 @@ window.doSplash = function (point) {
     s.setTTL (FRAME_RATE);
     s.start ();
 };
+
+
+window.activateCanvas = function () {
+    $ ('#webview').hide ();
+    $ ('#cr-stage').show ();
+};
+
+
+window.activateWebview = function () {
+    $ ('#webview').show ();
+    $ ('#cr-stage').hide ();
+};
+
+window.loadPage = function (divID, callback) {
+    $ ('#webview').load ('pages.html #{1}'.format ('pages.html', divID), callback);
+};
+
+
