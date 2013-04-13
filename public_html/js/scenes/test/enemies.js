@@ -8,6 +8,10 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     var path3 = enlargePath (splitPath ('25,0 20,15'));
 
     var timer = Crafty.e ('Framer');
+    var enemies = ['alien', 'bat', 'casper', 'devil', 'dracula', 'freddie',
+        'ghost', 'gomez', 'chucky', 'jack', 'jason', 'kokey', 'mike', 'mummy',
+        'pumpkin', 'scream', 'skull', 'slimer', 'squash'];
+    var size = '_64';
 
 
     var shotDamage = [].concat (
@@ -18,10 +22,10 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     setTimeout (function () {
         alert (title = 'fire shot');
         shotDamage = [].concat (
-            [0, 10, 0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]);
-        }, 10*1000);
+                [0, 10, 0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]);
+    }, 5 * 1000);
 
     timer.repeat (function () {
         var e = enemy.create ({
@@ -29,11 +33,12 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
             shield: ENEMY_SHIELD.no,
             size: ENEMY_SIZE.small,
             speed: ENEMY_SPEED.slow,
-            resistance: arrayMerge (arrayMult (ENEMY_TYPE.normal, 0.8), arrayMult (ENEMY_TYPE.fire, 0.2))
+            resistance: arrayMerge (arrayMult (ENEMY_TYPE.normal, 0.8), arrayMult (ENEMY_TYPE.fire, 0.2)),
+            image: enemies[Math.floor (Math.random () * enemies.length)]+size
         });
         e.start ();
         e.requires ('HealthBar');
-    }, FRAME_RATE);
+    }, FRAME_RATE * 2);
 
     timer.repeat (function () {
         var s = shot.get (SHOT_P2P);
