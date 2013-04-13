@@ -158,6 +158,9 @@ Crafty.c('PlayerFire', {
             s.create(this.shotSpeed);
         } else {
             s.create(PLAYER_LASER_IMAGE);
+            this.bind("Move", function() {
+                s.setStartPoint([this.x-3, this.y-3]);
+            });
         }
         s.start();
     }
