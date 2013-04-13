@@ -149,17 +149,25 @@ Crafty.c (SHOT_P2P, {
 
 
 Crafty.c (SHOT_LASER, {
+    //variable enables radius range
+    withRadius: false,
+    //variable with range
+    rangeRadius: 0,
     create: function (laser) {
         this.angle = NaN;
         this.laser = Crafty.e ("2D, Canvas, Image").image (laser !== undefined ? laser : "images/laser-01.png", "repeat");
     },
     //#
     enterFrame: function () {
-        this.x = this.endPoint.x - this.w / 2;
-        this.y = this.endPoint.y - this.h / 2;
         this.angle = Math.atan2 (
                 (this.endPoint.y - this.shiftPoint.y),
                 (this.endPoint.x - this.shiftPoint.x));
+        if(this.withRadius) {
+            this.endPoint.x = this.startPoint.x + (Math.cos(this.angle) * this.rangeRadius);
+            this.endPoint.y = this.startPoint.y + (Math.sin(this.angle) * this.rangeRadius);
+        }
+        this.x = this.endPoint.x - this.w / 2;
+        this.y = this.endPoint.y - this.h / 2;
         this.laser.w = this.len + distance (this.shiftPoint, this.endPoint);
         this.laser.rotation = (this.angle * 180) / Math.PI;
     },

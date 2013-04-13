@@ -161,7 +161,7 @@ Crafty.c('PlayerFire', {
             s.rangeRadius = this.rangePointer.getDiameter()/2;
             s.create(PLAYER_LASER_IMAGE);
             this.bind("Move", function() {
-                //s.setStartPoint([this.x-3, this.y-3]);
+                s.setStartPoint([this.x-3, this.y-3]);
             });
         }
         s.start();
