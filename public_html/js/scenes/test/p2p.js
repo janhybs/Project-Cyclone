@@ -13,7 +13,7 @@ Crafty.scene (SCENE_P2P_TEST, function () {
     board.createGate (p0).alpha = HIDDEN;
     timer.repeat (function () {
         var s = shot.get (SHOT_P2P);
-        s.setStartPoint ([p0.x * W, p0.y * H]);
+        s.setStartPoint ([p0.x * W + W / 2, p0.y * H + H / 2]);
         s.setEndPoint (mousePos);
         s.create (5);
         s.start ();
@@ -29,7 +29,7 @@ Crafty.scene (SCENE_P2P_TEST, function () {
     timer.repeat (function () {
         for (var i = 0; i < 5; i++) {
             var s = shot.get (SHOT_P2P);
-            s.setStartPoint ([p1.x * W, p1.y * H]);
+            s.setStartPoint ([p1.x * W + W / 2, p1.y * H + W / 2]);
             s.setSpreading ((d = (++d) >= 180 * 4 ? 0 : d) / 4);
             a = d === 0 ? Math.random () * 360 : a;
             s.setAngle (a);
@@ -46,7 +46,7 @@ Crafty.scene (SCENE_P2P_TEST, function () {
     gate.alpha = HIDDEN;
     timer.repeat (function () {
         var s = shot.get (SHOT_P2P);
-        s.setStartPoint ([p2.x * W, p2.y * H]);
+        s.setStartPoint ([p2.x * W + W / 2, p2.y * H + H / 2]);
         s.setEndPoint (gate);
         s.create (5);
         s.start ();
