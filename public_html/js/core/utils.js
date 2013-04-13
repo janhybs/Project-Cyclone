@@ -191,7 +191,7 @@ window.radDist = function (a, b, f) {
 };
 
 //method for activating mouse click over whole scene without panel
-//you can catch SCENE_MOUSE_CLICK_EVENT (for queries - Pavel)
+//you can catch SCENE_MOUSE_CLICK_EVENT
 window.activeSceneMouseClick = function () {
     Crafty.addEvent (this, Crafty.stage.elem, "mousedown", function (e) {
         if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
@@ -200,8 +200,17 @@ window.activeSceneMouseClick = function () {
     });
 };
 
+//method for activating mouse released over whole scene without panel
+//you can catch SCENE_MOUSE_RELEASED_EVENT
+window.activeSceneMouseReleased = function () {
+    Crafty.addEvent (this, Crafty.stage.elem, "mouseup", function (e) {
+        if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
+            Crafty.trigger (SCENE_MOUSE_RELEASED_EVENT);
+        }
+    });
+};
+
 //method for activating special type of cursor for active scene
-//(for queries - Pavel)
 window.activeSceneCursor = function (cursorType) {
     $ ('#cr-stage').css ('cursor', cursorType);
 };
