@@ -186,6 +186,27 @@ Crafty.c (SHOT_LASER, {
         this.xstep = Math.cos (this.angle) * this.speed;
         this.ystep = Math.sin (this.angle) * this.speed;
         return this;
+    },
+    //#
+    setStartPoint: function (value) {
+        this.startPoint = toPoint (value);
+        if (!this.laser)
+            return;
+        this.laser.x = this.startPoint.x + W / 2;
+        this.laser.y = this.startPoint.y;
+        this.laser.h = H;
+        this.laser.w = W;
+        this.shiftPoint = toPoint ([this.startPoint.x + this.laser.w / 2, this.startPoint.y + this.laser.h / 2]);
+        return this;
+    },
+    //#
+    doDestroy: function () {
+        this.destroy ();
+    },
+    //#
+    invalidate: function () {
+        //# this.isValid = false;
+        //# laser is always valid
     }
 });
 
@@ -288,7 +309,7 @@ Crafty.c (SHOT_SPLASH, {
         if (this.startPoint !== null) {
             this.x = this.startPoint.x + (W - this.w) / 2;
             this.y = this.startPoint.y + (H - this.h) / 2;
-            this.center = toPoint ([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+            this.center = toPoint ([this.startPoint.x + W / 2, this.startPoint.y + H / 2]);
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
         }
