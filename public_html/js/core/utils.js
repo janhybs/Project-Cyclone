@@ -200,12 +200,26 @@ window.activeSceneMouseClick = function () {
     });
 };
 
-//method for activating mouse released over whole scene without panel
-//you can catch SCENE_MOUSE_RELEASED_EVENT
-window.activeSceneMouseReleased = function () {
+//method for activating mouse stop fire over whole scene without panel
+//you can catch SCENE_MOUSE_STOP_FIRE
+window.activeSceneMouseStopFire = function () {
+    //mouse up
     Crafty.addEvent (this, Crafty.stage.elem, "mouseup", function (e) {
         if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
-            Crafty.trigger (SCENE_MOUSE_RELEASED_EVENT);
+            Crafty.trigger (SCENE_MOUSE_STOP_FIRE);
+        }
+    });
+    
+    //mouse over
+    Crafty.addEvent (this, Crafty.stage.elem, "mouseout", function (e) {
+        if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
+            Crafty.trigger (SCENE_MOUSE_STOP_FIRE);
+        }
+    });
+    
+    Crafty.addEvent (this, Crafty.stage.elem, "mousemove", function (e) {
+        if (mousePos.x >= (SCREEN_WIDTH - PANEL_WIDTH)) {
+            Crafty.trigger (SCENE_MOUSE_STOP_FIRE);
         }
     });
 };

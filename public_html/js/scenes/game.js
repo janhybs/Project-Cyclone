@@ -4,6 +4,8 @@ Crafty.scene (SCENE_GAME, function () {
 
     //mouse click activating for this scene
     activeSceneMouseClick();
+    //mouse stop fire activating for this scene
+    activeSceneMouseStopFire();
     
     //add special cursor (fire-cursor)
     activeSceneCursor('url(/Project-Cyclone/images/crosshair.png),default');

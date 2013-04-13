@@ -141,30 +141,41 @@ Crafty.c('PlayerFire', {
     shotDamage: 1,
     //shot range
     shotRange: 5,
-    
+    //laser actual shot
+    actualShot: false,
+
     //init method
     init: function() {
-        this.bind(SCENE_MOUSE_CLICK_EVENT, this.doFire)
+        this.bind(SCENE_MOUSE_CLICK_EVENT, this.doFire);
+        this.bind(SCENE_MOUSE_STOP_FIRE, this.stopFire);
     },
     
     //fire method
     doFire: function() {
-        var s = shot.get(this.actualWeapon);
-        s.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
-        s.setEndPoint(mousePos);
-        s.setDamage(this.shotDamage);
+        this.actualShot = false;
+        this.actualShot = shot.get(this.actualWeapon);
+        this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
+        this.actualShot.setEndPoint(mousePos);
+        this.actualShot.setDamage(this.shotDamage);
         if(this.actualWeapon === SHOT_P2P) {
-            s.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
-            s.create(this.shotSpeed);
+            this.actualShot.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
+            this.actualShot.create(this.shotSpeed);
         } else {
-            s.withRadius = true;
-            s.rangeRadius = this.rangePointer.getDiameter()/2;
-            s.create(PLAYER_LASER_IMAGE);
+            this.actualShot.withRadius = true;
+            this.actualShot.rangeRadius = this.rangePointer.getDiameter()/2;
+            this.actualShot.create(PLAYER_LASER_IMAGE);
             this.bind("Move", function() {
-                s.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
+                this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
             });
         }
-        s.start();
+        this.actualShot.start();
+    },
+    
+    //method for stop fire        
+    stopFire: function() {
+        if(this.actualWeapon === SHOT_LASER) {
+            this.actualShot.doDestroy();
+        }
     }
 });
 
