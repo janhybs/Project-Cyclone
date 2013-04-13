@@ -211,6 +211,7 @@ Crafty.c (SHOT_LASER, {
     },
     //#
     doDestroy: function () {
+        this.laser.destroy ();
         this.destroy ();
     },
     //#
