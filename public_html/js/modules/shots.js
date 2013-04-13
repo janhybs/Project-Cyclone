@@ -159,28 +159,30 @@ Crafty.c (SHOT_LASER, {
     },
     //#
     enterFrame: function () {
-        this.angle = Math.atan2 (
-                (this.endPoint.y - this.shiftPoint.y),
-                (this.endPoint.x - this.shiftPoint.x));
-        if(this.withRadius) {
-            this.endPoint.x = this.startPoint.x + (Math.cos(this.angle) * this.rangeRadius);
-            this.endPoint.y = this.startPoint.y + (Math.sin(this.angle) * this.rangeRadius);
+        var ep = {x: this.endPoint.x, y: this.endPoint.y};
+
+        if (this.withRadius) {
+            var d = this.rangeRadius / distance (this.shiftPoint, this.endPoint);
+            d = d > 1 ? 1 : d;
+            ep.x = this.startPoint.x + (this.endPoint.x - this.startPoint.x) * d;
+            ep.y = this.startPoint.y + (this.endPoint.y - this.startPoint.y) * d;
         }
-        this.x = this.endPoint.x - this.w / 2;
-        this.y = this.endPoint.y - this.h / 2;
-        this.laser.w = this.len + distance (this.shiftPoint, this.endPoint);
+
+        this.angle = Math.atan2 (
+                (ep.y - this.startPoint.y),
+                (ep.x - this.startPoint.x));
+
+        this.x = ep.x - this.w / 2;
+        this.y = ep.y - this.h / 2;
+        this.laser.w = this.len + distance (this.shiftPoint, ep);
         this.laser.rotation = (this.angle * 180) / Math.PI;
     },
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.laser.z = this.z;
-            this.laser.x = this.startPoint.x + W / 2;
-            this.laser.y = this.startPoint.y;
-            this.laser.h = H;
-            this.laser.w = W;
+            this.setStartPoint (this.startPoint);
             this.laser.origin (0, this.laser.h / 2);
-            this.shiftPoint = toPoint ([this.startPoint.x + this.laser.w / 2, this.startPoint.y + this.laser.h / 2]);
             this.len = 0;
             this.bind ("EnterFrame", this.enterFrame);
         }
@@ -200,11 +202,11 @@ Crafty.c (SHOT_LASER, {
         this.startPoint = toPoint (value);
         if (!this.laser)
             return;
-        this.laser.x = this.startPoint.x + W / 2;
-        this.laser.y = this.startPoint.y;
+        this.laser.x = this.startPoint.x;
+        this.laser.y = this.startPoint.y - H / 2;
         this.laser.h = H;
         this.laser.w = W;
-        this.shiftPoint = toPoint ([this.startPoint.x + this.laser.w / 2, this.startPoint.y + this.laser.h / 2]);
+        this.shiftPoint = toPoint ([this.startPoint.x, this.startPoint.y]);
         return this;
     },
     //#
