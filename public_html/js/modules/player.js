@@ -150,10 +150,9 @@ Crafty.c('PlayerFire', {
     //fire method
     doFire: function() {
         var s = shot.get(this.actualWeapon);
-        s.setStartPoint([this.x, this.y]);
+        s.setStartPoint([this.x-3, this.y-3]);
         s.setEndPoint(mousePos);
         s.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
-        console.log(this.rangePointer.getDiameter()/(2*this.shotSpeed));
         s.setDamage(this.shotDamage);
         s.create(this.shotSpeed);
         s.start();
@@ -246,7 +245,7 @@ Crafty.c('PlayerRangePointer', {
     //visible variable
     visible: true,
     //transparency: 0.0 - 1.0
-    transparency: 0.4,
+    transparency: 0.1,
     //pointer diameter
     diameter: 0,
     //init method
