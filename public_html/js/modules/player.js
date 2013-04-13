@@ -157,9 +157,11 @@ Crafty.c('PlayerFire', {
             s.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
             s.create(this.shotSpeed);
         } else {
+            s.withRadius = true;
+            s.rangeRadius = this.rangePointer.getDiameter()/2;
             s.create(PLAYER_LASER_IMAGE);
             this.bind("Move", function() {
-                s.setStartPoint([this.x-3, this.y-3]);
+                //s.setStartPoint([this.x-3, this.y-3]);
             });
         }
         s.start();
@@ -252,7 +254,7 @@ Crafty.c('PlayerRangePointer', {
     //visible variable
     visible: true,
     //transparency: 0.0 - 1.0
-    transparency: 0.1,
+    transparency: 0.3,
     //pointer diameter
     diameter: 0,
     //init method
