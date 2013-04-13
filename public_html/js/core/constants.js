@@ -21,6 +21,7 @@ var SCENE_ENEMY_TEST = 'enemy-test';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
+var SCENE_MOUSE_RELEASED_EVENT = "sceneMouseReleasedEvent";
 
 /***********
  * ENEMIES *
