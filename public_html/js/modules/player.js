@@ -140,7 +140,7 @@ Crafty.c('PlayerFire', {
     //shot damage
     shotDamage: 1,
     //shot range
-    shotRange: 5,
+    shotRange: 15,
     //laser actual shot
     actualShot: false,
 
@@ -390,6 +390,7 @@ Crafty.c(PLAYER_SOLDIER, {
         this.speedPX = 3;
         this.actualWeapon = SHOT_P2P;
         this.shotSpeed = 5;
+        this.shotDamage = 30;
     }
 });
 

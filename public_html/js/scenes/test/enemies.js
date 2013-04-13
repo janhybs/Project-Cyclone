@@ -3,6 +3,11 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     Crafty.background ('#333');
     Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH, h: SCREEN_HEIGHT, alpha: 0.25}).image ("images/sq.jpg", "repeat");
 
+    //mouse click activating for this scene
+    activeSceneMouseClick();
+    //mouse stop fire activating for this scene
+    activeSceneMouseStopFire();
+
     var path1 = enlargePath (expandPath (splitPath ('0,0 1,0 1,8 8,8 12,8 12,14 15,14 15,0 19,0 19,6')));
     var path2 = enlargePath (expandPath (splitPath ('25,18 1,18')));
     var path3 = enlargePath (splitPath ('25,0 20,15'));
@@ -36,7 +41,8 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     s.setStartPoint ([14 * W + W / 2, 9 * H + H / 2]);
     s.setEndPoint (mousePos);
     s.create ("images/laser-01.png");
-    s.setDamage (shotDamage);
+    s.setDamage (0);
     s.start ();
-
+    //test player
+    var pl = player.create(PLAYER_SOLDIER);
 });
