@@ -32,5 +32,5 @@ Crafty.scene (SCENE_GAME, function () {
     var panel = gamePanel.create();
     
     //test player
-    var pl = player.create(PLAYER_SOLDIER);
+    var pl = player.create(PLAYER_LASER);
 });

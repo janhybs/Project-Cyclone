@@ -152,9 +152,13 @@ Crafty.c('PlayerFire', {
         var s = shot.get(this.actualWeapon);
         s.setStartPoint([this.x-3, this.y-3]);
         s.setEndPoint(mousePos);
-        s.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
         s.setDamage(this.shotDamage);
-        s.create(this.shotSpeed);
+        if(this.actualWeapon === SHOT_P2P) {
+            s.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
+            s.create(this.shotSpeed);
+        } else {
+            s.create(PLAYER_LASER_IMAGE);
+        }
         s.start();
     }
 });
