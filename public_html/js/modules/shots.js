@@ -92,12 +92,12 @@ Crafty.c (SHOT_P2P, {
     start: function () {
 
         if (this.startPoint !== null) {
-            this.x = this.startPoint.x + (W - this.w) / 2;
-            this.y = this.startPoint.y + (H - this.h) / 2;
+            this.x = this.startPoint.x - this.w / 2;
+            this.y = this.startPoint.y - this.h / 2;
         }
 
         if (this.endPoint !== null) {
-            this.shiftPoint = toPoint ([this.startPoint.x + this.w / 2, this.startPoint.y + this.h / 2]);
+            this.shiftPoint = toPoint ([this.startPoint.x , this.startPoint.y]);
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x) - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
@@ -248,10 +248,10 @@ Crafty.c (SHOT_HOMING, {
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
-            this.x = this.startPoint.x + (W - this.w) / 2;
-            this.y = this.startPoint.y + (H - this.h) / 2;
+            this.x = this.startPoint.x - this.w / 2;
+            this.y = this.startPoint.y - this.h / 2;
             this.origin (this.w / 2, this.h / 2);
-            this.shiftPoint = toPoint ([this.x + this.w / 2, this.y + this.h / 2]);
+            this.shiftPoint = toPoint ([this.x, this.y]);
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
             this.aprox = this.angle;
             this.requires ('Collision');

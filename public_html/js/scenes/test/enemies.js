@@ -15,17 +15,9 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
 
 
     var shotDamage = [].concat (
-            [10, 0, 0, 0, 0],
+            [0, 10, 0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]);
-    title = 'normal shot';
-    setTimeout (function () {
-        alert (title = 'fire shot');
-        shotDamage = [].concat (
-                [0, 10, 0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0]);
-    }, 5 * 1000);
 
     timer.repeat (function () {
         var e = enemy.create ({
@@ -34,19 +26,17 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
             size: ENEMY_SIZE.small,
             speed: ENEMY_SPEED.slow,
             resistance: arrayMerge (arrayMult (ENEMY_TYPE.normal, 0.8), arrayMult (ENEMY_TYPE.fire, 0.2)),
-            image: enemies[Math.floor (Math.random () * enemies.length)]+size
+            image: enemies[Math.floor (Math.random () * enemies.length)] + size
         });
         e.start ();
         e.requires ('HealthBar');
     }, FRAME_RATE * 2);
 
-    timer.repeat (function () {
-        var s = shot.get (SHOT_P2P);
-        s.setStartPoint ([14 * W, 9 * H]);
-        s.setEndPoint (mousePos);
-        s.create (15);
-        s.setDamage (shotDamage);
-        s.start ();
-    }, FRAME_RATE / 5);
+    var s = shot.get (SHOT_LASER);
+    s.setStartPoint ([14 * W + W / 2, 9 * H + H / 2]);
+    s.setEndPoint (mousePos);
+    s.create ("images/laser-01.png");
+    s.setDamage (shotDamage);
+    s.start ();
 
 });
