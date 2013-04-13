@@ -13,7 +13,7 @@ Crafty.scene (SCENE_LASER_TEST, function () {
         var l = shot.get (SHOT_LASER);
         g.z = 100;
         l.z = 99;
-        l.setStartPoint ([p[i].x * W, p[i].y * H]);
+        l.setStartPoint ([p[i].x * W + W / 2, p[i].y * H + H / 2]);
         l.setEndPoint (mousePos);
         l.create ("images/laser-0{0}.png".format (i + 1));
         l.start ();
