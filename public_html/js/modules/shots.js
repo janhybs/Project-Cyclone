@@ -202,6 +202,11 @@ Crafty.c (SHOT_LASER, {
     //#
     doDestroy: function () {
         this.destroy ();
+    },
+    //#
+    invalidate: function () {
+        //# this.isValid = false;
+        //# laser is always valid
     }
 });
 
