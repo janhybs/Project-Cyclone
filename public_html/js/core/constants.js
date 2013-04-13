@@ -249,6 +249,7 @@ var PLAYER_STEP_SOUND = "step";
 var LAST_STEPS_COUNT = 3;
 var LEVEL_UP_TEXT = "Your level was increased!";
 var AVAILABLE_POINTS_TEXT = "Your free points: ";
+var PLAYER_LASER_IMAGE = "images/laser-01.png";
 
 /************************
  * GAME PANEL CONSTANTS *
