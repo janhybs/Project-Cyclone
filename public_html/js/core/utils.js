@@ -258,5 +258,3 @@ window.activateWebview = function () {
 window.loadPage = function (divID, callback) {
     $ ('#webview').load ('pages.html #{1}'.format ('pages.html', divID), callback);
 };
-
-
