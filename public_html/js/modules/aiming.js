@@ -5,13 +5,13 @@ window.aiming = {
     get: function(type) {
         switch (type) {
             case AIMING_CLOSEST:
-                return Crafty.e('AIMING_CLOSEST');
+                return Crafty.e(type);
             case AIMING_FURTHEST:
-                return Crafty.e('AIMING_FURTHEST');
+                return Crafty.e(type);
             case AIMING_MOST_HEALTH:
-                return Crafty.e('AIMING_MOST_HEALTH');
+                return Crafty.e(type);
             case AIMING_LEAST_HEALTH:
-                return Crafty.e('AIMING_LEAST_HEALTH');
+                return Crafty.e(type);
         }
     }
 };
@@ -24,11 +24,11 @@ Crafty.c(AIMING_CLOSEST, {
         var minDistance = Number.MAX_VALUE;
         var element = 0;
         var tempDist;
-        for (elem in elems) {
-            tempDist = distance(elem, startPoint);
+        for (var i in elems) {
+            tempDist = distance(elems[i], startPoint);
             if (tempDist < minDistance) {
                 minDistance = tempDist;
-                element = elem;
+                element = elems[i];
             }
         }
         return element;
@@ -41,11 +41,11 @@ Crafty.c(AIMING_FURTHEST, {
         var maxDistance = Number.MIN_VALUE;
         var element = 0;
         var tempDist;
-        for (elem in elems) {
-            tempDist = distance(elem, startPoint);
+        for (var i in elems) {
+            tempDist = distance(elems[i], startPoint);
             if (tempDist > maxDistance) {
                 maxDistance = tempDist;
-                element = elem;
+                element = elems[i];
             }
         }
         return element;
@@ -58,11 +58,11 @@ Crafty.c(AIMING_MOST_HEALTH, {
         var maxHealth = Number.MIN_VALUE;
         var element = 0;
         var tempHealth;
-        for (elem in elems) {
-            tempHealth = elem.health + elem.shield;
+        for (var i in elems) {
+            tempHealth = elems[i].getHealth() + elems[i].getShield();
             if (tempHealth > maxHealth) {
                 maxHealth = tempHealth;
-                element = elem;
+                element = elems[i];
             }
         }
         return element;
@@ -75,11 +75,11 @@ Crafty.c(AIMING_LEAST_HEALTH, {
         var minHealth = Number.MAX_VALUE;
         var element = 0;
         var tempHealth;
-        for (elem in elems) {
-            tempHealth = elem.health + elem.shield;
+        for (var i in elems) {
+            tempHealth = elems[i].getHealth() + elems[i].getShield();
             if (tempHealth < minHealth) {
                 minHealth = tempHealth;
-                element = elem;
+                element = elems[i];
             }
         }
         return element;
