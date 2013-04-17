@@ -21,12 +21,9 @@ Crafty.scene (SCENE_GAME, function () {
         board.showGates (levelPaths);
         
         
-        var h = shot.get (SHOT_HOMING);
-        h.setStartPoint ([3 * W, 3 * H]);
-        h.setEndPoint (mousePos);
-        h.create (3);
-        h.start ();
-
+        var e = enemy.create ({path: enlargePath (levelPaths[0]), speed: ENEMY_SPEED.fast});
+        e.requires ('HealthBar');
+        e.start ();
 
     }, null, 'text');
     
