@@ -85,7 +85,10 @@ window.expandPath = function (data) {
  */
 window.parsePaths = function (data) {
     var result = [];
-
+    if (typeof data.path === "string") {
+        data.path = [data.path];
+        return parsePaths (data);
+    }
     for (var i = 0, l = data.path.length; i < l; i++) {
         result.push (expandPath (splitPath (data.path[i])));
     }
