@@ -273,14 +273,16 @@ window.doSplash = function (point) {
 window.activateCanvas = function () {
     $ ('#webview').hide ();
     $ ('#cr-stage').show ();
+    $ ('#gamePanel').show ();
 };
 
 
 window.activateWebview = function () {
     $ ('#webview').show ();
     $ ('#cr-stage').hide ();
+    $ ('#gamePanel').hide ();
 };
 
-window.loadPage = function (divID, callback) {
-    $ ('#webview').load ('pages.html #{1}'.format ('pages.html', divID), callback);
+window.loadPage = function (sourdeID, divID, callback) {
+    $ ('#{0}'.format(sourdeID)).load ('pages.html #{1}'.format ('pages.html', divID), callback);
 };
