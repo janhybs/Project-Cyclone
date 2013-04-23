@@ -1,5 +1,7 @@
 Crafty.scene (SCENE_GAME, function () {
 
+    activateCanvas ();
+    loadPage ('gamePanel', 'panel-main');
     Crafty.background ('#F00');
 
     //mouse click activating for this scene

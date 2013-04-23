@@ -14,6 +14,25 @@ div, form, body {
     position: absolute;
 }
 
+.panel {
+    text-align: center;
+}
+
+/*
+    ------------ GAME_PANEL -------------
+*/
+
+#gamePanel {
+    width: 160px;
+    height: 640px;
+    left: 800px;
+    top: 0;
+    background: chartreuse;
+    position: absolute;
+    z-index: 1;
+}
+
+
 /*
     --------------- MENU ----------------
 */
@@ -55,4 +74,26 @@ div, form, body {
     margin-top: 30px;
     width: 320px;
     height: 60px;
+}
+
+
+
+/*
+    ------------ PANEL-TOWERS ------------
+*/
+
+#panel-main-towers, #panel-main-towers li {
+    margin: 0;
+    padding: 0;
+}
+#panel-main-towers li {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid green;
+    background: forestgreen;
+    float: left;
+    margin-right: 2px;
+    margin-bottom: 2px;
 }
