@@ -85,3 +85,6 @@ Crafty.c(AIMING_LEAST_HEALTH, {
         return element;
     }
 });
+
+
+var closest = Crafty.e (AIMING_CLOSEST);

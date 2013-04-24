@@ -264,7 +264,7 @@ Crafty.c (SHOT_HOMING, {
         doSplash (this);
         var s = shot.get (SHOT_SPLASH);
         s.setStartPoint (this);
-        s.create (64);
+        s.create (128);
         s.setTTL (FRAME_RATE);
         s.setDamage (this.getDamage ());
         s.start ();

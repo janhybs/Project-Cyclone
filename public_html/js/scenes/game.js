@@ -23,9 +23,15 @@ Crafty.scene (SCENE_GAME, function () {
         board.showGates (levelPaths);
         
         
-        var e = enemy.create ({path: enlargePath (levelPaths[0]), speed: ENEMY_SPEED.fast});
-        e.requires ('HealthBar');
-        e.start ();
+        var timer = Crafty.e ("Framer");
+        var path = enlargePath (levelPaths[0]);
+        timer.repeat (function () {
+            var e = enemy.create ({path: path, speed: ENEMY_SPEED.fast});
+//            e.requires ('HealthBar');
+            e.start ();
+        }, FRAME_RATE * 2);
+        
+        
 
     }, null, 'text');
     
@@ -33,5 +39,5 @@ Crafty.scene (SCENE_GAME, function () {
     var panel = gamePanel.create();
     
     //test player
-    var pl = player.create(PLAYER_LASER);
+    var pl = player.create(PLAYER_SOLDIER);
 });

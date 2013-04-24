@@ -22,7 +22,7 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
     var shotDamage = [].concat (
             [0, 10, 0, 0, 0],
             [0, 0, 0],
-            [0, 0, 0]);
+            [1, 1, -1]);
 
     timer.repeat (function () {
         var e = enemy.create ({
@@ -37,11 +37,12 @@ Crafty.scene (SCENE_ENEMY_TEST, function () {
         e.requires ('HealthBar');
     }, FRAME_RATE * 2);
 
-    var s = shot.get (SHOT_LASER);
+    var s = shot.get (SHOT_HOMING);
     s.setStartPoint ([14 * W + W / 2, 9 * H + H / 2]);
     s.setEndPoint (mousePos);
-    s.create ("images/laser-01.png");
-    s.setDamage (0);
+    s.setDamage (shotDamage);
+    s.create (10, 10);
+//    s.create ("images/laser-01.png");
     s.start ();
     //test player
     var pl = player.create(PLAYER_SOLDIER);
