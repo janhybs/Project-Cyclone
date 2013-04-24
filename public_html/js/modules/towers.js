@@ -343,6 +343,7 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.ttl = L_TTL;
         this.price = L_PRICE;
         this.upgradePrice = L_UPGRADE_PRICE;
+        this.s = null;
     },
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
@@ -353,13 +354,17 @@ Crafty.c(TOWER_BEAM_LASER, {
         }
     },
     fire: function() {
-        var s = shot.get(SHOT_LASER);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
-        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
-        s.setDamage(this.damage);
-        s.setTTL(this.ttl);
-        s.create();
-        s.start();
+        if(this.s !== null && this.s !== undefined) {
+            this.s.doDestroy();
+            this.s = null;
+        }
+        this.s = shot.get(SHOT_LASER);
+        this.s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        this.s.setDamage(this.damage);
+        this.s.setTTL(this.ttl);
+        this.s.create();
+        this.s.start();
     },
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -443,6 +448,7 @@ Crafty.c(TOWER_HOMING_MISSILE, {
     start: function() {
         var elems = getEntities(ENEMY_ABS, this, this.range);
         if (elems.length !== 0) {
+            //# smazat míření
             var aim = aiming.get(AIMING_FURTHEST);
             this.endPoint = aim.getElement(elems, this.startPoint);
             this.fire();
@@ -451,6 +457,7 @@ Crafty.c(TOWER_HOMING_MISSILE, {
     fire: function() {
         var s = shot.get(SHOT_HOMING);
         s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        //# casem smazat
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);

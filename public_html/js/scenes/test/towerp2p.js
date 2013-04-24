@@ -13,16 +13,17 @@ Crafty.scene(SCENE_P2P_TOWER_TEST, function() {
     timer.repeat (function () {
         var e = enemy.create ({
             path: path1,
-            shield: ENEMY_SHIELD.no,
-            size: ENEMY_SIZE.small,
+            image: "scream_32",
             speed: ENEMY_SPEED.slow,
+            shield: ENEMY_SHIELD.boss,
+            size: ENEMY_SIZE.normal,
             resistance: arrayMerge (arrayMult (ENEMY_TYPE.normal, 0.8), arrayMult (ENEMY_TYPE.fire, 0.2))
         });
         e.start ();
         e.requires ('HealthBar');
     }, FRAME_RATE);
 
-    var t = tower.get(TOWER_MACHINEGUN);
+    var t = tower.get(TOWER_BEAM_LASER);
     t.setStartPoint([p0.x * W, p0.y * H]);
     t.create();
     t.upgrade();

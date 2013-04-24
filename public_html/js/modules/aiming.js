@@ -1,21 +1,5 @@
 /*** AIMING MODULE ***/
 
-/*** Define as global object ***/
-window.aiming = {
-    get: function(type) {
-        switch (type) {
-            case AIMING_CLOSEST:
-                return Crafty.e(type);
-            case AIMING_FURTHEST:
-                return Crafty.e(type);
-            case AIMING_MOST_HEALTH:
-                return Crafty.e(type);
-            case AIMING_LEAST_HEALTH:
-                return Crafty.e(type);
-        }
-    }
-};
-
 /*** MISSING - LOC AIMING -> MOBS ID? ***/
 
 /*** Component - closest mob ***/
@@ -86,5 +70,25 @@ Crafty.c(AIMING_LEAST_HEALTH, {
     }
 });
 
-
 var closest = Crafty.e (AIMING_CLOSEST);
+var furthest = Crafty.e (AIMING_FURTHEST);
+var mostHealth = Crafty.e (AIMING_MOST_HEALTH);
+var leastHealth = Crafty.e (AIMING_LEAST_HEALTH);
+
+/*** Define as global object ***/
+window.aiming = {
+    get: function(type) {
+        switch (type) {
+            case AIMING_CLOSEST:
+                console.log(closest);
+                return closest;
+            case AIMING_FURTHEST:
+                return furthest;
+            case AIMING_MOST_HEALTH:
+                return mostHealth;
+            case AIMING_LEAST_HEALTH:
+                return leastHealth;
+        }
+    }
+};
+
