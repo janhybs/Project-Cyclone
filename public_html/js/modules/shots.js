@@ -29,7 +29,7 @@ Crafty.c (SHOT_ABS, {
         this.ttl = 10 * FRAME_RATE;
         this.startPoint = this.endPoint = null;
         this.damage = toDamage (0);
-        this.visible = true;
+        this.visible = false;
         this.isValid = true;
     },
     //#
@@ -97,18 +97,20 @@ Crafty.c (SHOT_P2P, {
         }
 
         if (this.endPoint !== null) {
-            this.shiftPoint = toPoint ([this.startPoint.x , this.startPoint.y]);
+            this.shiftPoint = toPoint ([this.startPoint.x, this.startPoint.y]);
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x) - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
+            this.visible = true;
         } else if (!isNaN (this.angle)) {
             this.angle = this.angle - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
+            this.visible = true;
         }
     },
     //#
@@ -156,6 +158,7 @@ Crafty.c (SHOT_LASER, {
     create: function (laser) {
         this.angle = NaN;
         this.laser = Crafty.e ("2D, Canvas, Image").image (laser !== undefined ? laser : "images/laser-01.png", "repeat");
+        this.laser.visible = false;
     },
     //#
     enterFrame: function () {
@@ -176,6 +179,7 @@ Crafty.c (SHOT_LASER, {
         this.y = ep.y - this.h / 2;
         this.laser.w = this.len + distance (this.shiftPoint, ep);
         this.laser.rotation = (this.angle * 180) / Math.PI;
+        this.laser.visible = true;
     },
     //#
     start: function () {
@@ -185,6 +189,7 @@ Crafty.c (SHOT_LASER, {
             this.laser.origin (0, this.laser.h / 2);
             this.len = 0;
             this.bind ("EnterFrame", this.enterFrame);
+            this.visible = true;
         }
     },
     //#
@@ -231,7 +236,6 @@ Crafty.c (SHOT_HOMING, {
     },
     //#
     enterFrame: function () {
-
         this.shiftPoint = toPoint ([this.x + this.w / 2, this.y + this.h / 2]);
         this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
         this.aprox = radDist (this.aprox, this.angle, this.curving);
@@ -242,22 +246,34 @@ Crafty.c (SHOT_HOMING, {
         this.rotation = (this.aprox / PI) * 180;
 
         //# destroy rutine
-        if (this.ttl-- <= 0) {
+        if (this.ttl-- <= 0)
             this.destroy ();
-        }
+        
+        //# once in a while llok for next target
+        if (this.ttl % (FRAME_RATE * 5) === 0)
+            this.findEnemy ();
     },
     //#
     start: function () {
-        if (this.startPoint !== null && this.endPoint !== null) {
+        if (this.startPoint !== null) {
             this.x = this.startPoint.x - this.w / 2;
             this.y = this.startPoint.y - this.h / 2;
             this.origin (this.w / 2, this.h / 2);
             this.shiftPoint = toPoint ([this.x, this.y]);
+            this.findEnemy();
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
             this.aprox = this.angle;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
+            this.visible = true;
         }
+    },     
+    //#
+    findEnemy: function () {
+        var elems = getEntities (ENEMY_ABS, this, 1*1000*1000);
+        if (elems.length === 0) return;
+        var aim = aiming.get(AIMING_FURTHEST);
+        this.endPoint = aim.getElement(elems, this.startPoint);
     },
     //# when destroyed, release SPLASH shot
     doDestroy: function () {
@@ -324,6 +340,7 @@ Crafty.c (SHOT_SPLASH, {
             this.center = toPoint ([this.startPoint.x + W / 2, this.startPoint.y + H / 2]);
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
+            this.visible = true;
         }
     },
     //#
@@ -337,5 +354,5 @@ Crafty.c (SHOT_SPLASH, {
     setRadius: function (value) {
         this.radius = value;
         return this;
-    },
+    }
 });
