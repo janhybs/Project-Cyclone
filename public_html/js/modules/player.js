@@ -173,7 +173,7 @@ Crafty.c('PlayerFire', {
     
     //method for stop fire        
     stopFire: function() {
-        if(this.actualWeapon === SHOT_LASER) {
+        if(this.actualWeapon === SHOT_LASER && !(typeof(this.actualShot) === 'boolean')) {
             this.actualShot.doDestroy();
         }
     }
