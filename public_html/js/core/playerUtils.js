@@ -59,3 +59,21 @@ PlayerUtils.addRangePoint = function() {
             $.jStorage.set(LASER_PLAYER_RANGE, $.jStorage.get(LASER_PLAYER_RANGE) + 1);
     }
 };
+
+//method gets range of actual player
+PlayerUtils.getRangePoints = function() {
+    if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {
+        return $.jStorage.get(GUN_PLAYER_RANGE);            
+    } else {
+        return $.jStorage.get(LASER_PLAYER_RANGE);
+    }
+};
+
+//method gets damage of actual player
+PlayerUtils.getDamagePoints = function() {
+    if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {
+        return $.jStorage.get(GUN_PLAYER_DAMAGE);            
+    } else {
+        return $.jStorage.get(LASER_PLAYER_DAMAGE);
+    }
+};
