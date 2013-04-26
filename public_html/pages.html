@@ -30,21 +30,14 @@
 
         <!-- LEVEL UPG -->
         <div id="scene-level-up" class="page">
-            <h2>Your player has</h2>
-            <h1>LEVEL <script>write(PlayerUtils.getActualLevel())</script></h1>
-
-            <form>
-                <div id="scene-new-game-p2p">
-                    <img src="images/pages/gun-256.png" />
-                    <input type="text" value="GunMan" name="scene-new-game-p2p" />
-                </div>
-                <div id="scene-new-game-laser">
-                    <img src="images/pages/diamond-256.png" />
-                    <input type="text" value="LaserMan" name="scene-new-game-laser" />
-                </div>
-            </form>
-
-            <button id="scene-new-game-next" onclick="">Continue</button>
+            <img id="levelUpImg" src="images/pages/levelup.jpg" />
+            <h2 id="actPlayer"></h2>
+            <h1 id="actLevel"></h1>
+            <table>
+                <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" onclick="PlayerUtils.addDamagePoint();$('#damage').html(PlayerUtils.getDamagePoints());$('#addDamage,#addRange').attr('disabled', 'disabled');$('#scene-level-up-but').removeAttr('disabled')">+</button></td></tr>
+                <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" onclick="PlayerUtils.addRangePoint();$('#range').html(PlayerUtils.getRangePoints());$('#addDamage,#addRange').attr('disabled', 'disabled');$('#scene-level-up-but').removeAttr('disabled')">+</button></td></tr>
+            </table>
+            <button id="scene-level-up-but" disabled="disabled" onclick="">Continue</button>
         </div>
 
 

@@ -70,7 +70,7 @@ div, form, body {
     margin-right: 150px;
 }
 
-#scene-new-game-next {
+#scene-new-game-next, #scene-level-up-but {
     margin-top: 30px;
     width: 320px;
     height: 60px;
@@ -96,4 +96,27 @@ div, form, body {
     float: left;
     margin-right: 2px;
     margin-bottom: 2px;
+}
+
+table {
+    position: relative;
+    left: 370px;
+    display: block;
+}
+
+td {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#levelUpImg {
+    position: relative;
+    left: 330px;
+    display: block;
+}
+
+.r {
+    text-align: right;
 }
