@@ -3,7 +3,7 @@ Crafty.scene (SCENE_NEW_GAME,
 
             activateWebview ();
             loadPage ('webview', 'scene-new-game', function () {
-                $ ('#scene-new-game-next').attr ('disabled', 'disabled');
+                $ ('#scene-new-game-next');
             });
         },
         function () {

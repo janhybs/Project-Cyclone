@@ -28,7 +28,24 @@
         </div>
 
 
+        <!-- LEVEL UPG -->
+        <div id="scene-level-up" class="page">
+            <h2>Your player unlock</h2>
+            <h1>new LEVEL</h1>
 
+            <form>
+                <div id="scene-new-game-p2p">
+                    <img src="images/pages/gun-256.png" />
+                    <input type="text" value="GunMan" name="scene-new-game-p2p" />
+                </div>
+                <div id="scene-new-game-laser">
+                    <img src="images/pages/diamond-256.png" />
+                    <input type="text" value="LaserMan" name="scene-new-game-laser" />
+                </div>
+            </form>
+
+            <button id="scene-new-game-next" onclick="">Continue</button>
+        </div>
 
 
         <div id="scene-menu" class="page">
@@ -37,6 +54,7 @@
 
 
             <button id="scene-menu-to-new-game" onclick="Crafty.scene (SCENE_NEW_GAME);">NEW GAME</button>
+            <button id="scene-menu-to-level-up" onclick="Crafty.scene (SCENE_LEVEL_UP);">LEVEL UP (debug)</button>
             <button id="scene-menu-to-continue" onclick="Crafty.scene (SCENE_CONTINUE);">CONTINUE</button>
             <button id="scene-menu-to-debug-menu" onclick="Crafty.scene (SCENE_DEBUG_MENU);">DEBUG</button>
         </div>
