@@ -298,12 +298,12 @@ var LASER_PLAYER_NAME = "laserPlayerName";
 var ACTIVE_PLAYER = "activePlayer";
 var GUN_PLAYER_EXPS = "gunPlayerExps";
 var GUN_PLAYER_LEVEL = "gunPlayerLevel";
-var GUN_PLAYER_AVAILABLE_POINTS = "gunPlayerAvaPoints";
-var GUN_PLAYER_USED_POINTS = "gunPlayerUsedPoints";
+var GUN_PLAYER_DAMAGE = "gunPlayerDamage";
+var GUN_PLAYER_RANGE = "gunPlayerRange";
 var LASER_PLAYER_EXPS = "laserPlayerExps";
 var LASER_PLAYER_LEVEL = "laserPlayerLevel";
-var LASER_PLAYER_AVAILABLE_POINTS = "laserPlayerAvaPoints";
-var LASER_PLAYER_USED_POINTS = "laserPlayerUsedPoints";
+var LASER_PLAYER_DAMAGE = "laserPlayerDamage";
+var LASER_PLAYER_RANGE = "laserPlayerRange";
 
 //others
 var LAST_STEPS_COUNT = 3;
