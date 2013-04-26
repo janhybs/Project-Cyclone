@@ -16,15 +16,15 @@
             <form>
                 <div id="scene-new-game-p2p">
                     <img src="images/pages/gun-256.png" />
-                    <input type="text" value="GunMan" name="scene-new-game-p2p" />
+                    <input type="text" id="gunManName" value="GunMan" name="scene-new-game-p2p" />
                 </div>
                 <div id="scene-new-game-laser">
                     <img src="images/pages/diamond-256.png" />
-                    <input type="text" value="LaserMan" name="scene-new-game-laser" />
+                    <input type="text" id="laserManName" value="LaserMan" name="scene-new-game-laser" />
                 </div>
             </form>
 
-            <button id="scene-new-game-next" onclick="">Continue</button>
+            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $('#laserManName').val())">Continue</button>
         </div>
 
 

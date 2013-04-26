@@ -291,6 +291,8 @@ var WALK_RIGHT = "walkRight";
 var PLAYER_STEP_SOUND = "step";
 
 //storage
+var GUN_PLAYER = "gunPlayer";
+var LASER_PLAYER = "laserPlayer";
 var GUN_PLAYER_NAME = "gunPlayerName";
 var LASER_PLAYER_NAME = "laserPlayerName";
 var ACTIVE_PLAYER = "activePlayer";
@@ -334,4 +336,5 @@ var PLAYER_RANGE = "_Range";
  * GENERAL STORAGE *
  *******************
  */
+var PLAYER_DB = "playerDB";
 var MAX_OPENED_LEVEL = "maxOpenedLevel";
