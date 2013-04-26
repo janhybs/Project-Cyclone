@@ -290,6 +290,19 @@ var WALK_RIGHT = "walkRight";
 //sounds
 var PLAYER_STEP_SOUND = "step";
 
+//storage
+var GUN_PLAYER_NAME = "gunPlayerName";
+var LASER_PLAYER_NAME = "laserPlayerName";
+var ACTIVE_PLAYER = "activePlayer";
+var GUN_PLAYER_EXPS = "gunPlayerExps";
+var GUN_PLAYER_LEVEL = "gunPlayerLevel";
+var GUN_PLAYER_AVAILABLE_POINTS = "gunPlayerAvaPoints";
+var GUN_PLAYER_USED_POINTS = "gunPlayerUsedPoints";
+var LASER_PLAYER_EXPS = "laserPlayerExps";
+var LASER_PLAYER_LEVEL = "laserPlayerLevel";
+var LASER_PLAYER_AVAILABLE_POINTS = "laserPlayerAvaPoints";
+var LASER_PLAYER_USED_POINTS = "laserPlayerUsedPoints";
+
 //others
 var LAST_STEPS_COUNT = 3;
 var LEVEL_UP_TEXT = "Your level was increased!";
@@ -316,3 +329,9 @@ var PANEL_BG_COLOR = "#888888";
 //player parts
 var PLAYER_DAMAGE = "_Damage";
 var PLAYER_RANGE = "_Range";
+
+/*******************
+ * GENERAL STORAGE *
+ *******************
+ */
+var MAX_OPENED_LEVEL = "maxOpenedLevel";
