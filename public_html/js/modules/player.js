@@ -26,6 +26,8 @@ Crafty.c('PlayerControls', {
     speedPX: 2,
     //last pressed move key
     lastKey: NO_DIRECTION, 
+    //optimalization
+    opt: true,
     //init method
     init: function(speed) {
         if (speed)
@@ -35,10 +37,14 @@ Crafty.c('PlayerControls', {
 
         //move with new frames
         this.bind('EnterFrame', function() {
+            this.opt = this.opt?false:true;
+            if(this.opt) {
+                return;
+            }
             var move = this.move;
             if (this.lastKey === RIGHT_DIRECTION) {
                 this.x += this.speedPX;
-                if(!this.isPlaying(WALK_RIGHT))
+                if(!this.isPlaying(WALK_RIGHT)) 
                     Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
                 this.rangePointer.redrawRangePointer(this.x, this.y);
@@ -389,7 +395,7 @@ Crafty.c(PLAYER_DEBUG, {
 Crafty.c(PLAYER_SOLDIER, {
     //init method
     init: function() {
-        this.speedPX = 3;
+        this.speedPX = 6;
         this.actualWeapon = SHOT_P2P;
         this.shotSpeed = 5;
         this.shotDamage = 30;
