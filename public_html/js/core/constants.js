@@ -30,6 +30,7 @@ var SCENE_MOUSE_STOP_FIRE = "sceneMouseStopFireEvent";
  ***********
  */
 var ENEMY_ABS = 'enemyAbstract';
+var ENEMY_BRAIN = 'enemyBrain';
 
 //# types
 var ENEMY_TYPE = {

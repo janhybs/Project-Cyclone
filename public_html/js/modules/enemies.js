@@ -51,50 +51,6 @@ Crafty.c (ENEMY_ABS, {
         //# block index (starting at zeroth)
         this._bi = 0;
     },
-    enterFrame: function () {
-
-        this.spd = this.speed;
-
-        //# slow shot
-        if (this.slowShot !== null) {
-            this.spd *= 1 - this.slowShot.slow;
-
-            if (--this.slowShot.duration === 0)
-                this.slowShot = null;
-        }
-
-
-        //# hurt shot
-        if (this.hurtShot !== null) {
-            if (++this.hurtShot.count === this.hurtShot.period) {
-                this.hurtShot.count = 0;
-                this.transferDamage (toDamage (this.hurtShot.value));
-
-                if (this.isDead ())
-                    return this.processDeath (this.hurtShot);
-
-                if (--this.hurtShot.repeat === 0)
-                    this.hurtShot = null;
-            }
-        }
-
-        //# moving
-        if (this.spd > 0) {
-            this.x += this.xstep * this.spd;
-            this.y += this.ystep * this.spd;
-        }
-
-        if (this.healthChanged) {
-            this.healthChanged = false;
-            this.trigger ('HealthChanged', {previous: this.previousHealth, current: this._health});
-        }
-
-        //# if enemy has reached next point (block)
-        //# generate next coords (xstep, ystep)
-        if (this.path !== null && this.isAtNextStop ()) {
-            this.findDirection (++this._bi);
-        }
-    },
     start: function () {
         //# assigning first two path blocks
         if (this.path !== null) {
@@ -108,13 +64,14 @@ Crafty.c (ENEMY_ABS, {
         this.maxHealth = this.health;
         this.maxShield = this.shield;
         this.requires ('Collision');
-        this.bind ("EnterFrame", this.enterFrame);
+        enemyBrain.add (this);
         this.onHit (SHOT_ABS, this.processHit);
     },
     processDeath: function (reason) {
         doSplash (this);
         this.trigger ('Death', null);
         this.destroy ();
+        this.isNull = true;
     },
     //#
     processHit: function (shots) {
