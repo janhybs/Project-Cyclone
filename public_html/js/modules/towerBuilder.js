@@ -22,6 +22,27 @@ Crafty.c (TOWER_BUILDER, {
         this.transBG = Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH-PANEL_WIDTH, h: SCREEN_HEIGHT, alpha: 0.5, z: 1}).image ("images/sq.jpg", "repeat");
         this.towerImg = Crafty.e ("2D, Canvas, Image").attr ({w: W, h: H, alpha: 0.8, z: 2}).image ("images/cat.gif", "no-repeat");
         this.bind('MouseMove', this.positionControl);
+        this.bind('Click', this.playerClicked);
+        this.bind('MouseUp', this.playerRightClicked);
+    },
+    
+    playerClicked: function() {
+        
+        this.closeTowerBuilder();
+    },
+    
+    playerRightClicked: function(e) {
+        if( e.mouseButton === Crafty.mouseButtons.RIGHT )
+            this.closeTowerBuilder();
+    },
+    
+    closeTowerBuilder: function() {
+        activeSceneCursor('url(/Project-Cyclone/images/crosshair.png),default');
+        $.playerFreeze = false;
+        console.log("tower builder close...");
+        this.transBG.destroy();
+        this.towerImg.destroy();
+        this.destroy();
     },
     
     positionControl: function() {
