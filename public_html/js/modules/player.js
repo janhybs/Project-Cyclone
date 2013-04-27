@@ -345,7 +345,7 @@ Crafty.c(PLAYER_ABS, {
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {
         //path detection
-        if (this.hit('path') || this.x < 0 || this.x > SCREEN_WIDTH - PLAYER_WIDTH || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
+        if (this.hit('path') || this.x < 0 || this.x > (SCREEN_WIDTH - PANEL_WIDTH - 32) || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
             if(move === LEFT_DIRECTION) {
                 this.attr({x: fromX+1, y: fromY});
                 this.repairPosition(this.x, this.y, move);

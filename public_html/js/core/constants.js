@@ -377,5 +377,6 @@ var PLAYER_RANGE = "_Range";
  * GENERAL STORAGE *
  *******************
  */
-var PLAYER_DB = "playerDB";
+var PLAYER_MONEY = "playerMoney";
+var PLAYER_START_MONEY_PACK = 1000;
 var MAX_OPENED_LEVEL = "maxOpenedLevel";
