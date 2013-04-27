@@ -1,11 +1,12 @@
 window.shot = {
-    get: function (type, avatar) {
+    get: function (type, avatar, avatar2) {
         switch (type) {
             case SHOT_P2P:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || P2P_IMAGE_NAME.shotNormal));
             case SHOT_LASER:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
-                        .setImage (LASER_IMAGE_PATH.laserThinRed)
+                        .setImage (avatar || LASER_IMAGE_PATH.laserThickPurple)
+                        .setEnding (avatar2 || LASER_IMAGE_NAME.laserThickPurpleEnd)
                         .attr ({w: 10, h: 10});
             case SHOT_HOMING:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || HOMING_IMAGE_NAME.rocketBlueSmall));
@@ -116,7 +117,7 @@ Crafty.c (SHOT_P2P, {
     },
     //#
     doDestroy: function () {
-        doSplash (this);
+        effects.create ([this.x + this.w / 2, this.y + this.h / 2], 'exp_simple', 8);
         this.destroy ();
     },
     //#
@@ -156,11 +157,12 @@ Crafty.c (SHOT_LASER, {
     withRadius: false,
     //variable with range
     rangeRadius: 0,
-    create: function (laser) {
+    create: function (laser, ending) {
         this.angle = NaN;
+        if (!this.ending || ending)
+            this.setEnding (ending || LASER_IMAGE_NAME.laserThinRedEnd);
         if (!this.laser || laser)
             this.setImage (laser || LASER_IMAGE_PATH.laserThinRed);
-        this.laser.visible = false;
     },
     //#
     enterFrame: function () {
@@ -182,11 +184,16 @@ Crafty.c (SHOT_LASER, {
         this.laser.w = this.len + distance (this.shiftPoint, ep);
         this.laser.rotation = (this.angle * 180) / Math.PI;
         this.laser.visible = true;
+        this.ending.visible = true;
+
+        this.ending.x = ep.x - this.ending.w/2;
+        this.ending.y = ep.y - this.ending.h/2;
     },
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.laser.z = this.z;
+            this.ending.z = this.z+1;
             this.setStartPoint (this.startPoint);
             this.laser.origin (0, this.laser.h / 2);
             this.len = 0;
@@ -219,6 +226,7 @@ Crafty.c (SHOT_LASER, {
     //#
     doDestroy: function () {
         this.laser.destroy ();
+        this.ending.destroy ();
         this.destroy ();
     },
     //#
@@ -230,6 +238,12 @@ Crafty.c (SHOT_LASER, {
     setImage: function (path) {
         this.laser = Crafty.e ("2D, Canvas, Image").image (path, "repeat");
         this.laser.visible = false;
+        return this;
+    },
+    //#
+    setEnding: function (avatar) {
+        this.ending = Crafty.e ("2D, Canvas, Image, {0}".format (avatar));
+        this.ending.visible = false;
         return this;
     }
 });
@@ -256,7 +270,7 @@ Crafty.c (SHOT_HOMING, {
         //# destroy rutine
         if (this.ttl-- <= 0)
             this.destroy ();
-        
+
         //# once in a while llok for next target
         if (this.ttl % (FRAME_RATE * 5) === 0)
             this.findEnemy ();
@@ -268,26 +282,30 @@ Crafty.c (SHOT_HOMING, {
             this.y = this.startPoint.y - this.h / 2;
             this.origin (this.w / 2, this.h / 2);
             this.shiftPoint = toPoint ([this.x, this.y]);
-            this.findEnemy();
+            this.findEnemy ();
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
             this.aprox = this.angle;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.visible = true;
         }
-    },     
+    },
     //#
     findEnemy: function () {
-        var elems = getEntities (ENEMY_ABS, this, 1*1000*1000);
-        if (elems.length === 0) return;
-        var aim = aiming.get(AIMING_FURTHEST);
-        this.endPoint = aim.getElement(elems, this.startPoint);
+        var elems = getEntities (ENEMY_ABS, this, 1 * 1000 * 1000);
+        if (elems.length === 0)
+            return;
+        var aim = aiming.get (AIMING_FURTHEST);
+        this.endPoint = aim.getElement (elems, this.startPoint);
     },
     //# when destroyed, release SPLASH shot
     doDestroy: function () {
-        doSplash (this);
+        //# homing destroy effect
+        effects.create ([this.x + this.w / 2, this.y + this.h / 2], 'exp_simple', 32);
+        //# homing splash effect
+        effects.create ([this.x + this.w / 2, this.y + this.h / 2], 'exp_simple', 64).attr ({alpha: 0.3});
         var s = shot.get (SHOT_SPLASH);
-        s.alpha = .3;
+        s.alpha = 0;
         s.setStartPoint (this);
         s.create (128);
         s.setTTL (FRAME_RATE);

@@ -12,6 +12,9 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/cat.gif',
         'images/shot.png',
         'images/laser-cat.png',
+        //# explosion packed
+        'images/exp-simple.png',
+        'images/exp-complex.png',
         'images/exp-simple-32(16).png',
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
@@ -20,6 +23,8 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/enemies-32.png',
         'images/enemies-64.png',
         'images/enemies-128.png',
+        //# shield
+        'images/shield.png',
         //# shots packed
         'images/shots.png',
         'images/laser-thin-red.png',
@@ -84,6 +89,10 @@ Crafty.sprite (16, 'images/laser-cat.png', {
     laser: [0, 0],
 });
 
+Crafty.sprite (48, 'images/shield.png', {
+    shield: [0, 0],
+});
+
 Crafty.sprite (32, 'images/exp-complex-32(16).png', {
     exp_complex_32_16: [0, 0],
 });
@@ -94,6 +103,14 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
 
 Crafty.sprite (32, 'images/exp-simple-32(16).png', {
     exp_simple_32_16: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-simple.png', {
+    exp_simple: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-complex.png', {
+    exp_complex: [0, 0],
 });
 
 
@@ -215,15 +232,19 @@ Crafty.sprite ('images/shots.png', {
     aura_blue: [0, 0, 128, 128],
     aura_red: [128, 0, 128, 128],
     laser_thick_blue: [40, 128, 32, 32],
-    laser_thick_purple: [0, 178, 32, 32],
-    laser_thick_yellow: [40, 160, 32, 32],
-    laser_thin_red: [72, 128, 32, 32],
+    laser_thick_blue_end: [0, 178, 32, 32],
+    laser_thick_purple: [40, 160, 32, 32],
+    laser_thick_purple_end: [72, 128, 32, 32],
+    laser_thick_yellow: [0, 210, 32, 32],
+    laser_thick_yellow_end: [72, 160, 32, 32],
+    laser_thin_red: [104, 128, 32, 32],
+    laser_thin_red_end: [32, 192, 32, 32],
     rocket_blue: [0, 128, 40, 25],
-    rocket_blue_small: [0, 210, 30, 19],
+    rocket_blue_small: [32, 224, 30, 19],
     rocket_red: [0, 153, 40, 25],
-    rocket_red_small: [0, 229, 30, 19],
+    rocket_red_small: [64, 192, 30, 19],
     shot_cannon: [32, 178, 7, 7],
-    shot_green: [72, 160, 16, 16],
-    shot_ice: [32, 192, 9, 5],
-    shot_normal: [104, 128, 11, 5]
+    shot_green: [104, 160, 16, 16],
+    shot_ice: [0, 247, 9, 5],
+    shot_normal: [0, 242, 11, 5]
 });

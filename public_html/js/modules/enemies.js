@@ -20,6 +20,7 @@ Crafty.c (ENEMY_ABS, {
         this.health = health !== undefined ? health : 100;
         this.shield = shield !== undefined ? shield : 0;
         this.wobble = wobble !== undefined ? wobble : 10;
+        this.shieldActor = null;
     },
     init: function () {
         this.resistance = toDamage (0);
@@ -61,6 +62,9 @@ Crafty.c (ENEMY_ABS, {
             this.findDirection (this._bi);
         }
 
+        if (this.shield > 0)
+            this.shieldActor = Crafty.e ("Shield").attr ({enemy: this}).start();
+
         this.maxHealth = this.health;
         this.maxShield = this.shield;
         this.requires ('Collision');
@@ -68,7 +72,9 @@ Crafty.c (ENEMY_ABS, {
         this.onHit (SHOT_ABS, this.processHit);
     },
     processDeath: function (reason) {
-        doSplash (this);
+        effects.create (this.center, 'exp_complex', 48);
+        if (this.shieldActor)
+            this.shieldActor.destroy ();
         this.trigger ('Death', null);
         this.destroy ();
         this.isNull = true;

@@ -127,7 +127,11 @@ var LASER_IMAGE_NAME = {
     laserThinRed: 'laser_thin_red',
     laserThickYellow: 'laser_thick_yellow',
     laserThickPurple: 'laser_thick_purple',
-    laserThickBlue: 'laser_thick_blue'
+    laserThickBlue: 'laser_thick_blue',
+    laserThinRedEnd: 'laser_thin_red_end',
+    laserThickYellowEnd: 'laser_thick_yellow_end',
+    laserThickPurpleEnd: 'laser_thick_purple_end',
+    laserThickBlueEnd: 'laser_thick_blue_end'
 };
 
 var P2P_IMAGE_NAME = {
