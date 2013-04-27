@@ -116,6 +116,39 @@ var SHOT_LASER = 'Laser';
 var SHOT_SPLASH = 'Splash';
 var SHOT_HOMING = 'Homing';
 
+var LASER_IMAGE_PATH = {
+    laserThinRed: 'images/laser-thin-red.png',
+    laserThickYellow: 'images/laser-thick-yellow.png',
+    laserThickPurple: 'images/laser-thick-purple.png',
+    laserThickBlue: 'images/laser-thick-blue.png'
+};
+
+var LASER_IMAGE_NAME = {
+    laserThinRed: 'laser_thin_red',
+    laserThickYellow: 'laser_thick_yellow',
+    laserThickPurple: 'laser_thick_purple',
+    laserThickBlue: 'laser_thick_blue'
+};
+
+var P2P_IMAGE_NAME = {
+    shotCannon: 'shot_cannon',
+    shotGreen: 'shot_green',
+    shotIce: 'shot_ice',
+    shotNormal: 'shot_normal'
+};
+
+var HOMING_IMAGE_NAME = {
+    rocketBlue: 'rocket_blue',
+    rocketBlueSmall: 'rocket_blue_small',
+    rocketRed: 'rocket_red',
+    rocketRedSmall: 'rocket_red_small'
+};
+
+var SPLASH_IMAGE_NAME = {
+    auraBlue: 'aura_blue',
+    auraRed: 'aura_red'
+};
+
 var REZISTANCE = 1.00;
 var BENEFIT_SHIELD = 2;
 var DAMAGE_PROP = [
