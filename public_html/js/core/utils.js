@@ -197,7 +197,7 @@ window.radDist = function (a, b, f) {
 //you can catch SCENE_MOUSE_CLICK_EVENT
 window.activeSceneMouseClick = function () {
     Crafty.addEvent (this, Crafty.stage.elem, "mousedown", function (e) {
-        if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
+        if ((mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) && !$.playerFreeze) {
             Crafty.trigger (SCENE_MOUSE_CLICK_EVENT);
         }
     });

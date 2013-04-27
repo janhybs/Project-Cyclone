@@ -329,6 +329,8 @@ Crafty.c(PLAYER_ABS, {
     level: 0,
     //init method
     init: function() {
+        //player fire freeze global var
+        $.playerFreeze = false;
         //add range pointer
         this.rangePointer = Crafty.e("2D, Canvas, PlayerRangePointer");
         this.rangePointer.setDiameter(this.shotRange);
