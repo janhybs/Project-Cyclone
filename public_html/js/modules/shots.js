@@ -1,11 +1,12 @@
 window.shot = {
-    get: function (type, avatar) {
+    get: function (type, avatar, avatar2) {
         switch (type) {
             case SHOT_P2P:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || P2P_IMAGE_NAME.shotNormal));
             case SHOT_LASER:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
-                        .setImage (LASER_IMAGE_PATH.laserThinRed)
+                        .setImage (avatar || LASER_IMAGE_PATH.laserThickPurple)
+                        .setEnding (avatar2 || LASER_IMAGE_NAME.laserThickPurpleEnd)
                         .attr ({w: 10, h: 10});
             case SHOT_HOMING:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || HOMING_IMAGE_NAME.rocketBlueSmall));
@@ -156,11 +157,12 @@ Crafty.c (SHOT_LASER, {
     withRadius: false,
     //variable with range
     rangeRadius: 0,
-    create: function (laser) {
+    create: function (laser, ending) {
         this.angle = NaN;
+        if (!this.ending || ending)
+            this.setEnding (ending || LASER_IMAGE_NAME.laserThinRedEnd);
         if (!this.laser || laser)
             this.setImage (laser || LASER_IMAGE_PATH.laserThinRed);
-        this.laser.visible = false;
     },
     //#
     enterFrame: function () {
@@ -182,11 +184,16 @@ Crafty.c (SHOT_LASER, {
         this.laser.w = this.len + distance (this.shiftPoint, ep);
         this.laser.rotation = (this.angle * 180) / Math.PI;
         this.laser.visible = true;
+        this.ending.visible = true;
+
+        this.ending.x = ep.x - this.ending.w/2;
+        this.ending.y = ep.y - this.ending.h/2;
     },
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.laser.z = this.z;
+            this.ending.z = this.z+1;
             this.setStartPoint (this.startPoint);
             this.laser.origin (0, this.laser.h / 2);
             this.len = 0;
@@ -219,6 +226,7 @@ Crafty.c (SHOT_LASER, {
     //#
     doDestroy: function () {
         this.laser.destroy ();
+        this.ending.destroy ();
         this.destroy ();
     },
     //#
@@ -230,6 +238,12 @@ Crafty.c (SHOT_LASER, {
     setImage: function (path) {
         this.laser = Crafty.e ("2D, Canvas, Image").image (path, "repeat");
         this.laser.visible = false;
+        return this;
+    },
+    //#
+    setEnding: function (avatar) {
+        this.ending = Crafty.e ("2D, Canvas, Image, {0}".format (avatar));
+        this.ending.visible = false;
         return this;
     }
 });

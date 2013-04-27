@@ -13,6 +13,11 @@ Crafty.scene (SCENE_LASER_TEST, function () {
         LASER_IMAGE_PATH.laserThickPurple,
         LASER_IMAGE_PATH.laserThickYellow,
         LASER_IMAGE_PATH.laserThinRed];
+    
+    var endings = [LASER_IMAGE_NAME.laserThickBlueEnd,
+        LASER_IMAGE_NAME.laserThickPurpleEnd,
+        LASER_IMAGE_NAME.laserThickYellowEnd,
+        LASER_IMAGE_NAME.laserThinRedEnd];
 
     for (var i = 0; i < p.length; i++) {
         var g = board.createGate (p[i]);
@@ -21,7 +26,7 @@ Crafty.scene (SCENE_LASER_TEST, function () {
         l.z = 99;
         l.setStartPoint ([p[i].x * W + W / 2, p[i].y * H + H / 2]);
         l.setEndPoint (mousePos);
-        l.create (lasers[i]);
+        l.create (lasers[i], endings[i]);
         l.start ();
     }
 });
