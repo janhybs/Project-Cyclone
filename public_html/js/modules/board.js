@@ -7,7 +7,7 @@ window.board = {
                         Crafty.e ("2D, Canvas, path").attr ({x: j * W, y: i * H});
                         break;
                     case '1':
-                        Crafty.e ("2D, Canvas, wall").attr ({x: j * W, y: i * H});
+                        Crafty.e ("2D, Canvas, Image").attr ({x: j * W, y: i * H}).image('images/grass.jpg', 'no-repeat');
                         break;
                 }
             }

@@ -12,6 +12,7 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/cat.gif',
         'images/shot.png',
         'images/laser-cat.png',
+        'images/grass.jpg',
         //# explosion packed
         'images/exp-simple.png',
         'images/exp-complex.png',
