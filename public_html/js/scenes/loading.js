@@ -15,10 +15,18 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-simple-32(16).png',
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
+        //# enemies packed
         'images/enemies-24.png',
         'images/enemies-32.png',
         'images/enemies-64.png',
         'images/enemies-128.png',
+        //# shots packed
+        'images/shots.png',
+        'images/laser-thin-red.png',
+        'images/laser-thick-yellow.png',
+        'images/laser-thick-purple.png',
+        'images/laser-thick-blue.png',
+        //
         'images/enemy.png',
         'images/debug.png',
         'images/rocket.png',
@@ -201,4 +209,21 @@ Crafty.sprite ('images/enemies-128.png', {
     skull_128: [512, 0, 128, 128],
     slimer_128: [640, 0, 128, 128],
     squash_128: [512, 128, 128, 128]
+});
+
+Crafty.sprite ('images/shots.png', {
+    aura_blue: [0, 0, 128, 128],
+    aura_red: [128, 0, 128, 128],
+    laser_thick_blue: [40, 128, 32, 32],
+    laser_thick_purple: [0, 178, 32, 32],
+    laser_thick_yellow: [40, 160, 32, 32],
+    laser_thin_red: [72, 128, 32, 32],
+    rocket_blue: [0, 128, 40, 25],
+    rocket_blue_small: [0, 210, 30, 19],
+    rocket_red: [0, 153, 40, 25],
+    rocket_red_small: [0, 229, 30, 19],
+    shot_cannon: [32, 178, 7, 7],
+    shot_green: [72, 160, 16, 16],
+    shot_ice: [32, 192, 9, 5],
+    shot_normal: [104, 128, 11, 5]
 });

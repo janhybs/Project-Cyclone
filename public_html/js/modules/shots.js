@@ -1,17 +1,16 @@
 window.shot = {
-    get: function (type) {
+    get: function (type, avatar) {
         switch (type) {
             case SHOT_P2P:
-                return Crafty.e ('2D, Canvas, Image, {0}, {1}, shot'.format (SHOT_ABS, type))
-                        .attr ({w: W, h: H});
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || P2P_IMAGE_NAME.shotNormal));
             case SHOT_LASER:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
+                        .setImage (LASER_IMAGE_PATH.laserThinRed)
                         .attr ({w: 10, h: 10});
             case SHOT_HOMING:
-                return Crafty.e ('2D, Canvas, Image, {0}, {1}, rocket'.format (SHOT_ABS, type))
-                        .attr ({w: 40 * .7, h: 25 * .7});
+                return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || HOMING_IMAGE_NAME.rocketBlueSmall));
             case SHOT_SPLASH:
-                return Crafty.e ('2D, Canvas, Image, SpriteAnimation, {0}, {1}, exp_simple_32_16'.format (SHOT_ABS, type))
+                return Crafty.e ('2D, Canvas, Image, SpriteAnimation, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || SPLASH_IMAGE_NAME.auraRed))
                         .attr ({w: W, h: H});
         }
     }
@@ -82,6 +81,7 @@ Crafty.c (SHOT_P2P, {
 
         this.x += this.xstep;
         this.y += this.ystep;
+        this.rotation = (this.angle / PI) * 180;
 
         //# destroy rutine
         if (this.ttl-- <= 0) {
@@ -94,6 +94,7 @@ Crafty.c (SHOT_P2P, {
         if (this.startPoint !== null) {
             this.x = this.startPoint.x - this.w / 2;
             this.y = this.startPoint.y - this.h / 2;
+            this.origin (this.w / 2, this.h / 2);
         }
 
         if (this.endPoint !== null) {
@@ -157,7 +158,8 @@ Crafty.c (SHOT_LASER, {
     rangeRadius: 0,
     create: function (laser) {
         this.angle = NaN;
-        this.laser = Crafty.e ("2D, Canvas, Image").image (laser !== undefined ? laser : "images/laser-01.png", "repeat");
+        if (!this.laser || laser)
+            this.setImage (laser || LASER_IMAGE_PATH.laserThinRed);
         this.laser.visible = false;
     },
     //#
@@ -223,6 +225,12 @@ Crafty.c (SHOT_LASER, {
     invalidate: function () {
         //# this.isValid = false;
         //# laser is always valid
+    },
+    //#
+    setImage: function (path) {
+        this.laser = Crafty.e ("2D, Canvas, Image").image (path, "repeat");
+        this.laser.visible = false;
+        return this;
     }
 });
 
