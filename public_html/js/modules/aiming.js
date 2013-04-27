@@ -80,7 +80,6 @@ window.aiming = {
     get: function(type) {
         switch (type) {
             case AIMING_CLOSEST:
-                console.log(closest);
                 return closest;
             case AIMING_FURTHEST:
                 return furthest;
