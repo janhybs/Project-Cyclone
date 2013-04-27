@@ -246,6 +246,9 @@ var EA_RADIUS_3 = 200;
 var EA_GROWTH_3 = 200;
 var EA_DAMAGE_3 = [15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0];
 
+//tower bilder
+var TOWER_BUILDER = "towerBuilderComp";
+
 /**********
  * AIMING *
  **********
