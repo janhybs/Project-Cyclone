@@ -27,7 +27,14 @@ Crafty.c (TOWER_BUILDER, {
     },
     
     playerClicked: function() {
-        
+        var timer = Crafty.e ('Framer');
+        var t = tower.get(this.towerType);
+        t.setStartPoint([this.towerImg.x, this.towerImg.y]);
+        t.create();
+        t.upgrade();
+        timer.repeat(function() {
+            t.start();
+        }, FRAME_RATE / 5);
         this.closeTowerBuilder();
     },
     
