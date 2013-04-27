@@ -77,3 +77,12 @@ PlayerUtils.getDamagePoints = function() {
         return $.jStorage.get(LASER_PLAYER_DAMAGE);
     }
 };
+
+//method increases level of actual player
+PlayerUtils.increaseLevel = function() {
+        if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {
+            $.jStorage.set(GUN_PLAYER_LEVEL, $.jStorage.get(GUN_PLAYER_LEVEL) + 1);            
+    } else {
+            $.jStorage.set(LASER_PLAYER_LEVEL, $.jStorage.get(LASER_PLAYER_LEVEL) + 1);
+    }
+};

@@ -1,6 +1,6 @@
 Crafty.scene (SCENE_LEVEL_UP,
         function () {
-
+            PlayerUtils.increaseLevel();
             activateWebview ();
             loadPage ('webview', 'scene-level-up', function () {
                 $ ('#scene-new-game-next');
