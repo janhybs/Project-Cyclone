@@ -3,6 +3,7 @@ window.towerBuilder = {
     create: function(type) { 
         var build = Crafty.e ("2D, Canvas, Mouse, {0}".format(TOWER_BUILDER));
         build.setTowerType(type);
+        build.setLevelPath('levels/level-01.xml'); //!!!! ONLY DEBUG !!!! - then do pointer to actual LEVEL!!!!
     }
 }
 
@@ -10,6 +11,8 @@ window.towerBuilder = {
 Crafty.c (TOWER_BUILDER, {
     towerType: false,
     transBG: false,
+    levelPath: false,
+    levelBoard: false,
     lastX: false,
     lastY: false,
     
@@ -22,10 +25,25 @@ Crafty.c (TOWER_BUILDER, {
     },
     
     positionControl: function() {
-        var xPos = mousePos.x / W;
+        var xPos = Math.round(mousePos.x / W);
+        var yPos = Math.round(mousePos.y / H);
+                        
     },
             
     setTowerType: function(type) {
         this.towerType = type;
+    },
+            
+    setLevelPath: function(level) {
+        this.levelPath = level;
+        this.loadActLevel();
+    },
+    
+    loadActLevel: function() {
+        jQuery.get (this.levelPath, this.setLevelBoard);
+    },
+    
+    setLevelBoard: function(data) {
+        this.levelBoard = parseBoard(($.xml2json (data)).board);
     }
 });
