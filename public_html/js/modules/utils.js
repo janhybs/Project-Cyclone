@@ -212,3 +212,30 @@ Crafty.c ('HealthBar', {
         this.bind ('HealthChanged', this.healthbar.draw);
     }
 });
+
+
+Crafty.c ('Shield', {
+    init: function () {
+        this.requires ('2D');
+        this.requires ('Canvas');
+        this.requires ('Image');
+        this.requires ('shield');
+        this.enemy = null;
+    },
+    start: function () {
+        if (this.enemy === null || this.enemy === undefined)
+            return this.destroy ();
+        this.attr ({w: this.enemy.w, h: this.enemy.h});
+        this.bind ('EnterFrame', this.update);
+        return this;
+    },
+    update: function () {
+        this.x = this.enemy.center.x - this.w / 2;
+        this.y = this.enemy.center.y - this.h / 2;
+        
+        if (this.enemy.shield <= 0) {
+            this.enemy.shieldActor = null;
+            this.destroy ();
+        }
+    }
+});

@@ -12,6 +12,10 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/cat.gif',
         'images/shot.png',
         'images/laser-cat.png',
+        
+        //# explosion packed
+        'images/exp-simple.png',
+        'images/exp-complex.png',
         'images/exp-simple-32(16).png',
         'images/exp-complex-32(16).png',
         'images/exp-complex-64(25).png',
@@ -20,6 +24,8 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/enemies-32.png',
         'images/enemies-64.png',
         'images/enemies-128.png',
+        //# shield
+        'images/shield.png',
         //# shots packed
         'images/shots.png',
         'images/laser-thin-red.png',
@@ -84,6 +90,10 @@ Crafty.sprite (16, 'images/laser-cat.png', {
     laser: [0, 0],
 });
 
+Crafty.sprite (48, 'images/shield.png', {
+    shield: [0, 0],
+});
+
 Crafty.sprite (32, 'images/exp-complex-32(16).png', {
     exp_complex_32_16: [0, 0],
 });
@@ -94,6 +104,14 @@ Crafty.sprite (32, 'images/exp-complex-64(25).png', {
 
 Crafty.sprite (32, 'images/exp-simple-32(16).png', {
     exp_simple_32_16: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-simple.png', {
+    exp_simple: [0, 0],
+});
+
+Crafty.sprite (32, 'images/exp-complex.png', {
+    exp_complex: [0, 0],
 });
 
 

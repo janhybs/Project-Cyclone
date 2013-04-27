@@ -116,7 +116,7 @@ Crafty.c (SHOT_P2P, {
     },
     //#
     doDestroy: function () {
-        doSplash (this);
+        effects.create ([this.x + this.w / 2, this.y + this.h / 2], 'exp_simple', 8);
         this.destroy ();
     },
     //#
@@ -256,7 +256,7 @@ Crafty.c (SHOT_HOMING, {
         //# destroy rutine
         if (this.ttl-- <= 0)
             this.destroy ();
-        
+
         //# once in a while llok for next target
         if (this.ttl % (FRAME_RATE * 5) === 0)
             this.findEnemy ();
@@ -268,26 +268,30 @@ Crafty.c (SHOT_HOMING, {
             this.y = this.startPoint.y - this.h / 2;
             this.origin (this.w / 2, this.h / 2);
             this.shiftPoint = toPoint ([this.x, this.y]);
-            this.findEnemy();
+            this.findEnemy ();
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
             this.aprox = this.angle;
             this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.visible = true;
         }
-    },     
+    },
     //#
     findEnemy: function () {
-        var elems = getEntities (ENEMY_ABS, this, 1*1000*1000);
-        if (elems.length === 0) return;
-        var aim = aiming.get(AIMING_FURTHEST);
-        this.endPoint = aim.getElement(elems, this.startPoint);
+        var elems = getEntities (ENEMY_ABS, this, 1 * 1000 * 1000);
+        if (elems.length === 0)
+            return;
+        var aim = aiming.get (AIMING_FURTHEST);
+        this.endPoint = aim.getElement (elems, this.startPoint);
     },
     //# when destroyed, release SPLASH shot
     doDestroy: function () {
-        doSplash (this);
+        //# homing destroy effect
+        effects.create ([this.x + this.w / 2, this.y + this.h / 2], 'exp_simple', 32);
+        //# homing splash effect
+        effects.create ([this.x + this.w / 2, this.y + this.h / 2], 'exp_simple', 64).attr ({alpha: 0.3});
         var s = shot.get (SHOT_SPLASH);
-        s.alpha = .3;
+        s.alpha = 0;
         s.setStartPoint (this);
         s.create (128);
         s.setTTL (FRAME_RATE);
