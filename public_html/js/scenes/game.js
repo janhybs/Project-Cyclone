@@ -31,6 +31,10 @@ Crafty.scene (SCENE_GAME, function () {
             e.start ();
         }, FRAME_RATE * 2);
         
+    Crafty.e ("2D, Canvas, Image, _background")
+            .attr ({w: SCREEN_WIDTH - 160, h: SCREEN_HEIGHT})
+            .image ("images/level-01.png", "no-repeat");
+        
         
 
     }, null, 'text');
