@@ -40,7 +40,7 @@
             <button id="scene-level-up-but" disabled="disabled" onclick="">Continue</button>
         </div>
 
-
+        <!-- MAIN MENU -->
         <div id="scene-menu" class="page">
             <h2>Welcome to</h2>
             <h1>Project-Cyclone</h1>
@@ -48,12 +48,19 @@
             <div class="buttons">
                 <button id="scene-menu-to-new-game" onclick="Crafty.scene (SCENE_NEW_GAME);">NEW GAME</button>
                 <button id="scene-menu-to-level-up" onclick="Crafty.scene (SCENE_LEVEL_UP);">LEVEL UP (debug)</button>
+                <button id="scene-menu-to-game-menu" onclick="Crafty.scene (SCENE_GAME_MENU);">GAME MENU (debug)</button>
                 <button id="scene-menu-to-continue" onclick="Crafty.scene (SCENE_CONTINUE);">CONTINUE</button>
                 <button id="scene-menu-to-debug-menu" onclick="Crafty.scene (SCENE_DEBUG_MENU);">DEBUG</button>
             </div>
         </div>
 
+        <!-- GAME MENU -->
+        <div id="scene-game-menu" class="page">
+            <h2>Game menu</h2>
 
+            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $('#laserManName').val())">Continue</button>
+        </div>
+        
         <div id="panel-main" class="panel">
             
             <h1>Towers</h1>

@@ -9,6 +9,7 @@ var SCENE_LOADING = 'loading';
 var SCENE_LEVEL_UP = 'playerLevelUp';
 var SCENE_NEW_GAME = 'newGame';
 var SCENE_CONTINUE = 'continue';
+var SCENE_GAME_MENU = 'gameMenu';
 
 //debug scenes
 var SCENE_DEBUG_MENU = 'debugMenu';
