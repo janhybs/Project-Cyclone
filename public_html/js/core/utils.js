@@ -96,11 +96,20 @@ window.parsePaths = function (data) {
     return result;
 };
 
+window.onMouseMoveHandler = function (e) {
+    mousePos.x = e.x - offset.left;
+    mousePos.y = e.y - offset.top;
+};
+
+window.onResizeHandler = function (e) {
+    if ($ ('#cr-stage')[0] !== undefined)
+        offset = $ ('#cr-stage').offset ();
+};
+
 window.mousePos = {x: 0, y: 0};
-window.addEventListener ('mousemove', function (e) {
-    mousePos.x = e.x;
-    mousePos.y = e.y;
-});
+window.offset = {left: 0, top: 0};
+window.addEventListener ('mousemove', onMouseMoveHandler);
+window.addEventListener ('resize', onResizeHandler);
 
 if (!String.prototype.format) {
     String.prototype.format = function () {
@@ -212,14 +221,14 @@ window.activeSceneMouseStopFire = function () {
             Crafty.trigger (SCENE_MOUSE_STOP_FIRE);
         }
     });
-    
+
     //mouse over
     Crafty.addEvent (this, Crafty.stage.elem, "mouseout", function (e) {
         if (mousePos.x < (SCREEN_WIDTH - PANEL_WIDTH)) {
             Crafty.trigger (SCENE_MOUSE_STOP_FIRE);
         }
     });
-    
+
     Crafty.addEvent (this, Crafty.stage.elem, "mousemove", function (e) {
         if (mousePos.x >= (SCREEN_WIDTH - PANEL_WIDTH)) {
             Crafty.trigger (SCENE_MOUSE_STOP_FIRE);
@@ -284,5 +293,5 @@ window.activateWebview = function () {
 };
 
 window.loadPage = function (sourdeID, divID, callback) {
-    $ ('#{0}'.format(sourdeID)).load ('pages.html #{1}'.format ('pages.html', divID), callback);
+    $ ('#{0}'.format (sourdeID)).load ('pages.html #{1}'.format ('pages.html', divID), callback);
 };

@@ -1,47 +1,90 @@
 /*
     ---------------- INIT -----------------
 */
-div, form, body {
+div, form, body, html, h1, h2 {
     margin: 0; padding: 0;
 }
 
+html {
+    background: url('../images/pages/background.jpg');
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+    color: #FFF;
+}
+
+#webview > *, #cr-stage, #gamePanel {
+    margin: 0 auto;
+}
+
+#header {
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    background: rgba(11, 15, 20, 0.5);
+    font-family: 'Verdana';
+    padding-top: 20px;
+}
+
 .page {
-    border: 1px solid red;
-    background: #222;
+    background: rgba(1, 1, 1, 0.5);
     color: #FFF;
     width: 960px;
     height: 640px;
     text-align: center;
-    font-family: 'Verdana';
-    position: absolute;
+    position: relative;
 }
 
 .panel {
     text-align: center;
 }
 
-.buttons {
-    border: 4px double #FFF;
-    width: 320px;
-    margin: 0 auto;
+.buttons, .buttons-small {
+    background: #0f1420;
+    background: linear-gradient(to bottom, #0f1420 50%,#070c19 50%);
+    background: -o-linear-gradient(top, #0f1420 50%,#070c19 50%);
+    background: -webkit-linear-gradient(top, #0f1420 50%,#070c19 50%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#0f1420), color-stop(50%,#070c19));
+    width: 940px;
+    padding-left: 20px;
+    text-align: left;
+    margin-top: 50px;
 }
 
-.buttons button {
-    font-family: 'Times New Roman';
-    font-size: 24px;
-    border: none;
-    background: #333;
+.buttons button, .buttons-small button {
+    font-family: 'Verdana';
     font-weight: bold;
-    color: #AAA;
-    width: 100%;
+    color: #0FA;
+    display: inline-block;
+    border: none;
+    background: none;
+    font-size: 16px;
+    border: none;
     height: 60px;
-    border: 1px solid #666;
 }
 
 .buttons button:hover {
-    background: #611;
+    background: #0C9;
     color: #FFF;
 }
+
+
+
+.buttons-small {
+    margin: 0;
+}
+
+.buttons-small button {
+    color: #CCF;
+    height: 40px;
+    font-size: 14px;
+}
+
+.buttons-small button:hover {
+    background: #0C9;
+    color: #FFF;  
+}
+
 /*
     ------------ GAME_PANEL -------------
 */
@@ -49,8 +92,9 @@ div, form, body {
 #gamePanel {
     width: 160px;
     height: 640px;
+    margin: 0 auto;
     left: 800px;
-    top: 0;
+    top: 200px;
     background: chartreuse;
     position: absolute;
     z-index: 1;
