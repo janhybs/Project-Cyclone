@@ -24,7 +24,7 @@
                 </div>
             </form>
 
-            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $('#laserManName').val())">Continue</button>
+            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize ($ ('#gunManName').val (), $ ('#laserManName').val ())">Continue</button>
         </div>
 
 
@@ -34,23 +34,44 @@
             <h2 id="actPlayer"></h2>
             <h1 id="actLevel"></h1>
             <table>
-                <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" onclick="PlayerUtils.addDamagePoint();$('#damage').html(PlayerUtils.getDamagePoints());$('#addDamage,#addRange').attr('disabled', 'disabled');$('#scene-level-up-but').removeAttr('disabled')">+</button></td></tr>
-                <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" onclick="PlayerUtils.addRangePoint();$('#range').html(PlayerUtils.getRangePoints());$('#addDamage,#addRange').attr('disabled', 'disabled');$('#scene-level-up-but').removeAttr('disabled')">+</button></td></tr>
+                <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" onclick="
+                    PlayerUtils.addDamagePoint ();
+                    $ ('#damage').html (PlayerUtils.getDamagePoints ());
+                    $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
+                    $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
+                <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" onclick="
+                    PlayerUtils.addRangePoint ();
+                    $ ('#range').html (PlayerUtils.getRangePoints ());
+                    $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
+                    $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
             </table>
             <button id="scene-level-up-but" disabled="disabled" onclick="">Continue</button>
         </div>
 
         <!-- MAIN MENU -->
         <div id="scene-menu" class="page">
+            <div class="buttons-small">
+                <button onclick="Crafty.scene (SCENE_GAME);">Game</button>
+                <button onclick="Crafty.scene (SCENE_P2P_TEST);">P2P test</button>
+                <button onclick="Crafty.scene (SCENE_LASER_TEST);">Laser test</button>
+                <button onclick="Crafty.scene (SCENE_HOMING_TEST);">Homing test</button>
+                <button onclick="Crafty.scene (SCENE_SPLASH_TEST);">Splash test</button>
+                <button onclick="Crafty.scene (SCENE_P2P_TOWER_TEST);">Tower test</button>
+                <button onclick="Crafty.scene (SCENE_ENEMY_TEST);">Enemy test</button>
+                <button onclick="Crafty.scene (SCENE_LEVEL_UP);">Player level up</button>
+            </div>
+        </div>
+
+        <!-- HEADER -->
+        <div id="header-main">
             <h2>Welcome to</h2>
             <h1>Project-Cyclone</h1>
-
             <div class="buttons">
+                <button id="scene-menu-to-debug-menu" onclick="Crafty.scene (SCENE_MENU);">MENU</button>
                 <button id="scene-menu-to-new-game" onclick="Crafty.scene (SCENE_NEW_GAME);">NEW GAME</button>
                 <button id="scene-menu-to-level-up" onclick="Crafty.scene (SCENE_LEVEL_UP);">LEVEL UP (debug)</button>
                 <button id="scene-menu-to-game-menu" onclick="Crafty.scene (SCENE_GAME_MENU);">GAME MENU (debug)</button>
                 <button id="scene-menu-to-continue" onclick="Crafty.scene (SCENE_CONTINUE);">CONTINUE</button>
-                <button id="scene-menu-to-debug-menu" onclick="Crafty.scene (SCENE_DEBUG_MENU);">DEBUG</button>
             </div>
         </div>
 
@@ -58,21 +79,21 @@
         <div id="scene-game-menu" class="page">
             <h2>Game menu</h2>
 
-            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $('#laserManName').val())">Continue</button>
+            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize ($ ('#gunManName').val (), $ ('#laserManName').val ())">Continue</button>
         </div>
-        
+
         <div id="panel-main" class="panel">
-            
+
             <h1>Towers</h1>
-            
+
             <ul id="panel-main-towers">
-                <li title="Machine Gun" onclick="towerBuilder.create(TOWER_MACHINEGUN);">M. G.</li>
-                <li title="Flame" onclick="towerBuilder.create(TOWER_FLAMETHROWER);">Fl.</li>
-                <li title="Laser Gun" onclick="towerBuilder.create(TOWER_LASER);">L. G.</li>
-                <li title="Homing Gun" onclick="towerBuilder.create(TOWER_HOMING);">H. G.</li>
-                <li title="Cannon" onclick="towerBuilder.create(TOWER_CANNON);">Can.</li>
-                <li title="Electric Aura" onclick="towerBuilder.create(TOWER_ELECTRIC_AURA);">E. A.</li>
-                <li title="Laser Chain" onclick="towerBuilder.create(TOWER_CHAIN_LASER);">L. Ch.</li>
+                <li title="Machine Gun" onclick="towerBuilder.create (TOWER_MACHINEGUN);">M. G.</li>
+                <li title="Flame" onclick="towerBuilder.create (TOWER_FLAMETHROWER);">Fl.</li>
+                <li title="Laser Gun" onclick="towerBuilder.create (TOWER_LASER);">L. G.</li>
+                <li title="Homing Gun" onclick="towerBuilder.create (TOWER_HOMING);">H. G.</li>
+                <li title="Cannon" onclick="towerBuilder.create (TOWER_CANNON);">Can.</li>
+                <li title="Electric Aura" onclick="towerBuilder.create (TOWER_ELECTRIC_AURA);">E. A.</li>
+                <li title="Laser Chain" onclick="towerBuilder.create (TOWER_CHAIN_LASER);">L. Ch.</li>
             </ul>
         </div>
     </body>
