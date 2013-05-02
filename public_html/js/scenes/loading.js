@@ -48,6 +48,18 @@ Crafty.scene (SCENE_LOADING, function () {
     //sound files
     var sounds = [
         'sounds/player/step.wav',
+        'sounds/cannon.ogg',
+        'sounds/death-end.ogg',
+        'sounds/death-01.ogg',
+        'sounds/death-02.ogg',
+        'sounds/death-03.ogg',
+        'sounds/death-04.ogg',
+        'sounds/death-05.ogg',
+        'sounds/eletric.ogg',
+        'sounds/laser.ogg',
+        'sounds/shot-01.ogg',
+        'sounds/shot-02.ogg',
+        'sounds/spray.ogg'
     ];
 
     Crafty.load ([].concat (images, sounds), function () {
@@ -128,8 +140,21 @@ Crafty.sprite ('images/rocket.png', {
  */
 
 Crafty.audio.add ({
-    step: ["sounds/player/step.wav"]
+    step: ["sounds/player/step.wav"],
+    cannon: ['sounds/cannon.ogg'],
+    death_end: ['sounds/death-end.ogg'],
+    death_01: ['sounds/death-01.ogg'],
+    death_02: ['sounds/death-02.ogg'],
+    death_03: ['sounds/death-03.ogg'],
+    death_04: ['sounds/death-04.ogg'],
+    death_05: ['sounds/death-05.ogg'],
+    electric: ['sounds/eletric.ogg'],
+    laser: ['sounds/laser.ogg'],
+    shot_01: ['sounds/shot-01.ogg'],
+    shot_02: ['sounds/shot-02.ogg'],
+    spray: ['sounds/spray.ogg']
 });
+
 
 
 /*************

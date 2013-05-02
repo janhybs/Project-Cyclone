@@ -63,7 +63,7 @@ Crafty.c (ENEMY_ABS, {
         }
 
         if (this.shield > 0)
-            this.shieldActor = Crafty.e ("Shield").attr ({enemy: this}).start();
+            this.shieldActor = Crafty.e ("Shield").attr ({enemy: this}).start ();
 
         this.maxHealth = this.health;
         this.maxShield = this.shield;
@@ -78,6 +78,10 @@ Crafty.c (ENEMY_ABS, {
         this.trigger ('Death', null);
         this.destroy ();
         this.isNull = true;
+        if (reason === 'end')
+            Crafty.audio.play ("death_end");
+        else
+            Crafty.audio.play ("death_0" + Crafty.math.randomInt (1, 5));
     },
     //#
     processHit: function (shots) {
