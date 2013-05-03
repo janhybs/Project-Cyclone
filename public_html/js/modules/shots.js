@@ -103,14 +103,12 @@ Crafty.c (SHOT_P2P, {
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x) - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
-            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.visible = true;
         } else if (!isNaN (this.angle)) {
             this.angle = this.angle - this.spreading / 2 + Math.random () * this.spreading;
             this.xstep = Math.cos (this.angle) * this.speed;
             this.ystep = Math.sin (this.angle) * this.speed;
-            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.visible = true;
         }
@@ -285,7 +283,6 @@ Crafty.c (SHOT_HOMING, {
             this.findEnemy ();
             this.angle = Math.atan2 (this.endPoint.y - this.shiftPoint.y, this.endPoint.x - this.shiftPoint.x);
             this.aprox = this.angle;
-            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.visible = true;
         }
@@ -364,7 +361,6 @@ Crafty.c (SHOT_SPLASH, {
             this.x = this.startPoint.x + (W - this.w) / 2;
             this.y = this.startPoint.y + (H - this.h) / 2;
             this.center = toPoint ([this.startPoint.x + W / 2, this.startPoint.y + H / 2]);
-            this.requires ('Collision');
             this.bind ("EnterFrame", this.enterFrame);
             this.visible = true;
         }

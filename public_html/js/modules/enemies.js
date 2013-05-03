@@ -67,7 +67,7 @@ Crafty.c (ENEMY_ABS, {
 
         this.maxHealth = this.health;
         this.maxShield = this.shield;
-        this.requires ('Collision');
+        this.requires ('Collision2');
         enemyBrain.add (this);
         this.onHit (SHOT_ABS, this.processHit);
     },

@@ -83,7 +83,6 @@ Crafty.c (ENEMY_BRAIN, {
                 j++;
             }
         }
-        console.log ('cleaning: ' + j);
     }
 
 
