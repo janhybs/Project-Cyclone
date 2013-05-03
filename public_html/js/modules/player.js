@@ -150,7 +150,7 @@ Crafty.c('PlayerFire', {
     init: function() {
         this.bind(SCENE_MOUSE_CLICK_EVENT, this.doFire);
         this.bind(SCENE_MOUSE_STOP_FIRE, this.stopFire);
-        $.shotRepID = 0;
+        $.shotRepID = false;
     },
     
     //fire method
@@ -193,7 +193,8 @@ Crafty.c('PlayerFire', {
     //method for stop fire        
     stopFire: function() {
         if(this.actualWeapon === SHOT_P2P) {
-            timer.clearTimer($.shotRepID);
+            if($.shotRepID !== false)
+                timer.clearTimer($.shotRepID);
         }
         if(this.actualWeapon === SHOT_LASER && !(typeof(this.actualShot) === 'boolean')) {
             this.actualShot.doDestroy();
