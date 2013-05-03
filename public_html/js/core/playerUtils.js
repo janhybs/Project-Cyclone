@@ -110,6 +110,15 @@ PlayerUtils.getBestScoreByLevel = function(level) {
 };
 
 //method sets best score for level
-PlayerUtils.getBestScoreByLevel = function(level, score) {
+PlayerUtils.setBestScoreByLevel = function(level, score) {
     return $.jStorage.set(window[BEST_SCORE_LEVEL+level], score);
+};
+
+//method gets player name by player type
+PlayerUtils.getPlayerNameByType = function(type) {
+    if(type === PLAYER_SOLDIER) {
+        return $.jStorage.get(GUN_PLAYER_NAME);
+    } else {
+        return $.jStorage.get(LASER_PLAYER_NAME);
+    }
 };
