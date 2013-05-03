@@ -145,12 +145,9 @@ Crafty.c('PlayerFire', {
     shotRange: 15,
     //laser actual shot
     actualShot: false,
-    //timer for one click fire
-    timer: false,
 
     //init method
     init: function() {
-        this.timer = Crafty.e ('Framer');
         this.bind(SCENE_MOUSE_CLICK_EVENT, this.doFire);
         this.bind(SCENE_MOUSE_STOP_FIRE, this.stopFire);
         $.shotRepID = 0;
@@ -159,8 +156,8 @@ Crafty.c('PlayerFire', {
     //fire method
     doFire: function() {
         if(this.actualWeapon === SHOT_P2P) {
-            $.shotRepID = this.timer.repeat(this.doP2PFire, FRAME_RATE / 5);
-            console.log("zacinam moceni..." + $.shotRepID);
+            this.doP2PFire();
+            $.shotRepID = timer.repeat(this.doP2PFire, FRAME_RATE / 2);
         } else {
             this.doLaserFire();
         }
@@ -196,8 +193,7 @@ Crafty.c('PlayerFire', {
     //method for stop fire        
     stopFire: function() {
         if(this.actualWeapon === SHOT_P2P) {
-            console.log("ukoncuji moceni..." + $.shotRepID);
-            this.timer.clearTimer($.shotRepID);
+            timer.clearTimer($.shotRepID);
         }
         if(this.actualWeapon === SHOT_LASER && !(typeof(this.actualShot) === 'boolean')) {
             this.actualShot.doDestroy();
