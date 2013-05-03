@@ -200,6 +200,7 @@ var MG_DAMAGE_2 = [30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var MG_RATE_3 = 8;
 var MG_RANGE_3 = 200;
 var MG_DAMAGE_3 = [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var MG_FRAME_RATE = 5;
 
 var TOWER_CANNON = 'CannonTower';
 var C_DAMAGE = [80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -215,6 +216,7 @@ var C_DAMAGE_2 = [90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var C_RATE_3 = 6;
 var C_RANGE_3 = 200;
 var C_DAMAGE_3 = [95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var C_FRAME_RATE = 1;
 
 var TOWER_FLAMETHROWER = 'FlamethrowerTower';
 var FT_DAMAGE = [0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -230,6 +232,7 @@ var FT_DAMAGE_2 = [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var FT_RATE_3 = 8;
 var FT_RANGE_3 = 200;
 var FT_DAMAGE_3 = [0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var FT_FRAME_RATE = 10;
 
 var TOWER_BEAM_LASER = 'BeamLaserTower';
 var L_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -244,6 +247,7 @@ var L_DAMAGE_2 = [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0];
 var L_RATE_3 = 3;
 var L_RANGE_3 = 220;
 var L_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
+var L_FRAME_RATE = 5;
 
 var TOWER_CHAIN_LASER = 'ChainLaserTower';
 var CHL_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -258,6 +262,7 @@ var CHL_DAMAGE_2 = [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0];
 var CHL_RATE_3 = 8;
 var CHL_RANGE_3 = 200;
 var CHL_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
+var CHL_FRAME_RATE = 5;
 
 var TOWER_HOMING_MISSILE = 'HomingMissileTower';
 var HM_DAMAGE = [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -273,6 +278,7 @@ var HM_DAMAGE_2 = [120, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var HM_RATE_3 = 8;
 var HM_RANGE_3 = 400;
 var HM_DAMAGE_3 = [140, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var HM_FRAME_RATE = 3;
 
 var TOWER_ELECTRIC_AURA = 'ElectricAuraTower';
 var EA_DAMAGE = [10, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -290,6 +296,7 @@ var EA_RATE_3 = 12;
 var EA_RADIUS_3 = 200;
 var EA_GROWTH_3 = 200;
 var EA_DAMAGE_3 = [15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0];
+var EA_FRAME_RATE = 5;
 
 //tower bilder
 var TOWER_BUILDER = "towerBuilderComp";

@@ -33,7 +33,7 @@ window.tower = {
 
 /*** Base Abstract Tower Component ***/
 Crafty.c(TOWER_ABS, {
-    abstractCreate: function(startPoint, damage, rate, range, price, upgradePrice, ttl) {
+    abstractCreate: function(startPoint, damage, rate, range, price, upgradePrice, ttl, frameRate) {
         this.startPoint = toPoint(startPoint);
         this.damage = damage !== undefined ? damage : toDamage(0);
         this.rate = rate !== undefined ? rate : NaN;
@@ -42,10 +42,12 @@ Crafty.c(TOWER_ABS, {
         this.price = price !== undefined ? price : DEFAULT_PRICE;
         this.upgradePrice = upgradePrice !== undefined ? upgradePrice : DEFAULT_PRICE;
         this.ttl = ttl !== undefined ? ttl : 10;
+        this.frameRate = frameRate !== undefined ? frameRate : 5;
     },
     init: function() {
         this.startPoint = null;
         this.level = 1;
+        this.requires ("Framer");
     },
     getLevel: function() {
         return this.level;
@@ -70,6 +72,13 @@ Crafty.c(TOWER_ABS, {
         this.damage = toDamage(damage);
         return this;
     },
+    getFrameRate: function() {
+        return this.frameRate;
+    },
+    setFrameRate: function(frameRate) {
+        this.frameRate = frameRate;
+        return this;
+    },   
     getRate: function() {
         return this.rate;
     },
@@ -198,14 +207,17 @@ Crafty.c(TOWER_MACHINEGUN, {
         this.ttl = MG_TTL;
         this.price = MG_PRICE;
         this.upgradePrice = MG_UPGRADE_PRICE;
+        this.frameRate = MG_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.range);
-        if (elems.length !== 0) {
-            var aim = aiming.get(AIMING_CLOSEST);
-            this.endPoint = aim.getElement(elems, this.startPoint);
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                var aim = aiming.get(AIMING_CLOSEST);
+                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.fire();
+            }
+        }, FRAME_RATE/MG_FRAME_RATE );
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
@@ -247,14 +259,17 @@ Crafty.c(TOWER_CANNON, {
         this.ttl = C_TTL;
         this.price = C_PRICE;
         this.upgradePrice = C_UPGRADE_PRICE;
+        this.frameRate = C_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.range);
-        if (elems.length !== 0) {
-            var aim = aiming.get(AIMING_FURTHEST);
-            this.endPoint = aim.getElement(elems, this.startPoint);
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                var aim = aiming.get(AIMING_FURTHEST);
+                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.fire();
+            }
+        }, FRAME_RATE/C_FRAME_RATE );
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
@@ -296,14 +311,17 @@ Crafty.c(TOWER_FLAMETHROWER, {
         this.ttl = FT_TTL;
         this.price = FT_PRICE;
         this.upgradePrice = FT_UPGRADE_PRICE;
+        this.frameRate = FT_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.range);
-        if (elems.length !== 0) {
-            var aim = aiming.get(AIMING_CLOSEST);
-            this.endPoint = aim.getElement(elems, this.startPoint);
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                var aim = aiming.get(AIMING_CLOSEST);
+                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.fire();
+            }
+        }, FRAME_RATE/FT_FRAME_RATE );
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
@@ -347,14 +365,17 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.price = L_PRICE;
         this.upgradePrice = L_UPGRADE_PRICE;
         this.s = null;
+        this.frameRate = L_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.range);
-        if (elems.length !== 0) {
-            var aim = aiming.get(AIMING_CLOSEST);
-            this.endPoint = aim.getElement(elems, this.startPoint);
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                var aim = aiming.get(AIMING_CLOSEST);
+                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.fire();
+            }
+        }, FRAME_RATE/L_FRAME_RATE );
     },
     fire: function() {
         if(this.s !== null && this.s !== undefined) {
@@ -399,14 +420,17 @@ Crafty.c(TOWER_CHAIN_LASER, {
         this.ttl = CHL_TTL;
         this.price = CHL_PRICE;
         this.upgradePrice = CHL_UPGRADE_PRICE;
+        this.frameRate = CHL_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.range);
-        if (elems.length !== 0) {
-            var aim = aiming.get(AIMING_CLOSEST);
-            this.endPoint = aim.getElement(elems, this.startPoint);
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                var aim = aiming.get(AIMING_CLOSEST);
+                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.fire();
+            }
+        }, FRAME_RATE/CHL_FRAME_RATE );
     },
     fire: function() {
         var s = shot.get(SHOT_LASER);
@@ -449,21 +473,19 @@ Crafty.c(TOWER_HOMING_MISSILE, {
         this.ttl = HM_TTL;
         this.curving = HM_CURVING;
         this.upgradePrice = HM_UPGRADE_PRICE;
+        this.frameRate = HM_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.range);
-        if (elems.length !== 0) {
-            //# smazat míření
-            var aim = aiming.get(AIMING_FURTHEST);
-            this.endPoint = aim.getElement(elems, this.startPoint);
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                this.fire();
+            }
+        }, FRAME_RATE/HM_FRAME_RATE );
     },
     fire: function() {
         var s = shot.get(SHOT_HOMING);
         s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
-        //# casem smazat
-        s.setEndPoint([this.endPoint.x, this.endPoint]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.rate, this.curving);
@@ -501,12 +523,15 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
         this.ttl = EA_TTL;
         this.radius = EA_RADIUS;
         this.upgradePrice = EA_UPGRADE_PRICE;
+        this.frameRate = EA_FRAME_RATE;
     },
     start: function() {
-        var elems = getEntities(ENEMY_ABS, this, this.radius);
-        if (elems.length !== 0) {
-            this.fire();
-        }
+        this.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                this.fire();
+            }
+        }, FRAME_RATE/EA_FRAME_RATE );
     },
     fire: function() {
         var s = shot.get(SHOT_SPLASH);

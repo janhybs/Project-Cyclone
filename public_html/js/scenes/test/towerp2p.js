@@ -27,22 +27,16 @@ Crafty.scene(SCENE_P2P_TOWER_TEST, function() {
     t.setStartPoint([p0.x * W, p0.y * H]);
     t.create();
     t.upgrade();
-    timer.repeat(function() {
-        t.start();
-    }, FRAME_RATE / 5);
+    t.start();
 
     var t2 = tower.get(TOWER_CANNON);
     t2.setStartPoint([p1.x * W, p1.y * H]);
     t2.create();
-    timer.repeat(function() {
-        t2.start();
-    }, FRAME_RATE / 1);
-    
+    t2.start();
+        
     var t3 = tower.get(TOWER_HOMING_MISSILE);
     t3.setStartPoint([p2.x * W, p2.y * H]);
     t3.create();
-    timer.repeat(function() {
-        t3.start();
-    }, FRAME_RATE / 2);
+    t3.start();
 
 });
