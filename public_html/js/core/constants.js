@@ -362,7 +362,7 @@ var GAME_PANEL_COMPONENT = "gamePanelComp";
 var GAME_PANEL_CONTENT = "gamePanelContent";
 
 //panel properties
-var PANEL_WIDTH = 150;
+var PANEL_WIDTH = 5*32;
 var PANEL_BG_COLOR = "#888888";
 
 

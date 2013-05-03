@@ -1,6 +1,7 @@
 //define as global object
 window.towerBuilder = {
     create: function(type) { 
+        Crafty.viewport.reload();
         var build = Crafty.e ("2D, Canvas, Mouse, {0}".format(TOWER_BUILDER));
         build.setTowerType(type);
         build.setLevelPath('levels/level-01.xml'); //!!!! ONLY DEBUG !!!! - then do pointer to actual LEVEL!!!!
