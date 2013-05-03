@@ -122,3 +122,9 @@ PlayerUtils.getPlayerNameByType = function(type) {
         return $.jStorage.get(LASER_PLAYER_NAME);
     }
 };
+
+//method changes actuall player
+//method sets best score for level
+PlayerUtils.setActualPlayer = function(type) {
+    return $.jStorage.set(ACTIVE_PLAYER, type);
+};
