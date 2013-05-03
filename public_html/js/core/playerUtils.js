@@ -71,6 +71,16 @@ PlayerUtils.getRangePoints = function() {
     }
 };
 
+//method gets money player
+PlayerUtils.getPlayerMoney = function() {
+    return $.jStorage.get(PLAYER_MONEY);
+};
+
+//method adds one range point of actual player
+PlayerUtils.addPlayerMoney = function(money) {
+    $.jStorage.set($.jStorage.get(PLAYER_MONEY) + money);
+};
+
 //method gets damage of actual player
 PlayerUtils.getDamagePoints = function() {
     if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {
