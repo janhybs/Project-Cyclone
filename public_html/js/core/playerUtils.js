@@ -104,3 +104,12 @@ PlayerUtils.getMaxOpenLevel = function() {
     return $.jStorage.get(MAX_OPENED_LEVEL);
 };
 
+//method gets best score for level
+PlayerUtils.getBestScoreByLevel = function(level) {
+    return $.jStorage.get(window[BEST_SCORE_LEVEL+level]);
+};
+
+//method sets best score for level
+PlayerUtils.getBestScoreByLevel = function(level, score) {
+    return $.jStorage.set(window[BEST_SCORE_LEVEL+level], score);
+};
