@@ -23,11 +23,11 @@ html {
 
 #header {
     width: 100%;
-    height: 180px;
+    height: 140px;
     text-align: center;
     background: rgba(11, 15, 20, 0.5);
     font-family: 'Verdana';
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .page {
@@ -52,7 +52,7 @@ html {
     width: 940px;
     padding-left: 20px;
     text-align: left;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .buttons button, .buttons-small button {
@@ -98,7 +98,7 @@ html {
     height: 640px;
     margin: 0 auto;
     left: 800px;
-    top: 200px;
+    top: 145px;
     background: chartreuse;
     position: absolute;
     z-index: 1;
