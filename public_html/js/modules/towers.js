@@ -13,6 +13,9 @@ window.tower = {
             case TOWER_FLAMETHROWER:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
                         .attr({w: W, h: H});
+            case TOWER_ICE_DART:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
+                        .attr({w: W, h: H});
             case TOWER_BEAM_LASER:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_LASER, type))
                         .attr({w: W, h: H});
@@ -23,6 +26,9 @@ window.tower = {
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_HOMING, type))
                         .attr({w: W, h: H});
             case TOWER_ELECTRIC_AURA:
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_SPLASH, type))
+                        .attr({w: W, h: H});
+            case TOWER_SLOW_AURA:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_SPLASH, type))
                         .attr({w: W, h: H});
         }
@@ -47,7 +53,6 @@ Crafty.c(TOWER_ABS, {
     init: function() {
         this.startPoint = null;
         this.level = 1;
-        this.requires ("Framer");
     },
     getLevel: function() {
         return this.level;
@@ -210,14 +215,14 @@ Crafty.c(TOWER_MACHINEGUN, {
         this.frameRate = MG_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
+        timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
                 this.endPoint = aim.getElement(elems, this.startPoint);
                 this.fire();
             }
-        }, FRAME_RATE/MG_FRAME_RATE );
+        }, FRAME_RATE/MG_FRAME_RATE, this );
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
@@ -262,14 +267,14 @@ Crafty.c(TOWER_CANNON, {
         this.frameRate = C_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
+        timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_FURTHEST);
                 this.endPoint = aim.getElement(elems, this.startPoint);
                 this.fire();
             }
-        }, FRAME_RATE/C_FRAME_RATE );
+        }, FRAME_RATE/C_FRAME_RATE, this );
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
@@ -314,14 +319,14 @@ Crafty.c(TOWER_FLAMETHROWER, {
         this.frameRate = FT_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
+        timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
                 this.endPoint = aim.getElement(elems, this.startPoint);
                 this.fire();
             }
-        }, FRAME_RATE/FT_FRAME_RATE );
+        }, FRAME_RATE/FT_FRAME_RATE, this);
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
@@ -353,6 +358,57 @@ Crafty.c(TOWER_FLAMETHROWER, {
     }
 });
 
+/*** Ice Dart Tower Component ***/
+Crafty.c(TOWER_ICE_DART, {
+    create: function() {
+        this.damage = ID_DAMAGE;
+        this.rate = ID_RATE;
+        this.range = ID_RANGE;
+        this.ttl = ID_TTL;
+        this.price = ID_PRICE;
+        this.upgradePrice = ID_UPGRADE_PRICE;
+        this.frameRate = ID_FRAME_RATE;
+    },
+    start: function() {
+        timer.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.range);
+            if (elems.length !== 0) {
+                var aim = aiming.get(AIMING_FURTHEST);
+                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.fire();
+            }
+        }, FRAME_RATE/ID_FRAME_RATE, this);
+    },
+    fire: function() {
+        var s = shot.get(SHOT_P2P);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
+        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        s.setDamage(this.damage);
+        s.setSpreading(this.spreading);
+        s.setTTL(this.ttl);
+        s.create(this.rate);
+        Crafty.audio.play(SPRAY_SOUND, 1);
+        s.start();
+    },
+    upgrade: function() {
+        if ((this.level + 1) <= MAX_LEVEL) {
+            this.setLevel(this.level + 1);
+            switch (this.level) {
+                case(2):
+                    this.rate = ID_RATE_2;
+                    this.range = ID_RANGE_2;
+                    this.damage = ID_DAMAGE_2;
+                    break;
+                case(3):
+                    this.rate = ID_RATE_3;
+                    this.range = ID_RANGE_3;
+                    this.damage = ID_DAMAGE_3;
+                    break;
+            }
+        }
+    }
+});
+
 /*** TOWER COMPONENTS LASER ***/
 
 /*** Beam Laser Tower Component ***/
@@ -364,25 +420,21 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.ttl = L_TTL;
         this.price = L_PRICE;
         this.upgradePrice = L_UPGRADE_PRICE;
-        this.s = null;
+        this.s = shot.get(SHOT_LASER);
         this.frameRate = L_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
+        timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
                 this.endPoint = aim.getElement(elems, this.startPoint);
                 this.fire();
-            }
-        }, FRAME_RATE/L_FRAME_RATE );
+            } else
+                this.endPoint = this.startPoint;
+        }, FRAME_RATE/L_FRAME_RATE, this);
     },
     fire: function() {
-        if(this.s !== null && this.s !== undefined) {
-            this.s.doDestroy();
-            this.s = null;
-        }
-        this.s = shot.get(SHOT_LASER);
         this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         this.s.setDamage(this.damage);
@@ -420,27 +472,28 @@ Crafty.c(TOWER_CHAIN_LASER, {
         this.ttl = CHL_TTL;
         this.price = CHL_PRICE;
         this.upgradePrice = CHL_UPGRADE_PRICE;
+        this.s = shot.get(SHOT_LASER);
         this.frameRate = CHL_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
+        timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
                 this.endPoint = aim.getElement(elems, this.startPoint);
                 this.fire();
-            }
-        }, FRAME_RATE/CHL_FRAME_RATE );
+            } else
+                this.endPoint = this.startPoint;
+        }, FRAME_RATE/CHL_FRAME_RATE, this );
     },
     fire: function() {
-        var s = shot.get(SHOT_LASER);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
-        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
-        s.setDamage(this.damage);
-        s.setTTL(this.ttl);
-        s.create();
+        this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        this.s.setDamage(this.damage);
+        this.s.setTTL(this.ttl);
+        this.s.create();
         Crafty.audio.play(LASER_SOUND, 1);
-        s.start();
+        this.s.start();
     },
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -476,12 +529,12 @@ Crafty.c(TOWER_HOMING_MISSILE, {
         this.frameRate = HM_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
+        timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 this.fire();
             }
-        }, FRAME_RATE/HM_FRAME_RATE );
+        }, FRAME_RATE/HM_FRAME_RATE, this );
     },
     fire: function() {
         var s = shot.get(SHOT_HOMING);
@@ -526,12 +579,12 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
         this.frameRate = EA_FRAME_RATE;
     },
     start: function() {
-        this.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+        timer.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.radius);
             if (elems.length !== 0) {
                 this.fire();
             }
-        }, FRAME_RATE/EA_FRAME_RATE );
+        }, FRAME_RATE/EA_FRAME_RATE, this );
     },
     fire: function() {
         var s = shot.get(SHOT_SPLASH);
@@ -557,6 +610,56 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
                     this.radius = EA_RADIUS_3;
                     this.growth = EA_GROWTH_3;
                     this.damage = EA_DAMAGE_3;
+                    break;
+            }
+        }
+    }
+});
+
+/*** Slow Aura Tower Component ***/
+Crafty.c(TOWER_SLOW_AURA, {
+    create: function() {
+        this.damage = SA_DAMAGE;
+        this.rate = SA_RATE;
+        this.price = SA_PRICE;
+        this.growth = SA_GROWTH;
+        this.ttl = SA_TTL;
+        this.radius = SA_RADIUS;
+        this.upgradePrice = SA_UPGRADE_PRICE;
+        this.frameRate = SA_FRAME_RATE;
+    },
+    start: function() {
+        timer.repeat (function () { 
+            var elems = getEntities(ENEMY_ABS, this, this.radius);
+            if (elems.length !== 0) {
+                this.fire();
+            }
+        }, FRAME_RATE/SA_FRAME_RATE, this );
+    },
+    fire: function() {
+        var s = shot.get(SHOT_SPLASH);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        s.setDamage(this.damage);
+        s.setTTL(this.ttl);
+        s.create(this.growth, this.radius);
+        Crafty.audio.play(SPRAY_SOUND, 1);
+        s.start();
+    },
+    upgrade: function() {
+        if ((this.level + 1) <= MAX_LEVEL) {
+            this.setLevel(this.level + 1);
+            switch (this.level) {
+                case(2):
+                    this.rate = SA_RATE_2;
+                    this.radius = SA_RADIUS_2;
+                    this.growth = SA_GROWTH_2;
+                    this.damage = SA_DAMAGE_2;
+                    break;
+                case(3):
+                    this.rate = SA_RATE_3;
+                    this.radius = SA_RADIUS_3;
+                    this.growth = SA_GROWTH_3;
+                    this.damage = SA_DAMAGE_3;
                     break;
             }
         }

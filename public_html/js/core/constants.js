@@ -219,7 +219,7 @@ var C_DAMAGE_3 = [95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var C_FRAME_RATE = 1;
 
 var TOWER_FLAMETHROWER = 'FlamethrowerTower';
-var FT_DAMAGE = [0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var FT_DAMAGE = [0, 5, 0, 0, 0, 3, 1, 3, 0, 0, 0];
 var FT_RATE = 5;
 var FT_RANGE = 100;
 var FT_SPREADING = 50;
@@ -228,11 +228,26 @@ var FT_PRICE = 200;
 var FT_UPGRADE_PRICE = 50;
 var FT_RATE_2 = 6;
 var FT_RANGE_2 = 150;
-var FT_DAMAGE_2 = [0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var FT_DAMAGE_2 = [0, 10, 0, 0, 0, 5, 1, 5, 0, 0, 0];
 var FT_RATE_3 = 8;
 var FT_RANGE_3 = 200;
-var FT_DAMAGE_3 = [0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var FT_DAMAGE_3 = [0, 15, 0, 0, 0, 5, 1, 10, 0, 0, 0];
 var FT_FRAME_RATE = 10;
+
+var TOWER_ICE_DART = 'IceDartTower';
+var ID_DAMAGE = [0, 0, 0, 0, 0, 0, 0, 0, 1, 0.5, 0.5];
+var ID_RATE = 1;
+var ID_RANGE = 100;
+var ID_TTL = 100;
+var ID_PRICE = 200;
+var ID_UPGRADE_PRICE = 50;
+var ID_RATE_2 = 2;
+var ID_RANGE_2 = 150;
+var ID_DAMAGE_2 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 0.75, 0.5];
+var ID_RATE_3 = 3;
+var ID_RANGE_3 = 200;
+var ID_DAMAGE_3 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1];
+var ID_FRAME_RATE = 1;
 
 var TOWER_BEAM_LASER = 'BeamLaserTower';
 var L_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -297,6 +312,24 @@ var EA_RADIUS_3 = 200;
 var EA_GROWTH_3 = 200;
 var EA_DAMAGE_3 = [15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0];
 var EA_FRAME_RATE = 5;
+
+var TOWER_SLOW_AURA = 'SlowAuraTower';
+var SA_DAMAGE = [0, 0, 0, 0, 0, 1, 1, 1, 0.3, 1, 0.1];
+var SA_RATE = 10;
+var SA_TTL = 100;
+var SA_PRICE = 300;
+var SA_GROWTH = 100;
+var SA_RADIUS = 100;
+var SA_UPGRADE_PRICE = 50;
+var SA_RATE_2 = 11;
+var SA_RADIUS_2 = 150;
+var SA_GROWTH_2 = 150;
+var SA_DAMAGE_2 = [0, 0, 0, 0, 0, 1, 1, 1, 0.5, 1, 0.1];
+var SA_RATE_3 = 12;
+var SA_RADIUS_3 = 200;
+var SA_GROWTH_3 = 200;
+var SA_DAMAGE_3 = [0, 0, 0, 0, 0, 1, 1, 3, 0.6, 1, 0.1];
+var SA_FRAME_RATE = 5;
 
 //tower bilder
 var TOWER_BUILDER = "towerBuilderComp";
