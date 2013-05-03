@@ -209,12 +209,13 @@ Crafty.c(TOWER_MACHINEGUN, {
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },
     upgrade: function() {
@@ -257,12 +258,13 @@ Crafty.c(TOWER_CANNON, {
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        Crafty.audio.play(CANNON_SOUND, 1);
         s.start();
     },
     upgrade: function() {
@@ -305,12 +307,13 @@ Crafty.c(TOWER_FLAMETHROWER, {
     },
     fire: function() {
         var s = shot.get(SHOT_P2P);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        Crafty.audio.play(SPRAY_SOUND, 1);
         s.start();
     },
     upgrade: function() {
@@ -359,11 +362,12 @@ Crafty.c(TOWER_BEAM_LASER, {
             this.s = null;
         }
         this.s = shot.get(SHOT_LASER);
-        this.s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         this.s.setDamage(this.damage);
         this.s.setTTL(this.ttl);
         this.s.create();
+        Crafty.audio.play(LASER_SOUND, 1);
         this.s.start();
     },
     upgrade: function() {
@@ -406,11 +410,12 @@ Crafty.c(TOWER_CHAIN_LASER, {
     },
     fire: function() {
         var s = shot.get(SHOT_LASER);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create();
+        Crafty.audio.play(LASER_SOUND, 1);
         s.start();
     },
     upgrade: function() {
@@ -456,12 +461,13 @@ Crafty.c(TOWER_HOMING_MISSILE, {
     },
     fire: function() {
         var s = shot.get(SHOT_HOMING);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         //# casem smazat
-        s.setEndPoint([this.endPoint.x, this.endPoint.y]);
+        s.setEndPoint([this.endPoint.x, this.endPoint]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.rate, this.curving);
+        Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },
     upgrade: function() {
@@ -504,10 +510,11 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
     },
     fire: function() {
         var s = shot.get(SHOT_SPLASH);
-        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
+        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
+        Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },
     upgrade: function() {
