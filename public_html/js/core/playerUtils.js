@@ -103,3 +103,4 @@ PlayerUtils.increaseLevel = function() {
 PlayerUtils.getMaxOpenLevel = function() {
     return $.jStorage.get(MAX_OPENED_LEVEL);
 };
+
