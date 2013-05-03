@@ -98,3 +98,8 @@ PlayerUtils.increaseLevel = function() {
             $.jStorage.set(LASER_PLAYER_LEVEL, $.jStorage.get(LASER_PLAYER_LEVEL) + 1);
     }
 };
+
+//method gets max open level
+PlayerUtils.getMaxOpenLevel = function() {
+    return $.jStorage.get(MAX_OPENED_LEVEL);
+};
