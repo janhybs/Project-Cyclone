@@ -126,7 +126,7 @@ Crafty.c ("Framer", {
                 var item = this._delays[index];
 
                 if (item.repeat !== 0 && --item.count === 0) {
-                    item.func.call (this);
+                    item.func.call (item.ctx);
                     if (--item.repeat !== 0) {
                         item.count = item.frames;
                     }
@@ -134,20 +134,22 @@ Crafty.c ("Framer", {
             }
         });
     },
-    delay: function (func, frames) {
+    delay: function (func, frames, ctx) {
         return this._delays.push ({
             count: Math.floor (frames),
             func: func,
             frames: Math.floor (frames),
+            ctx: ctx || this,
             repeat: 1
         }) - 1;
     },
-    repeat: function (func, frames, repeat) {
+    repeat: function (func, frames, ctx) {
         return this._delays.push ({
             count: Math.floor (frames),
             func: func,
             frames: Math.floor (frames),
-            repeat: repeat || -1
+            ctx: ctx || this,
+            repeat: -1
         }) - 1;
     },
     /**@
@@ -161,6 +163,7 @@ Crafty.c ("Framer", {
      */
     clearTimer: function (id) {
         this._delays[id].repeat = 0;
+        this._delays[id].ctx = null;
     }
 });
 
