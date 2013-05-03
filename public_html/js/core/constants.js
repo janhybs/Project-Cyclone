@@ -179,6 +179,13 @@ var TOWER_SPLASH = 'SplashTower';
 var DEFAULT_PRICE = 100;
 var MAX_LEVEL = 3;
 
+var CANNON_SOUND = 'cannon';
+var ELECTRIC_SOUND = 'electric';
+var LASER_SOUND = 'laser';
+var SPRAY_SOUND = 'spray';
+var SHOT_SOUND1 = 'shot-01';
+var SHOT_SOUND2 = 'shot-02';
+
 var TOWER_MACHINEGUN = 'MachineGunTower';
 var MG_DAMAGE = [25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var MG_RATE = 5;

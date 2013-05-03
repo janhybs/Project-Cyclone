@@ -97,8 +97,8 @@ window.parsePaths = function (data) {
 };
 
 window.onMouseMoveHandler = function (e) {
-    mousePos.x = e.x - offset.left;
-    mousePos.y = e.y - offset.top;
+    mousePos.x = e.x - offset.left + window.pageXOffset;
+    mousePos.y = e.y - offset.top + window.pageYOffset;
 };
 
 window.onResizeHandler = function (e) {

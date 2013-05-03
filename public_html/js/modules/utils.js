@@ -160,8 +160,7 @@ Crafty.c ("Framer", {
      * 
      */
     clearTimer: function (id) {
-        this._delays[id].repeat = false;
-        this._delays[id].triggered = true;
+        this._delays[id].repeat = 0;
     }
 });
 
