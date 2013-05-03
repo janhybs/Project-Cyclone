@@ -11,6 +11,10 @@ html {
     margin: 0 auto;
     position: relative;
     color: #FFF;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #webview > *, #cr-stage, #gamePanel {
