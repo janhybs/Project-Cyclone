@@ -336,6 +336,7 @@ Crafty.c (SHOT_SPLASH, {
         this.radius = radius !== undefined ? radius : 100;
         this.w = this.h = this.radius;
         this.nextIsInvalid = false;
+        this.validExpiration = 5;
     },
     //#
     enterFrame: function () {
@@ -346,7 +347,7 @@ Crafty.c (SHOT_SPLASH, {
         }
 
         //# should fix hurting multiple enemies at once
-        if (this.nextIsInvalid)
+        if (this.nextIsInvalid && --this.validExpiration === 0)
             this.isValid = false;
     },
     //# invalidation will be set in next EnterFrame round
