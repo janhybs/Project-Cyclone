@@ -145,36 +145,60 @@ Crafty.c('PlayerFire', {
     shotRange: 15,
     //laser actual shot
     actualShot: false,
+    //timer for one click fire
+    timer: false,
 
     //init method
     init: function() {
+        this.timer = Crafty.e ('Framer');
         this.bind(SCENE_MOUSE_CLICK_EVENT, this.doFire);
         this.bind(SCENE_MOUSE_STOP_FIRE, this.stopFire);
+        $.shotRepID = 0;
     },
     
     //fire method
     doFire: function() {
+        if(this.actualWeapon === SHOT_P2P) {
+            $.shotRepID = this.timer.repeat(this.doP2PFire, FRAME_RATE / 5);
+            console.log("zacinam moceni..." + $.shotRepID);
+        } else {
+            this.doLaserFire();
+        }
+        
+    },
+    
+    doP2PFire: function() {
+        this.actualShot = false;
+        this.actualShot = shot.get(SHOT_P2P);
+        this.actualShot.setStartPoint([$.player.x + $.player.w / 2, $.player.y + $.player.h / 2]);
+        this.actualShot.setEndPoint(mousePos);
+        this.actualShot.setDamage($.player.shotDamage);
+        this.actualShot.setTTL($.player.rangePointer.getDiameter()/(2*$.player.shotSpeed));
+        this.actualShot.create($.player.shotSpeed);
+        this.actualShot.start();
+    },
+            
+    doLaserFire: function() {
         this.actualShot = false;
         this.actualShot = shot.get(this.actualWeapon);
         this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
         this.actualShot.setEndPoint(mousePos);
-        this.actualShot.setDamage(this.shotDamage);
-        if(this.actualWeapon === SHOT_P2P) {
-            this.actualShot.setTTL(this.rangePointer.getDiameter()/(2*this.shotSpeed));
-            this.actualShot.create(this.shotSpeed);
-        } else {
-            this.actualShot.withRadius = true;
-            this.actualShot.rangeRadius = this.rangePointer.getDiameter()/2;
-            this.actualShot.create(PLAYER_LASER_IMAGE);
-            this.bind("Move", function() {
-                this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
-            });
-        }
+        this.actualShot.setDamage(this.shotDamage);       
+        this.actualShot.withRadius = true;
+        this.actualShot.rangeRadius = this.rangePointer.getDiameter()/2;
+        this.actualShot.create(PLAYER_LASER_IMAGE);
+        this.bind("Move", function() {
+            this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
+        });
         this.actualShot.start();
     },
     
     //method for stop fire        
     stopFire: function() {
+        if(this.actualWeapon === SHOT_P2P) {
+            console.log("ukoncuji moceni..." + $.shotRepID);
+            this.timer.clearTimer($.shotRepID);
+        }
         if(this.actualWeapon === SHOT_LASER && !(typeof(this.actualShot) === 'boolean')) {
             this.actualShot.doDestroy();
         }
