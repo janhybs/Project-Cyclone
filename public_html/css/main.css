@@ -106,10 +106,60 @@ html {
 
 
 /*
-    --------------- MENU ----------------
+    --------------- GAME MENU ----------------
 */
+.coininfo {
+    margin-right: 10em;
+    width: 100%;
+    height: 32px;
+    text-align: right;
+}
 
+.coin {
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    float: right;
+}
 
+#moneyPoints {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.levelBut {
+    margin-top: 5px;
+    width: 540px;
+    height: 40px;
+    display: block;
+}
+
+.tableLevels {
+    position: relative;
+    margin-top: 3em;
+    left: 10em;
+    text-align: center;
+}
+
+.bestScore {
+    text-align: center;
+    font-weight: lighter;
+    font-size: 0.6em;
+}
+
+.playerSelect {
+    text-align: center;
+}
+.playerSelect input{
+    display: inline;
+    height: 1em;
+}
+
+.names {
+    font-size: 1.3em;
+    font-family: Arial;
+}
 /*
     --------------- NEW GAME ----------------
 */

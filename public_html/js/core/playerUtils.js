@@ -124,7 +124,11 @@ PlayerUtils.getPlayerNameByType = function(type) {
 };
 
 //method changes actuall player
-//method sets best score for level
 PlayerUtils.setActualPlayer = function(type) {
     return $.jStorage.set(ACTIVE_PLAYER, type);
+};
+
+//method gets actuall player
+PlayerUtils.getActualPlayer = function() {
+    return $.jStorage.get(ACTIVE_PLAYER);
 };
