@@ -5,8 +5,9 @@ window.tower = {
     get: function(type) {
         switch (type) {
             case TOWER_MACHINEGUN:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}'.format(TOWER_ABS, TOWER_P2P, type))
+                        .attr({w: W, h: H})
+                        .image(TOWER_IMAGE_ARRAY[type]);
             case TOWER_CANNON:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
                         .attr({w: W, h: H});
@@ -53,6 +54,11 @@ Crafty.c(TOWER_ABS, {
     init: function() {
         this.startPoint = null;
         this.level = 1;
+        this.repId = 0;
+    },
+    doDestroy: function() {
+        this.destroy();
+        timer.clearTimer(this.repId);
     },
     getLevel: function() {
         return this.level;
@@ -215,7 +221,7 @@ Crafty.c(TOWER_MACHINEGUN, {
         this.frameRate = MG_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
@@ -234,7 +240,7 @@ Crafty.c(TOWER_MACHINEGUN, {
         s.create(this.rate);
         Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
-    },
+    },   
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {
             this.setLevel(this.level + 1);
@@ -267,7 +273,7 @@ Crafty.c(TOWER_CANNON, {
         this.frameRate = C_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_FURTHEST);
@@ -319,7 +325,7 @@ Crafty.c(TOWER_FLAMETHROWER, {
         this.frameRate = FT_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
@@ -370,7 +376,7 @@ Crafty.c(TOWER_ICE_DART, {
         this.frameRate = ID_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_FURTHEST);
@@ -424,7 +430,7 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.frameRate = L_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
@@ -476,7 +482,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
         this.frameRate = CHL_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(AIMING_CLOSEST);
@@ -529,7 +535,7 @@ Crafty.c(TOWER_HOMING_MISSILE, {
         this.frameRate = HM_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
                 this.fire();
@@ -579,7 +585,7 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
         this.frameRate = EA_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.radius);
             if (elems.length !== 0) {
                 this.fire();
@@ -629,7 +635,7 @@ Crafty.c(TOWER_SLOW_AURA, {
         this.frameRate = SA_FRAME_RATE;
     },
     start: function() {
-        timer.repeat (function () { 
+        this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.radius);
             if (elems.length !== 0) {
                 this.fire();
