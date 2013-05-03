@@ -47,28 +47,24 @@ Crafty.c('PlayerControls', {
                 if(!this.isPlaying(WALK_RIGHT)) 
                     Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
                 if(!this.isPlaying(WALK_LEFT))
                     Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
                 if(!this.isPlaying(WALK_UP))
                     Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
                 if(!this.isPlaying(WALK_DOWN))
                     Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-                this.rangePointer.redrawRangePointer(this.x, this.y);
             }
             else if (this.lastKey === NO_DIRECTION) {
                 if(this.isPlaying()) {
@@ -269,7 +265,7 @@ Crafty.c('PlayerAnimate', {
  */
 Crafty.c('PlayerRangePointer', {
     //visible variable
-    visible: true,
+    visible: false,
     //transparency: 0.0 - 1.0
     transparency: 0.3,
     //pointer diameter
@@ -279,12 +275,6 @@ Crafty.c('PlayerRangePointer', {
         this.w = this.h= this.diameter;
         this.alpha = this.transparency;
         this.z = 1;
-        this.requires('playerRange');
-    },
-    //redraw range pointer method
-    redrawRangePointer: function(x, y) {
-        this.x = x - this.diameter/2 + PLAYER_WIDTH/2;
-        this.y = y - this.diameter/2 + PLAYER_HEIGHT/2;
     },
     
     //set size
@@ -340,7 +330,6 @@ Crafty.c(PLAYER_ABS, {
         //add range pointer
         this.rangePointer = Crafty.e("2D, Canvas, PlayerRangePointer");
         this.rangePointer.setDiameter(this.shotRange);
-        this.rangePointer.redrawRangePointer(0,0);
     },
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {
