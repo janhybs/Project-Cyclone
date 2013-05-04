@@ -11,25 +11,25 @@ window.tower = {
                 return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.cannonBody))
                         .attr({w: W, h: H});
             case TOWER_FLAMETHROWER:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.flamethrowerBody))
                         .attr({w: W, h: H});
             case TOWER_ICE_DART:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.iceDartBody))
                         .attr({w: W, h: H});
             case TOWER_BEAM_LASER:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_LASER, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_LASER, type, TOWER_IMAGE_NAME.beamLaserBody))
                         .attr({w: W, h: H});
             case TOWER_CHAIN_LASER:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_LASER, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_LASER, type, TOWER_IMAGE_NAME.chainLaserBody))
                         .attr({w: W, h: H});
             case TOWER_HOMING_MISSILE:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_HOMING, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_HOMING, type, TOWER_IMAGE_NAME.homingMissileBody))
                         .attr({w: W, h: H});
             case TOWER_ELECTRIC_AURA:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_SPLASH, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_SPLASH, type, TOWER_IMAGE_NAME.electricAuraBody))
                         .attr({w: W, h: H});
             case TOWER_SLOW_AURA:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_SPLASH, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_SPLASH, type, TOWER_IMAGE_NAME.slowAuraBody))
                         .attr({w: W, h: H});
         }
     }
@@ -240,7 +240,7 @@ Crafty.c(TOWER_MACHINEGUN, {
         }, FRAME_RATE/MG_FRAME_RATE, this );
     },
     fire: function() {
-        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotCannon);
+        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotGreen);
         s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
@@ -346,7 +346,7 @@ Crafty.c(TOWER_FLAMETHROWER, {
         }, FRAME_RATE/FT_FRAME_RATE, this);
     },
     fire: function() {
-        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotGreen);
+        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotRed);
         s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
@@ -702,7 +702,7 @@ Crafty.c(TOWER_SLOW_AURA, {
         }, FRAME_RATE/SA_FRAME_RATE, this );
     },
     fire: function() {
-        var s = shot.get(SHOT_SPLASH);
+        var s = shot.get(SHOT_SPLASH, SPLASH_IMAGE_NAME.auraGreen);
         s.setStartPoint([this.startPoint.x, this.startPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
