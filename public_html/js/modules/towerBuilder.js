@@ -48,7 +48,7 @@ Crafty.c (TOWER_BUILDER, {
     positionControl: function() {
         var xPos = Math.floor(mousePos.x / W);
         var yPos = Math.floor(mousePos.y / H);
-        if($.levelBoard[yPos].charAt(xPos) === '1') {
+        if($.levelBoard[yPos].charAt(xPos) === '1' && towerBrain.isPositionAvailable([xPos, yPos])) {
             this.towerImg.x = xPos*W;
             this.towerImg.y = yPos*H;
         }
@@ -56,7 +56,6 @@ Crafty.c (TOWER_BUILDER, {
             
     setTowerType: function(type) {
         this.towerType = type;
-        console.log(type);
         this.towerImg = Crafty.e ("2D, Canvas, Image").attr ({w: W, h: H, alpha: 0.8, z: 2}).image (towerBrain.getImage(type), "no-repeat");
     },
             
