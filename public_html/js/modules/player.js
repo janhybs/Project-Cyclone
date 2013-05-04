@@ -267,12 +267,10 @@ Crafty.c(PLAYER_ABS, {
         $.playerFreeze = false;
         //add range pointer
         this.rangePointer = Crafty.e("2D, Canvas, PlayerRangePointer");
-        this.rangePointer.setDiameter(this.shotRange);
         this.requires('Image');
     },
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {
-        console.log("x: " + fromX + ", y: " + fromY);
         //path detection
         if (this.collisionRect.hit('path') || this.collisionRect.x < 0 || this.collisionRect.x > (SCREEN_WIDTH - PANEL_WIDTH - W) || this.collisionRect.y < 0 || this.collisionRect.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
             if(move === LEFT_DIRECTION) {

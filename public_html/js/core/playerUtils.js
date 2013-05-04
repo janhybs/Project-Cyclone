@@ -138,3 +138,11 @@ PlayerUtils.setActualPlayer = function(type) {
 PlayerUtils.getActualPlayer = function() {
     return $.jStorage.get(ACTIVE_PLAYER);
 };
+
+//method gets actuall player type (laser or soldier)
+PlayerUtils.getActualPlayerType = function() {
+    if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER)
+        return PLAYER_SOLDIER;
+    else
+        return PLAYER_LASER;
+};

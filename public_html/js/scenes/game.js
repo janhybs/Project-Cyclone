@@ -47,7 +47,7 @@ Crafty.scene (SCENE_GAME, function () {
     }, null, 'text');
 
     //test player
-    $.player = player.create (PLAYER_LASER);
+    $.player = PlayerLoader.load();
     
     //lock for towerbuilder
     $.toverBuilderLock = false;
