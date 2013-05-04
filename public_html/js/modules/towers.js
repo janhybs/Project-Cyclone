@@ -54,11 +54,12 @@ Crafty.c(TOWER_ABS, {
     init: function() {
         this.startPoint = null;
         this.level = 1;
-        this.repId = 0;
+        this.repId = false;
     },
     doDestroy: function() {
         this.destroy();
-        timer.clearTimer(this.repId);
+        if(this.repID !== false)
+            timer.clearTimer(this.repId);
     },
     getLevel: function() {
         return this.level;
@@ -430,6 +431,12 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.frameRate = L_FRAME_RATE;
     },
     start: function() {
+        this.s.create(LASER_IMAGE_PATH.laserThickYellow, LASER_IMAGE_NAME.laserThickYellowEnd);
+        this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        this.s.setEndPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        this.s.start();
+        this.s.hide();
+
         this.repId = timer.repeat (function () { 
             var elems = getEntities(ENEMY_ABS, this, this.range);
             if (elems.length !== 0) {
@@ -437,7 +444,7 @@ Crafty.c(TOWER_BEAM_LASER, {
                 this.endPoint = aim.getElement(elems, this.startPoint);
                 this.fire();
             } else
-                this.endPoint = this.startPoint;
+                this.s.hide();
         }, FRAME_RATE/L_FRAME_RATE, this);
     },
     fire: function() {
@@ -445,9 +452,8 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         this.s.setDamage(this.damage);
         this.s.setTTL(this.ttl);
-        this.s.create();
+        this.s.show();
         Crafty.audio.play(LASER_SOUND, 1);
-        this.s.start();
     },
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -469,7 +475,6 @@ Crafty.c(TOWER_BEAM_LASER, {
 });
 
 /*** Chain Laser Tower Component ***/
-/*** CHAINING NOT DONE -> DORESIT ***/
 Crafty.c(TOWER_CHAIN_LASER, {
     create: function() {
         this.damage = CHL_DAMAGE;
@@ -478,28 +483,58 @@ Crafty.c(TOWER_CHAIN_LASER, {
         this.ttl = CHL_TTL;
         this.price = CHL_PRICE;
         this.upgradePrice = CHL_UPGRADE_PRICE;
-        this.s = shot.get(SHOT_LASER);
+        this.s = [];
+        this.chain = CHL_CHAIN;
+        for(var i = 0; i < this.chain; i++){
+            this.s.push(shot.get(SHOT_LASER));
+        }
         this.frameRate = CHL_FRAME_RATE;
     },
     start: function() {
+        
+        var tempStart;
+        var tempEnd;
+        var chainCount;
+        
+        for(var i = 0; i < this.chain; i++){
+            this.s[i].create(LASER_IMAGE_PATH.laserThinRed, LASER_IMAGE_NAME.laserThinRedEnd); 
+            this.s[i].setStartPoint(this.startPoint);
+            this.s[i].setEndPoint(this.startPoint);
+            this.s[i].start();
+            this.s[i].hide();
+        }
+        
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
-            if (elems.length !== 0) {
-                var aim = aiming.get(AIMING_CLOSEST);
-                this.endPoint = aim.getElement(elems, this.startPoint);
-                this.fire();
-            } else
-                this.endPoint = this.startPoint;
+            tempStart = toPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+            chainCount = 0;
+            
+            for(var i = 0; i < this.chain; i++){
+                var elems = getEntities(ENEMY_ABS, tempStart, this.range);
+                if (elems.length !== 0) {
+                    chainCount++;
+                    var aim = aiming.get(AIMING_FURTHEST);
+                    this.s[i].setStartPoint(tempStart);
+                    this.s[i].setEndPoint(aim.getElement(elems, tempStart));
+                    tempStart = this.s[i].getEndPoint();
+                }                    
+            }
+            
+            if(chainCount !== 0)
+                this.fire(chainCount);
+            
+            for (var i = chainCount+1; i < this.chain; i++){
+                this.s[i].hide();
+            }
+            
         }, FRAME_RATE/CHL_FRAME_RATE, this );
     },
-    fire: function() {
-        this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
-        this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
-        this.s.setDamage(this.damage);
-        this.s.setTTL(this.ttl);
-        this.s.create();
+    fire: function(chainCount) {
+        for(var i = 0; i < chainCount; i++){
+            //this.s[i].show();
+            this.s[i].setDamage(this.damage);
+            this.s[i].setTTL(this.ttl);
+        }
         Crafty.audio.play(LASER_SOUND, 1);
-        this.s.start();
     },
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {

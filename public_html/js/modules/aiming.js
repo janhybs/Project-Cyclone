@@ -12,7 +12,7 @@ Crafty.c(AIMING_CLOSEST, {
             tempDist = distance(elems[i].center, startPoint);
             if (tempDist < minDistance) {
                 minDistance = tempDist;
-                element = elems[i];
+                element = elems[i].center;
             }
         }
         return element;
@@ -29,7 +29,7 @@ Crafty.c(AIMING_FURTHEST, {
             tempDist = distance(elems[i].center, startPoint);
             if (tempDist > maxDistance) {
                 maxDistance = tempDist;
-                element = elems[i];
+                element = elems[i].center;
             }
         }
         return element;
