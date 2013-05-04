@@ -159,7 +159,7 @@ Crafty.c ("Collision2", {
         this.map = poly;
         this.attach (this.map);
         this.map.shift (area._x, area._y);
-        this.collisionSkip = 5;
+        this.collisionSkip = 2;
         this.collisionCounter = 0;
     },
     /**@
