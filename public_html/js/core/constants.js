@@ -268,7 +268,7 @@ var TOWER_CHAIN_LASER = 'ChainLaserTower';
 var CHL_CHAIN = 2;
 var CHL_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
 var CHL_RATE = 2;
-var CHL_RANGE = 100;
+var CHL_RANGE = 120;
 var CHL_TTL = 40;
 var CHL_PRICE = 300;
 var CHL_UPGRADE_PRICE = 50;
@@ -284,7 +284,7 @@ var CHL_CHAIN_3 = 4;
 
 var TOWER_HOMING_MISSILE = 'HomingMissileTower';
 var HM_DAMAGE = [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var HM_RATE = 2;
+var HM_RATE = 5;
 var HM_RANGE = 300;
 var HM_TTL = 300;
 var HM_PRICE = 500;
@@ -296,7 +296,7 @@ var HM_DAMAGE_2 = [120, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var HM_RATE_3 = 8;
 var HM_RANGE_3 = 400;
 var HM_DAMAGE_3 = [140, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var HM_FRAME_RATE = 3;
+var HM_FRAME_RATE = 1;
 
 var TOWER_ELECTRIC_AURA = 'ElectricAuraTower';
 var EA_DAMAGE = [10, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -314,7 +314,7 @@ var EA_RATE_3 = 12;
 var EA_RADIUS_3 = 200;
 var EA_GROWTH_3 = 200;
 var EA_DAMAGE_3 = [15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0];
-var EA_FRAME_RATE = 5;
+var EA_FRAME_RATE = 1;
 
 var TOWER_SLOW_AURA = 'SlowAuraTower';
 var SA_DAMAGE = [0, 0, 0, 0, 0, 1, 1, 1, 0.3, 1, 0.1];
@@ -332,7 +332,7 @@ var SA_RATE_3 = 12;
 var SA_RADIUS_3 = 200;
 var SA_GROWTH_3 = 200;
 var SA_DAMAGE_3 = [0, 0, 0, 0, 0, 1, 1, 3, 0.6, 1, 0.1];
-var SA_FRAME_RATE = 5;
+var SA_FRAME_RATE = 1;
 
 var TOWER_IMAGE_ARRAY = {MachineGunTower:['images/cat.gif'], CannonTower:['images/cat.gif'], 
             FlamethrowerTower:['images/cat.gif'], IceDartTower:['images/cat.gif'],
