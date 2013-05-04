@@ -22,7 +22,7 @@ Crafty.scene (SCENE_LOADING, function () {
         //# enemies packed
         'images/enemies.png',
         //# towers packed
-        'images/towers.png',
+        'images/towers/towers.png',
         //# shield
         'images/shield.png',
         //# shots packed
@@ -217,7 +217,7 @@ Crafty.sprite ('images/shots.png', {
     shot_red: [232, 144, 16, 16]
 });
 
-Crafty.sprite ('images/towers.png', {
+Crafty.sprite ('images/towers/towers.png', {
     body_01: [0, 0, 48, 48],
     body_02: [48, 0, 48, 48],
     body_03: [0, 48, 48, 48],

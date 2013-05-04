@@ -349,8 +349,26 @@ var TOWER_IMAGE_ARRAY = {MachineGunTower:['images/cat.gif'], CannonTower:['image
             HomingMissileTower:['images/cat.gif'], ElectricAuraTower:['images/cat.gif'],
             SlowAuraTower:['images/cat.gif']};
 
-//tower brain
 var TOWER_BRAIN = 'TowerBrainComp';
+
+var TOWER_IMAGE_NAME = {
+    machineGunBody: 'body_02',
+    machineGunHead: 'head_02',
+    cannonBody: 'body_01',
+    cannonHead: 'head_01',
+    flamethrowerBody: 'body_04',
+    flamethrowerHead: 'head_04',
+    iceDartBody: 'cat',
+    iceDartHead: 'cat',
+    beamLaserBody: 'body_03',
+    beamLaserHead: 'head_03',
+    chainLaserBody: 'body_05',
+    chainLaserHead: 'head_05',
+    homingMissileBody: 'cat',
+    homingMissileHead: 'cat',
+    electricAuraBody: 'body_06',
+    slowAuraBody: 'cat'
+};
 
 //tower bilder
 var TOWER_BUILDER = "towerBuilderComp";
