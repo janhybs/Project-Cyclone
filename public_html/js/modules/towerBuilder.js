@@ -24,16 +24,27 @@ Crafty.c (TOWER_BUILDER, {
         this.bind('MouseMove', this.positionControl);
         this.bind('Click', this.playerClicked);
         this.bind('MouseUp', this.playerRightClicked);
+        //lock panel
+        $('#panel-main *').attr ('disabled', 'disabled');
+        $('#panel-main *').animate({opacity: 0.5}, 1000);
+        $.toverBuilderLock = true;
     },
     
     playerClicked: function() {
         towerBrain.add(this.towerType, [this.towerImg.x, this.towerImg.y]);
+        $.toverBuilderLock = false;
+        $('#panel-main *').removeAttr('disabled');
+        $('#panel-main *').animate({opacity: 1}, 1000);
         this.closeTowerBuilder();
     },
     
     playerRightClicked: function(e) {
-        if( e.mouseButton === Crafty.mouseButtons.RIGHT )
+        if( e.mouseButton === Crafty.mouseButtons.RIGHT ) {
+            $.toverBuilderLock = false;
+            $('#panel-main *').removeAttr('disabled');
+            $('#panel-main *').animate({opacity: 1}, 1000);
             this.closeTowerBuilder();
+        }
     },
     
     closeTowerBuilder: function() {
