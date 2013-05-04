@@ -256,15 +256,19 @@ window.distance = function (p1, p2) {
 window.getEntities = function (selector, startPoint, radius) {
     var e = Crafty (selector);
     var s = toPoint (startPoint);
-    var c = new Crafty.circle (s.x, s.y, radius);
     var r = [];
 
-    var tmp;
+    var t, deltaX, deltaY;
+    var rad = radius * radius;
     for (var i = 0, l = e.length; i < l; i++) {
         //# watch out for center
-        tmp = Crafty (e[i]).center;
-        if (c.containsPoint (tmp.x, tmp.y))
-            r.push (tmp);
+        t = Crafty (e[i]).center;
+        deltaX = s.x - t.x,
+        deltaY = s.y - t.y;
+
+        if ((deltaX * deltaX + deltaY * deltaY) <= rad) {
+            r.push (Crafty (e[i]));
+        }
     }
     return r;
 };
