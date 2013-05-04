@@ -36,7 +36,7 @@ Crafty.c('PlayerControls', {
         this.requires('KeyBoard');
         console.log("Player controls loaded.");
         //center for rotation
-        this.origin(12, 12);
+        this.origin(16, 14);
         //move with new frames
         this.bind('EnterFrame', function() {
             this.opt = this.opt?false:true;
