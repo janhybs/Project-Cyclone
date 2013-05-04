@@ -22,21 +22,11 @@ Crafty.scene(SCENE_P2P_TOWER_TEST, function() {
         e.start ();
         e.requires ('HealthBar');
     }, FRAME_RATE);
-
-    var t = tower.get(TOWER_ICE_DART);
-    t.setStartPoint([p0.x * W, p0.y * H]);
-    t.create();
-    t.upgrade();
-    t.start();
-
-    var t2 = tower.get(TOWER_MACHINEGUN);
-    t2.setStartPoint([p1.x * W, p1.y * H]);
-    t2.create();
-    t2.start();
-        
-    var t3 = tower.get(TOWER_BEAM_LASER);
-    t3.setStartPoint([p2.x * W, p2.y * H]);
-    t3.create();
-    t3.start();
+    
+    towerBrain.add(TOWER_MACHINEGUN, [p0.x * W, p0.y * H]);
+    towerBrain.add(TOWER_MACHINEGUN, [p1.x * W, p1.y * H]);
+    towerBrain.add(TOWER_BEAM_LASER, [p2.x * W, p2.y * H]);
+    towerBrain.isPositionAvailable([p2.x, p2.y]);
+    towerBrain.upgradeByPosition([p0.x, p0.y]);
 
 });

@@ -331,6 +331,15 @@ var SA_GROWTH_3 = 200;
 var SA_DAMAGE_3 = [0, 0, 0, 0, 0, 1, 1, 3, 0.6, 1, 0.1];
 var SA_FRAME_RATE = 5;
 
+var TOWER_IMAGE_ARRAY = {MachineGunTower:['images/cat.gif'], CannonTower:['images/cat.gif'], 
+            FlamethrowerTower:['images/cat.gif'], IceDartTower:['images/cat.gif'],
+            BeamLaserTower:['images/cat.gif'], ChainLaserTower:['images/cat.gif'],
+            HomingMissileTower:['images/cat.gif'], ElectricAuraTower:['images/cat.gif'],
+            SlowAuraTower:['images/cat.gif']};
+
+//tower brain
+var TOWER_BRAIN = 'TowerBrainComp';
+
 //tower bilder
 var TOWER_BUILDER = "towerBuilderComp";
 
