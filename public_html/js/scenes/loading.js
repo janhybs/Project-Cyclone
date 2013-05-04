@@ -21,6 +21,8 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/exp-complex-64(25).png',
         //# enemies packed
         'images/enemies.png',
+        //# towers packed
+        'images/towers.png',
         //# shield
         'images/shield.png',
         //# shots packed
@@ -211,4 +213,24 @@ Crafty.sprite ('images/shots.png', {
     shot_green: [104, 160, 16, 16],
     shot_ice: [0, 247, 9, 5],
     shot_normal: [0, 242, 11, 5]
+});
+
+Crafty.sprite ('images/towers.png', {
+    body_01: [0, 0, 48, 48],
+    body_02: [48, 0, 48, 48],
+    body_03: [0, 48, 48, 48],
+    body_04: [48, 48, 48, 48],
+    body_05: [96, 0, 48, 48],
+    body_06: [96, 48, 48, 48],
+    head_01: [144, 0, 48, 48],
+    head_02: [144, 48, 48, 48],
+    head_03: [0, 96, 48, 48],
+    head_04: [0, 144, 48, 48],
+    head_05: [48, 96, 48, 48],
+    tower_01: [96, 96, 32, 32],
+    tower_02: [48, 144, 32, 32],
+    tower_03: [80, 144, 32, 32],
+    tower_04: [48, 176, 32, 32],
+    tower_05: [128, 96, 32, 32],
+    tower_06: [112, 128, 32, 32]
 });

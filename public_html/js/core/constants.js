@@ -265,6 +265,7 @@ var L_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
 var L_FRAME_RATE = 5;
 
 var TOWER_CHAIN_LASER = 'ChainLaserTower';
+var CHL_CHAIN = 2;
 var CHL_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
 var CHL_RATE = 2;
 var CHL_RANGE = 100;

@@ -23,10 +23,10 @@ Crafty.scene(SCENE_P2P_TOWER_TEST, function() {
         e.requires ('HealthBar');
     }, FRAME_RATE);
     
-    towerBrain.add(TOWER_MACHINEGUN, [p0.x * W, p0.y * H]);
-    towerBrain.add(TOWER_MACHINEGUN, [p1.x * W, p1.y * H]);
-    towerBrain.add(TOWER_BEAM_LASER, [p2.x * W, p2.y * H]);
+    towerBrain.add(TOWER_CHAIN_LASER, [p0.x * W, p0.y * H]);
+    //towerBrain.add(TOWER_MACHINEGUN, [p1.x * W, p1.y * H]);
+    //towerBrain.add(TOWER_BEAM_LASER, [p2.x * W, p2.y * H]);
     towerBrain.isPositionAvailable([p2.x, p2.y]);
-    towerBrain.upgradeByPosition([p0.x, p0.y]);
+    //towerBrain.upgradeByPosition([p0.x, p0.y]);
 
 });
