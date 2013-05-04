@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
+                var result = Crafty.e('2D, Canvas, Collision, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -33,8 +33,7 @@ Crafty.c('PlayerControls', {
         this.requires('KeyBoard');
         console.log("Player controls loaded.");
         //center for rotation
-        this.origin(+this.w/2, +this.h/2);
-//        this.requires ('WiredHitBox');
+        this.origin(12, 12);
         //move with new frames
         this.bind('EnterFrame', function() {
             this.opt = this.opt?false:true;
@@ -300,17 +299,6 @@ Crafty.c(PLAYER_ABS, {
 
 
 /*
- * Special player for debuging.
- * ----------------------------
- */
-Crafty.c(PLAYER_DEBUG, {
-    //init method
-    init: function() {
-        this.speedPX = 3;
-    }
-});
-
-/*
  * Soldier player.
  * ---------------
  */
@@ -321,7 +309,7 @@ Crafty.c(PLAYER_SOLDIER, {
         this.actualWeapon = SHOT_P2P;
         this.shotSpeed = 5;
         this.shotDamage = 30;
-        this.image('images/towers/tower-08.png');
+        this.image('images/player/soldier.png');
     }
 });
 
