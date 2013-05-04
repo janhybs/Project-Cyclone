@@ -197,6 +197,10 @@ html {
     ------------ PANEL-TOWERS ------------
 */
 
+#panel-main-towers [disabled="disabled"] {
+    background-color: red;
+}
+
 #panel-main-towers, #panel-main-towers li {
     margin: 0;
     padding: 0;
