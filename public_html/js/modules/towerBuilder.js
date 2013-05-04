@@ -21,21 +21,13 @@ Crafty.c (TOWER_BUILDER, {
         this.w = SCREEN_WIDTH - PANEL_WIDTH;
         this.h = SCREEN_HEIGHT;
         this.transBG = Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH-PANEL_WIDTH, h: SCREEN_HEIGHT, alpha: 0.05, z: 1}).image ("images/sq.jpg", "repeat");
-        this.towerImg = Crafty.e ("2D, Canvas, Image").attr ({w: W, h: H, alpha: 0.8, z: 2}).image ("images/cat.gif", "no-repeat");
         this.bind('MouseMove', this.positionControl);
         this.bind('Click', this.playerClicked);
         this.bind('MouseUp', this.playerRightClicked);
     },
     
     playerClicked: function() {
-        var timer = Crafty.e ('Framer');
-        var t = tower.get(this.towerType);
-        t.setStartPoint([this.towerImg.x, this.towerImg.y]);
-        t.create();
-        t.upgrade();
-        timer.repeat(function() {
-            t.start();
-        }, FRAME_RATE / 5);
+        towerBrain.add(this.towerType, [this.towerImg.x, this.towerImg.y]);
         this.closeTowerBuilder();
     },
     
@@ -64,6 +56,8 @@ Crafty.c (TOWER_BUILDER, {
             
     setTowerType: function(type) {
         this.towerType = type;
+        console.log(type);
+        this.towerImg = Crafty.e ("2D, Canvas, Image").attr ({w: W, h: H, alpha: 0.8, z: 2}).image (towerBrain.getImage(type), "no-repeat");
     },
             
     setLevelPath: function(level) {

@@ -50,4 +50,7 @@ Crafty.scene (SCENE_GAME, function () {
 
     //test player
     $.player = player.create (PLAYER_SOLDIER);
+    
+    //actual level - debug only - it will be deleted
+    $.actualLevel = 'levels/level-02.xml';
 });
