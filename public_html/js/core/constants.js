@@ -201,6 +201,7 @@ var MG_RATE_3 = 8;
 var MG_RANGE_3 = 200;
 var MG_DAMAGE_3 = [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var MG_FRAME_RATE = 5;
+var MG_AIM_STYLE = 'ClosestAim';
 
 var TOWER_CANNON = 'CannonTower';
 var C_DAMAGE = [80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -217,6 +218,7 @@ var C_RATE_3 = 6;
 var C_RANGE_3 = 200;
 var C_DAMAGE_3 = [95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var C_FRAME_RATE = 1;
+var C_AIM_STYLE = 'FurthestAim';
 
 var TOWER_FLAMETHROWER = 'FlamethrowerTower';
 var FT_DAMAGE = [0, 5, 0, 0, 0, 3, 1, 3, 0, 0, 0];
@@ -233,6 +235,7 @@ var FT_RATE_3 = 8;
 var FT_RANGE_3 = 200;
 var FT_DAMAGE_3 = [0, 15, 0, 0, 0, 5, 1, 10, 0, 0, 0];
 var FT_FRAME_RATE = 10;
+var FT_AIM_STYLE = 'ClosestAim';
 
 var TOWER_ICE_DART = 'IceDartTower';
 var ID_DAMAGE = [0, 0, 0, 0, 0, 0, 0, 0, 1, 0.5, 0.5];
@@ -248,6 +251,7 @@ var ID_RATE_3 = 3;
 var ID_RANGE_3 = 200;
 var ID_DAMAGE_3 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1];
 var ID_FRAME_RATE = 1;
+var ID_AIM_STYLE = 'MostHealthAim';
 
 var TOWER_BEAM_LASER = 'BeamLaserTower';
 var L_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -263,6 +267,7 @@ var L_RATE_3 = 3;
 var L_RANGE_3 = 220;
 var L_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
 var L_FRAME_RATE = 5;
+var L_AIM_STYLE = 'ClosestAim';
 
 var TOWER_CHAIN_LASER = 'ChainLaserTower';
 var CHL_CHAIN = 2;
@@ -281,6 +286,7 @@ var CHL_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
 var CHL_FRAME_RATE = 5;
 var CHL_CHAIN_2 = 3;
 var CHL_CHAIN_3 = 4;
+var CHL_AIM_STYLE = 'MostHealthAim';
 
 var TOWER_HOMING_MISSILE = 'HomingMissileTower';
 var HM_DAMAGE = [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -297,6 +303,7 @@ var HM_RATE_3 = 8;
 var HM_RANGE_3 = 400;
 var HM_DAMAGE_3 = [140, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var HM_FRAME_RATE = 1;
+var HM_AIM_STYLE = 'MostHealthAim';
 
 var TOWER_ELECTRIC_AURA = 'ElectricAuraTower';
 var EA_DAMAGE = [10, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
