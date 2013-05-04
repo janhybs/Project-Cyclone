@@ -5,32 +5,23 @@ window.tower = {
     get: function(type) {
         switch (type) {
             case TOWER_MACHINEGUN:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.machineGunBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.machineGunBody));
             case TOWER_CANNON:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.cannonBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.cannonBody));
             case TOWER_FLAMETHROWER:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.flamethrowerBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.flamethrowerBody));
             case TOWER_ICE_DART:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.iceDartBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.iceDartBody));
             case TOWER_BEAM_LASER:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_LASER, type, TOWER_IMAGE_NAME.beamLaserBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_LASER, type, TOWER_IMAGE_NAME.beamLaserBody));
             case TOWER_CHAIN_LASER:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_LASER, type, TOWER_IMAGE_NAME.chainLaserBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_LASER, type, TOWER_IMAGE_NAME.chainLaserBody));
             case TOWER_HOMING_MISSILE:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_HOMING, type, TOWER_IMAGE_NAME.homingMissileBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_HOMING, type, TOWER_IMAGE_NAME.homingMissileBody));
             case TOWER_ELECTRIC_AURA:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_SPLASH, type, TOWER_IMAGE_NAME.electricAuraBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_SPLASH, type, TOWER_IMAGE_NAME.electricAuraBody));
             case TOWER_SLOW_AURA:
-                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_SPLASH, type, TOWER_IMAGE_NAME.slowAuraBody))
-                        .attr({w: W, h: H});
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_SPLASH, type, TOWER_IMAGE_NAME.slowAuraBody));
         }
     }
 };
@@ -56,6 +47,12 @@ Crafty.c(TOWER_ABS, {
         this.level = 1;
         this.repId = false;
     },
+    prepareActor: function(type) {
+        this.actor = Crafty.e('2D, Canvas, Image, {0}'.format(type));
+        this.actor.origin(24, 24);
+        this.actor.x = this.x;
+        this.actor.y = this.y;
+    },
     doDestroy: function() {
         this.destroy();
         if(this.repID !== false)
@@ -80,8 +77,9 @@ Crafty.c(TOWER_ABS, {
     },
     setStartPoint: function(value) {
         this.startPoint = toPoint(value);
-        this.x = this.startPoint.x;
-        this.y = this.startPoint.y;
+        this.x = this.startPoint.x - 8;
+        this.y = this.startPoint.y - 8;
+        this.center = toPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         return this;
     },
     getDamage: function() {
@@ -228,25 +226,28 @@ Crafty.c(TOWER_MACHINEGUN, {
         this.upgradePrice = MG_UPGRADE_PRICE;
         this.frameRate = MG_FRAME_RATE;
         this.aimStyle = MG_AIM_STYLE;
+        this.prepareActor(TOWER_IMAGE_NAME.machineGunHead);
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+            var elems = getEntities(ENEMY_ABS, this.center, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(this.aimStyle);
-                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.endPoint = aim.getElement(elems, this.center);
                 this.fire();
             }
         }, FRAME_RATE/MG_FRAME_RATE, this );
     },
     fire: function() {
+        this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
         var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotGreen);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        s.z = this.z - 1;
         Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },   
@@ -281,25 +282,28 @@ Crafty.c(TOWER_CANNON, {
         this.upgradePrice = C_UPGRADE_PRICE;
         this.frameRate = C_FRAME_RATE;
         this.aimStyle = C_AIM_STYLE;
+        this.prepareActor(TOWER_IMAGE_NAME.cannonHead);
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+            var elems = getEntities(ENEMY_ABS, this.center, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(this.aimStyle);
-                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.endPoint = aim.getElement(elems, this.center);
                 this.fire();
             }
         }, FRAME_RATE/C_FRAME_RATE, this );
     },
     fire: function() {
+        this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
         var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotCannon);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
+        s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        s.z = this.z - 1;
         Crafty.audio.play(CANNON_SOUND, 1);
         s.start();
     },
@@ -334,25 +338,28 @@ Crafty.c(TOWER_FLAMETHROWER, {
         this.upgradePrice = FT_UPGRADE_PRICE;
         this.frameRate = FT_FRAME_RATE;
         this.aimStyle = FT_AIM_STYLE;
+        this.prepareActor(TOWER_IMAGE_NAME.flamethrowerHead);
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+            var elems = getEntities(ENEMY_ABS, this.center, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(this.aimStyle);
-                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.endPoint = aim.getElement(elems, this.center);
                 this.fire();
             }
         }, FRAME_RATE/FT_FRAME_RATE, this);
     },
     fire: function() {
+        this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
         var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotRed);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
+        s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        s.z = this.z - 1;
         Crafty.audio.play(SPRAY_SOUND, 1);
         s.start();
     },
@@ -386,25 +393,28 @@ Crafty.c(TOWER_ICE_DART, {
         this.upgradePrice = ID_UPGRADE_PRICE;
         this.frameRate = ID_FRAME_RATE;
         this.aimStyle = ID_AIM_STYLE;
+        this.prepareActor(TOWER_IMAGE_NAME.iceDartHead);
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+            var elems = getEntities(ENEMY_ABS, this.center, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(this.aimStyle);
-                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.endPoint = aim.getElement(elems, this.center);
                 this.fire();
             }
         }, FRAME_RATE/ID_FRAME_RATE, this);
     },
     fire: function() {
+        this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
         var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotIce);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);;
+        s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
+        s.z = this.z - 1;
         Crafty.audio.play(SPRAY_SOUND, 1);
         s.start();
     },
@@ -441,26 +451,29 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.s = shot.get(SHOT_LASER);
         this.frameRate = L_FRAME_RATE;
         this.aimStyle = L_AIM_STYLE;
+        this.prepareActor(TOWER_IMAGE_NAME.beamLaserHead);
     },
     start: function() {
         this.s.create(LASER_IMAGE_PATH.laserThickYellow, LASER_IMAGE_NAME.laserThickYellowEnd);
         this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.start();
+        this.s.z = this.z - 1;
         this.s.hide();
 
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+            var elems = getEntities(ENEMY_ABS, this.center, this.range);
             if (elems.length !== 0) {
                 var aim = aiming.get(this.aimStyle);
-                this.endPoint = aim.getElement(elems, this.startPoint);
+                this.endPoint = aim.getElement(elems, this.center);
                 this.fire();
             } else
                 this.s.hide();
         }, FRAME_RATE/L_FRAME_RATE, this);
     },
     fire: function() {
-        this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
+        this.s.setStartPoint(this.center);
         this.s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         this.s.setDamage(this.damage);
         this.s.setTTL(this.ttl);
@@ -502,6 +515,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
         }
         this.frameRate = CHL_FRAME_RATE;
         this.aimStyle = CHL_AIM_STYLE;
+        this.prepareActor(TOWER_IMAGE_NAME.chainLaserHead);
     },
     start: function() {
         
@@ -520,7 +534,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
         
         this.repId = timer.repeat (function () { 
             mobsPos = [];
-            tempStart = toPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+            tempStart = this.center;
             chainCount = 0;
             
             for(var i = 0; i < this.chain; i++){
@@ -543,7 +557,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
             
             if(chainCount !== 0)
                 this.fire(chainCount);
-            
+                
             for (var i = chainCount; i < this.chain; i++){
                 this.s[i].hide();
             }
@@ -552,6 +566,10 @@ Crafty.c(TOWER_CHAIN_LASER, {
     },
     fire: function(chainCount) {
         for(var i = 0; i < chainCount; i++){
+            if(i === 0) {
+                this.actor.rotation = Math.atan2(this.y + this.h/2 - this.s[0].endPoint.y, this.x + this.h/2 - this.s[0].endPoint.x) * 180 / Math.PI + 180;
+                this.s[0].z = this.z - 1;
+            }
             this.s[i].show();
             this.s[i].setDamage(this.damage);
             this.s[i].setTTL(this.ttl);
@@ -595,7 +613,7 @@ Crafty.c(TOWER_HOMING_MISSILE, {
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.range);
+            var elems = getEntities(ENEMY_ABS, this.center, this.range);
             if (elems.length !== 0) {
                 this.fire();
             }
@@ -603,7 +621,7 @@ Crafty.c(TOWER_HOMING_MISSILE, {
     },
     fire: function() {
         var s = shot.get(SHOT_HOMING, HOMING_IMAGE_NAME.rocketRedSmall);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        s.setStartPoint(this.center);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.rate, this.curving);
@@ -645,7 +663,7 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.radius);
+            var elems = getEntities(ENEMY_ABS, this.center, this.radius);
             if (elems.length !== 0) {
                 this.fire();
             }
@@ -695,7 +713,7 @@ Crafty.c(TOWER_SLOW_AURA, {
     },
     start: function() {
         this.repId = timer.repeat (function () { 
-            var elems = getEntities(ENEMY_ABS, this, this.radius);
+            var elems = getEntities(ENEMY_ABS, this.center, this.radius);
             if (elems.length !== 0) {
                 this.fire();
             }
