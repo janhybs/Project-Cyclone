@@ -82,7 +82,7 @@ Crafty.c (SHOT_P2P, {
 
         this.x += this.xstep;
         this.y += this.ystep;
-        this.rotation = (this.angle / PI) * 180;
+        //this.rotation = (this.angle / PI) * 180;
 
         //# destroy rutine
         if (this.ttl-- <= 0) {
