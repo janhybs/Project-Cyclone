@@ -15,6 +15,7 @@ PlayerUtils.newGameInitialize = function(nameGunPlayer, nameLaserPlayer) {
     $.jStorage.set(LASER_PLAYER_RANGE, 1);
     $.jStorage.set(PLAYER_MONEY, PLAYER_START_MONEY_PACK);
     $.jStorage.set(MAX_OPENED_LEVEL, 1);
+    $.actualLevel = 1;
 };
 
 //method returns actualLevel of actual player
@@ -92,7 +93,7 @@ PlayerUtils.getDamagePoints = function() {
 
 //method increases level of actual player
 PlayerUtils.increaseLevel = function() {
-        if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {
+    if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {
             $.jStorage.set(GUN_PLAYER_LEVEL, $.jStorage.get(GUN_PLAYER_LEVEL) + 1);            
     } else {
             $.jStorage.set(LASER_PLAYER_LEVEL, $.jStorage.get(LASER_PLAYER_LEVEL) + 1);
@@ -102,6 +103,11 @@ PlayerUtils.increaseLevel = function() {
 //method gets max open level
 PlayerUtils.getMaxOpenLevel = function() {
     return $.jStorage.get(MAX_OPENED_LEVEL);
+};
+
+//method gets max open level
+PlayerUtils.openNextLevel = function() {
+    return $.jStorage.set(MAX_OPENED_LEVEL, $.jStorage.get(MAX_OPENED_LEVEL) + 1);
 };
 
 //method gets best score for level

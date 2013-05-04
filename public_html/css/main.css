@@ -237,3 +237,8 @@ td {
 .r {
     text-align: right;
 }
+
+#moneyInfo {
+    font-weight: lighter;
+    font-size: 0.7em;
+}

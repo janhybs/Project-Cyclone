@@ -4,7 +4,7 @@ window.towerBuilder = {
         Crafty.viewport.reload();
         var build = Crafty.e ("2D, Canvas, Mouse, {0}".format(TOWER_BUILDER));
         build.setTowerType(type);
-        build.setLevelPath($.actualLevel);
+        build.setLevelPath('levels/level-0{0}.xml'.format($.actualLevel));
     }
 }
 

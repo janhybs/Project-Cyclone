@@ -1,7 +1,10 @@
 Crafty.scene (SCENE_GAME, function () {
 
     activateCanvas ();
-    loadPage ('gamePanel', 'panel-main');
+    loadPage ('gamePanel', 'panel-main', function () {
+        //load money info
+        $('#availableMoney').html(PlayerUtils.getPlayerMoney());
+    });
 
     //mouse click activating for this scene
     activeSceneMouseClick ();
@@ -11,8 +14,7 @@ Crafty.scene (SCENE_GAME, function () {
     //add special cursor (fire-cursor)
     activeSceneCursor ('url(/Project-Cyclone/images/crosshair.png),default');
 
-    var lvl = 2;
-    jQuery.get ('levels/level-0{0}.xml'.format (lvl), function (data) {
+    jQuery.get ('levels/level-0{0}.xml'.format ($.actualLevel), function (data) {
         var xmldata = $.xml2json (data);
 
         var levelBoard = parseBoard (xmldata.board);
@@ -38,7 +40,7 @@ Crafty.scene (SCENE_GAME, function () {
         
         Crafty.e ("2D, Canvas, Image, _background")
                 .attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT})
-                .image ("images/levels/level-0{0}.png".format (lvl), "no-repeat");
+                .image ("images/levels/level-0{0}.png".format ($.actualLevel), "no-repeat");
 
 
 
@@ -49,7 +51,4 @@ Crafty.scene (SCENE_GAME, function () {
     
     //lock for towerbuilder
     $.toverBuilderLock = false;
-    
-    //actual level - debug only - it will be deleted
-    $.actualLevel = 'levels/level-02.xml';
 });
