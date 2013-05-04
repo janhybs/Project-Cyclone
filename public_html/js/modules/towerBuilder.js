@@ -67,7 +67,7 @@ Crafty.c (TOWER_BUILDER, {
             
     setTowerType: function(type) {
         this.towerType = type;
-        this.towerImg = Crafty.e ("2D, Canvas, Image").attr ({w: W, h: H, alpha: 0.8, z: 2}).image (towerBrain.getImage(type), "no-repeat");
+        this.towerImg = towerBrain.getImage(type);
     },
             
     setLevelPath: function(level) {
