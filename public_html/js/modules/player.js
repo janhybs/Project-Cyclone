@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
+                var result = Crafty.e('2D, Canvas, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -28,8 +28,11 @@ Crafty.c('PlayerControls', {
     lastKey: NO_DIRECTION, 
     //optimalization
     opt: true,
+    //collision rect
+    collisionRect: false,
     //init method
     init: function() {
+        this.collisionRect = Crafty.e("2D, Rectangle, Collision").attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0});
         this.requires('KeyBoard');
         console.log("Player controls loaded.");
         //center for rotation
@@ -43,19 +46,23 @@ Crafty.c('PlayerControls', {
             var move = this.move;
             if (this.lastKey === RIGHT_DIRECTION) {
                 this.x += this.speedPX;
-                this.repairPosition(this.x, this.y, this.lastKey);
+                this.collisionRect.x += this.speedPX;
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             }
             else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
-                this.repairPosition(this.x, this.y, this.lastKey);
+                this.collisionRect.x -= this.speedPX;
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             }
             else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
-                this.repairPosition(this.x, this.y, this.lastKey);
+                this.collisionRect.y -= this.speedPX;
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             }
             else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
-                this.repairPosition(this.x, this.y, this.lastKey);
+                this.collisionRect.y += this.speedPX;
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             } else if(this.lastKey === NO_DIRECTION) {
                 Crafty.trigger(PLAYER_STOP_MOVE);
             }
@@ -265,23 +272,28 @@ Crafty.c(PLAYER_ABS, {
     },
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {
+        console.log("x: " + fromX + ", y: " + fromY);
         //path detection
-        if (this.hit('path') || this.x < 0 || this.x > (SCREEN_WIDTH - PANEL_WIDTH - W) || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
+        if (this.collisionRect.hit('path') || this.collisionRect.x < 0 || this.collisionRect.x > (SCREEN_WIDTH - PANEL_WIDTH - W) || this.collisionRect.y < 0 || this.collisionRect.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
             if(move === LEFT_DIRECTION) {
                 this.attr({x: fromX+1, y: fromY});
-                this.repairPosition(this.x, this.y, move);
+                this.collisionRect.attr({x: fromX+1, y: fromY});
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, move);
             }
             else if(move === RIGHT_DIRECTION) {
                 this.attr({x: fromX-1, y: fromY});
-                this.repairPosition(this.x, this.y, move);
+                this.collisionRect.attr({x: fromX-1, y: fromY});
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, move);
             }
             else if(move === UP_DIRECTION) {
                 this.attr({x: fromX, y: fromY+1});
-                this.repairPosition(this.x, this.y, move);
+                this.collisionRect.attr({x: fromX, y: fromY+1});
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, move);
             }
             else if(move === DOWN_DIRECTION) {
                 this.attr({x: fromX, y: fromY-1});
-                this.repairPosition(this.x, this.y, move);
+                this.collisionRect.attr({x: fromX, y: fromY-1});
+                this.repairPosition(this.collisionRect.x, this.collisionRect.y, move);
             }
         }
         
