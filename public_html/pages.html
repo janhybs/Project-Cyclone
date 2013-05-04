@@ -82,11 +82,11 @@
                 <div id="moneyPoints"></div>
             </div>
             <table class="tableLevels">
-                <tr><td colspan="2"><button id="level1" class="levelBut" onclick="">Level I</button><div class="bestScore" id="levelscore1"></div></td></tr>
-                <tr><td colspan="2"><button id="level2" class="levelBut" onclick="">Level II</button><div class="bestScore" id="levelscore2"></div></td></tr>
-                <tr><td colspan="2"><button id="level3" class="levelBut" onclick="">Level III</button><div class="bestScore" id="levelscore3"></div></td></tr>
-                <tr><td colspan="2"><button id="level4" class="levelBut" onclick="">Level IV</button><div class="bestScore" id="levelscore4"></div></td></tr>
-                <tr><td colspan="2"><button id="level5" class="levelBut" onclick="">Level V</button><div class="bestScore" id="levelscore5"></div></td></tr>
+                <tr><td colspan="2"><button id="level1" class="levelBut" onclick="$.actualLevel = 'levels/level-01.xml'">Level I</button><div class="bestScore" id="levelscore1"></div></td></tr>
+                <tr><td colspan="2"><button id="level2" class="levelBut" onclick="$.actualLevel = 'levels/level-02.xml'">Level II</button><div class="bestScore" id="levelscore2"></div></td></tr>
+                <tr><td colspan="2"><button id="level3" class="levelBut" onclick="$.actualLevel = 'levels/level-03.xml'">Level III</button><div class="bestScore" id="levelscore3"></div></td></tr>
+                <tr><td colspan="2"><button id="level4" class="levelBut" onclick="$.actualLevel = 'levels/level-04.xml'">Level IV</button><div class="bestScore" id="levelscore4"></div></td></tr>
+                <tr><td colspan="2"><button id="level5" class="levelBut" onclick="$.actualLevel = 'levels/level-05.xml'">Level V</button><div class="bestScore" id="levelscore5"></div></td></tr>
                 <tr><td class="playerSelect"><input type="radio" id="soldierPlayer" name="playerChooser" onclick="PlayerUtils.setActualPlayer(GUN_PLAYER)" /><div id="soldierName" class="names"></div><div id="soldierLevelInfo" class="bestScore"></div></td><td class="playerSelect"><input type="radio" id="laserPlayer" name="playerChooser" value="" onclick="PlayerUtils.setActualPlayer(LASER_PLAYER)" /><div id="laserName" class="names"></div><div id="laserLevelInfo" class="bestScore"></div></td></tr>
             </table>
         </div>
