@@ -540,7 +540,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
             for(var i = 0; i < this.chain; i++){
                 var elems = getEntities(ENEMY_ABS, tempStart, this.range);
                 for(var e in elems){
-                    if(!~mobsPos.indexOf (elems[e]))
+                    if(!!~mobsPos.indexOf (elems[e]))
                         elems.splice(e, 1);
                 }
             
@@ -554,7 +554,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
                     mobsPos.push(tempMob);
                 }                    
             }
-            
+        
             if(chainCount !== 0)
                 this.fire(chainCount);
                 
