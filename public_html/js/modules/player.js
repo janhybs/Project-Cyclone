@@ -8,7 +8,7 @@ window.player = {
     create: function(type) {
         switch (type) {
             default:
-                var result = Crafty.e('2D, Canvas, Collision, SpriteAnimation, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
+                var result = Crafty.e('2D, Canvas, Collision, player, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
                         .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
                 return result;
         }
@@ -29,12 +29,12 @@ Crafty.c('PlayerControls', {
     //optimalization
     opt: true,
     //init method
-    init: function(speed) {
-        if (speed)
-            this.speedPX = speed;
+    init: function() {
         this.requires('KeyBoard');
         console.log("Player controls loaded.");
-
+        //center for rotation
+        this.origin(+this.w/2, +this.h/2);
+//        this.requires ('WiredHitBox');
         //move with new frames
         this.bind('EnterFrame', function() {
             this.opt = this.opt?false:true;
@@ -44,36 +44,21 @@ Crafty.c('PlayerControls', {
             var move = this.move;
             if (this.lastKey === RIGHT_DIRECTION) {
                 this.x += this.speedPX;
-                if(!this.isPlaying(WALK_RIGHT)) 
-                    Crafty.trigger(PLAYER_DIRECTION, RIGHT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === LEFT_DIRECTION) {
                 this.x -= this.speedPX;
-                if(!this.isPlaying(WALK_LEFT))
-                    Crafty.trigger(PLAYER_DIRECTION, LEFT_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === UP_DIRECTION) {
                 this.y -= this.speedPX;
-                if(!this.isPlaying(WALK_UP))
-                    Crafty.trigger(PLAYER_DIRECTION, UP_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
             }
             else if (this.lastKey === DOWN_DIRECTION) {
                 this.y += this.speedPX;
-                if(!this.isPlaying(WALK_DOWN))
-                    Crafty.trigger(PLAYER_DIRECTION, DOWN_DIRECTION);
                 this.repairPosition(this.x, this.y, this.lastKey);
-            }
-            else if (this.lastKey === NO_DIRECTION) {
-                if(this.isPlaying()) {
-                    //stop animation
-                    Crafty.trigger(PLAYER_DIRECTION, NO_DIRECTION);
-                    //player stops to move
-                    Crafty.trigger(PLAYER_STOP_MOVE);
-                }
-                return;
+            } else if(this.lastKey === NO_DIRECTION) {
+                Crafty.trigger(PLAYER_STOP_MOVE);
             }
         //bind key down
         }).bind('KeyDown', function(e) {
@@ -126,6 +111,10 @@ Crafty.c('PlayerControls', {
             else if(this.move.right) this.lastKey = RIGHT_DIRECTION;
             else if(this.move.left) this.lastKey = LEFT_DIRECTION;
             else this.lastKey = NO_DIRECTION;
+        });
+        //player rotation
+        this.bind(MOUSE_MOVE, function() {
+            this.rotation = Math.atan2(this.y + this.h/2 - mousePos.y, this.x + this.w/2 - mousePos.x) * 180 / Math.PI + 180;
         });
     }
 });
@@ -203,84 +192,6 @@ Crafty.c('PlayerFire', {
 });
 
 /*
- * Player animation component.
- * ---------------------------
- */
-Crafty.c('PlayerAnimate', {
-    //speed of animation
-    speedAnim: 10,
-    //last move
-    lastMove: NO_DIRECTION,
-    //init method
-    init: function() {
-        this.animate(WALK_LEFT, 0, 1, 3)
-                .animate(WALK_RIGHT, 0, 2, 3)
-                .animate(WALK_UP, 0, 3, 3)
-                .animate(WALK_DOWN, 0, 0, 3)
-                .bind(PLAYER_DIRECTION,
-                function(direction) {
-                    var speedAnim = this.speedAnim;
-                    switch (direction) {
-                        case NO_DIRECTION:
-                            if(this.lastMove !== NO_DIRECTION)
-                                this.doLastStep(this.lastMove);
-                            this.lastMove = NO_DIRECTION;
-                            break;
-                        case UP_DIRECTION:
-                            if (!this.isPlaying(WALK_UP))
-                                this.stop().animate(WALK_UP, speedAnim, -1);
-                            this.lastMove = UP_DIRECTION;
-                            break;
-                        case DOWN_DIRECTION:
-                            if (!this.isPlaying(WALK_DOWN))
-                                this.stop().animate(WALK_DOWN, speedAnim, -1);
-                            this.lastMove = DOWN_DIRECTION;
-                            break;
-                        case RIGHT_DIRECTION:
-                            if (!this.isPlaying(WALK_RIGHT))
-                                this.stop().animate(WALK_RIGHT, speedAnim, -1);
-                            this.lastMove = RIGHT_DIRECTION;
-                            break;
-                        case LEFT_DIRECTION:
-                            if (!this.isPlaying(WALK_LEFT))
-                                this.stop().animate(WALK_LEFT, speedAnim, -1);
-                            this.lastMove = LEFT_DIRECTION;
-                            break;
-                    }
-                });
-    },
-    //method normalized last step
-    doLastStep: function(lastMove) {
-        switch (lastMove) {
-            case UP_DIRECTION:
-                this.stop();
-                this.sprite(0, 3);
-                this.lastMove = UP_DIRECTION;
-                break;
-            case DOWN_DIRECTION:
-                this.stop();
-                this.sprite(0, 0);
-                this.lastMove = DOWN_DIRECTION;
-                break;
-            case RIGHT_DIRECTION:
-                this.stop();
-                this.sprite(0, 2);
-                this.lastMove = RIGHT_DIRECTION;
-                break;
-            case LEFT_DIRECTION:
-                this.stop();
-                this.sprite(0, 1);
-                this.lastMove = LEFT_DIRECTION;
-                break;
-        }
-    },
-    //setter for speed animation
-    setSpeedOfAnimation: function(speedAnim) {
-        this.speedAnim = speedAnim;
-    }
-});
-
-/*
  * Player range pointer.
  * ---------------------
  */
@@ -351,6 +262,7 @@ Crafty.c(PLAYER_ABS, {
         //add range pointer
         this.rangePointer = Crafty.e("2D, Canvas, PlayerRangePointer");
         this.rangePointer.setDiameter(this.shotRange);
+        this.requires('Image');
     },
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {
@@ -409,6 +321,7 @@ Crafty.c(PLAYER_SOLDIER, {
         this.actualWeapon = SHOT_P2P;
         this.shotSpeed = 5;
         this.shotDamage = 30;
+        this.image('images/towers/tower-08.png');
     }
 });
 
@@ -419,8 +332,8 @@ Crafty.c(PLAYER_SOLDIER, {
 Crafty.c(PLAYER_LASER, {
     //init method
     init: function() {
-        this.speedPX = 5;
+        this.speedPX = 6;
         this.actualWeapon = SHOT_LASER;
-        this.shotSpeed = 4;
+        this.image('images/player/soldier.png');
     }
 });

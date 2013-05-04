@@ -25,6 +25,7 @@ var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
 var SCENE_MOUSE_RELEASED_EVENT = "sceneMouseReleasedEvent";
 var SCENE_MOUSE_OUT_EVENT = "sceneMouseOutEvent";
 var SCENE_MOUSE_STOP_FIRE = "sceneMouseStopFireEvent";
+var MOUSE_MOVE = "playerMouseMove";
 
 /***********
  * ENEMIES *
