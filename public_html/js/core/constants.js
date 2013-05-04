@@ -279,6 +279,8 @@ var CHL_RATE_3 = 8;
 var CHL_RANGE_3 = 200;
 var CHL_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
 var CHL_FRAME_RATE = 5;
+var CHL_CHAIN_2 = 3;
+var CHL_CHAIN_3 = 4;
 
 var TOWER_HOMING_MISSILE = 'HomingMissileTower';
 var HM_DAMAGE = [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];

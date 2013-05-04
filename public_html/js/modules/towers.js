@@ -493,8 +493,9 @@ Crafty.c(TOWER_CHAIN_LASER, {
     start: function() {
         
         var tempStart;
-        var tempEnd;
         var chainCount;
+        var mobsPos = [];
+        var tempMob;
         
         for(var i = 0; i < this.chain; i++){
             this.s[i].create(LASER_IMAGE_PATH.laserThinRed, LASER_IMAGE_NAME.laserThinRedEnd); 
@@ -505,17 +506,25 @@ Crafty.c(TOWER_CHAIN_LASER, {
         }
         
         this.repId = timer.repeat (function () { 
+            mobsPos = [];
             tempStart = toPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
             chainCount = 0;
             
             for(var i = 0; i < this.chain; i++){
                 var elems = getEntities(ENEMY_ABS, tempStart, this.range);
+                for(var e in elems){
+                    if(!~mobsPos.indexOf (elems[e]))
+                        elems.splice(e, 1);
+                }
+            
                 if (elems.length !== 0) {
                     chainCount++;
                     var aim = aiming.get(AIMING_FURTHEST);
                     this.s[i].setStartPoint(tempStart);
-                    this.s[i].setEndPoint(aim.getElement(elems, tempStart));
+                    tempMob = aim.getElement(elems, tempStart);
+                    this.s[i].setEndPoint(tempMob);
                     tempStart = this.s[i].getEndPoint();
+                    mobsPos.push(tempMob);
                 }                    
             }
             
@@ -544,11 +553,13 @@ Crafty.c(TOWER_CHAIN_LASER, {
                     this.rate = CHL_RATE_2;
                     this.range = CHL_RANGE_2;
                     this.damage = CHL_DAMAGE_2;
+                    this.chain = CHL_CHAIN_2;
                     break;
                 case(3):
                     this.rate = CHL_RATE_3;
                     this.range = CHL_RANGE_3;
                     this.damage = CHL_DAMAGE_3;
+                    this.chain = CHL_CHAIN_3;
                     break;
             }
         }

@@ -46,7 +46,7 @@ Crafty.c(AIMING_MOST_HEALTH, {
             tempHealth = elems[i].getHealth() + elems[i].getShield();
             if (tempHealth > maxHealth) {
                 maxHealth = tempHealth;
-                element = elems[i];
+                element = elems[i].center;
             }
         }
         return element;
@@ -63,7 +63,7 @@ Crafty.c(AIMING_LEAST_HEALTH, {
             tempHealth = elems[i].getHealth() + elems[i].getShield();
             if (tempHealth < minHealth) {
                 minHealth = tempHealth;
-                element = elems[i];
+                element = elems[i].center;
             }
         }
         return element;
