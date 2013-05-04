@@ -168,6 +168,7 @@ Crafty.c (SHOT_LASER, {
         if (this.ending)
             this.ending.visible = false;
         this.isValid = false;
+        this.visible = false;
     },
     show: function () {
         if (this.laser)
@@ -175,6 +176,7 @@ Crafty.c (SHOT_LASER, {
         if (this.ending)
             this.ending.visible = true;
         this.isValid = true;
+        this.visible = true;
     },
     //#
     enterFrame: function () {
@@ -195,8 +197,6 @@ Crafty.c (SHOT_LASER, {
         this.y = ep.y - this.h / 2;
         this.laser.w = this.len + distance (this.shiftPoint, ep);
         this.laser.rotation = (this.angle * 180) / Math.PI;
-        this.laser.visible = true;
-        this.ending.visible = true;
 
         this.ending.x = ep.x - this.ending.w / 2;
         this.ending.y = ep.y - this.ending.h / 2;
@@ -210,7 +210,7 @@ Crafty.c (SHOT_LASER, {
             this.laser.origin (0, this.laser.h / 2);
             this.len = 0;
             this.bind ("EnterFrame", this.enterFrame);
-            this.visible = true;
+            this.show ();
         }
     },
     //#

@@ -531,7 +531,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
             if(chainCount !== 0)
                 this.fire(chainCount);
             
-            for (var i = chainCount+1; i < this.chain; i++){
+            for (var i = chainCount; i < this.chain; i++){
                 this.s[i].hide();
             }
             
@@ -539,7 +539,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
     },
     fire: function(chainCount) {
         for(var i = 0; i < chainCount; i++){
-            //this.s[i].show();
+            this.s[i].show();
             this.s[i].setDamage(this.damage);
             this.s[i].setTTL(this.ttl);
         }
@@ -640,7 +640,7 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
     },
     fire: function() {
         var s = shot.get(SHOT_SPLASH);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
@@ -690,7 +690,7 @@ Crafty.c(TOWER_SLOW_AURA, {
     },
     fire: function() {
         var s = shot.get(SHOT_SPLASH);
-        s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
+        s.setStartPoint([this.startPoint.x, this.startPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
