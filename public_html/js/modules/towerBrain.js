@@ -45,7 +45,6 @@ Crafty.c (TOWER_BRAIN, {
 
     getImage: function (type){
         var result;
-        console.log(type);
         switch (type) {
             case TOWER_MACHINEGUN:
                 result = TOWER_IMAGE_NAME.machineGunBody;
@@ -75,7 +74,6 @@ Crafty.c (TOWER_BRAIN, {
                 result = TOWER_IMAGE_NAME.slowAuraBody;
                 break;
         }
-    console.log(result);
         return Crafty.e ('2D, Canvas, {0}'.format(result))
                 .attr ({w: W, h: H, alpha: 0.8, z: 2});
     }
