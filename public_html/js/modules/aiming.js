@@ -38,7 +38,7 @@ Crafty.c(AIMING_FURTHEST, {
 
 /*** Component - most health mob ***/
 Crafty.c(AIMING_MOST_HEALTH, {
-    getElement: function(elems) {
+    getElement: function(elems, startPoint) {
         var maxHealth = Number.MIN_VALUE;
         var element = 0;
         var tempHealth;
@@ -46,7 +46,7 @@ Crafty.c(AIMING_MOST_HEALTH, {
             tempHealth = elems[i].getHealth() + elems[i].getShield();
             if (tempHealth > maxHealth) {
                 maxHealth = tempHealth;
-                element = elems[i];
+                element = elems[i].center;
             }
         }
         return element;
@@ -55,7 +55,7 @@ Crafty.c(AIMING_MOST_HEALTH, {
 
 /*** Component - least health mob ***/
 Crafty.c(AIMING_LEAST_HEALTH, {
-    getElement: function(elems) {
+    getElement: function(elems, startPoint) {
         var minHealth = Number.MAX_VALUE;
         var element = 0;
         var tempHealth;
@@ -63,7 +63,7 @@ Crafty.c(AIMING_LEAST_HEALTH, {
             tempHealth = elems[i].getHealth() + elems[i].getShield();
             if (tempHealth < minHealth) {
                 minHealth = tempHealth;
-                element = elems[i];
+                element = elems[i].center;
             }
         }
         return element;
