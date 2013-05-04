@@ -2,7 +2,6 @@ Crafty.scene (SCENE_GAME, function () {
 
     activateCanvas ();
     loadPage ('gamePanel', 'panel-main');
-    Crafty.background ('#F00');
 
     //mouse click activating for this scene
     activeSceneMouseClick ();
@@ -32,10 +31,10 @@ Crafty.scene (SCENE_GAME, function () {
         timer.repeat (function () {
             for (var i = 0; i < levelPaths.length; i++) {
                 enemy.create ({
-                    path: paths[i], speed: 10, wobble: ENEMY_WOBBLE.no
+                    path: paths[i], speed: ENEMY_SPEED.lighbolt, wobble: ENEMY_WOBBLE.no
                 }).start ();
             }
-        }, FRAME_RATE / 5);
+        }, FRAME_RATE);
         
         Crafty.e ("2D, Canvas, Image, _background")
                 .attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT})
@@ -44,9 +43,6 @@ Crafty.scene (SCENE_GAME, function () {
 
 
     }, null, 'text');
-
-    //add panel to scene
-    var panel = gamePanel.create ();
 
     //test player
     $.player = player.create (PLAYER_SOLDIER);
