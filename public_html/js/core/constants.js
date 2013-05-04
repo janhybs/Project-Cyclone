@@ -358,16 +358,16 @@ var TOWER_IMAGE_NAME = {
     cannonHead: 'head_01',
     flamethrowerBody: 'body_04',
     flamethrowerHead: 'head_04',
-    iceDartBody: 'cat',
-    iceDartHead: 'cat',
+    iceDartBody: 'cat1',
+    iceDartHead: 'cat2',
     beamLaserBody: 'body_03',
     beamLaserHead: 'head_03',
     chainLaserBody: 'body_05',
     chainLaserHead: 'head_05',
-    homingMissileBody: 'cat',
-    homingMissileHead: 'cat',
+    homingMissileBody: 'ca3t',
+    homingMissileHead: 'cat4',
     electricAuraBody: 'body_06',
-    slowAuraBody: 'cat'
+    slowAuraBody: 'cat5'
 };
 
 //tower bilder

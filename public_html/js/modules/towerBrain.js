@@ -45,26 +45,37 @@ Crafty.c (TOWER_BRAIN, {
 
     getImage: function (type){
         var result;
+        console.log(type);
         switch (type) {
             case TOWER_MACHINEGUN:
                 result = TOWER_IMAGE_NAME.machineGunBody;
+                break;
             case TOWER_CANNON:
                 result = TOWER_IMAGE_NAME.cannonBody;
+                break;
             case TOWER_FLAMETHROWER:
                 result = TOWER_IMAGE_NAME.flamethrowerBody;
+                break;
             case TOWER_ICE_DART:
                 result = TOWER_IMAGE_NAME.iceDartBody;
+                break;
             case TOWER_BEAM_LASER:
                 result = TOWER_IMAGE_NAME.beamLaserBody;
+                break;
             case TOWER_CHAIN_LASER:
                 result = TOWER_IMAGE_NAME.chainLaserBody;
+                break;
             case TOWER_HOMING_MISSILE:
                 result = TOWER_IMAGE_NAME.homingMissileBody;
+                break;
             case TOWER_ELECTRIC_AURA:
                 result = TOWER_IMAGE_NAME.electricAuraBody;
+                break;
             case TOWER_SLOW_AURA:
                 result = TOWER_IMAGE_NAME.slowAuraBody;
+                break;
         }
+    console.log(result);
         return Crafty.e ('2D, Canvas, {0}'.format(result))
                 .attr ({w: W, h: H, alpha: 0.8, z: 2});
     }

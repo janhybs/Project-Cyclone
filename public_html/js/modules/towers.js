@@ -8,7 +8,7 @@ window.tower = {
                 return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.machineGunBody))
                         .attr({w: W, h: H});
             case TOWER_CANNON:
-                return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
+                return Crafty.e('2D, Canvas, {0}, {1}, {2}, {3}'.format(TOWER_ABS, TOWER_P2P, type, TOWER_IMAGE_NAME.cannonBody))
                         .attr({w: W, h: H});
             case TOWER_FLAMETHROWER:
                 return Crafty.e('2D, Canvas, Image, {0}, {1}, {2}, portal'.format(TOWER_ABS, TOWER_P2P, type))
