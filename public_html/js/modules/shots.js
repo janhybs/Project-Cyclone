@@ -5,8 +5,8 @@ window.shot = {
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || P2P_IMAGE_NAME.shotNormal));
             case SHOT_LASER:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
-                        .setImage (avatar || LASER_IMAGE_PATH.laserThickPurple)
-                        .setEnding (avatar2 || LASER_IMAGE_NAME.laserThickPurpleEnd)
+                        .setImage (LASER_IMAGE_PATH.laserThinRed)
+                        .setEnding (LASER_IMAGE_NAME.laserThinRedEnd)
                         .attr ({w: 10, h: 10});
             case SHOT_HOMING:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || HOMING_IMAGE_NAME.rocketBlueSmall));
