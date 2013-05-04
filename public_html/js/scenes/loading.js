@@ -196,23 +196,25 @@ Crafty.sprite ('images/enemies.png', {
 
 Crafty.sprite ('images/shots.png', {
     aura_blue: [0, 0, 128, 128],
-    aura_red: [128, 0, 128, 128],
-    laser_thick_blue: [40, 128, 32, 32],
-    laser_thick_blue_end: [0, 178, 32, 32],
-    laser_thick_purple: [40, 160, 32, 32],
-    laser_thick_purple_end: [72, 128, 32, 32],
-    laser_thick_yellow: [0, 210, 32, 32],
-    laser_thick_yellow_end: [72, 160, 32, 32],
-    laser_thin_red: [104, 128, 32, 32],
-    laser_thin_red_end: [32, 192, 32, 32],
-    rocket_blue: [0, 128, 40, 25],
-    rocket_blue_small: [32, 224, 30, 19],
-    rocket_red: [0, 153, 40, 25],
-    rocket_red_small: [64, 192, 30, 19],
-    shot_cannon: [32, 178, 7, 7],
-    shot_green: [104, 160, 16, 16],
-    shot_ice: [0, 247, 9, 5],
-    shot_normal: [0, 242, 11, 5]
+    aura_green: [128, 0, 128, 128],
+    aura_red: [0, 128, 128, 128],
+    laser_thick_blue: [168, 128, 32, 32],
+    laser_thick_blue_end: [128, 178, 32, 32],
+    laser_thick_purple: [168, 160, 32, 32],
+    laser_thick_purple_end: [200, 128, 32, 32],
+    laser_thick_yellow: [128, 210, 32, 32],
+    laser_thick_yellow_end: [200, 160, 32, 32],
+    laser_thin_red: [160, 192, 32, 32],
+    laser_thin_red_end: [160, 224, 32, 32],
+    rocket_blue: [128, 128, 40, 25],
+    rocket_blue_small: [192, 192, 30, 19],
+    rocket_red: [128, 153, 40, 25],
+    rocket_red_small: [192, 211, 30, 19],
+    shot_cannon: [160, 178, 7, 7],
+    shot_green: [232, 128, 16, 16],
+    shot_ice: [128, 247, 9, 5],
+    shot_normal: [128, 242, 11, 5],
+    shot_red: [232, 144, 16, 16]
 });
 
 Crafty.sprite ('images/towers.png', {

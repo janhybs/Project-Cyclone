@@ -138,6 +138,7 @@ var LASER_IMAGE_NAME = {
 var P2P_IMAGE_NAME = {
     shotCannon: 'shot_cannon',
     shotGreen: 'shot_green',
+    shotRed: 'shot_red',
     shotIce: 'shot_ice',
     shotNormal: 'shot_normal'
 };
@@ -151,7 +152,8 @@ var HOMING_IMAGE_NAME = {
 
 var SPLASH_IMAGE_NAME = {
     auraBlue: 'aura_blue',
-    auraRed: 'aura_red'
+    auraRed: 'aura_red',
+    auraGreen: 'aura_green',
 };
 
 var REZISTANCE = 1.00;
