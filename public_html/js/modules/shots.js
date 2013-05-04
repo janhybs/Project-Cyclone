@@ -162,6 +162,20 @@ Crafty.c (SHOT_LASER, {
         if (!this.laser || laser)
             this.setImage (laser || LASER_IMAGE_PATH.laserThinRed);
     },
+    hide: function () {
+        if (this.laser)
+            this.laser.visible = false;
+        if (this.ending)
+            this.ending.visible = false;
+        this.isValid = false;
+    },
+    show: function () {
+        if (this.laser)
+            this.laser.visible = true;
+        if (this.ending)
+            this.ending.visible = true;
+        this.isValid = true;
+    },
     //#
     enterFrame: function () {
         var ep = {x: this.endPoint.x, y: this.endPoint.y};
@@ -184,14 +198,14 @@ Crafty.c (SHOT_LASER, {
         this.laser.visible = true;
         this.ending.visible = true;
 
-        this.ending.x = ep.x - this.ending.w/2;
-        this.ending.y = ep.y - this.ending.h/2;
+        this.ending.x = ep.x - this.ending.w / 2;
+        this.ending.y = ep.y - this.ending.h / 2;
     },
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
             this.laser.z = this.z;
-            this.ending.z = this.z+1;
+            this.ending.z = this.z + 1;
             this.setStartPoint (this.startPoint);
             this.laser.origin (0, this.laser.h / 2);
             this.len = 0;
