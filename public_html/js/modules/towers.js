@@ -460,7 +460,7 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.start();
-        s.z = Z_TOWER_SHOT;
+        this.s.z = Z_TOWER_SHOT;
         this.s.hide();
 
         this.repId = timer.repeat (function () { 
