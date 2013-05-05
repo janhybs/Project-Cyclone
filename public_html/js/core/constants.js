@@ -5,11 +5,13 @@
 var ALWAYS_DRAW_ALL = true;
 
 var Z_BOARD = 1;
+var Z_ENEMY = 2;
 var Z_PLAYER = 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
-var Z_TOWER_BODY = 10000;
-var Z_TOWER_HEAD = 100000;
+var Z_TOWER_BODY = 10*1000;
+var Z_TOWER_HEAD = 100*1000;
 var Z_TOWER_SHOT = Z_TOWER_BODY + 1;
+var Z_EFFECTS = 1000*1000;
 
 /***************
  * GAME SCENES *

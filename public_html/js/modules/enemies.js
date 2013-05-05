@@ -23,6 +23,7 @@ Crafty.c (ENEMY_ABS, {
         this.shieldActor = null;
     },
     init: function () {
+        this.z = Z_ENEMY;
         this.resistance = toDamage (0);
         this.shield = 0;
         this.speed = 32;
