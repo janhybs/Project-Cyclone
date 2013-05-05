@@ -2,6 +2,8 @@
  *    CORE     *
  ***************
  */
+var ALWAYS_DRAW_ALL = true;
+
 var Z_BOARD = 1;
 var Z_PLAYER = 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
