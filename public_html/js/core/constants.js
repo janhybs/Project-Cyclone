@@ -279,7 +279,7 @@ var L_FRAME_RATE = 5;
 var L_AIM_STYLE = 'ClosestAim';
 
 var TOWER_CHAIN_LASER = 'ChainLaserTower';
-var CHL_CHAIN = 3;
+var CHL_CHAIN = 2;
 var CHL_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
 var CHL_RATE = 2;
 var CHL_RANGE = 120;
