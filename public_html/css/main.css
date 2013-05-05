@@ -190,7 +190,9 @@ html {
     border: 1px solid grey;
     width:8em;
     background: rgba(11, 15, 20, 0.5);
+    cursor: pointer;
 }
+
 .playerSelect input{
     display: inline;
     height: 1em;

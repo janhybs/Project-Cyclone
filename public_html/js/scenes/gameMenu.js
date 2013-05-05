@@ -10,6 +10,7 @@ Crafty.scene (SCENE_GAME_MENU,
                 //disable non-available levels
                 var maxLev = PlayerUtils.getMaxOpenLevel();
                 for(var i = 1; i <= maxLev; i++) {
+                    $('#level'+i).attr('style', 'cursor:pointer');
                     $('#level'+i).attr('onclick', '$.actualLevel = {0};Crafty.scene(SCENE_GAME);'.format(i));
                     $('#level'+i).mouseover(i, function(event) {$('#level'+event.data).animate({opacity: 1}, 1000);});
                     $('#level'+i).mouseout(i, function(event) {$('#level'+event.data).animate({opacity: 0.3}, 500);});
