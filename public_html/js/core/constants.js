@@ -378,7 +378,10 @@ var TOWER_IMAGE_NAME = {
 };
 
 //tower bilder
-var TOWER_BUILDER = "towerBuilderComp";
+var TOWER_BUILDER = 'towerBuilderComp';
+
+//enemy generator
+var ENEMY_GENERATOR = 'enemyGenerator';
 
 /**********
  * AIMING *

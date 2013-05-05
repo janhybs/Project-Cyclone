@@ -1,3 +1,5 @@
+/*** TOWER BRAIN MODULE ***/
+
 Crafty.c (TOWER_BRAIN, {
     init: function () {
         this.items = [];
