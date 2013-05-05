@@ -600,6 +600,11 @@ Crafty.c(TOWER_CHAIN_LASER, {
                     this.chain = CHL_CHAIN_2;
                     for(var i = CHL_CHAIN; i < CHL_CHAIN_2; i++){
                         this.s.push(shot.get(SHOT_LASER));
+                        this.s[i].create(LASER_IMAGE_NAME.chain, LASER_IMAGE_NAME.chainEnd); 
+                        this.s[i].setStartPoint(this.startPoint);
+                        this.s[i].setEndPoint(this.startPoint);
+                        this.s[i].start();
+                        this.s[i].hide();
                     }
                     break;
                 case(3):
@@ -609,6 +614,11 @@ Crafty.c(TOWER_CHAIN_LASER, {
                     this.chain = CHL_CHAIN_3;
                     for(var i = CHL_CHAIN_2; i < CHL_CHAIN_3; i++){
                         this.s.push(shot.get(SHOT_LASER));
+                        this.s[i].create(LASER_IMAGE_NAME.chain, LASER_IMAGE_NAME.chainEnd); 
+                        this.s[i].setStartPoint(this.startPoint);
+                        this.s[i].setEndPoint(this.startPoint);
+                        this.s[i].start();
+                        this.s[i].hide();
                     }
                     break;
             }
