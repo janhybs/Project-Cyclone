@@ -82,6 +82,11 @@ PlayerUtils.addPlayerMoney = function(money) {
     $.jStorage.set(PLAYER_MONEY, $.jStorage.get(PLAYER_MONEY) + money);
 };
 
+//method sets money
+PlayerUtils.setPlayerMoney = function(money) {
+    $.jStorage.set(PLAYER_MONEY, money);
+};
+
 //method gets damage of actual player
 PlayerUtils.getDamagePoints = function() {
     if($.jStorage.get(ACTIVE_PLAYER) === GUN_PLAYER) {

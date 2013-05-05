@@ -3,7 +3,7 @@ Crafty.scene (SCENE_GAME, function () {
     activateCanvas ();
     loadPage ('gamePanel', 'panel-main', function () {
         //load money info
-        $ ('#availableMoney').html (PlayerUtils.getPlayerMoney ());
+        refreshMoney ();
         bindActions ();
     });
 

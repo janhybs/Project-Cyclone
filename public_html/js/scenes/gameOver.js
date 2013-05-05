@@ -3,6 +3,8 @@ Crafty.scene (SCENE_GAME_OVER,
 
             activateWebview ();
             loadPage ('webview', 'scene-game-over', function () {
+                PlayerUtils.setPlayerMoney ($.startMoney);
+                refreshMoney ();
             });
         },
         function () {

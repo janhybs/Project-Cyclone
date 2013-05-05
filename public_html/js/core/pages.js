@@ -159,10 +159,14 @@ function buyStuff (price) {
     if (PlayerUtils.getPlayerMoney () >= price) {
         //# upgrade money status
         PlayerUtils.addPlayerMoney (-price);
-        $ ('#availableMoney').html (PlayerUtils.getPlayerMoney ());
+        refreshMoney ();
         return true;
     }
     return false;
+}
+
+function refreshMoney () {
+    $ ('#availableMoney').html (PlayerUtils.getPlayerMoney ());
 }
 
 function deleteSelectedTower () {
