@@ -37,7 +37,6 @@ Crafty.c('PlayerControls', {
         console.log("Player controls loaded.");
         //center for rotation
         this.origin(16, 14);
-        this.z = Z_PLAYER;
         //move with new frames
         this.bind('EnterFrame', function() {
             this.opt = this.opt?false:true;
@@ -271,6 +270,8 @@ Crafty.c(PLAYER_ABS, {
         //add range pointer
         this.rangePointer = Crafty.e("2D, Canvas, PlayerRangePointer");
         this.requires('Image');
+        //z - index
+        this.z = Z_PLAYER;
     },
     //repair position after change x or y (collision detect, etc.)
     repairPosition: function(fromX, fromY, move) {

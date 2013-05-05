@@ -6,7 +6,7 @@ var ALWAYS_DRAW_ALL = true;
 
 var Z_BOARD = 1;
 var Z_ENEMY = 2;
-var Z_PLAYER = 1000 * 1000 * 10;
+var Z_PLAYER = 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
 var Z_TOWER_BODY = 10 * 1000;
 var Z_TOWER_HEAD = 100 * 1000;
@@ -25,15 +25,6 @@ var SCENE_LEVEL_UP = 'playerLevelUp';
 var SCENE_NEW_GAME = 'newGame';
 var SCENE_CONTINUE = 'continue';
 var SCENE_GAME_MENU = 'gameMenu';
-
-//debug scenes
-var SCENE_DEBUG_MENU = 'debugMenu';
-var SCENE_P2P_TEST = 'p2p-test';
-var SCENE_LASER_TEST = 'laser-test';
-var SCENE_HOMING_TEST = 'homing-test';
-var SCENE_SPLASH_TEST = 'splash-test';
-var SCENE_P2P_TOWER_TEST = 'tower-p2p-test';
-var SCENE_ENEMY_TEST = 'enemy-test';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
@@ -405,7 +396,6 @@ var AIMING_FURTHEST = 'FurthestAim';
  */
 //players
 var PLAYER_ABS = 'AbstractPlayer';
-var PLAYER_DEBUG = 'DebugPlayer';
 var PLAYER_SOLDIER = 'SoldierPlayer';
 var PLAYER_LASER = 'LaserPlayer';
 
@@ -454,35 +444,11 @@ var PLAYER_RANGES = {
     10: 32 * 15.00
 };
 
-//walking
-var WALK_UP = "walkUp";
-var WALK_DOWN = "walkDown";
-var WALK_LEFT = "walkLeft";
-var WALK_RIGHT = "walkRight";
-
 //sounds
 var PLAYER_STEP_SOUND = "step";
 
-//storage
-var GUN_PLAYER = "gunPlayer";
-var LASER_PLAYER = "laserPlayer";
-var GUN_PLAYER_NAME = "gunPlayerName";
-var LASER_PLAYER_NAME = "laserPlayerName";
-var ACTIVE_PLAYER = "activePlayer";
-var GUN_PLAYER_EXPS = "gunPlayerExps";
-var GUN_PLAYER_LEVEL = "gunPlayerLevel";
-var GUN_PLAYER_DAMAGE = "gunPlayerDamage";
-var GUN_PLAYER_RANGE = "gunPlayerRange";
-var LASER_PLAYER_EXPS = "laserPlayerExps";
-var LASER_PLAYER_LEVEL = "laserPlayerLevel";
-var LASER_PLAYER_DAMAGE = "laserPlayerDamage";
-var LASER_PLAYER_RANGE = "laserPlayerRange";
-
 //others
-var LAST_STEPS_COUNT = 3;
 var LEVEL_UP_TEXT = "Your level was increased!";
-var AVAILABLE_POINTS_TEXT = "Your free points: ";
-var PLAYER_LASER_IMAGE = "images/laser-01.png";
 
 /************************
  * GAME PANEL CONSTANTS *
@@ -501,14 +467,26 @@ var PANEL_BG_COLOR = "#888888";
  * LOCAL STORAGE DATA CONSTANTS *
  ********************************
  */
-//player parts
-var PLAYER_DAMAGE = "_Damage";
-var PLAYER_RANGE = "_Range";
 
 /*******************
  * GENERAL STORAGE *
  *******************
  */
+//storage
+var GUN_PLAYER = "gunPlayer";
+var LASER_PLAYER = "laserPlayer";
+var GUN_PLAYER_NAME = "gunPlayerName";
+var LASER_PLAYER_NAME = "laserPlayerName";
+var ACTIVE_PLAYER = "activePlayer";
+var GUN_PLAYER_EXPS = "gunPlayerExps";
+var GUN_PLAYER_LEVEL = "gunPlayerLevel";
+var GUN_PLAYER_DAMAGE = "gunPlayerDamage";
+var GUN_PLAYER_RANGE = "gunPlayerRange";
+var LASER_PLAYER_EXPS = "laserPlayerExps";
+var LASER_PLAYER_LEVEL = "laserPlayerLevel";
+var LASER_PLAYER_DAMAGE = "laserPlayerDamage";
+var LASER_PLAYER_RANGE = "laserPlayerRange";
+
 var PLAYER_MONEY = "playerMoney";
 var PLAYER_START_MONEY_PACK = 1000;
 var MAX_OPENED_LEVEL = "maxOpenedLevel";
