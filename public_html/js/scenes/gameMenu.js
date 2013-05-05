@@ -36,14 +36,14 @@ Crafty.scene (SCENE_GAME_MENU,
                         $('#laserPart').animate({opacity: 0.3}, 200);});
                 $('#soldierPart').mouseleave(function() {if(PlayerUtils.getActualPlayerType() !== PLAYER_SOLDIER) {
                         $('#soldierPart').animate({opacity: 0.3}, 200);
-                        $('#laserPart').animate({opacity: 1}, 500);
+                        $('#laserPart').animate({opacity: 1}, 1000);
                     }});
                 $('#laserPart').mouseenter(function() {
                         $('#laserPart').animate({opacity: 1}, 1000);
                         $('#soldierPart').animate({opacity: 0.3}, 200);});
                 $('#laserPart').mouseleave(function() {if(PlayerUtils.getActualPlayerType() === PLAYER_SOLDIER) { 
                         $('#laserPart').animate({opacity: 0.3}, 200);
-                        $('#soldierPart').animate({opacity: 1}, 500);
+                        $('#soldierPart').animate({opacity: 1}, 1000);
                     }});
             });
         },
