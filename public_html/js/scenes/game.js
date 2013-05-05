@@ -24,20 +24,23 @@ Crafty.scene (SCENE_GAME, function () {
         board.showBoard (levelBoard);
         board.showPortals (levelPaths);
         board.showGates (levelPaths);
+        window.levelData = xmldata;
+        
+        generator.start (xmldata, levelPaths);
 
 
-        var paths = [];
-        for (var i = 0; i < levelPaths.length; i++) {
-            paths.push (enlargePath (levelPaths[i]));
-        }
-
-        timer.repeat (function () {
-            for (var i = 0; i < levelPaths.length; i++) {
-                enemy.create ({
-                    path: paths[i], speed: ENEMY_SPEED.lighbolt, shield: ENEMY_SHIELD.weak, wobble: ENEMY_WOBBLE.no
-                }).requires('HealthBar').start ();
-            }
-        }, FRAME_RATE * 5);
+//        var paths = [];
+//        for (var i = 0; i < levelPaths.length; i++) {
+//            paths.push (enlargePath (levelPaths[i]));
+//        }
+//
+//        timer.repeat (function () {
+//            for (var i = 0; i < levelPaths.length; i++) {
+//                enemy.create ({
+//                    path: paths[i], speed: ENEMY_SPEED.lighbolt, shield: ENEMY_SHIELD.boss, wobble: ENEMY_WOBBLE.no
+//                }).requires('HealthBar').start ();
+//            }
+//        }, FRAME_RATE );
         
         Crafty.e ("2D, Canvas, Image, _background")
                 .attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT, z: Z_BOARD})

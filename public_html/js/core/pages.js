@@ -42,10 +42,8 @@ function bindActions () {
     towerDelete.bind ('click', deleteSelectedTower);
 
     for (var p in items) {
-        console.log (p);
         var e = $ ('#{0}'.format (p));
         e.bind ('click', p, function (event) {
-            console.log ('click');
             if ($.toverBuilderLock)
                 return;
             var p = event.data;
@@ -60,7 +58,6 @@ function bindActions () {
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseover', p, function (event) {
-            console.log ('over');
             if ($.toverBuilderLock)
                 return;
             var p = event.data;
@@ -74,7 +71,6 @@ function bindActions () {
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseout', function (event) {
-            console.log ('out');
             if ($.toverBuilderLock)
                 return;
             towerInfo.hide ();
@@ -145,4 +141,6 @@ function deleteSelectedTower () {
 
     $.selectedTower.doDestroy ();
     $.selectedTower = undefined;
+    towerInfo.hide ();
+    towerMenu.hide ();
 }

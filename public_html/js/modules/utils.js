@@ -30,13 +30,13 @@ Crafty.c ("Framer", {
             repeat: 1
         }) - 1;
     },
-    repeat: function (func, frames, ctx) {
+    repeat: function (func, frames, ctx, repeat) {
         return this._delays.push ({
             count: Math.floor (frames),
             func: func,
             frames: Math.floor (frames),
             ctx: ctx || this,
-            repeat: -1
+            repeat: repeat || -1
         }) - 1;
     },
     /**@
