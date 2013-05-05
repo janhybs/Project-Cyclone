@@ -117,12 +117,12 @@ PlayerUtils.openNextLevel = function() {
 
 //method gets best score for level
 PlayerUtils.getBestScoreByLevel = function(level) {
-    return $.jStorage.get(window[BEST_SCORE_LEVEL+level]);
+    return $.jStorage.get(window['BEST_SCORE_LEVEL'+level]);
 };
 
 //method sets best score for level
 PlayerUtils.setBestScoreByLevel = function(level, score) {
-    return $.jStorage.set(window[BEST_SCORE_LEVEL+level], score);
+    return $.jStorage.set(window['BEST_SCORE_LEVEL'+level], score);
 };
 
 //method gets player name by player type

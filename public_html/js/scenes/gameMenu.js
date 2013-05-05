@@ -18,7 +18,7 @@ Crafty.scene (SCENE_GAME_MENU,
                 }
                 //add best score about
                 for(var i = 1; i <=maxLev-1  && i < 5; i++) {
-                    $('#levelscore'+i).html('Your best score: ' + PlayerUtils.getBestScoreByLevel(i) + 'lost');
+                    $('#levelscore'+i).html('Your best score: ' + PlayerUtils.getBestScoreByLevel(i) + ' lost');
                 }
                 //names of players
                 $('#soldierName').html(PlayerUtils.getPlayerNameByType(PLAYER_SOLDIER));
