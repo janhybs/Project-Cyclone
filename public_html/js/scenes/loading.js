@@ -39,7 +39,8 @@ Crafty.scene (SCENE_LOADING, function () {
         'sounds/ice-dart.ogg',
         'sounds/laser.ogg',
         'sounds/machine-gun.ogg',
-        'sounds/slow.ogg'
+        'sounds/slow.ogg',
+        'sounds/player_laser.ogg'
     ];
 
     Crafty.load ([].concat (images, sounds), function () {
@@ -87,7 +88,8 @@ Crafty.audio.add ({
     death_02: ['sounds/death-02.ogg'],
     death_03: ['sounds/death-03.ogg'],
     death_04: ['sounds/death-04.ogg'],
-    death_05: ['sounds/death-05.ogg']
+    death_05: ['sounds/death-05.ogg'],
+    playerLaserSound: ['sounds/player_laser.ogg']
 });
 
 
