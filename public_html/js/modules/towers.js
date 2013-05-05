@@ -151,7 +151,7 @@ Crafty.c(TOWER_ABS, {
     upgradeLevel: function(image){
         if(this.levelComp !== undefined)
             this.levelComp.destroy();
-        this.levelComp = Crafty.e("2D, DOM, Image")
+        this.levelComp = Crafty.e("2D, Canvas, Image")
              .attr({x: this.startPoint.x + LEVEL_X_MOVE, y: this.startPoint.y + LEVEL_Y_MOVE, z: Z_TOWER_LEVEL})
              .image(image, "no-repeat");
     }
