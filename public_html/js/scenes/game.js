@@ -33,13 +33,13 @@ Crafty.scene (SCENE_GAME, function () {
         timer.repeat (function () {
             for (var i = 0; i < levelPaths.length; i++) {
                 enemy.create ({
-                    path: paths[i], speed: ENEMY_SPEED.lighbolt, wobble: ENEMY_WOBBLE.no
+                    path: paths[i], speed: ENEMY_SPEED.lighbolt, shield: ENEMY_SHIELD.boss, wobble: ENEMY_WOBBLE.no
                 }).start ();
             }
-        }, FRAME_RATE);
+        }, FRAME_RATE * 5);
         
         Crafty.e ("2D, Canvas, Image, _background")
-                .attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT})
+                .attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT, z: Z_BOARD})
                 .image ("images/levels/level-0{0}.png".format ($.actualLevel), "no-repeat");
 
 

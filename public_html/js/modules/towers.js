@@ -46,12 +46,14 @@ Crafty.c(TOWER_ABS, {
         this.startPoint = null;
         this.level = 1;
         this.repId = false;
+        this.z = Z_TOWER_BODY;
     },
     prepareActor: function(type) {
         this.actor = Crafty.e('2D, Canvas, Image, {0}'.format(type));
         this.actor.origin(24, 24);
         this.actor.x = this.x;
         this.actor.y = this.y;
+        this.actor.z = Z_TOWER_HEAD;
     },
     doDestroy: function() {
         this.destroy();
@@ -247,7 +249,7 @@ Crafty.c(TOWER_MACHINEGUN, {
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
-        s.z = this.z - 1;
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },   
@@ -303,7 +305,7 @@ Crafty.c(TOWER_CANNON, {
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
-        s.z = this.z - 1;
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(CANNON_SOUND, 1);
         s.start();
     },
@@ -359,7 +361,7 @@ Crafty.c(TOWER_FLAMETHROWER, {
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
-        s.z = this.z - 1;
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(SPRAY_SOUND, 1);
         s.start();
     },
@@ -414,7 +416,7 @@ Crafty.c(TOWER_ICE_DART, {
         s.setSpreading(this.spreading);
         s.setTTL(this.ttl);
         s.create(this.rate);
-        s.z = this.z - 1;
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(SPRAY_SOUND, 1);
         s.start();
     },
@@ -458,7 +460,7 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.start();
-        this.s.z = this.z - 1;
+        s.z = Z_TOWER_SHOT;
         this.s.hide();
 
         this.repId = timer.repeat (function () { 

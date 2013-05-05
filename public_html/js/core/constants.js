@@ -1,4 +1,15 @@
 /***************
+ *    CORE     *
+ ***************
+ */
+var Z_BOARD = 1;
+var Z_PLAYER = 1000;
+var Z_PLAYER_SHOT = Z_PLAYER - 1;
+var Z_TOWER_BODY = 10000;
+var Z_TOWER_HEAD = 100000;
+var Z_TOWER_SHOT = Z_TOWER_BODY + 1;
+
+/***************
  * GAME SCENES *
  ***************
  */
@@ -344,11 +355,11 @@ var SA_GROWTH_3 = 200;
 var SA_DAMAGE_3 = [0, 0, 0, 0, 0, 1, 1, 3, 0.6, 1, 0.1];
 var SA_FRAME_RATE = 1;
 
-var TOWER_IMAGE_ARRAY = {MachineGunTower:['images/cat.gif'], CannonTower:['images/cat.gif'], 
-            FlamethrowerTower:['images/cat.gif'], IceDartTower:['images/cat.gif'],
-            BeamLaserTower:['images/cat.gif'], ChainLaserTower:['images/cat.gif'],
-            HomingMissileTower:['images/cat.gif'], ElectricAuraTower:['images/cat.gif'],
-            SlowAuraTower:['images/cat.gif']};
+var TOWER_IMAGE_ARRAY = {MachineGunTower: ['images/cat.gif'], CannonTower: ['images/cat.gif'],
+    FlamethrowerTower: ['images/cat.gif'], IceDartTower: ['images/cat.gif'],
+    BeamLaserTower: ['images/cat.gif'], ChainLaserTower: ['images/cat.gif'],
+    HomingMissileTower: ['images/cat.gif'], ElectricAuraTower: ['images/cat.gif'],
+    SlowAuraTower: ['images/cat.gif']};
 
 var TOWER_BRAIN = 'TowerBrainComp';
 
@@ -449,7 +460,7 @@ var GAME_PANEL_COMPONENT = "gamePanelComp";
 var GAME_PANEL_CONTENT = "gamePanelContent";
 
 //panel properties
-var PANEL_WIDTH = 5*32;
+var PANEL_WIDTH = 5 * 32;
 var PANEL_BG_COLOR = "#888888";
 
 
