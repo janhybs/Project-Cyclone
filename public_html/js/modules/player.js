@@ -160,6 +160,7 @@ Crafty.c('PlayerFire', {
     },
     
     doP2PFire: function() {
+        Crafty.audio.play(PLAYER_GUN_SOUND, 1);
         this.actualShot = false;
         this.actualShot = shot.get(SHOT_P2P, P2P_IMAGE_NAME.playerSoldier);
         this.actualShot.setStartPoint([$.player.x + $.player.w / 2, $.player.y + $.player.h / 2]);
@@ -185,6 +186,7 @@ Crafty.c('PlayerFire', {
             this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
         });
         this.actualShot.start();
+        Crafty.audio.play(PLAYER_LASER_SOUND, -1);
     },
     
     //method for stop fire        
@@ -194,6 +196,7 @@ Crafty.c('PlayerFire', {
                 timer.clearTimer($.shotRepID);
         }
         if(this.actualWeapon === SHOT_LASER && !(typeof(this.actualShot) === 'boolean')) {
+            Crafty.audio.stop(PLAYER_LASER_SOUND);
             this.actualShot.doDestroy();
         }
     }

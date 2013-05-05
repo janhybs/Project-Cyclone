@@ -446,6 +446,9 @@ var PLAYER_RANGES = {
 
 //sounds
 var PLAYER_STEP_SOUND = "step";
+var PLAYER_GUN_SOUND = "machineGun";
+var PLAYER_LASER_SOUND = "playerLaserSound";
+
 
 //others
 var LEVEL_UP_TEXT = "Your level was increased!";
