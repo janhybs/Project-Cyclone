@@ -4,7 +4,7 @@ window.board = {
             for (var j = 0, ls = data[i].length; j < ls; j++) {
                 switch (data[i].charAt (j)) {
                     case '0':
-                        Crafty.e ("2D, Canvas, path").attr ({x: j * W, y: i * H});
+                        Crafty.e ("2D, Canvas, Rectangle, path").attr ({x: j * W, y: i * H, w: W, h: H});
                         break;
                     case '1':
                         break;
