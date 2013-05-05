@@ -6,7 +6,7 @@ var ALWAYS_DRAW_ALL = true;
 
 var Z_BOARD = 1;
 var Z_ENEMY = 2;
-var Z_PLAYER = 1000;
+var Z_PLAYER = 1000 * 1000 * 10;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
 var Z_TOWER_BODY = 10 * 1000;
 var Z_TOWER_HEAD = 100 * 1000;
@@ -138,7 +138,7 @@ var LASER_IMAGE_NAME = {
     chain: "chain",
     chainEnd: "chain_end",
     laser: "laser",
-    laserEnd: "laserEnd",
+    laserEnd: "laser_end",
     playerLaser: "player_laser",
     playerLaserEnd: "player_laser_end"
 };
@@ -148,7 +148,7 @@ var P2P_IMAGE_NAME = {
     flame: 'flame',
     machineGun: 'machine_gun',
     iceDart: 'ice_dart',
-    playerSoldier : "player_soldier"
+    playerSoldier: "player_soldier"
 };
 
 var HOMING_IMAGE_NAME = {

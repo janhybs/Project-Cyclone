@@ -162,7 +162,7 @@ Crafty.c('PlayerFire', {
     
     doP2PFire: function() {
         this.actualShot = false;
-        this.actualShot = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotGreen);
+        this.actualShot = shot.get(SHOT_P2P, P2P_IMAGE_NAME.playerSoldier);
         this.actualShot.setStartPoint([$.player.x + $.player.w / 2, $.player.y + $.player.h / 2]);
         this.actualShot.setEndPoint(mousePos);
         this.actualShot.setDamage($.player.shotDamage);
@@ -181,7 +181,7 @@ Crafty.c('PlayerFire', {
         this.actualShot.withRadius = true;
         this.actualShot.rangeRadius = this.rangePointer.getDiameter()/2;
         this.actualShot.z = Z_PLAYER_SHOT;
-        this.actualShot.create(LASER_IMAGE_PATH.laserThinRed, LASER_IMAGE_NAME.laserThinRedEnd);
+        this.actualShot.create(LASER_IMAGE_NAME.playerLaser, LASER_IMAGE_NAME.playerLaserEnd);
         this.bind("Move", function() {
             this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
         });
