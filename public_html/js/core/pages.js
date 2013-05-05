@@ -35,13 +35,17 @@ function loadDivs () {
 
 function bindActions () {
     loadDivs ();
+    towerInfo.hide ();
+    towerMenu.hide ();
 
     towerUpgrade.bind ('click', upgradeSelectedTower);
     towerDelete.bind ('click', deleteSelectedTower);
 
     for (var p in items) {
+        console.log (p);
         var e = $ ('#{0}'.format (p));
         e.bind ('click', p, function (event) {
+            console.log ('click');
             if ($.toverBuilderLock)
                 return;
             var p = event.data;
@@ -50,13 +54,13 @@ function bindActions () {
             towerInfo.show ();
             towerMenu.hide ();
 
-            showInfo (getTowerName (items[p][0]),
+            showInfo ('{0} (lvl{1})'.format (getTowerName (items[p][0]), 1),
                     getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
                     window["{0}_RANGE".format (items[p][1])],
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseover', p, function (event) {
-
+            console.log ('over');
             if ($.toverBuilderLock)
                 return;
             var p = event.data;
@@ -64,12 +68,13 @@ function bindActions () {
             towerInfo.show ();
             towerMenu.hide ();
 
-            showInfo (getTowerName (items[p][0]),
+            showInfo ('{0} (lvl {1})'.format (getTowerName (items[p][0]), 1),
                     getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
                     window["{0}_RANGE".format (items[p][1])],
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseout', function (event) {
+            console.log ('out');
             if ($.toverBuilderLock)
                 return;
             towerInfo.hide ();
@@ -96,7 +101,8 @@ function getDamageSum (dmg) {
 }
 
 function getTowerName (name) {
-    return name.replace (/([A-Z])/g, " $1").trim ();
+    return name.replace (/([A-Z])/g, " $1").replace (/Tower/g, "").trim ();
+
 }
 
 function towerClicked (tower) {
@@ -104,11 +110,11 @@ function towerClicked (tower) {
 
     towerInfo.show ();
     towerMenu.show ();
-    
+
     $.selectedTower = tower;
     setupTowerActions ();
-    
-    showInfo (getTowerName (tower.getType()),
+
+    showInfo ('{0} (lvl {1})'.format (getTowerName (tower.getType ()), tower.getLevel ()),
             getDamageSum (tower.getDamage ()),
             tower.getRange (),
             tower.getRate ());
@@ -128,15 +134,15 @@ function setupTowerActions () {
 function upgradeSelectedTower () {
     if ($.selectedTower === undefined)
         return;
-    
-    $.selectedTower.upgrade();
+
+    $.selectedTower.upgrade ();
     towerClicked ($.selectedTower);
 }
 
 function deleteSelectedTower () {
     if ($.selectedTower === undefined)
         return;
-    
+
     $.selectedTower.doDestroy ();
     $.selectedTower = undefined;
 }
