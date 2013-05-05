@@ -55,9 +55,12 @@ Crafty.scene (SCENE_GAME, function () {
     //binds for ending game
     Crafty.bind(GAME_OVER, function() {Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
+        console.log("game over");
         Crafty.scene(SCENE_GAME_OVER)});
+    
     Crafty.bind(GAME_END, function(slips) {Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
         $.enemyLosts = slips;
-        Crafty.scene(SCENE_GAME_SUCCES)});
+        console.log('game success');
+        Crafty.scene(SCENE_GAME_SUCCESS)});
 });
