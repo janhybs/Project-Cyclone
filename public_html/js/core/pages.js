@@ -4,6 +4,10 @@ var infoName;
 var infoDamage;
 var infoRange;
 var infoRate;
+var towerUpgrade;
+var towerDelete;
+
+$.selectedTower = undefined;
 
 var items = {
     machineGun: [TOWER_MACHINEGUN, "MG"],
@@ -25,10 +29,15 @@ function loadDivs () {
     infoDamage = $ ('#infoDamage');
     infoRange = $ ('#infoRange');
     infoRate = $ ('#infoRate');
+    towerUpgrade = $ ('#towerUpgrade');
+    towerDelete = $ ('#towerDelete');
 }
 
 function bindActions () {
     loadDivs ();
+
+    towerUpgrade.bind ('click', upgradeSelectedTower);
+    towerDelete.bind ('click', deleteSelectedTower);
 
     for (var p in items) {
         var e = $ ('#{0}'.format (p));
@@ -70,6 +79,8 @@ function bindActions () {
 }
 
 function showInfo (name, damage, range, rate) {
+    loadDivs ();
+
     infoName.html (name);
     infoDamage.html (damage);
     infoRange.html (range);
@@ -89,5 +100,43 @@ function getTowerName (name) {
 }
 
 function towerClicked (tower) {
-    alert ('klikátor');
+    loadDivs ();
+
+    towerInfo.show ();
+    towerMenu.show ();
+    
+    $.selectedTower = tower;
+    setupTowerActions ();
+    
+    showInfo (getTowerName (tower.getType()),
+            getDamageSum (tower.getDamage ()),
+            tower.getRange (),
+            tower.getRate ());
+}
+
+function setupTowerActions () {
+    if ($.selectedTower === undefined)
+        return;
+    loadDivs ();
+
+    if ($.selectedTower.getLevel () === 3)
+        towerUpgrade.hide ();
+    else
+        towerUpgrade.show ();
+}
+
+function upgradeSelectedTower () {
+    if ($.selectedTower === undefined)
+        return;
+    
+    $.selectedTower.upgrade();
+    towerClicked ($.selectedTower);
+}
+
+function deleteSelectedTower () {
+    if ($.selectedTower === undefined)
+        return;
+    
+    $.selectedTower.doDestroy ();
+    $.selectedTower = undefined;
 }
