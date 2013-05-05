@@ -74,7 +74,7 @@ Crafty.sprite (32, 'images/exp-complex.png', {
 Crafty.audio.add ({
     step: ["sounds/player/step.wav"],
     cannon: ['sounds/cannon.ogg'],
-    electric: ['sounds/electric.ogg'],
+    electric: ['sounds/eletric.ogg'],
     flame: ['sounds/flame.ogg'],
     homing: ['sounds/homing.ogg'],
     chain: ['sounds/chain.ogg'],
