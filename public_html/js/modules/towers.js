@@ -62,6 +62,8 @@ Crafty.c(TOWER_ABS, {
         this.destroy();
         if(this.repID !== false)
             timer.clearTimer(this.repId);
+        towerBrain.removeByTower(this);
+        this.actor.destroy();
     },
     getLevel: function() {
         return this.level;

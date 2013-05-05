@@ -25,23 +25,10 @@ Crafty.c (TOWER_BRAIN, {
         return true;
     },
         
-    removeByPosition: function (position){
-        var tempPos = toPoint(position);
-        tempPos = [tempPos.x * W, tempPos.y * H];
+    removeByTower: function (tower){
         for(var t in this.items){
-            if(tempPos[0] === this.items[t].startPoint.x && tempPos[1] === this.items[t].startPoint.y){
-                this.items[t].doDestroy();
+            if(tower === this.items[t]){
                 this.items.splice(t, 1); 
-            }
-        }
-    },
-        
-    upgradeByPosition: function (position){
-        var tempPos = toPoint(position);
-        tempPos = [tempPos.x * W, tempPos.y * H];
-        for(var t in this.items){
-            if(tempPos[0] === this.items[t].startPoint.x && tempPos[1] === this.items[t].startPoint.y){
-                this.items[t].upgrade();
             }
         }
     },
