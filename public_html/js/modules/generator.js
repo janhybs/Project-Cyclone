@@ -5,11 +5,10 @@
 window.generator = {
     //-------------------------
     start: function (data, levelPaths) {
-        this.timer = Crafty.e ('Framer');
-        this.watchDog = Crafty.e ('Framer');
-        this.watchDogID = this.watchDog.repeat (function () {
-            if (Crafty (ENEMY_ABS).length === 0 && this.everythingReleased) {
-                this.watchDog.clearTimer (this.watchDogID);
+        this.watchDogID = timer.repeat (function () {
+            if (!$.gameOver && Crafty (ENEMY_ABS).length === 0 && this.everythingReleased) {
+                $.gameOver = true;
+                timer.clearTimer (this.watchDogID);
                 Crafty.trigger (GAME_END, $.livesTotal - $.livesLeft);
             }
         }, 25, this);
@@ -44,8 +43,8 @@ window.generator = {
         }
 
         var o = this.xmlData.waves.wave[this.currentWave].item[this.currentPart];
-        this.timer.repeat (function () {
-            this.timer.repeat (function () {
+        timer.repeat (function () {
+            timer.repeat (function () {
                 var generator = enemy.parse (JSON.parse (o.generator));
                 for (var j = 0; j < this.paths.length; j++) {
                     enemy.create (generator).requires ('HealthBar')
@@ -57,7 +56,7 @@ window.generator = {
 
         var partTime = (Number (o.count) * Number (o.frame) + Number (o.delay)) * Number (o.repeat);
 
-        this.timer.delay (function () {
+        timer.delay (function () {
             this.nextPart ();
         }, partTime, this);
     },

@@ -10,7 +10,8 @@ Crafty.c ("Framer", {
         this._delays = [];
         this.paused = false;
         this.bind ("EnterFrame", function () {
-            if (this.paused) return;
+            if (this.paused)
+                return;
             for (var index in this._delays) {
                 var item = this._delays[index];
 
@@ -53,6 +54,10 @@ Crafty.c ("Framer", {
     clearTimer: function (id) {
         this._delays[id].repeat = 0;
         this._delays[id].ctx = null;
+    },
+    clear: function () {
+        this._delays = [];
+        this.paused = false;
     }
 });
 
