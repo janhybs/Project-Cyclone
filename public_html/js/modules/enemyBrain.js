@@ -83,6 +83,10 @@ Crafty.c (ENEMY_BRAIN, {
                 j++;
             }
         }
+    },
+            
+    clearEnemies: function () {
+        this.items = [];
     }
 
 

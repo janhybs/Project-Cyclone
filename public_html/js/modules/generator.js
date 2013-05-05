@@ -46,6 +46,7 @@ window.generator = {
         timer.repeat (function () {
             timer.repeat (function () {
                 var generator = enemy.parse (JSON.parse (o.generator));
+                generator.speed = 40;
                 for (var j = 0; j < this.paths.length; j++) {
                     enemy.create (generator).requires ('HealthBar')
                             .setPath (this.paths[j])

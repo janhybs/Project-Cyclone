@@ -56,12 +56,18 @@ Crafty.scene (SCENE_GAME, function () {
     $.toverBuilderLock = false;
     
     //binds for ending game
-    Crafty.bind(GAME_OVER, function() {Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
+    Crafty.bind(GAME_OVER, function() {
+        enemyBrain.clearEnemies();
+        timer.clear();
+        Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
-        console.log("game over");
+        console.log("game overrr");
         Crafty.scene(SCENE_GAME_OVER)});
     
-    Crafty.bind(GAME_END, function(slips) {Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
+    Crafty.bind(GAME_END, function(slips) {
+        timer.clear();
+        enemyBrain.clearEnemies();
+        Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
         $.enemyLosts = slips;
         console.log('game success');
