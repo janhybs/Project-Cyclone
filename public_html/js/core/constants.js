@@ -28,6 +28,8 @@ var SCENE_LEVEL_UP = 'playerLevelUp';
 var SCENE_NEW_GAME = 'newGame';
 var SCENE_CONTINUE = 'continue';
 var SCENE_GAME_MENU = 'gameMenu';
+var SCENE_GAME_OVER = 'gameOverScene';
+var SCENE_GAME_SUCCES = 'gameMenuSucces';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";

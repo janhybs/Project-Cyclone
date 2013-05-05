@@ -51,4 +51,13 @@ Crafty.scene (SCENE_GAME, function () {
 
     //lock for towerbuilder
     $.toverBuilderLock = false;
+    
+    //binds for ending game
+    Crafty.bind(GAME_OVER, function() {Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
+        PLAYER_ABS, TOWER_ABS)).destroy();
+        Crafty.scene(SCENE_GAME_OVER)});
+    Crafty.bind(GAME_END, function(slips) {Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
+        PLAYER_ABS, TOWER_ABS)).destroy();
+        $.enemyLosts = slips;
+        Crafty.scene(SCENE_GAME_SUCCES)});
 });
