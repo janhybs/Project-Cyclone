@@ -66,9 +66,9 @@ Crafty.scene (SCENE_GAME, function () {
         Crafty.scene(SCENE_GAME_OVER)});
     
     Crafty.bind(GAME_END, function(slips) {
-        timer.clear();
-        towerBrain.clearTowers();
         enemyBrain.clearEnemies();
+        towerBrain.clearTowers();
+        timer.clear();
         Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
         $.enemyLosts = slips;
