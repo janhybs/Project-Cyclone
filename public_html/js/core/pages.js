@@ -31,7 +31,7 @@ function loadDivs () {
     infoDamage = $ ('#infoDamage');
     infoRange = $ ('#infoRange');
     infoRate = $ ('#infoRate');
-    
+
     towerUpgrade = $ ('#towerUpgrade');
     towerDelete = $ ('#towerDelete');
     wavePause = $ ('#wavePause');
@@ -91,7 +91,7 @@ function pauseGame () {
 }
 
 function startNextWave () {
-    generator.nextWave();
+    generator.nextWave ();
 }
 
 function showInfo (name, damage, range, rate) {
@@ -148,8 +148,21 @@ function upgradeSelectedTower () {
     if ($.selectedTower === undefined)
         return;
 
-    $.selectedTower.upgrade ();
-    towerClicked ($.selectedTower);
+    var price = $.selectedTower.getLevel () * $.selectedTower.upgradePrice;
+    if (buyStuff (price)) {
+        $.selectedTower.upgrade ();
+        towerClicked ($.selectedTower);
+    }
+}
+
+function buyStuff (price) {
+    if (PlayerUtils.getPlayerMoney () >= price) {
+        //# upgrade money status
+        PlayerUtils.addPlayerMoney (-price);
+        $ ('#availableMoney').html (PlayerUtils.getPlayerMoney ());
+        return true;
+    }
+    return false;
 }
 
 function deleteSelectedTower () {

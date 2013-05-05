@@ -79,7 +79,7 @@ PlayerUtils.getPlayerMoney = function() {
 
 //method adds one range point of actual player
 PlayerUtils.addPlayerMoney = function(money) {
-    $.jStorage.set($.jStorage.get(PLAYER_MONEY) + money);
+    $.jStorage.set(PLAYER_MONEY, $.jStorage.get(PLAYER_MONEY) + money);
 };
 
 //method gets damage of actual player
