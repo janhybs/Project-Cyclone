@@ -3,7 +3,7 @@ Crafty.scene (SCENE_GAME, function () {
     activateCanvas ();
     loadPage ('gamePanel', 'panel-main', function () {
         //load money info
-        $('#availableMoney').html(PlayerUtils.getPlayerMoney());
+        $ ('#availableMoney').html (PlayerUtils.getPlayerMoney ());
         bindActions ();
     });
 
@@ -16,43 +16,39 @@ Crafty.scene (SCENE_GAME, function () {
     activeSceneCursor ('url(/Project-Cyclone/images/crosshair.png),default');
 
     jQuery.get ('levels/level-0{0}.xml'.format ($.actualLevel), function (data) {
-        var xmldata = $.xml2json (data);
+        var xmlData = $.xml2json (data);
 
-        var levelBoard = parseBoard (xmldata.board);
-        var levelPaths = parsePaths (xmldata.paths);
+        var levelBoard = parseBoard (xmlData.board);
+        var levelPaths = parsePaths (xmlData.paths);
 
         board.showBoard (levelBoard);
         board.showPortals (levelPaths);
         board.showGates (levelPaths);
-        window.levelData = xmldata;
-        
-        generator.start (xmldata, levelPaths);
+        window.levelData = xmlData;
+
+        $.livesTotal = Number (xmlData.waves.tolerance);
+        $.livesLeft = Number (xmlData.waves.tolerance);
+        $ ('#livesInfo').html ("{0}/{1}".format ($.livesTotal, $.livesLeft));
+        generator.start (xmlData, levelPaths);
 
 
-//        var paths = [];
-//        for (var i = 0; i < levelPaths.length; i++) {
-//            paths.push (enlargePath (levelPaths[i]));
-//        }
-//
-//        timer.repeat (function () {
-//            for (var i = 0; i < levelPaths.length; i++) {
-//                enemy.create ({
-//                    path: paths[i], speed: ENEMY_SPEED.lighbolt, shield: ENEMY_SHIELD.boss, wobble: ENEMY_WOBBLE.no
-//                }).requires('HealthBar').start ();
-//            }
-//        }, FRAME_RATE );
-        
         Crafty.e ("2D, Canvas, Image, _background")
                 .attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT, z: Z_BOARD})
-                .image ("images/levels/level-0{0}.png".format ($.actualLevel), "no-repeat");
+                .image ("images/levels/level-0{0}.png".format ($.actualLevel), "no-repeat")
+                .bind (ENEMY_SLIP, function () {
+            $.livesLeft--;
+            if ($.livesLeft === 0)
+                Crafty.trigger (GAME_OVER, $.livesTotal);
+            $ ('#livesInfo').html ("{0}/{1}".format ($.livesTotal, $.livesLeft));
+        });
 
 
 
     }, null, 'text');
 
     //test player
-    $.player = PlayerLoader.load();
-    
+    $.player = PlayerLoader.load ();
+
     //lock for towerbuilder
     $.toverBuilderLock = false;
 });
