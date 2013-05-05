@@ -1,3 +1,10 @@
+var towerInfo;
+var towerMenu;
+var infoName;
+var infoDamage;
+var infoRange;
+var infoRate;
+
 var items = {
     machineGun: [TOWER_MACHINEGUN, "MG"],
     flame: [TOWER_FLAMETHROWER, "FT"],
@@ -10,14 +17,18 @@ var items = {
     slowAura: [TOWER_SLOW_AURA, "SA"],
 };
 
-function bindActions () {
-    var towerInfo = $ ('#towerInfo');
-    var towerMenu = $ ('#towerMenu');
 
-    var infoName = $ ('#infoName');
-    var infoDamage = $ ('#infoDamage');
-    var infoRange = $ ('#infoRange');
-    var infoRate = $ ('#infoRate');
+function loadDivs () {
+    towerInfo = $ ('#towerInfo');
+    towerMenu = $ ('#towerMenu');
+    infoName = $ ('#infoName');
+    infoDamage = $ ('#infoDamage');
+    infoRange = $ ('#infoRange');
+    infoRate = $ ('#infoRate');
+}
+
+function bindActions () {
+    loadDivs ();
 
     for (var p in items) {
         var e = $ ('#{0}'.format (p));
@@ -30,10 +41,10 @@ function bindActions () {
             towerInfo.show ();
             towerMenu.hide ();
 
-            infoName.html (getTowerName (items[p][0]));
-            infoDamage.html (getDamageSum (window["{0}_DAMAGE".format (items[p][1])]));
-            infoRange.html (window["{0}_RANGE".format (items[p][1])]);
-            infoRate.html (window["{0}_RATE".format (items[p][1])]);
+            showInfo (getTowerName (items[p][0]),
+                    getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
+                    window["{0}_RANGE".format (items[p][1])],
+                    window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseover', p, function (event) {
 
@@ -44,10 +55,10 @@ function bindActions () {
             towerInfo.show ();
             towerMenu.hide ();
 
-            infoName.html (getTowerName (items[p][0]));
-            infoDamage.html (getDamageSum (window["{0}_DAMAGE".format (items[p][1])]));
-            infoRange.html (window["{0}_RANGE".format (items[p][1])]);
-            infoRate.html (window["{0}_RATE".format (items[p][1])]);
+            showInfo (getTowerName (items[p][0]),
+                    getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
+                    window["{0}_RANGE".format (items[p][1])],
+                    window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseout', function (event) {
             if ($.toverBuilderLock)
@@ -56,6 +67,13 @@ function bindActions () {
             towerMenu.hide ();
         });
     }
+}
+
+function showInfo (name, damage, range, rate) {
+    infoName.html (name);
+    infoDamage.html (damage);
+    infoRange.html (range);
+    infoRate.html (rate);
 }
 
 function getDamageSum (dmg) {
