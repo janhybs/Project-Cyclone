@@ -8,7 +8,9 @@
 Crafty.c ("Framer", {
     init: function () {
         this._delays = [];
+        this.paused = false;
         this.bind ("EnterFrame", function () {
+            if (this.paused) return;
             for (var index in this._delays) {
                 var item = this._delays[index];
 
