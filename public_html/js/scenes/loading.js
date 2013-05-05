@@ -19,6 +19,8 @@ Crafty.scene (SCENE_LOADING, function () {
         //# shots packed
         'images/shots.png',
         //
+        'images/pages/level-01.png',
+        'images/pages/level-02.png',
         'images/enemy.png',
         'images/crosshair.png'];
 
