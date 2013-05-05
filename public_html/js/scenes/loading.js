@@ -195,26 +195,20 @@ Crafty.sprite ('images/enemies.png', {
 });
 
 Crafty.sprite ('images/shots.png', {
-    aura_blue: [0, 0, 128, 128],
-    aura_green: [128, 0, 128, 128],
-    aura_red: [0, 128, 128, 128],
-    laser_thick_blue: [168, 128, 32, 32],
-    laser_thick_blue_end: [128, 178, 32, 32],
-    laser_thick_purple: [168, 160, 32, 32],
-    laser_thick_purple_end: [200, 128, 32, 32],
-    laser_thick_yellow: [128, 210, 32, 32],
-    laser_thick_yellow_end: [200, 160, 32, 32],
-    laser_thin_red: [160, 192, 32, 32],
-    laser_thin_red_end: [160, 224, 32, 32],
-    rocket_blue: [128, 128, 40, 25],
-    rocket_blue_small: [192, 192, 30, 19],
-    rocket_red: [128, 153, 40, 25],
-    rocket_red_small: [192, 211, 30, 19],
-    shot_cannon: [160, 178, 7, 7],
-    shot_green: [232, 128, 16, 16],
-    shot_ice: [128, 247, 9, 5],
-    shot_normal: [128, 242, 11, 5],
-    shot_red: [232, 144, 16, 16]
+    cannon: [64, 160, 16, 16],
+    electric: [0, 0, 128, 128],
+    flame: [32, 192, 16, 16],
+    homing: [96, 128, 20, 13],
+    chain: [0, 128, 32, 32],
+    chain_end: [0, 160, 32, 32],
+    ice_dart: [0, 224, 16, 16],
+    laser: [32, 128, 32, 32],
+    laser_end: [0, 192, 32, 32],
+    machine_gun: [96, 141, 9, 9],
+    player_laser: [64, 128, 32, 32],
+    player_laser_end: [32, 160, 32, 32],
+    player_soldier: [32, 208, 9, 9],
+    slow: [128, 0, 128, 128]
 });
 
 Crafty.sprite ('images/towers/towers.png', {

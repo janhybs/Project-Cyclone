@@ -133,43 +133,31 @@ var SHOT_LASER = 'Laser';
 var SHOT_SPLASH = 'Splash';
 var SHOT_HOMING = 'Homing';
 
-var LASER_IMAGE_PATH = {
-    laserThinRed: 'images/laser-thin-red.png',
-    laserThickYellow: 'images/laser-thick-yellow.png',
-    laserThickPurple: 'images/laser-thick-purple.png',
-    laserThickBlue: 'images/laser-thick-blue.png'
-};
 
 var LASER_IMAGE_NAME = {
-    laserThinRed: 'laser_thin_red',
-    laserThickYellow: 'laser_thick_yellow',
-    laserThickPurple: 'laser_thick_purple',
-    laserThickBlue: 'laser_thick_blue',
-    laserThinRedEnd: 'laser_thin_red_end',
-    laserThickYellowEnd: 'laser_thick_yellow_end',
-    laserThickPurpleEnd: 'laser_thick_purple_end',
-    laserThickBlueEnd: 'laser_thick_blue_end'
+    chain: "chain",
+    chainEnd: "chain_end",
+    laser: "laser",
+    laserEnd: "laserEnd",
+    playerLaser: "player_laser",
+    playerLaserEnd: "player_laser_end"
 };
 
 var P2P_IMAGE_NAME = {
-    shotCannon: 'shot_cannon',
-    shotGreen: 'shot_green',
-    shotRed: 'shot_red',
-    shotIce: 'shot_ice',
-    shotNormal: 'shot_normal'
+    cannon: 'cannon',
+    flame: 'flame',
+    machineGun: 'machine_gun',
+    iceDart: 'ice_dart',
+    playerSoldier : "player_soldier"
 };
 
 var HOMING_IMAGE_NAME = {
-    rocketBlue: 'rocket_blue',
-    rocketBlueSmall: 'rocket_blue_small',
-    rocketRed: 'rocket_red',
-    rocketRedSmall: 'rocket_red_small'
+    homing: 'homing'
 };
 
 var SPLASH_IMAGE_NAME = {
-    auraBlue: 'aura_blue',
-    auraRed: 'aura_red',
-    auraGreen: 'aura_green',
+    electric: 'electric',
+    slow: 'slow'
 };
 
 var REZISTANCE = 1.00;

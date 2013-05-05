@@ -5,8 +5,8 @@ window.shot = {
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || P2P_IMAGE_NAME.shotNormal));
             case SHOT_LASER:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (SHOT_ABS, type))
-                        .setImage (LASER_IMAGE_PATH.laserThinRed)
-                        .setEnding (LASER_IMAGE_NAME.laserThinRedEnd)
+                        .setImage (LASER_IMAGE_NAME.chain)
+                        .setEnding (LASER_IMAGE_NAME.chainEnd)
                         .attr ({w: 10, h: 10});
             case SHOT_HOMING:
                 return Crafty.e ('2D, Canvas, Image, {0}, {1}, {2}'.format (SHOT_ABS, type, avatar || HOMING_IMAGE_NAME.rocketBlueSmall));
@@ -158,9 +158,9 @@ Crafty.c (SHOT_LASER, {
     create: function (laser, ending) {
         this.angle = NaN;
         if (!this.ending || ending)
-            this.setEnding (ending || LASER_IMAGE_NAME.laserThinRedEnd);
+            this.setEnding (ending || LASER_IMAGE_NAME.chain);
         if (!this.laser || laser)
-            this.setImage (laser || LASER_IMAGE_PATH.laserThinRed);
+            this.setImage (laser || LASER_IMAGE_NAME.chainEnd);
     },
     hide: function () {
         if (this.laser)
@@ -247,8 +247,8 @@ Crafty.c (SHOT_LASER, {
         //# laser is always valid
     },
     //#
-    setImage: function (path) {
-        this.laser = Crafty.e ("2D, Canvas, Image").image (path, "repeat");
+    setImage: function (avatar) {
+        this.laser = Crafty.e ("2D, Canvas, Image, {0}".format(avatar));
         this.laser.visible = false;
         return this;
     },
