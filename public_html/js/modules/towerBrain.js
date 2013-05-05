@@ -12,6 +12,7 @@ Crafty.c (TOWER_BRAIN, {
         t.start();
         t.setType(type);
         this.items.push(t);
+        return t;
     },
         
     clearTowers: function (){
