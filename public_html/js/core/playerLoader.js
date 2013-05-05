@@ -1,9 +1,9 @@
 window.PlayerLoader = {};
 
 //method for load player with actual player params
-PlayerLoader.load = function() {
-    var pl = player.create(PlayerUtils.getActualPlayerType());
-    pl.shotDamage = PlayerUtils.getDamagePoints();
-    pl.rangePointer.setDiameter(PlayerUtils.getRangePoints()*3); //*3 for debug
+PlayerLoader.load = function () {
+    window.pl = player.create (PlayerUtils.getActualPlayerType ());
+    pl.shotDamage = PLAYER_DAMAGES[PlayerUtils.getDamagePoints ()];
+    pl.rangePointer.setDiameter (PLAYER_RANGES[PlayerUtils.getRangePoints ()] / 32.0 * 2);
     return pl;
 };

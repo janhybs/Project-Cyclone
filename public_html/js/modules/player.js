@@ -9,7 +9,7 @@ window.player = {
         switch (type) {
             default:
                 var result = Crafty.e('2D, Canvas, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
-                        .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0,  z: 1});
+                        .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0});
                 return result;
         }
     }

@@ -114,7 +114,7 @@ Crafty.c ('Shield', {
     start: function () {
         if (this.enemy === null || this.enemy === undefined)
             return this.destroy ();
-        this.attr ({w: this.enemy.w, h: this.enemy.h});
+        this.attr ({w: this.enemy.w, h: this.enemy.h, z: this.enemy.z + 2});
         this.bind ('EnterFrame', this.update);
         return this;
     },

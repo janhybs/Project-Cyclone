@@ -33,8 +33,8 @@ Crafty.scene (SCENE_GAME, function () {
         timer.repeat (function () {
             for (var i = 0; i < levelPaths.length; i++) {
                 enemy.create ({
-                    path: paths[i], speed: ENEMY_SPEED.lighbolt, shield: ENEMY_SHIELD.boss, wobble: ENEMY_WOBBLE.no
-                }).start ();
+                    path: paths[i], speed: ENEMY_SPEED.lighbolt, shield: ENEMY_SHIELD.weak, wobble: ENEMY_WOBBLE.no
+                }).requires('HealthBar').start ();
             }
         }, FRAME_RATE * 5);
         

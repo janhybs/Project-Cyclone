@@ -8,10 +8,10 @@ var Z_BOARD = 1;
 var Z_ENEMY = 2;
 var Z_PLAYER = 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
-var Z_TOWER_BODY = 10*1000;
-var Z_TOWER_HEAD = 100*1000;
+var Z_TOWER_BODY = 10 * 1000;
+var Z_TOWER_HEAD = 100 * 1000;
 var Z_TOWER_SHOT = Z_TOWER_BODY + 1;
-var Z_EFFECTS = 1000*1000;
+var Z_EFFECTS = 1000 * 1000;
 
 /***************
  * GAME SCENES *
@@ -424,6 +424,35 @@ var UP_DIRECTION = 1;
 var DOWN_DIRECTION = 2;
 var RIGHT_DIRECTION = 3;
 var LEFT_DIRECTION = 4;
+
+//player damage & range
+var PLAYER_DAMAGES = {
+    0: 0,
+    1: 5,
+    2: 15,
+    3: 35,
+    4: 60,
+    5: 100,
+    6: 150,
+    7: 200,
+    8: 275,
+    9: 350,
+    10: 500
+};
+
+var PLAYER_RANGES = {
+    0: 0.00,
+    1: 32 * 2.50,
+    2: 32 * 3.00,
+    3: 32 * 3.50,
+    4: 32 * 4.00,
+    5: 32 * 6.00,
+    6: 32 * 7.00,
+    7: 32 * 8.00,
+    8: 32 * 9.00,
+    9: 32 * 10.00,
+    10: 32 * 15.00
+};
 
 //walking
 var WALK_UP = "walkUp";

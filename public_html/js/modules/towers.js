@@ -677,6 +677,7 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },
@@ -727,6 +728,7 @@ Crafty.c(TOWER_SLOW_AURA, {
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(SPRAY_SOUND, 1);
         s.start();
     },
