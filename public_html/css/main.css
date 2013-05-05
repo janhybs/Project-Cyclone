@@ -106,6 +106,33 @@ html {
     background: rgba(11, 15, 20, 0.5);
     position: absolute;
     z-index: 1;
+    font-family: 'Verdana';
+}
+
+#towerMenuInfo .prop {
+    display: block;
+    width: 150px;
+    margin-left: 5px;
+    font-size: 10px;
+}
+
+#towerMenuInfo .prop-name{
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#panel-main {
+    height: 640px;
+    position: relative;
+}
+
+#controls {
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 160px;
+    right: 0;
+    bottom: 10px;
 }
 
 
