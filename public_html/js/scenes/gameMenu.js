@@ -10,14 +10,14 @@ Crafty.scene (SCENE_GAME_MENU,
                 }
                 //disable non-available levels
                 var maxLev = PlayerUtils.getMaxOpenLevel();
-                for(var i = 1; i <= maxLev; i++) {
+                for(var i = 1; i <= maxLev && i <= 5; i++) {
                     $('#level'+i).attr('style', 'cursor:pointer');
                     $('#level'+i).attr('onclick', '$.actualLevel = {0};Crafty.scene(SCENE_GAME);'.format(i));
                     $('#level'+i).mouseover(i, function(event) {$('#level'+event.data).animate({opacity: 1}, 1000);});
                     $('#level'+i).mouseout(i, function(event) {$('#level'+event.data).animate({opacity: 0.3}, 500);});
                 }
                 //add best score about
-                for(var i = 1; i <=maxLev-1; i++) {
+                for(var i = 1; i <=maxLev-1  && i < 5; i++) {
                     $('#levelscore'+i).html('Your best score: ' + PlayerUtils.getBestScoreByLevel(i) + 'lost');
                 }
                 //names of players

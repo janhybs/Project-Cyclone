@@ -7,6 +7,7 @@ Crafty.scene (SCENE_GAME_SUCCESS,
                 var earnedMoney = maxMoney - (maxMoney * Math.round((($.livesTotal- $.livesLeft)/$.livesTotal)*100)/100);
                 $("#recMoney").html(earnedMoney);
                 PlayerUtils.addPlayerMoney(earnedMoney);
+                PlayerUtils.openNextLevel();
             });
         },
         function () {
