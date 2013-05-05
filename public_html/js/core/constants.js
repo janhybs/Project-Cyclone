@@ -185,6 +185,18 @@ var TOWER_SPLASH = 'SplashTower';
 var DEFAULT_PRICE = 100;
 var MAX_LEVEL = 3;
 
+var TOWER_SOUND_NAME = {
+    cannon: 'cannon',
+    electric: 'electric',
+    flame: 'flame',
+    homing: 'homing',
+    chain: 'chain',
+    iceDart: 'iceDart',
+    laser: 'laser',
+    machineGun: 'machineGun',
+    slow: 'slow'
+};
+
 var CANNON_SOUND = 'cannon';
 var ELECTRIC_SOUND = 'electric';
 var LASER_SOUND = 'laser';

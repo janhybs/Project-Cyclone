@@ -242,7 +242,7 @@ Crafty.c(TOWER_MACHINEGUN, {
     },
     fire: function() {
         this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
-        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotGreen);
+        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.machineGun);
         s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
@@ -250,7 +250,7 @@ Crafty.c(TOWER_MACHINEGUN, {
         s.setTTL(this.ttl);
         s.create(this.rate);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(ELECTRIC_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.machineGun, 1);
         s.start();
     },   
     upgrade: function() {
@@ -298,7 +298,7 @@ Crafty.c(TOWER_CANNON, {
     },
     fire: function() {
         this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
-        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotCannon);
+        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.cannon);
         s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
@@ -306,7 +306,7 @@ Crafty.c(TOWER_CANNON, {
         s.setTTL(this.ttl);
         s.create(this.rate);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(CANNON_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.cannon, 1);
         s.start();
     },
     upgrade: function() {
@@ -354,7 +354,7 @@ Crafty.c(TOWER_FLAMETHROWER, {
     },
     fire: function() {
         this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
-        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotRed);
+        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.flame);
         s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
@@ -362,7 +362,7 @@ Crafty.c(TOWER_FLAMETHROWER, {
         s.setTTL(this.ttl);
         s.create(this.rate);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(SPRAY_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.flame, 1);
         s.start();
     },
     upgrade: function() {
@@ -409,7 +409,7 @@ Crafty.c(TOWER_ICE_DART, {
     },
     fire: function() {
         this.actor.rotation = Math.atan2(this.y + this.h/2 - this.endPoint.y, this.x + this.h/2 - this.endPoint.x) * 180 / Math.PI + 180;
-        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.shotIce);
+        var s = shot.get(SHOT_P2P, P2P_IMAGE_NAME.iceDart);
         s.setStartPoint(this.center);
         s.setEndPoint([this.endPoint.x, this.endPoint.y]);
         s.setDamage(this.damage);
@@ -417,7 +417,7 @@ Crafty.c(TOWER_ICE_DART, {
         s.setTTL(this.ttl);
         s.create(this.rate);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(SPRAY_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.iceDart, 1);
         s.start();
     },
     upgrade: function() {
@@ -456,7 +456,7 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.prepareActor(TOWER_IMAGE_NAME.beamLaserHead);
     },
     start: function() {
-        this.s.create(LASER_IMAGE_PATH.laserThickYellow, LASER_IMAGE_NAME.laserThickYellowEnd);
+        this.s.create(LASER_IMAGE_NAME.laser, LASER_IMAGE_NAME.laserEnd);
         this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.start();
@@ -480,7 +480,7 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.s.setDamage(this.damage);
         this.s.setTTL(this.ttl);
         this.s.show();
-        Crafty.audio.play(LASER_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.laser, 1);
     },
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -527,7 +527,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
         var tempMob;
         
         for(var i = 0; i < this.chain; i++){
-            this.s[i].create(LASER_IMAGE_PATH.laserThinRed, LASER_IMAGE_NAME.laserThinRedEnd); 
+            this.s[i].create(LASER_IMAGE_NAME.chain, LASER_IMAGE_NAME.chainEnd); 
             this.s[i].setStartPoint(this.startPoint);
             this.s[i].setEndPoint(this.startPoint);
             this.s[i].start();
@@ -576,7 +576,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
             this.s[i].setDamage(this.damage);
             this.s[i].setTTL(this.ttl);
         }
-        Crafty.audio.play(LASER_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.chain, 1);
     },
     upgrade: function() {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -622,13 +622,13 @@ Crafty.c(TOWER_HOMING_MISSILE, {
         }, FRAME_RATE/HM_FRAME_RATE, this );
     },
     fire: function() {
-        var s = shot.get(SHOT_HOMING, HOMING_IMAGE_NAME.rocketRedSmall);
+        var s = shot.get(SHOT_HOMING, HOMING_IMAGE_NAME.homing);
         s.setStartPoint(this.center);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.rate, this.curving);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(ELECTRIC_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.homing, 1);
         s.start();
     },
     upgrade: function() {
@@ -673,13 +673,13 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
         }, FRAME_RATE/EA_FRAME_RATE, this );
     },
     fire: function() {
-        var s = shot.get(SHOT_SPLASH, SPLASH_IMAGE_NAME.auraBlue);
+        var s = shot.get(SHOT_SPLASH, SPLASH_IMAGE_NAME.electric);
         s.setStartPoint([this.startPoint.x, this.startPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(ELECTRIC_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.electric, 1);
         s.start();
     },
     upgrade: function() {
@@ -724,13 +724,13 @@ Crafty.c(TOWER_SLOW_AURA, {
         }, FRAME_RATE/SA_FRAME_RATE, this );
     },
     fire: function() {
-        var s = shot.get(SHOT_SPLASH, SPLASH_IMAGE_NAME.auraGreen);
+        var s = shot.get(SHOT_SPLASH, SPLASH_IMAGE_NAME.slow);
         s.setStartPoint([this.startPoint.x, this.startPoint.y]);
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.growth, this.radius);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play(SPRAY_SOUND, 1);
+        Crafty.audio.play(TOWER_SOUND_NAME.slow, 1);
         s.start();
     },
     upgrade: function() {

@@ -6,19 +6,10 @@ Crafty.scene (SCENE_LOADING, function () {
 
     //image files
     var images = [
-        'images/bg.jpg',
-        'images/dungeon.png',
-        'images/characters.png',
         'images/cat.gif',
-        'images/shot.png',
-        'images/laser-cat.png',
-        'images/grass.jpg',
         //# explosion packed
         'images/exp-simple.png',
         'images/exp-complex.png',
-        'images/exp-simple-32(16).png',
-        'images/exp-complex-32(16).png',
-        'images/exp-complex-64(25).png',
         //# enemies packed
         'images/enemies.png',
         //# towers packed
@@ -27,20 +18,8 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/shield.png',
         //# shots packed
         'images/shots.png',
-        'images/laser-thin-red.png',
-        'images/laser-thick-yellow.png',
-        'images/laser-thick-purple.png',
-        'images/laser-thick-blue.png',
         //
         'images/enemy.png',
-        'images/debug.png',
-        'images/rocket.png',
-        'images/laser_hero.png',
-        'images/soldier_hero.png',
-        'images/left_arrow.png',
-        'images/right_arrow.png',
-        'images/left_arrow_active.png',
-        'images/right_arrow_active.png',
         'images/crosshair.png'];
 
     //sound files
@@ -54,10 +33,13 @@ Crafty.scene (SCENE_LOADING, function () {
         'sounds/death-04.ogg',
         'sounds/death-05.ogg',
         'sounds/eletric.ogg',
+        'sounds/flame.ogg',
+        'sounds/homing.ogg',
+        'sounds/chain.ogg',
+        'sounds/ice-dart.ogg',
         'sounds/laser.ogg',
-        'sounds/shot-01.ogg',
-        'sounds/shot-02.ogg',
-        'sounds/spray.ogg'
+        'sounds/machine-gun.ogg',
+        'sounds/slow.ogg'
     ];
 
     Crafty.load ([].concat (images, sounds), function () {
@@ -69,64 +51,19 @@ Crafty.scene (SCENE_LOADING, function () {
 /***********
  * SPRITES *
  ***********
- */
-
-
-Crafty.sprite (32, 'images/dungeon.png', {
-    path: [0, 1],
-    wall: [17, 0],
-});
-
-Crafty.sprite (32, 'images/characters.png', {
-    portal: [3, 0]
-});
-
-Crafty.sprite (32, 'images/cat.gif', {
-    gate: [0, 0],
-});
-
-Crafty.sprite (64, 'images/debug.png', {
-    player: [0, 0],
-});
-
-Crafty.sprite (32, 'images/shot.png', {
-    shot: [0, 0],
-});
-
-Crafty.sprite (16, 'images/laser-cat.png', {
-    laser: [0, 0],
-});
+*/
 
 Crafty.sprite (48, 'images/shield.png', {
-    shield: [0, 0],
-});
-
-Crafty.sprite (32, 'images/exp-complex-32(16).png', {
-    exp_complex_32_16: [0, 0],
-});
-
-Crafty.sprite (32, 'images/exp-complex-64(25).png', {
-    exp_complex_64_25: [0, 0],
-});
-
-Crafty.sprite (32, 'images/exp-simple-32(16).png', {
-    exp_simple_32_16: [0, 0],
+    shield: [0, 0]
 });
 
 Crafty.sprite (32, 'images/exp-simple.png', {
-    exp_simple: [0, 0],
+    exp_simple: [0, 0]
 });
 
 Crafty.sprite (32, 'images/exp-complex.png', {
-    exp_complex: [0, 0],
+    exp_complex: [0, 0]
 });
-
-
-Crafty.sprite ('images/rocket.png', {
-    rocket: [0, 0, 40, 25],
-});
-
-
 
 
 /************
@@ -137,17 +74,20 @@ Crafty.sprite ('images/rocket.png', {
 Crafty.audio.add ({
     step: ["sounds/player/step.wav"],
     cannon: ['sounds/cannon.ogg'],
+    electric: ['sounds/electric.ogg'],
+    flame: ['sounds/flame.ogg'],
+    homing: ['sounds/homing.ogg'],
+    chain: ['sounds/chain.ogg'],
+    iceDart: ['sounds/ice-dart.ogg'],
+    laser: ['sounds/laser.ogg'],
+    machineGun: ['sounds/machine-gun.ogg'],
+    slow: ['sounds/slow.ogg'],
     death_end: ['sounds/death-end.ogg'],
     death_01: ['sounds/death-01.ogg'],
     death_02: ['sounds/death-02.ogg'],
     death_03: ['sounds/death-03.ogg'],
     death_04: ['sounds/death-04.ogg'],
-    death_05: ['sounds/death-05.ogg'],
-    electric: ['sounds/eletric.ogg'],
-    laser: ['sounds/laser.ogg'],
-    shot_01: ['sounds/shot-01.ogg'],
-    shot_02: ['sounds/shot-02.ogg'],
-    spray: ['sounds/spray.ogg']
+    death_05: ['sounds/death-05.ogg']
 });
 
 
@@ -158,7 +98,7 @@ Crafty.audio.add ({
  */
 
 Crafty.sprite ('images/enemy.png', {
-    enemy: [0, 0, 33, 37],
+    enemy: [0, 0, 33, 37]
 });
 
 Crafty.sprite ('images/enemies.png', {
