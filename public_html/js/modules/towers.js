@@ -41,6 +41,7 @@ Crafty.c(TOWER_ABS, {
         this.ttl = ttl !== undefined ? ttl : 10;
         this.frameRate = frameRate !== undefined ? frameRate : 5;
         this.aimStyle = aimStyle !== undefined ? aimStyle : AIMING_CLOSEST;
+        this.type = TOWER_ABS;
     },
     init: function() {
         this.startPoint = null;
@@ -134,6 +135,12 @@ Crafty.c(TOWER_ABS, {
     setTTL: function(ttl) {
         this.ttl = ttl !== undefined ? ttl : 10;
         return this;
+    },
+    setType: function(type){
+        this.type = type;
+    },
+    getType: function(){
+        return this.type;
     }
 });
 

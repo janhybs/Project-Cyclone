@@ -10,6 +10,7 @@ Crafty.c (TOWER_BRAIN, {
         t.setStartPoint(position);
         t.create();
         t.start();
+        t.setType(type);
         this.items.push(t);
     },
         
