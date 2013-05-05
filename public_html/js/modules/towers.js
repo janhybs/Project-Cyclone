@@ -42,6 +42,7 @@ Crafty.c(TOWER_ABS, {
         this.frameRate = frameRate !== undefined ? frameRate : 5;
         this.aimStyle = aimStyle !== undefined ? aimStyle : AIMING_CLOSEST;
         this.type = TOWER_ABS;
+        this.levelComp;
     },
     init: function() {
         this.startPoint = null;
@@ -63,7 +64,10 @@ Crafty.c(TOWER_ABS, {
         if(this.repID !== false)
             timer.clearTimer(this.repId);
         towerBrain.removeByTower(this);
-        this.actor.destroy();
+        if(this.actor !== undefined)
+            this.actor.destroy();
+        if(this.levelComp !== undefined)
+            this.levelComp.destroy();
     },
     getLevel: function() {
         return this.level;
@@ -143,6 +147,13 @@ Crafty.c(TOWER_ABS, {
     },
     getType: function(){
         return this.type;
+    },
+    upgradeLevel: function(image){
+        if(this.levelComp !== undefined)
+            this.levelComp.destroy();
+        this.levelComp = Crafty.e("2D, DOM, Image")
+             .attr({x: this.startPoint.x + LEVEL_X_MOVE, y: this.startPoint.y + LEVEL_Y_MOVE, z: Z_TOWER_LEVEL})
+             .image(image, "no-repeat");
     }
 });
 
@@ -272,11 +283,13 @@ Crafty.c(TOWER_MACHINEGUN, {
                     this.rate = MG_RATE_2;
                     this.range = MG_RANGE_2;
                     this.damage = MG_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = MG_RATE_3;
                     this.range = MG_RANGE_3;
                     this.damage = MG_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
@@ -328,11 +341,13 @@ Crafty.c(TOWER_CANNON, {
                     this.rate = C_RATE_2;
                     this.range = C_RANGE_2;
                     this.damage = C_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = C_RATE_3;
                     this.range = C_RANGE_3;
                     this.damage = C_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
@@ -384,11 +399,13 @@ Crafty.c(TOWER_FLAMETHROWER, {
                     this.rate = FT_RATE_2;
                     this.range = FT_RANGE_2;
                     this.damage = FT_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = FT_RATE_3;
                     this.range = FT_RANGE_3;
                     this.damage = FT_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
@@ -439,11 +456,13 @@ Crafty.c(TOWER_ICE_DART, {
                     this.rate = ID_RATE_2;
                     this.range = ID_RANGE_2;
                     this.damage = ID_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = ID_RATE_3;
                     this.range = ID_RANGE_3;
                     this.damage = ID_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
@@ -501,16 +520,20 @@ Crafty.c(TOWER_BEAM_LASER, {
                     this.rate = L_RATE_2;
                     this.range = L_RANGE_2;
                     this.damage = L_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = L_RATE_3;
                     this.range = L_RANGE_3;
                     this.damage = L_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
     },
     doDestroy: function(){
+        if(this.levelComp !== undefined)
+            this.levelComp.destroy();
         this.destroy();
         if(this.repID !== false)
             timer.clearTimer(this.repId);
@@ -614,6 +637,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
                         this.s[i].start();
                         this.s[i].hide();
                     }
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = CHL_RATE_3;
@@ -628,11 +652,14 @@ Crafty.c(TOWER_CHAIN_LASER, {
                         this.s[i].start();
                         this.s[i].hide();
                     }
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
     }, 
     doDestroy: function(){
+        if(this.levelComp !== undefined)
+            this.levelComp.destroy();
         this.destroy();
         if(this.repID !== false)
             timer.clearTimer(this.repId);
@@ -684,11 +711,13 @@ Crafty.c(TOWER_HOMING_MISSILE, {
                     this.rate = HM_RATE_2;
                     this.range = HM_RANGE_2;
                     this.damage = HM_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = HM_RATE_3;
                     this.range = HM_RANGE_3;
                     this.damage = HM_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
@@ -736,12 +765,14 @@ Crafty.c(TOWER_ELECTRIC_AURA, {
                     this.radius = EA_RADIUS_2;
                     this.growth = EA_GROWTH_2;
                     this.damage = EA_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = EA_RATE_3;
                     this.radius = EA_RADIUS_3;
                     this.growth = EA_GROWTH_3;
                     this.damage = EA_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }
@@ -787,12 +818,14 @@ Crafty.c(TOWER_SLOW_AURA, {
                     this.radius = SA_RADIUS_2;
                     this.growth = SA_GROWTH_2;
                     this.damage = SA_DAMAGE_2;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level1);
                     break;
                 case(3):
                     this.rate = SA_RATE_3;
                     this.radius = SA_RADIUS_3;
                     this.growth = SA_GROWTH_3;
                     this.damage = SA_DAMAGE_3;
+                    this.upgradeLevel(TOWER_LEVEL_IMAGE.level2);
                     break;
             }
         }

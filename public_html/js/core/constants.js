@@ -8,6 +8,7 @@ var Z_BOARD = 1;
 var Z_ENEMY = 2;
 var Z_PLAYER = 1000;
 var Z_TOWER_BODY = 10 * 1000;
+var Z_TOWER_LEVEL = 50 * 1000;
 var Z_TOWER_HEAD = 100 * 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
 var Z_TOWER_SHOT = Z_TOWER_BODY + 1;
@@ -190,6 +191,14 @@ var TOWER_SOUND_NAME = {
     machineGun: 'machineGun',
     slow: 'slow'
 };
+
+var TOWER_LEVEL_IMAGE = {
+    level1: 'images/pages/level-01.png',
+    level2: 'images/pages/level-02.png'
+};
+
+var LEVEL_X_MOVE = 18;
+var LEVEL_Y_MOVE = 20;
 
 var CANNON_SOUND = 'cannon';
 var ELECTRIC_SOUND = 'electric';
