@@ -81,9 +81,18 @@
             </table>
         </div>
 
-        <!-- GAME MENU -->
+        <!-- GAME OVER -->
         <div id="scene-game-over" class="page">
-            <h2>Kokote jeden</h2>
+            <h1 style="padding-top: 5em">GAME OVER</h1>
+            <h5>You can try it again!</h5>
+            <button id="scene-new-game-next" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+        </div>
+        
+        <!-- LEVEL COMPLETE -->
+        <div id="scene-game-complete" class="page">
+            <h1 style="padding-top: 5em">LEVEL COMPLETE!</h1>
+            <h5>Received money: <span id="recMoney"></span></h5>
+            <button id="scene-new-game-next" onclick="Crafty.scene(SCENE_LEVEL_UP)">Continue</button>
         </div>
         
         <!-- GAME PANEL -->

@@ -15,6 +15,7 @@ var Z_EFFECTS = 1000 * 1000;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
+var MONEY_BY_LEVEL = [1000, 2000, 3000, 4000, 5000];
 
 /***************
  * GAME SCENES *
