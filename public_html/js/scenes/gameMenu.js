@@ -3,6 +3,7 @@ Crafty.scene (SCENE_GAME_MENU,
             activateWebview();
             loadPage ('webview', 'scene-game-menu', function () {
                 $('#moneyPoints').html(PlayerUtils.getPlayerMoney());
+                $.startMoney = PlayerUtils.getPlayerMoney ();
                 //set transparency
                 for(var i = 1; i <= 5; i++) {
                     $('#level'+i).animate({opacity: 0.3}, 500);
