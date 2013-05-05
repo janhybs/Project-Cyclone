@@ -3,10 +3,16 @@ Crafty.scene (SCENE_GAME_MENU,
             activateWebview();
             loadPage ('webview', 'scene-game-menu', function () {
                 $('#moneyPoints').html(PlayerUtils.getPlayerMoney());
+                //set transparency
+                for(var i = 1; i <= 5; i++) {
+                    $('#level'+i).animate({opacity: 0.3}, 500);
+                }
                 //disable non-available levels
                 var maxLev = PlayerUtils.getMaxOpenLevel();
-                for(var i = maxLev+1; i <=5; i++) {
-                    $('#level'+i).attr('disabled', 'disabled');
+                for(var i = 1; i <= maxLev; i++) {
+                    $('#level'+i).attr('onclick', '$.actualLevel = {0};Crafty.scene(SCENE_GAME);'.format(i));
+                    $('#level'+i).mouseover(i, function(event) {$('#level'+event.data).animate({opacity: 1}, 1000);});
+                    $('#level'+i).mouseout(i, function(event) {$('#level'+event.data).animate({opacity: 0.3}, 500);});
                 }
                 //add best score about
                 for(var i = 1; i <=maxLev-1; i++) {

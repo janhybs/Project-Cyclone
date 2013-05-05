@@ -17,6 +17,11 @@ html {
     user-select: none;
 }
 
+.levels li {
+    display: inline-block;
+    width: 140px;
+}
+
 #webview > *, #cr-stage, #gamePanel {
     margin: 0 auto;
 }
@@ -169,7 +174,7 @@ html {
 .tableLevels {
     position: relative;
     margin-top: 3em;
-    left: 10em;
+    left: 20.8em;
     text-align: center;
 }
 
