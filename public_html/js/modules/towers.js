@@ -627,6 +627,7 @@ Crafty.c(TOWER_HOMING_MISSILE, {
         s.setDamage(this.damage);
         s.setTTL(this.ttl);
         s.create(this.rate, this.curving);
+        s.z = Z_TOWER_SHOT;
         Crafty.audio.play(ELECTRIC_SOUND, 1);
         s.start();
     },
