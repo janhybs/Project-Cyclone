@@ -4,6 +4,7 @@ Crafty.scene (SCENE_GAME, function () {
     loadPage ('gamePanel', 'panel-main', function () {
         //load money info
         $('#availableMoney').html(PlayerUtils.getPlayerMoney());
+        bindActions ();
     });
 
     //mouse click activating for this scene

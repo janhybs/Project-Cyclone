@@ -80,9 +80,8 @@
         </div>
 
         <div id="panel-main" class="panel">
-
+            
             <h1>Towers</h1>
-
             <ul id="panel-main-towers">
                 <li id="machineGun" onclick="if(!$.toverBuilderLock) towerBuilder.create (TOWER_MACHINEGUN);"><img src="images/towers/tower-02.png" title="Machine Gun"/></li>
                 <li id="flame" onclick="if(!$.toverBuilderLock) towerBuilder.create (TOWER_FLAMETHROWER);"><img src="images/towers/tower-04.png" title="Flame" /></li>
@@ -95,6 +94,35 @@
                 <li id="slowAura" onclick="if(!$.toverBuilderLock) towerBuilder.create (TOWER_SLOW_AURA);"><img src="images/towers/tower-09.png" title="Slow Aura"/></li>
             </ul>
             <div id="moneyInfo">Available money: <span id="availableMoney"></span></div>
-        </div>
+            <div id="towerMenuInfo">
+                <div id="towerMenu">
+                    <img src="images/towers/upgrade.png" alt="upgrade" id="towerUpgrade" class="towerMenu-action"/>
+                    <img src="images/towers/delete.png" alt="delete" id="towerDelete" class="towerMenu-action" />
+                </div>
+                <div id="towerInfo">
+                    <span class="prop">
+                        <span class="prop-name tower-name">Name: </span>
+                        <span class="prop-value" id="infoName">Machine gun</span>
+                    </span>
+                    <span class="prop">
+                        <span class="prop-name">Damage: </span>
+                        <span class="prop-value" id="infoDamage">45</span>
+                    </span>
+                    <span class="prop">
+                        <span class="prop-name">Rate: </span>
+                        <span class="prop-value" id="infoRate">5</span>
+                    </span>
+                    <span class="prop">
+                        <span class="prop-name">Range: </span>
+                        <span class="prop-value" id="infoRange">5</span>
+                    </span>
+                </div>
+            </div>
+            <div id="controls">
+                <img src="images/towers/upgrade.png" class="towerMenu-action"/>
+                <img src="images/towers/delete.png" class="towerMenu-action" />
+            </div>
+
+    </div>
     </body>
 </html>

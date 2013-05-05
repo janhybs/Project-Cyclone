@@ -1,7 +1,5 @@
 /*** AIMING MODULE ***/
 
-/*** MISSING - LOC AIMING -> MOBS ID? ***/
-
 /*** Component - closest mob ***/
 Crafty.c(AIMING_CLOSEST, {
     getElement: function(elems, startPoint) {
