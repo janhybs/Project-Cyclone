@@ -26,10 +26,25 @@ Crafty.scene (SCENE_GAME_MENU,
                 $('#laserLevelInfo').html("Level: " + PlayerUtils.getActualLevelByPlayerType(LASER_PLAYER));
                 //select actual player
                 if(PlayerUtils.getActualPlayer() === GUN_PLAYER) {
-                    $('#soldierPlayer').attr("checked", "checked");
+                    $('#laserPart').animate({opacity: 0.3}, 500);
                 } else {
-                    $('#laserPlayer').attr("checked", "checked");
+                    $('#soldierPart').animate({opacity: 0.3}, 500);
                 }
+                //player animate
+                $('#soldierPart').mouseenter(function() {
+                        $('#soldierPart').animate({opacity: 1}, 1000); 
+                        $('#laserPart').animate({opacity: 0.3}, 200);});
+                $('#soldierPart').mouseleave(function() {if(PlayerUtils.getActualPlayerType() !== PLAYER_SOLDIER) {
+                        $('#soldierPart').animate({opacity: 0.3}, 200);
+                        $('#laserPart').animate({opacity: 1}, 500);
+                    }});
+                $('#laserPart').mouseenter(function() {
+                        $('#laserPart').animate({opacity: 1}, 1000);
+                        $('#soldierPart').animate({opacity: 0.3}, 200);});
+                $('#laserPart').mouseleave(function() {if(PlayerUtils.getActualPlayerType() === PLAYER_SOLDIER) { 
+                        $('#laserPart').animate({opacity: 0.3}, 200);
+                        $('#soldierPart').animate({opacity: 1}, 500);
+                    }});
             });
         },
         function () {
