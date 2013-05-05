@@ -79,9 +79,10 @@ Crafty.c (ENEMY_ABS, {
         this.trigger ('Death', null);
         this.destroy ();
         this.isNull = true;
-        if (reason === 'end')
+        if (reason === 'end') {
             Crafty.audio.play ("death_end");
-        else
+            Crafty.trigger (ENEMY_SLIP);
+        } else
             Crafty.audio.play ("death_0" + Crafty.math.randomInt (1, 5));
     },
     //#

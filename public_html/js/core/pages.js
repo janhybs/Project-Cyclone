@@ -6,6 +6,8 @@ var infoRange;
 var infoRate;
 var towerUpgrade;
 var towerDelete;
+var wavePause;
+var waveNext;
 
 $.selectedTower = undefined;
 
@@ -29,8 +31,11 @@ function loadDivs () {
     infoDamage = $ ('#infoDamage');
     infoRange = $ ('#infoRange');
     infoRate = $ ('#infoRate');
+    
     towerUpgrade = $ ('#towerUpgrade');
     towerDelete = $ ('#towerDelete');
+    wavePause = $ ('#wavePause');
+    waveNext = $ ('#waveNext');
 }
 
 function bindActions () {
@@ -40,11 +45,13 @@ function bindActions () {
 
     towerUpgrade.bind ('click', upgradeSelectedTower);
     towerDelete.bind ('click', deleteSelectedTower);
+    wavePause.bind ('click', pauseGame);
+    waveNext.bind ('click', startNextWave);
 
     for (var p in items) {
         var e = $ ('#{0}'.format (p));
         e.bind ('click', p, function (event) {
-            if ($.toverBuilderLock)
+            if ($.toverBuilderLock || Crafty.isPaused ())
                 return;
             var p = event.data;
 
@@ -58,7 +65,7 @@ function bindActions () {
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseover', p, function (event) {
-            if ($.toverBuilderLock)
+            if ($.toverBuilderLock || Crafty.isPaused ())
                 return;
             var p = event.data;
 
@@ -71,12 +78,20 @@ function bindActions () {
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseout', function (event) {
-            if ($.toverBuilderLock)
+            if ($.toverBuilderLock || Crafty.isPaused ())
                 return;
             towerInfo.hide ();
             towerMenu.hide ();
         });
     }
+}
+
+function pauseGame () {
+    Crafty.pause ();
+}
+
+function startNextWave () {
+    generator.nextWave();
 }
 
 function showInfo (name, damage, range, rate) {
@@ -102,6 +117,8 @@ function getTowerName (name) {
 }
 
 function towerClicked (tower) {
+    if (Crafty.isPaused ())
+        return;
     loadDivs ();
 
     towerInfo.show ();
