@@ -67,7 +67,7 @@ html {
 .buttons button, .buttons-small button {
     font-family: 'Verdana';
     font-weight: bold;
-    color: #0FA;
+    color: #09F;
     display: inline-block;
     border: none;
     background: none;
@@ -77,7 +77,7 @@ html {
 }
 
 .buttons button:hover {
-    background: #0C9;
+    background: #06F;
     color: #FFF;
 }
 
@@ -94,7 +94,7 @@ html {
 }
 
 .buttons-small button:hover {
-    background: #0C9;
+    background: #06F;
     color: #FFF;  
 }
 
@@ -269,7 +269,7 @@ td {
 
 #levelUpImg {
     position: relative;
-    left: 330px;
+    left: 180px;
     display: block;
 }
 
