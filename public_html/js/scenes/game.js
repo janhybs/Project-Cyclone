@@ -58,6 +58,7 @@ Crafty.scene (SCENE_GAME, function () {
     //binds for ending game
     Crafty.bind(GAME_OVER, function() {
         enemyBrain.clearEnemies();
+        towerBrain.clearTowers();
         timer.clear();
         Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
@@ -66,6 +67,7 @@ Crafty.scene (SCENE_GAME, function () {
     
     Crafty.bind(GAME_END, function(slips) {
         timer.clear();
+        towerBrain.clearTowers();
         enemyBrain.clearEnemies();
         Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
