@@ -62,7 +62,7 @@ Crafty.scene (SCENE_GAME, function () {
         timer.clear();
         Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
-        console.log("game overrr");
+        console.log("game over");
         Crafty.scene(SCENE_GAME_OVER)});
     
     Crafty.bind(GAME_END, function(slips) {
