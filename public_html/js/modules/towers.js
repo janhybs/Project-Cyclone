@@ -509,6 +509,14 @@ Crafty.c(TOWER_BEAM_LASER, {
                     break;
             }
         }
+    },
+    doDestroy: function(){
+        this.destroy();
+        if(this.repID !== false)
+            timer.clearTimer(this.repId);
+        towerBrain.removeByTower(this);
+        this.actor.destroy();
+        this.s.doDestroy();
     }
 });
 
@@ -622,6 +630,16 @@ Crafty.c(TOWER_CHAIN_LASER, {
                     }
                     break;
             }
+        }
+    }, 
+    doDestroy: function(){
+        this.destroy();
+        if(this.repID !== false)
+            timer.clearTimer(this.repId);
+        towerBrain.removeByTower(this);
+        this.actor.destroy();
+        for (var i = 0; i < this.chain; i++){
+                this.s[i].doDestroy();
         }
     }
 });
