@@ -154,6 +154,8 @@ html {
 
 .playerSelect {
     text-align: center;
+    border: 1px solid grey;
+    width:8em;
 }
 .playerSelect input{
     display: inline;
@@ -223,7 +225,6 @@ table {
 
 td {
     text-align: left;
-    padding-left: 20px;
     font-weight: bold;
     font-size: 20px;
 }
