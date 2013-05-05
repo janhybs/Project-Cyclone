@@ -598,12 +598,18 @@ Crafty.c(TOWER_CHAIN_LASER, {
                     this.range = CHL_RANGE_2;
                     this.damage = CHL_DAMAGE_2;
                     this.chain = CHL_CHAIN_2;
+                    for(var i = CHL_CHAIN; i < CHL_CHAIN_2; i++){
+                        this.s.push(shot.get(SHOT_LASER));
+                    }
                     break;
                 case(3):
                     this.rate = CHL_RATE_3;
                     this.range = CHL_RANGE_3;
                     this.damage = CHL_DAMAGE_3;
                     this.chain = CHL_CHAIN_3;
+                    for(var i = CHL_CHAIN_2; i < CHL_CHAIN_3; i++){
+                        this.s.push(shot.get(SHOT_LASER));
+                    }
                     break;
             }
         }
