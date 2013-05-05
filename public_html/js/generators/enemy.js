@@ -22,7 +22,7 @@ window.enemy = window.enemy || {};
  */
 enemy.parse = function (o) {
     g = enemy.preset (o.preset);
-    var props = ['health', 'shield', 'speed', 'size', 'image', 'wobble'];
+    var props = ['health', 'shield', 'speed', 'size', 'wobble'];
     for (var i in props)
         g[props[i]] = o.hasOwnProperty (props[i])
                 ? (isNaN (Number (o[props[i]]))
@@ -30,6 +30,7 @@ enemy.parse = function (o) {
                 : Number (o[props[i]]))
                 : g[props[i]];
     g.resistance = toDamage (o.resistance || g.resistance);
+    g.image = o.image || g.image;
     return g;
 };
 
