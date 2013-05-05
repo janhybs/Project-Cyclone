@@ -69,6 +69,15 @@ Crafty.c(TOWER_ABS, {
         if(this.levelComp !== undefined)
             this.levelComp.destroy();
     },
+    doDestroyAll: function() {
+        this.destroy();
+        if(this.repID !== false)
+            timer.clearTimer(this.repId);
+        if(this.actor !== undefined)
+            this.actor.destroy();
+        if(this.levelComp !== undefined)
+            this.levelComp.destroy();
+    },
     getLevel: function() {
         return this.level;
     },

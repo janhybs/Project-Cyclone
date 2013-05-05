@@ -14,6 +14,13 @@ Crafty.c (TOWER_BRAIN, {
         this.items.push(t);
     },
         
+    clearTowers: function (){
+        for(var t in this.items){
+            this.items[t].doDestroyAll();          
+        }
+        this.items = [];
+    },
+        
     isPositionAvailable: function (position){
         var tempPos = toPoint(position);
         tempPos = [tempPos.x * W, tempPos.y * H];
