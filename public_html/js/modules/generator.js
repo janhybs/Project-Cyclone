@@ -32,6 +32,7 @@ window.generator = {
     },
     nextPart: function () {
         //# end wave
+        console.log ('next-part');
         if (!this.incPart ()) {
             if (this.currentWave + 1 === this.totalWaves) {
                 this.everythingReleased = true;
@@ -43,22 +44,28 @@ window.generator = {
         }
 
         var o = this.xmlData.waves.wave[this.currentWave].item[this.currentPart];
+        var oGenerator = enemy.parse (JSON.parse (o.generator));
+        var oRepeat = Number (o.repeat || 1);
+        var oDelay = Number (o.delay || 1);
+        var oCount = Number (o.count || 1);
+        var oFrame = Number (o.frame || 1);
+        
         timer.repeat (function () {
-            timer.repeat (function () {
-                var generator = enemy.parse (JSON.parse (o.generator));
-                for (var j = 0; j < this.paths.length; j++) {
-                    enemy.create (generator).requires ('HealthBar')
-                            .setPath (this.paths[j])
-                            .start ();
-                }
-            }, o.frame, this, o.count);
-        }, o.delay, this, o.repeat);
+            for (var s = 0; s < oCount; s++) {
+                timer.delay (function () {
+                    for (var j = 0; j < this.paths.length; j++) {
+                        enemy.create (oGenerator).requires ('HealthBar')
+                                .setPath (this.paths[j])
+                                .start ();
+                    }
+                }, 1+s*oFrame, this);
+            }
+        }, oDelay + oFrame*oCount, this, oRepeat, 1);
 
-        var partTime = (Number (o.count) * Number (o.frame) + Number (o.delay)) * Number (o.repeat);
 
         timer.delay (function () {
             this.nextPart ();
-        }, partTime, this);
+        }, (oCount * oFrame + oDelay) * oRepeat, this);
     },
     incWave: function () {
         this.currentPart = -1;
