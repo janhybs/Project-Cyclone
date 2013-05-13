@@ -13,6 +13,7 @@ var Z_TOWER_HEAD = 100 * 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
 var Z_TOWER_SHOT = Z_TOWER_BODY + 1;
 var Z_EFFECTS = 1000 * 1000;
+var Z_ENEMY_TARGET = 3;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
@@ -59,12 +60,11 @@ var ENEMY_TYPE = {
 
 //# sizes
 var ENEMY_SIZE = {
-    tiny: 0 + 1 / 3,
-    small: 0 + 2 / 3,
-    normal: 1,
-    large: 1 + 1 / 3,
-    huge: 1 + 2 / 3,
-    boss: 4
+    small: 24,
+    normal: 32,
+    large: 48,
+    huge: 64,
+    boss: 128
 };
 
 //# health
