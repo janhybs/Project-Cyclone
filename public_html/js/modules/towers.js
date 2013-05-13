@@ -498,8 +498,8 @@ Crafty.c(TOWER_BEAM_LASER, {
         this.s.create(LASER_IMAGE_NAME.laser, LASER_IMAGE_NAME.laserEnd);
         this.s.setStartPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
         this.s.setEndPoint([this.startPoint.x + W/2, this.startPoint.y + H/2]);
-        this.s.start();
         this.s.z = Z_TOWER_SHOT;
+        this.s.start();
         this.s.hide();
 
         this.repId = timer.repeat (function () { 
@@ -581,6 +581,7 @@ Crafty.c(TOWER_CHAIN_LASER, {
             this.s[i].create(LASER_IMAGE_NAME.chain, LASER_IMAGE_NAME.chainEnd); 
             this.s[i].setStartPoint(this.startPoint);
             this.s[i].setEndPoint(this.startPoint);
+            this.s[i].z = Z_TOWER_SHOT;
             this.s[i].start();
             this.s[i].hide();
         }

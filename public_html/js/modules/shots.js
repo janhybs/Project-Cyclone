@@ -204,8 +204,8 @@ Crafty.c (SHOT_LASER, {
     //#
     start: function () {
         if (this.startPoint !== null && this.endPoint !== null) {
-            this.laser.z = Z_TOWER_SHOT;
-            this.ending.z = Z_TOWER_SHOT + 1;
+            this.laser.z = this.z;
+            this.ending.z = this.z + 1;
             this.setStartPoint (this.startPoint);
             this.laser.origin (0, this.laser.h / 2);
             this.len = 0;
