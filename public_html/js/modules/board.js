@@ -33,7 +33,7 @@ window.board = {
             p = data[i][data[i].length - 1];
 
             if (!points.hasOwnProperty (p.x + '-' + p.y)) {
-                 this.createGate (p);
+                this.createGate (p);
                 points[p.x + '-' + p.y] = true;
             }
         }
@@ -44,7 +44,13 @@ window.board = {
     },
     createGate: function (point) {
         var p = toPoint (point);
-        return Crafty.e ("2D, Canvas, gate").attr ({x: p.x * W, y: p.y * H});
+        var e = Crafty.e ("2D, Canvas, gate").attr ({x: p.x * W, y: p.y * H, z: Z_ENEMY_TARGET});
+        e.bind('EnterFrame', function () {
+           this.rotation++;
+        });
+        e.origin ('center');
+        e.attr ({x: e.x - e.w / 2 + W / 2, y: e.y - e.h / 2 + H / 2});
+        return e;
     }
 };
 

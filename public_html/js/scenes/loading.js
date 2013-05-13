@@ -19,8 +19,7 @@ Crafty.scene (SCENE_LOADING, function () {
         //# shots packed
         'images/shots.png',
         //
-        'images/pages/level-01.png',
-        'images/pages/level-02.png',
+        'images/levels/target.png',
         'images/enemy.png',
         'images/crosshair.png'];
 
@@ -66,6 +65,10 @@ Crafty.sprite (32, 'images/exp-simple.png', {
 
 Crafty.sprite (32, 'images/exp-complex.png', {
     exp_complex: [0, 0]
+});
+
+Crafty.sprite (96, 'images/levels/target.png', {
+    gate: [0, 0]
 });
 
 
