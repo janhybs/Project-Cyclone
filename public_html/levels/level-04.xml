@@ -40,5 +40,79 @@
 			12,18 12,12 10,12 10,8 12,8 12,10 
 		</path>
     </paths>
+	
+	    <waves tolerance="8">
+        <wave>
+            <item>
+                <count>5</count>               
+                <delay>25</delay>
+                <repeat>5</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"normal_normal_normal",
+                        "image":"enemy_purple",
+						"shield":"normal",
+						"wobble":"drunk"
+					}]]>
+                </generator>
+            </item>
+            <item>
+                <count>10</count>               
+                <delay>25</delay>
+                <repeat>3</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"fast_normal_normal",
+                        "image":"enemy_yellow",
+						"shield":"normal",
+						"wobble":"high"
+					}]]>
+                </generator>
+            </item>
+        </wave>
+        <wave>
+            <item>
+                <count>10</count>
+                <frame>5</frame>
+                
+                <delay>25</delay>
+                <repeat>3</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"normal_normal_strong",
+                        "image":"enemy_red",
+						"shield":"strong",
+						"wobble":"high"
+					}]]>
+                </generator>
+            </item>
+            <item>
+                <count>10</count>
+                <frame>5</frame>
+                
+                <delay>25</delay>
+                <repeat>3</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"fast_normal_strong",
+                        "image":"enemy_green",
+						"shield":"strong",
+						"wobble":"high"
+					}]]>
+                </generator>
+            </item>
+            <item>
+                <generator>
+                    <![CDATA[{
+                        "size":"boss",
+						"speed":"snail",
+                        "image":"enemy_green",
+						"health":"boss",
+						"shield":"boss"
+					}]]>
+                </generator>
+            </item>
+        </wave>
+    </waves>
     
 </level>

@@ -34,5 +34,78 @@
 			3,14 8,14 8,8 16,8 16,14 21,14 
 		</path>
     </paths>
+    <waves tolerance="8">
+        <wave>
+            <item>
+                <count>5</count>
+                <frame>1</frame>
+                
+                <delay>100</delay>
+                <repeat>5</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"normal_normal_normal",
+                        "image":"enemy_red",
+						"shield":"weak"
+					}]]>
+                </generator>
+            </item>
+            <item>
+                <count>10</count>
+                <frame>5</frame>
+                
+                <delay>100</delay>
+                <repeat>3</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"fast_normal_normal",
+                        "image":"enemy_green",
+						"shield":"weak"
+					}]]>
+                </generator>
+            </item>
+        </wave>
+        <wave>
+            <item>
+                <count>10</count>
+                <frame>5</frame>
+                
+                <delay>100</delay>
+                <repeat>3</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"normal_normal_strong",
+                        "image":"enemy_red",
+						"shield":"normal"
+					}]]>
+                </generator>
+            </item>
+            <item>
+                <count>10</count>
+                <frame>5</frame>
+                
+                <delay>100</delay>
+                <repeat>3</repeat>
+                <generator>
+                    <![CDATA[{
+                        "preset":"fast_normal_strong",
+                        "image":"enemy_green",
+						"shield":"normal"
+					}]]>
+                </generator>
+            </item>
+            <item>
+                <generator>
+                    <![CDATA[{
+                        "size":"boss",
+						"speed":"snail",
+                        "image":"enemy_brown",
+						"health":"boss",
+						"shield":"strong"
+					}]]>
+                </generator>
+            </item>
+        </wave>
+    </waves>
     
 </level>

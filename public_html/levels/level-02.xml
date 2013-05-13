@@ -31,179 +31,63 @@
             4,6 4,15 19,15 19,6 8,6 8,11 15,11 
         </path>
     </paths>
-    <waves tolerance="11">
+    <waves tolerance="12">
         <wave>
-            <item>
-                <count>2</count>
-                <frame>1</frame>
-                
-                <delay>10</delay>
-                <repeat>5</repeat>
-                <generator>
-                    <![CDATA[
-                        {
-                        "health":200,
-                        "shield":50,
-                        "speed": "lighbolt",
-                        "resistance":{
-                            "basic":0.5,
-                            "fire":0,
-                            "electric":0.0,
-                            "poison":0,
-                            "ice":0},
-                        "size":1,
-                        "image":"enemy_purple_48",
-                        "wobble":5}
-                    ]]>
-                </generator>
-            </item>
             <item>
                 <count>5</count>
                 <frame>1</frame>
                 
-                <delay>25</delay>
-                <repeat>3</repeat>
+                <delay>100</delay>
+                <repeat>5</repeat>
                 <generator>
-                    <![CDATA[
-                        {
-                        "health":100,
-                        "shield":0,
-                        "speed":1,
-                        "resistance":{
-                            "basic":0,
-                            "fire":0,
-                            "electric":0,
-                            "poison":0,
-                            "ice":0,
-                            "period":0,
-                            "repeat":0,
-                            "value":0,
-                            "slow":0,
-                            "chance":0,
-                            "duration":0},
-                        "size":1,
-                        "image":"enemy_green_32",
-                        "wobble":5}
-                    ]]>
+                    <![CDATA[{
+                        "preset":"normal_normal_normal",
+                        "image":"enemy_red"
+					}]]>
                 </generator>
             </item>
             <item>
                 <count>10</count>
-                <frame>1</frame>
+                <frame>5</frame>
                 
-                <delay>10</delay>
-                <repeat>5</repeat>
+                <delay>100</delay>
+                <repeat>3</repeat>
                 <generator>
-                    <![CDATA[
-                        {
-                        "health":100,
-                        "shield":0,
-                        "speed":1,
-                        "resistance":{
-                            "basic":0,
-                            "fire":0,
-                            "electric":0,
-                            "poison":0,
-                            "ice":0,
-                            "period":0,
-                            "repeat":0,
-                            "value":0,
-                            "slow":0,
-                            "chance":0,
-                            "duration":0},
-                        "size":1,
-                        "image":"enemy",
-                        "wobble":5}
-                    ]]>
+                    <![CDATA[{
+                        "preset":"fast_normal_normal",
+                        "image":"enemy_green"
+					}]]>
                 </generator>
             </item>
         </wave>
         <wave>
             <item>
-                <count>2</count>
-                <frame>1</frame>
+                <count>10</count>
+                <frame>5</frame>
                 
-                <delay>10</delay>
-                <repeat>5</repeat>
-                <generator>
-                    <![CDATA[
-                        {
-                        "health":100,
-                        "shield":0,
-                        "speed": "lighbolt",
-                        "resistance":{
-                            "basic":0,
-                            "fire":0,
-                            "electric":0.8,
-                            "poison":0,
-                            "ice":0},
-                        "size":1,
-                        "image":"enemy_red_48",
-                        "wobble":5}
-                    ]]>
-                </generator>
-            </item>
-            <item>
-                <count>5</count>
-                <frame>1</frame>
-                
-                <delay>25</delay>
+                <delay>100</delay>
                 <repeat>3</repeat>
                 <generator>
-                    <![CDATA[
-                        {
-                        "health":100,
-                        "shield":0,
-                        "speed":1,
-                        "resistance":{
-                            "basic":0,
-                            "fire":0,
-                            "electric":0,
-                            "poison":0,
-                            "ice":0,
-                            "period":0,
-                            "repeat":0,
-                            "value":0,
-                            "slow":0,
-                            "chance":0,
-                            "duration":0},
-                        "size":1,
-                        "image":"enemy_green_32",
-                        "wobble":5}
-                    ]]>
+                    <![CDATA[{
+                        "preset":"normal_normal_strong",
+                        "image":"enemy_red"
+					}]]>
                 </generator>
             </item>
             <item>
                 <count>10</count>
-                <frame>1</frame>
+                <frame>5</frame>
                 
-                <delay>10</delay>
-                <repeat>5</repeat>
+                <delay>100</delay>
+                <repeat>3</repeat>
                 <generator>
-                    <![CDATA[
-                        {
-                        "health":100,
-                        "shield":0,
-                        "speed":1,
-                        "resistance":{
-                            "basic":0,
-                            "fire":0,
-                            "electric":0,
-                            "poison":0,
-                            "ice":0,
-                            "period":0,
-                            "repeat":0,
-                            "value":0,
-                            "slow":0,
-                            "chance":0,
-                            "duration":0},
-                        "size":1,
-                        "image":"enemy",
-                        "wobble":5}
-                    ]]>
+                    <![CDATA[{
+                        "preset":"fast_normal_strong",
+                        "image":"enemy_green"
+					}]]>
                 </generator>
             </item>
         </wave>
     </waves>
-    
+     
 </level>
