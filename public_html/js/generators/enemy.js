@@ -22,7 +22,7 @@ window.enemy = window.enemy || {};
  */
 enemy.parse = function (o) {
     g = enemy.preset (o.preset);
-    var props = ['health', 'shield', 'speed', 'size', 'wobble'];
+    var props = ['health', 'shield', 'speed', 'wobble'];
     for (var i in props)
         g[props[i]] = o.hasOwnProperty (props[i])
                 ? (isNaN (Number (o[props[i]]))
@@ -30,7 +30,9 @@ enemy.parse = function (o) {
                 : Number (o[props[i]]))
                 : g[props[i]];
     g.resistance = toDamage (o.resistance || g.resistance);
-    g.image = o.image || g.image;
+    g.image = "{0}_{1}".format (o.image || 'enemy_red', 
+        o.size ? (ENEMY_SIZE[o.size] || o.size) : ENEMY_SIZE.normal);
+    console.log (g.image);
     return g;
 };
 
@@ -55,9 +57,64 @@ enemy.preset = function (name) {
         };
 
     switch (name) {
-        case 'test':
+        case 'slow_small_weak':
             return setMerge (enemy.preset (), {
-                size: ENEMY_SIZE.huge
+                size: ENEMY_SIZE.small,
+                speed: ENEMY_SPEED.slow,
+                health: ENEMY_HEALTH.weak
+            });
+        case 'normal_small_weak':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.small,
+                speed: ENEMY_SPEED.normal,
+                health: ENEMY_HEALTH.weak
+            });
+        case 'fast_small_weak':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.small,
+                speed: ENEMY_SPEED.fast,
+                health: ENEMY_HEALTH.weak
+            });
+            
+            
+        case 'slow_normal_normal':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.normal,
+                speed: ENEMY_SPEED.slow,
+                health: ENEMY_HEALTH.normal
+            });
+        case 'normal_normal_normal':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.normal,
+                speed: ENEMY_SPEED.normal,
+                health: ENEMY_HEALTH.normal
+            });
+        case 'fast_normal_normal':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.normal,
+                speed: ENEMY_SPEED.fast,
+                health: ENEMY_HEALTH.normal
+            });
+            
+            
+            
+        case 'slow_normal_strong':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.normal,
+                speed: ENEMY_SPEED.slow,
+                health: ENEMY_HEALTH.normal
+            });
+        case 'normal_normal_strong':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.normal,
+                speed: ENEMY_SPEED.normal,
+                health: ENEMY_HEALTH.normal
+            });
+        case 'fast_normal_strong':
+            return setMerge (enemy.preset (), {
+                size: ENEMY_SIZE.normal,
+                speed: ENEMY_SPEED.fast,
+                health: ENEMY_HEALTH.normal
             });
         default:
             return null;
