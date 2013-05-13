@@ -15,7 +15,7 @@ Crafty.c ("Framer", {
             for (var index in this._delays) {
                 var item = this._delays[index];
 
-                if (item.repeat !== 0 && --item.count === 0) {
+                if (item && item.repeat !== 0 && --item.count === 0) {
                     item.func.call (item.ctx);
                     if (--item.repeat !== 0) {
                         item.count = item.frames;
@@ -33,9 +33,9 @@ Crafty.c ("Framer", {
             repeat: 1
         }) - 1;
     },
-    repeat: function (func, frames, ctx, repeat) {
+    repeat: function (func, frames, ctx, repeat, count) {
         return this._delays.push ({
-            count: Math.floor (frames),
+            count: Math.floor (count || frames),
             func: func,
             frames: Math.floor (frames),
             ctx: ctx || this,
@@ -117,6 +117,7 @@ Crafty.c ('Shield', {
         this.requires ('Image');
         this.requires ('shield');
         this.enemy = null;
+        this.visible = false;
     },
     start: function () {
         if (this.enemy === null || this.enemy === undefined)
@@ -126,6 +127,7 @@ Crafty.c ('Shield', {
         return this;
     },
     update: function () {
+        this.visible = this.enemy.visible;
         this.x = this.enemy.center.x - this.w / 2;
         this.y = this.enemy.center.y - this.h / 2;
 
