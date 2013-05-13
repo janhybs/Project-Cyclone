@@ -4,8 +4,6 @@ enemy.create = function (generator) {
     var o = setMerge (enemy.preset (), generator);
 
     var e = Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (ENEMY_ABS, o.image));
-    e.w *= o.size;
-    e.h *= o.size;
     e.create (o.path, o.speed, o.resistance, o.health, o.shield, o.wobble);
     return e;
 };
@@ -73,7 +71,7 @@ Crafty.c (ENEMY_ABS, {
         this.onHit (SHOT_ABS, this.processHit);
     },
     processDeath: function (reason) {
-        effects.create (this.center, 'exp_complex', 48);
+        effects.create (this.center, 'exp_complex', 48).alpha = 0.35;
         if (this.shieldActor)
             this.shieldActor.destroy ();
         this.trigger ('Death', null);
