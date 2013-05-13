@@ -62,8 +62,10 @@ Crafty.scene (SCENE_GAME, function () {
         timer.clear();
         Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
+        Crafty.audio.stop ();
         console.log("game over");
-        Crafty.scene(SCENE_GAME_OVER)});
+        Crafty.scene(SCENE_GAME_OVER);
+    });
     
     Crafty.bind(GAME_END, function(slips) {
         enemyBrain.clearEnemies();
@@ -71,7 +73,9 @@ Crafty.scene (SCENE_GAME, function () {
         timer.clear();
         Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
         PLAYER_ABS, TOWER_ABS)).destroy();
+        Crafty.audio.stop ();
         $.enemyLosts = slips;
         console.log('game success');
-        Crafty.scene(SCENE_GAME_SUCCESS)});
+        Crafty.scene(SCENE_GAME_SUCCESS);
+    });
 });
