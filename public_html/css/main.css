@@ -1,6 +1,10 @@
 /*
     ---------------- INIT -----------------
 */
+* {
+    font-family: 'Verdana';
+}
+
 div, form, body, html, h1, h2 {
     margin: 0; padding: 0;
 }
@@ -35,7 +39,6 @@ html {
     height: 140px;
     text-align: center;
     background: rgba(11, 15, 20, 0.5);
-    font-family: 'Verdana';
     padding-top: 5px;
 }
 
@@ -65,7 +68,6 @@ html {
 }
 
 .buttons button, .buttons-small button {
-    font-family: 'Verdana';
     font-weight: bold;
     color: #09F;
     display: inline-block;
@@ -111,7 +113,6 @@ html {
     background: rgba(11, 15, 20, 0.5);
     position: absolute;
     z-index: 1;
-    font-family: 'Verdana';
 }
 
 #towerMenuInfo .prop {
