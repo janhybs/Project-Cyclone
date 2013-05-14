@@ -8,42 +8,46 @@
     <body>
         <!-- NEW GAME -->
         <div id="scene-new-game" class="page">
-            <h2>Name your</h2>
+            <div class="sceneMode" style="padding: 0em" >
+            <h4>Name your</h4>
             <h1>Heroes</h1>
 
             <form>
                 <div id="scene-new-game-p2p">
                     <img src="images/pages/gun-256.png" />
-                    <input type="text" id="gunManName" value="GunMan" name="scene-new-game-p2p" />
+                    <input type="text" class="scene-input" id="gunManName" value="GunMan" name="scene-new-game-p2p" />
                 </div>
                 <div id="scene-new-game-laser">
                     <img src="images/pages/diamond-256.png" />
-                    <input type="text" id="laserManName" value="LaserMan" name="scene-new-game-laser" />
+                    <input type="text" class="scene-input" id="laserManName" value="LaserMan" name="scene-new-game-laser" />
                 </div>
             </form>
 
-            <button id="scene-new-game-next" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $ ('#laserManName').val());Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+            <button id="scene-new-game-next" class="scene-button" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $ ('#laserManName').val());Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+            </div>
         </div>
 
 
         <!-- LEVEL UPG -->
         <div id="scene-level-up" class="page">
+            <div class="sceneMode">
             <img id="levelUpImg" src="images/pages/level-up.png" />
-            <h2 id="actPlayer"></h2>
-            <h1 id="actLevel"></h1>
+            <h4 id="actPlayer"></h4>
+            <h3 id="actLevel"></h3>
             <table>
-                <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" onclick="
+                <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" class="scene-button" onclick="
                     PlayerUtils.addDamagePoint ();
                     $ ('#damage').html (PlayerUtils.getDamagePoints ());
                     $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
                     $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
-                <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" onclick="
+                <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" class="scene-button" onclick="
                     PlayerUtils.addRangePoint ();
                     $ ('#range').html (PlayerUtils.getRangePoints ());
                     $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
                     $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
             </table>
-            <button id="scene-level-up-but" disabled="disabled" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+            <button id="scene-level-up-but" class="scene-button" disabled="disabled" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+            </div>
         </div>
 
         <!-- MAIN MENU -->
@@ -92,16 +96,20 @@
         
         <!-- GAME OVER -->
         <div id="scene-game-over" class="page">
-            <h1 style="padding-top: 5em">GAME OVER</h1>
-            <h5>You can try it again!</h5>
-            <button id="scene-new-game-next" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
-        </div>
+            <div class="sceneMode">
+                <h1>GAME OVER</h1>
+                <h4>You can try it again!</h4>
+                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+            </div>
+            </div>
         
         <!-- LEVEL COMPLETE -->
         <div id="scene-game-complete" class="page">
-            <h1 style="padding-top: 5em">LEVEL COMPLETE!</h1>
-            <h5>Received money: <span id="recMoney"></span></h5>
-            <button id="scene-new-game-next" onclick="Crafty.scene(SCENE_LEVEL_UP)">Continue</button>
+            <div class="sceneMode">
+                <h1>LEVEL COMPLETE!</h1>
+                <h5>Received money: <span id="recMoney"></span></h5>
+                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene(SCENE_LEVEL_UP)">Continue</button>
+            </div>
         </div>
         
         <!-- GAME PANEL -->

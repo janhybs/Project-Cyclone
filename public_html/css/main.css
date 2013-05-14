@@ -5,7 +5,7 @@
     font-family: 'Verdana';
 }
 
-div, form, body, html, h1, h2 {
+div, form, body, html, h1, h2, h3, h4, h5 {
     margin: 0; padding: 0;
 }
 
@@ -98,6 +98,29 @@ html {
 .buttons-small button:hover {
     background: #06F;
     color: #FFF;  
+}
+
+.scene-button {
+    background: #0f1420;
+    background: linear-gradient(to bottom, #0f1420 50%,#070c19 50%);
+    background: -o-linear-gradient(top, #0f1420 50%,#070c19 50%);
+    background: -webkit-linear-gradient(top, #0f1420 50%,#070c19 50%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#0f1420), color-stop(50%,#070c19));
+    color: white;
+    margin-bottom: 1em;
+}
+
+.scene-button:disabled {
+    color: grey;
+}
+
+.scene-input {
+    background: #0f1420;
+    background: linear-gradient(to bottom, #0f1420 50%,#070c19 50%);
+    background: -o-linear-gradient(top, #0f1420 50%,#070c19 50%);
+    background: -webkit-linear-gradient(top, #0f1420 50%,#070c19 50%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#0f1420), color-stop(50%,#070c19));
+    color: white;
 }
 
 /*
@@ -249,6 +272,15 @@ html {
     font-size: 1.4em;
 }
 
+.sceneMode h3 {
+    font-size: 1.1em;
+}
+
+.sceneMode h4 {
+    font-size: 1.0em;
+    padding-top: 1em;
+}
+
 #story p {
     text-align: justify;
     text-indent:3em;
@@ -282,7 +314,7 @@ table {
 td {
     text-align: left;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.1em;
 }
 
 #levelUpImg {
@@ -293,6 +325,8 @@ td {
 
 .r {
     text-align: right;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 #moneyInfo {
