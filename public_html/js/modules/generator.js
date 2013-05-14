@@ -17,7 +17,7 @@ window.generator = {
         this.paths = [];
         this.currentWave = -1;
         this.currentPart = -1;
-        this.autoPlay = true;
+        this.autoPlay = false;
         this.totalWaves = this.xmlData.waves.wave.length;
         this.everythingReleased = false;
 
@@ -49,6 +49,7 @@ window.generator = {
         var oDelay = Number (o.delay || 1);
         var oCount = Number (o.count || 1);
         var oFrame = Number (o.frame || 1);
+        var oPause = Number (o.pause || 1);
         
         timer.repeat (function () {
             for (var s = 0; s < oCount; s++) {
@@ -60,7 +61,7 @@ window.generator = {
                     }
                 }, 1+s*oFrame, this);
             }
-        }, oDelay + oFrame*oCount, this, oRepeat, 1);
+        }, oDelay + oFrame*oCount, this, oRepeat, oPause);
 
 
         timer.delay (function () {

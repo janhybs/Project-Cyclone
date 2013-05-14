@@ -53,7 +53,7 @@ Crafty.scene (SCENE_LOADING, function () {
 /***********
  * SPRITES *
  ***********
-*/
+ */
 
 Crafty.sprite (48, 'images/shield.png', {
     shield: [0, 0]
@@ -109,36 +109,48 @@ Crafty.sprite ('images/enemy.png', {
 });
 
 Crafty.sprite ('images/enemies.png', {
-    enemy_blue_128: [0, 0, 128, 128],
-    enemy_brown_128: [128, 0, 128, 128],
-    enemy_green_128: [0, 128, 128, 128],
-    enemy_purple_128: [128, 128, 128, 128],
-    enemy_red_128: [256, 0, 128, 128],
-    enemy_yellow_128: [256, 128, 128, 128],
-    enemy_blue_24: [160, 352, 24, 24],
-    enemy_brown_24: [272, 256, 24, 24],
-    enemy_green_24: [208, 320, 24, 24],
-    enemy_purple_24: [240, 288, 24, 24],
-    enemy_red_24: [184, 352, 24, 24],
-    enemy_yellow_24: [240, 312, 24, 24],
-    enemy_blue_32: [64, 352, 32, 32],
-    enemy_brown_32: [96, 352, 32, 32],
-    enemy_green_32: [208, 256, 32, 32],
-    enemy_purple_32: [128, 352, 32, 32],
-    enemy_red_32: [208, 288, 32, 32],
-    enemy_yellow_32: [240, 256, 32, 32],
-    enemy_blue_48: [64, 256, 48, 48],
-    enemy_brown_48: [64, 304, 48, 48],
-    enemy_green_48: [112, 256, 48, 48],
-    enemy_purple_48: [160, 256, 48, 48],
-    enemy_red_48: [112, 304, 48, 48],
-    enemy_yellow_48: [160, 304, 48, 48],
-    enemy_blue_64: [384, 0, 64, 64],
-    enemy_brown_64: [384, 64, 64, 64],
-    enemy_green_64: [384, 128, 64, 64],
-    enemy_purple_64: [384, 192, 64, 64],
-    enemy_red_64: [0, 256, 64, 64],
-    enemy_yellow_64: [0, 320, 64, 64]
+    enemy_blue_24: [232, 0, 24, 24],
+    enemy_brown_24: [232, 24, 24, 24],
+    enemy_green_24: [232, 48, 24, 24],
+    enemy_purple_24: [136, 228, 24, 24],
+    enemy_red_24: [228, 144, 24, 24],
+    enemy_yellow_24: [192, 180, 24, 24],
+    enemy_blue_28: [228, 88, 28, 28],
+    enemy_brown_28: [120, 200, 28, 28],
+    enemy_green_28: [228, 116, 28, 28],
+    enemy_purple_28: [108, 228, 28, 28],
+    enemy_red_28: [148, 200, 28, 28],
+    enemy_yellow_28: [196, 152, 28, 28],
+    enemy_blue_32: [0, 224, 32, 32],
+    enemy_brown_32: [196, 88, 32, 32],
+    enemy_green_32: [76, 216, 32, 32],
+    enemy_purple_32: [124, 168, 32, 32],
+    enemy_red_32: [196, 120, 32, 32],
+    enemy_yellow_32: [160, 160, 32, 32],
+    enemy_blue_36: [124, 96, 36, 36],
+    enemy_brown_36: [124, 132, 36, 36],
+    enemy_green_36: [160, 88, 36, 36],
+    enemy_purple_36: [40, 216, 36, 36],
+    enemy_red_36: [84, 176, 36, 36],
+    enemy_yellow_36: [160, 124, 36, 36],
+    enemy_blue_40: [44, 96, 40, 40],
+    enemy_brown_40: [44, 136, 40, 40],
+    enemy_green_40: [84, 96, 40, 40],
+    enemy_purple_40: [0, 184, 40, 40],
+    enemy_red_40: [84, 136, 40, 40],
+    enemy_yellow_40: [44, 176, 40, 40],
+    enemy_blue_44: [144, 0, 44, 44],
+    enemy_brown_44: [144, 44, 44, 44],
+    enemy_green_44: [188, 0, 44, 44],
+    enemy_purple_44: [188, 44, 44, 44],
+    enemy_red_44: [0, 96, 44, 44],
+    enemy_yellow_44: [0, 140, 44, 44],
+    enemy_blue_48: [0, 0, 48, 48],
+    enemy_brown_48: [48, 0, 48, 48],
+    enemy_green_48: [0, 48, 48, 48],
+    enemy_purple_48: [48, 48, 48, 48],
+    enemy_red_48: [96, 0, 48, 48],
+    enemy_yellow_48: [96, 48, 48, 48]
 });
 
 Crafty.sprite ('images/shots.png', {

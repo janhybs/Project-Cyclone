@@ -29,10 +29,9 @@ enemy.parse = function (o) {
                 ? window['ENEMY_' + props[i].toUpperCase ()][o[props[i]]]
                 : Number (o[props[i]]))
                 : g[props[i]];
-    g.resistance = toDamage (o.resistance || g.resistance);
-    g.image = "{0}_{1}".format (o.image || 'enemy_red', 
-        o.size ? (ENEMY_SIZE[o.size] || o.size) : ENEMY_SIZE.normal);
-    console.log (g.image);
+    g.resistance = toDamage (ENEMY_TYPE[o.resistance || 'no']);
+    g.image = "{0}_{1}".format (ENEMY_IMAGE[o.image || 'red'],
+            o.size ? (ENEMY_SIZE[o.size] || o.size) : ENEMY_SIZE.normal);
     return g;
 };
 
@@ -47,13 +46,13 @@ enemy.parse = function (o) {
 enemy.preset = function (name) {
     if (name === undefined || name === null)
         return {
-            health: ENEMY_HEALTH.normal,
-            shield: ENEMY_SHIELD.no,
-            speed: ENEMY_SPEED.normal,
-            resistance: toDamage (0),
-            size: ENEMY_SIZE.normal,
-            image: ENEMY_IMAGE.normal,
-            wobble: ENEMY_WOBBLE.normal
+            health: ENEMY_HEALTH.lvl0,
+            shield: ENEMY_SHIELD.lvl0,
+            speed: ENEMY_SPEED.lvl1,
+            resistance: toDamage (ENEMY_TYPE.no),
+            size: ENEMY_SIZE.lvl24,
+            image: ENEMY_IMAGE.red,
+            wobble: ENEMY_WOBBLE.lvl1
         };
 
     switch (name) {
@@ -75,8 +74,8 @@ enemy.preset = function (name) {
                 speed: ENEMY_SPEED.fast,
                 health: ENEMY_HEALTH.weak
             });
-            
-            
+
+
         case 'slow_normal_normal':
             return setMerge (enemy.preset (), {
                 size: ENEMY_SIZE.normal,
@@ -95,9 +94,9 @@ enemy.preset = function (name) {
                 speed: ENEMY_SPEED.fast,
                 health: ENEMY_HEALTH.normal
             });
-            
-            
-            
+
+
+
         case 'slow_normal_strong':
             return setMerge (enemy.preset (), {
                 size: ENEMY_SIZE.normal,

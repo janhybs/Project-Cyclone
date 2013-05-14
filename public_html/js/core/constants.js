@@ -49,64 +49,88 @@ var ENEMY_ABS = 'enemyAbstract';
 var ENEMY_BRAIN = 'enemyBrain';
 
 //# types
+var ENEMY_RES = .8;
 var ENEMY_TYPE = {
     no: [0, 0, 0, 0, 0],
-    normal: [1, 0, 0, 0, 0],
-    fire: [0, 1, 0, 0, 0],
-    electric: [0, 0, 1, 0, 0],
-    poison: [0, 0, 0, 1, 0],
-    ice: [0, 0, 0, 0, 1]
+    normal: [ENEMY_RES, 0, 0, 0, 0],
+    fire: [0, ENEMY_RES, 0, 0, 0],
+    electric: [0, 0, ENEMY_RES, 0, 0],
+    poison: [0, 0, 0, ENEMY_RES, 0],
+    ice: [0, 0, 0, 0, ENEMY_RES]
 };
 
 //# sizes
 var ENEMY_SIZE = {
-    small: 24,
-    normal: 32,
-    large: 48,
-    huge: 64,
-    boss: 128
+    lvl24: 24,
+    lvl28: 28,
+    lvl32: 32,
+    lvl36: 36,
+    lvl40: 40,
+    lvl44: 44,
+    lvl48: 48
 };
 
 //# health
 var ENEMY_HEALTH = {
-    weak: 50,
-    normal: 100,
-    strong: 500,
+    lvl0: 1,
+    lvl1: 100,
+    lvl2: 115,
+    lvl3: 130,
+    lvl4: 150,
+    lvl5: 175,
+    lvl6: 200,
+    lvl7: 300,
+    lvl8: 500,
+    lvl9: 750,
+    lvl10: 1000,
     boss: 2000
 };
 
 //# sizes
 var ENEMY_SHIELD = {
-    no: 0,
-    weak: 20,
-    normal: 50,
-    strong: 100,
-    boss: 500
+    lvl0: 0,
+    lvl1: 100,
+    lvl2: 115,
+    lvl3: 130,
+    lvl4: 150,
+    lvl5: 175,
+    lvl6: 200,
+    lvl7: 300,
+    lvl8: 500,
+    lvl9: 750,
+    lvl10: 1000,
+    boss: 2000
 };
 
 //# speed
 var ENEMY_SPEED = {
-    snail: 1 / 3,
-    slow: 2 / 3,
-    normal: 1,
-    fast: 2,
-    lighbolt: 3
+    lvl1: 1 / 3,
+    lvl2: 2 / 3,
+    lvl3: 1,
+    lvl4: 3 / 2,
+    lvl5: 2,
+    lvl6: 3
 };
 
 
 //# wobble (random movement)
 var ENEMY_WOBBLE = {
-    no: 0,
-    normal: 5,
-    drunk: 10,
-    high: 20
+    lvl1: 0,
+    lvl2: 5,
+    lvl3: 10,
+    lvl4: 16,
 };
 
 
 
 //# images
 var ENEMY_IMAGE = {
-    normal: 'enemy'
+    red: 'enemy_red',
+    blue: 'enemy_blue',
+    green: 'enemy_green',
+    brown: 'enemy_brown',
+    purple: 'enemy_purple',
+    yellow: 'enemy_yellow',
 };
 
 /*********
@@ -159,7 +183,7 @@ var SPLASH_IMAGE_NAME = {
 };
 
 var REZISTANCE = 1.00;
-var BENEFIT_SHIELD = 2;
+var BENEFIT_SHIELD = 4;
 var DAMAGE_PROP = [
     'basic', 'fire', 'electric', 'poison', 'ice', // basic damage types
     'period', 'repeat', 'value', // poison and fire can repeat itself
@@ -209,73 +233,121 @@ var LASER_SOUND = 'laser';
 var SPRAY_SOUND = 'spray';
 var SHOT_SOUND1 = 'shot-01';
 var SHOT_SOUND2 = 'shot-02';
-
+var TOWER_PROPS = ['damage', 'speed', 'range', 'spreading', 'ttl', 'frameRate'];
 var TOWER_MACHINEGUN = 'MachineGunTower';
-var MG_DAMAGE = [25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var MG_RATE = 5;
-var MG_RANGE = 100;
-var MG_SPREADING = 0;
-var MG_TTL = 100;
-var MG_PRICE = 100;
-var MG_UPGRADE_PRICE = 50;
-var MG_RATE_2 = 6;
-var MG_RANGE_2 = 150;
-var MG_DAMAGE_2 = [30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var MG_RATE_3 = 8;
-var MG_RANGE_3 = 200;
-var MG_DAMAGE_3 = [50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var MG_FRAME_RATE = 5;
-var MG_AIM_STYLE = 'ClosestAim';
+
+
+var TOWER_MACHINEGUN_PROPS = {
+    price: 100,
+    upgradePrice: 100,
+    aimStyle: 'ClosestAim',
+    
+    damage1: toDamage (10),
+    speed1: 5,
+    range1: 100,
+    spreading1: 0,
+    ttl1: 30,
+    frameRate1: 12,
+    
+    damage2: toDamage (15),
+    speed2: 5,
+    range2: 110,
+    spreading2: 0,
+    ttl2: 30,
+    frameRate2: 10,
+    
+    damage3: toDamage (25),
+    speed3: 5,
+    range3: 125,
+    spreading3: 0,
+    ttl3: 30,
+    frameRate3: 8
+};
 
 var TOWER_CANNON = 'CannonTower';
-var C_DAMAGE = [80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var C_RATE = 2;
-var C_RANGE = 150;
-var C_SPREADING = 0;
-var C_TTL = 100;
-var C_PRICE = 200;
-var C_UPGRADE_PRICE = 50;
-var C_RATE_2 = 4;
-var C_RANGE_2 = 170;
-var C_DAMAGE_2 = [90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var C_RATE_3 = 6;
-var C_RANGE_3 = 200;
-var C_DAMAGE_3 = [95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var C_FRAME_RATE = 1;
-var C_AIM_STYLE = 'FurthestAim';
+var TOWER_CANNON_PROPS = {
+    price: 200,
+    upgradePrice: 100,
+    aimStyle: 'MostHealthAim',
+    
+    damage1: toDamage (50),
+    speed1: 5,
+    range1: 200,
+    spreading1: 0,
+    ttl1: 60,
+    frameRate1: 45,
+    
+    damage2: toDamage (75),
+    speed2: 6,
+    range2: 250,
+    spreading2: 0,
+    ttl2: 60,
+    frameRate2: 40,
+    
+    damage3: toDamage (125),
+    speed3: 7,
+    range3: 300,
+    spreading3: 0,
+    ttl3: 60,
+    frameRate3: 30
+};
 
 var TOWER_FLAMETHROWER = 'FlamethrowerTower';
-var FT_DAMAGE = [0, 5, 0, 0, 0, 3, 1, 3, 0, 0, 0];
-var FT_RATE = 5;
-var FT_RANGE = 100;
-var FT_SPREADING = 50;
-var FT_TTL = 100;
-var FT_PRICE = 200;
-var FT_UPGRADE_PRICE = 50;
-var FT_RATE_2 = 6;
-var FT_RANGE_2 = 150;
-var FT_DAMAGE_2 = [0, 10, 0, 0, 0, 5, 1, 5, 0, 0, 0];
-var FT_RATE_3 = 8;
-var FT_RANGE_3 = 200;
-var FT_DAMAGE_3 = [0, 15, 0, 0, 0, 5, 1, 10, 0, 0, 0];
-var FT_FRAME_RATE = 10;
-var FT_AIM_STYLE = 'ClosestAim';
+var TOWER_FLAMETHROWER_PROPS = {
+    price: 150,
+    upgradePrice: 120,
+    aimStyle: 'ClosestAim',
+    
+    damage1: setMerge (toDamage (2, 2), {period: 10, repeat: 10, value: 5}),
+    speed1: 3,
+    range1: 80,
+    spreading1: 20,
+    ttl1: 30,
+    frameRate1: 2,
+    
+    damage2: setMerge (toDamage (3, 3), {period: 10, repeat: 10, value: 7}),
+    speed2: 4,
+    range2: 96,
+    spreading2: 30,
+    ttl2: 30,
+    frameRate2: 1,
+    
+    damage3: setMerge (toDamage (5, 5), {period: 10, repeat: 10, value: 10}),
+    speed3: 5,
+    range3: 112,
+    spreading3: 40,
+    ttl3: 30,
+    frameRate3: 1
+};
+
 
 var TOWER_ICE_DART = 'IceDartTower';
-var ID_DAMAGE = [0, 0, 0, 0, 0, 0, 0, 0, 1, 0.5, 0.5];
-var ID_RATE = 1;
-var ID_RANGE = 100;
-var ID_TTL = 100;
-var ID_PRICE = 200;
-var ID_UPGRADE_PRICE = 50;
-var ID_RATE_2 = 2;
-var ID_RANGE_2 = 150;
-var ID_DAMAGE_2 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 0.75, 0.5];
-var ID_RATE_3 = 3;
-var ID_RANGE_3 = 200;
-var ID_DAMAGE_3 = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1];
-var ID_FRAME_RATE = 1;
-var ID_AIM_STYLE = 'MostHealthAim';
+var TOWER_ICE_DART_PROPS = {
+    price: 50,
+    upgradePrice: 60,
+    aimStyle: 'NoFreezeAim',
+    
+    damage1: setMerge (toDamage (0), {slow: .7, chance: .9, duration: 25}),
+    speed1: 3,
+    range1: 80,
+    spreading1: 20,
+    ttl1: 30,
+    frameRate1: 45,
+    
+    damage2: setMerge (toDamage (0), {slow: .8, chance: .95, duration: 35}),
+    speed2: 4,
+    range2: 96,
+    spreading2: 30,
+    ttl2: 30,
+    frameRate2: 45,
+    
+    damage3: setMerge (toDamage (0), {slow: .9, chance: 1, duration: 50}),
+    speed3: 5,
+    range3: 112,
+    spreading3: 40,
+    ttl3: 30,
+    frameRate3: 40
+};
 
 var TOWER_BEAM_LASER = 'BeamLaserTower';
 var L_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -407,6 +479,7 @@ var AIMING_MOST_HEALTH = 'MostHealthAim';
 var AIMING_LEAST_HEALTH = 'LeastHealthAim';
 var AIMING_CLOSEST = 'ClosestAim';
 var AIMING_FURTHEST = 'FurthestAim';
+var AIMING_NO_FREEZE = 'NoFreezeAim';
 
 /********************
  * PLAYER CONSTANTS *

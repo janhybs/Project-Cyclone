@@ -68,10 +68,21 @@ Crafty.c(AIMING_LEAST_HEALTH, {
     }
 });
 
+/*** Component - least health mob ***/
+Crafty.c(AIMING_NO_FREEZE, {
+    getElement: function(elems, startPoint) {
+        for (var i in elems)
+            if (elems[i].slowShot === null) 
+                return elems[i];
+        return null;
+    }
+});
+
 var closest = Crafty.e (AIMING_CLOSEST);
 var furthest = Crafty.e (AIMING_FURTHEST);
 var mostHealth = Crafty.e (AIMING_MOST_HEALTH);
 var leastHealth = Crafty.e (AIMING_LEAST_HEALTH);
+var noFreeze = Crafty.e (AIMING_NO_FREEZE);
 
 /*** Define as global object ***/
 window.aiming = {
@@ -85,6 +96,8 @@ window.aiming = {
                 return mostHealth;
             case AIMING_LEAST_HEALTH:
                 return leastHealth;
+            case AIMING_NO_FREEZE:
+                return noFreeze;
         }
     }
 };

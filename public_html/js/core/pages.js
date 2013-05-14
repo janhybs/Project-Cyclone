@@ -12,7 +12,7 @@ var waveNext;
 $.selectedTower = undefined;
 
 var items = {
-    machineGun: [TOWER_MACHINEGUN, "MG"],
+    machineGun: [TOWER_MACHINEGUN, TOWER_MACHINEGUN_PROPS],
     flame: [TOWER_FLAMETHROWER, "FT"],
     laserGun: [TOWER_BEAM_LASER, "L"],
     homingGun: [TOWER_HOMING_MISSILE, "HM"],
@@ -61,7 +61,7 @@ function bindActions () {
 
             showInfo ('{0} (lvl{1})'.format (getTowerName (items[p][0]), 1),
                     getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
-                    window["{0}_RANGE".format (items[p][1])],
+                    items[p][1].range,
                     window["{0}_RATE".format (items[p][1])]);
         });
         e.bind ('mouseover', p, function (event) {
