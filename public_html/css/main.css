@@ -107,7 +107,6 @@ html {
     background: -webkit-linear-gradient(top, #0f1420 50%,#070c19 50%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#0f1420), color-stop(50%,#070c19));
     color: white;
-    margin-bottom: 1em;
 }
 
 .scene-button:disabled {
@@ -314,7 +313,7 @@ table {
 td {
     text-align: left;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.0em;
 }
 
 #levelUpImg {

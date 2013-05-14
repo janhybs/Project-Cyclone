@@ -463,6 +463,9 @@ var PLAYER_RANGES = {
     10: 32 * 15.00
 };
 
+var PLAYER_MAX_RANGE = 10;
+var PLAYER_MAX_DAMAGE = 10;
+
 //sounds
 var PLAYER_STEP_SOUND = "step";
 var PLAYER_GUN_SOUND = "machineGun";

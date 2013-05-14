@@ -23,7 +23,7 @@
                 </div>
             </form>
 
-            <button id="scene-new-game-next" class="scene-button" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $ ('#laserManName').val());Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+            <button id="scene-new-game-next" class="scene-button" style="margin-bottom: 1em" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $ ('#laserManName').val());Crafty.scene(SCENE_GAME_MENU)">Continue</button>
             </div>
         </div>
 
@@ -70,6 +70,7 @@
 
         <!-- GAME MENU -->
         <div id="scene-game-menu" class="page">
+            <div class="sceneMode">
             <div class="coininfo">
                 <img alt="coin" class="coin" src="./images/coin.png"/>
                 <div id="moneyPoints"></div>
@@ -84,6 +85,7 @@
             <table class="tableLevels">
                 <tr><td class="playerSelect" id="soldierPart" onclick="PlayerUtils.setActualPlayer(GUN_PLAYER)"><div id="soldierName" class="names"></div><img src="images/player/soldier.png" /><div id="soldierLevelInfo" class="bestScore"></div></td><td class="playerSelect" id="laserPart" onclick="PlayerUtils.setActualPlayer(LASER_PLAYER)"><div id="laserName" class="names"></div><img src="images/player/laser.png" /><div id="laserLevelInfo" class="bestScore"></div></td></tr>
             </table>
+            </div>
         </div>
 
          <!-- story -->
