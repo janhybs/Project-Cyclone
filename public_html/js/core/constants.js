@@ -33,6 +33,7 @@ var SCENE_CONTINUE = 'continue';
 var SCENE_GAME_MENU = 'gameMenu';
 var SCENE_GAME_OVER = 'gameOverScene';
 var SCENE_GAME_SUCCESS = 'gameMenuSuccess';
+var SCENE_STORY_MESSAGE = 'gameStoryMessage';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
