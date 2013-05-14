@@ -237,7 +237,12 @@ html {
     height: 60px;
 }
 
-
+#story-scr {
+    padding: 0 2em;
+    padding-bottom: 1em;
+    margin-top: -2px;
+    background: rgba(11, 15, 20, 0.8);
+}
 
 /*
     ------------ PANEL-TOWERS ------------
