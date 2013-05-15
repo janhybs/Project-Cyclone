@@ -30,6 +30,7 @@ enemy.parse = function (o) {
                 : Number (o[props[i]]))
                 : g[props[i]];
     g.resistance = toDamage (ENEMY_TYPE[o.resistance || 'no']);
+    g.money = o.money || 0;
     g.image = "{0}_{1}".format (ENEMY_IMAGE[o.image || 'red'],
             o.size ? (ENEMY_SIZE[o.size] || o.size) : ENEMY_SIZE.normal);
     return g;
@@ -52,7 +53,8 @@ enemy.preset = function (name) {
             resistance: toDamage (ENEMY_TYPE.no),
             size: ENEMY_SIZE.lvl24,
             image: ENEMY_IMAGE.red,
-            wobble: ENEMY_WOBBLE.lvl1
+            wobble: ENEMY_WOBBLE.lvl1,
+            money: 0
         };
 
     switch (name) {

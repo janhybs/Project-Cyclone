@@ -4,20 +4,21 @@ enemy.create = function (generator) {
     var o = setMerge (enemy.preset (), generator);
 
     var e = Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (ENEMY_ABS, o.image));
-    e.create (o.path, o.speed, o.resistance, o.health, o.shield, o.wobble);
+    e.create (o.path, o.speed, o.resistance, o.health, o.shield, o.wobble, o.money);
     return e;
 };
 
 
 
 Crafty.c (ENEMY_ABS, {
-    create: function (path, speed, resistance, health, shield, wobble) {
+    create: function (path, speed, resistance, health, shield, wobble, money) {
         this.path = path !== undefined ? path : null;
         this.speed = speed !== undefined ? speed : 3;
         this.resistance = resistance !== undefined ? toDamage (resistance) : toDamage (0);
         this.health = health !== undefined ? health : 100;
         this.shield = shield !== undefined ? shield : 0;
         this.wobble = wobble !== undefined ? wobble : 10;
+        this.money = money !== undefined ? money : 0;
         this.shieldActor = null;
     },
     init: function () {
@@ -81,7 +82,7 @@ Crafty.c (ENEMY_ABS, {
             Crafty.audio.play ("death_end");
             Crafty.trigger (ENEMY_SLIP);
         } else {
-            PlayerUtils.addPlayerMoney (Math.floor ((this.maxHealth + this.maxShield) / MONEY_BALANCE[$.actualLevel]));
+            PlayerUtils.addPlayerMoney (this.money + Math.floor ((this.maxHealth + this.maxShield) / MONEY_BALANCE[$.actualLevel]));
             refreshMoney ();
             Crafty.audio.play ("death_0" + Crafty.math.randomInt (1, 5));
         }

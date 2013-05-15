@@ -32,7 +32,6 @@ window.generator = {
     },
     nextPart: function () {
         //# end wave
-        console.log ('next-part');
         if (!this.incPart ()) {
             if (this.currentWave + 1 === this.totalWaves) {
                 this.everythingReleased = true;
@@ -50,7 +49,7 @@ window.generator = {
         var oCount = Number (o.count || 1);
         var oFrame = Number (o.frame || 1);
         var oPause = Number (o.pause || 1);
-        
+
         timer.repeat (function () {
             for (var s = 0; s < oCount; s++) {
                 timer.delay (function () {
@@ -59,9 +58,9 @@ window.generator = {
                                 .setPath (this.paths[j])
                                 .start ();
                     }
-                }, 1+s*oFrame, this);
+                }, 1 + s * oFrame, this);
             }
-        }, oDelay + oFrame*oCount, this, oRepeat, oPause);
+        }, oDelay + oFrame * oCount, this, oRepeat, oPause);
 
 
         timer.delay (function () {

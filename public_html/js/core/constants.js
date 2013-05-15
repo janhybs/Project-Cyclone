@@ -18,7 +18,7 @@ var Z_ENEMY_TARGET = 3;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
-var MONEY_BY_LEVEL = [1000, 2000, 3000, 4000, 5000];
+var MONEY_BALANCE = [1, 20, 17, 15, 13, 10];
 
 /***************
  * GAME SCENES *
@@ -51,14 +51,28 @@ var ENEMY_ABS = 'enemyAbstract';
 var ENEMY_BRAIN = 'enemyBrain';
 
 //# types
-var ENEMY_RES = .8;
+var ENEMY_RES_HIGH = .8;
+var ENEMY_RES_NORMAL = .5;
+var ENEMY_RES_LOW = .3;
+
 var ENEMY_TYPE = {
     no: [0, 0, 0, 0, 0],
-    normal: [ENEMY_RES, 0, 0, 0, 0],
-    fire: [0, ENEMY_RES, 0, 0, 0],
-    electric: [0, 0, ENEMY_RES, 0, 0],
-    poison: [0, 0, 0, ENEMY_RES, 0],
-    ice: [0, 0, 0, 0, ENEMY_RES]
+            
+    electric3: [0, 0, ENEMY_RES_HIGH, 0, 0],
+    electric2: [0, 0, ENEMY_RES_NORMAL, 0, 0],
+    electric1: [0, 0, ENEMY_RES_LOW, 0, 0],        
+            
+    normal3: [ENEMY_RES_HIGH, 0, 0, 0, 0],
+    normal2: [ENEMY_RES_NORMAL, 0, 0, 0, 0],
+    normal1: [ENEMY_RES_LOW, 0, 0, 0, 0],
+    
+    fire3: [0, ENEMY_RES_HIGH, 0, 0, 0],
+    fire2: [0, ENEMY_RES_NORMAL, 0, 0, 0],
+    fire1: [0, ENEMY_RES_LOW, 0, 0, 0],
+    
+    poison3: [0, 0, 0, ENEMY_RES_HIGH, 0],
+    poison2: [0, 0, 0, ENEMY_RES_NORMAL, 0],
+    poison1: [0, 0, 0, ENEMY_RES_LOW, 0]
 };
 
 //# sizes
@@ -74,7 +88,7 @@ var ENEMY_SIZE = {
 
 //# health
 var ENEMY_HEALTH = {
-    lvl0: 1,
+    lvl0: 10,
     lvl1: 100,
     lvl2: 115,
     lvl3: 130,
@@ -120,7 +134,7 @@ var ENEMY_WOBBLE = {
     lvl1: 0,
     lvl2: 5,
     lvl3: 10,
-    lvl4: 16,
+    lvl4: 16
 };
 
 
@@ -267,7 +281,7 @@ var TOWER_MACHINEGUN_PROPS = {
 
 var TOWER_CANNON = 'CannonTower';
 var TOWER_CANNON_PROPS = {
-    price: 200,
+    price: 150,
     upgradePrice: 150,
     aimStyle: 'MostHealthAim',
     damage1: toDamage (49),
@@ -449,7 +463,7 @@ var TOWER_ELECTRIC_AURA_PROPS = {
 
 var TOWER_SLOW_AURA = 'SlowAuraTower';
 var TOWER_SLOW_AURA_PROPS = {
-    price: 200,
+    price: 100,
     upgradePrice: 150,
     aimStyle: 'ClosestAim',
     damage1: setMerge (toDamage (1), {poison: .5}, {period: 10, repeat: 5, value: 0.5}, {slow: .3, chance: 1, duration: 25}),
@@ -471,12 +485,6 @@ var TOWER_SLOW_AURA_PROPS = {
     ttl3: 50 - 1,
     frameRate3: 50
 };
-
-var TOWER_IMAGE_ARRAY = {MachineGunTower: ['images/cat.gif'], CannonTower: ['images/cat.gif'],
-    FlamethrowerTower: ['images/cat.gif'], IceDartTower: ['images/cat.gif'],
-    BeamLaserTower: ['images/cat.gif'], ChainLaserTower: ['images/cat.gif'],
-    HomingMissileTower: ['images/cat.gif'], ElectricAuraTower: ['images/cat.gif'],
-    SlowAuraTower: ['images/cat.gif']};
 
 var TOWER_BRAIN = 'TowerBrainComp';
 
