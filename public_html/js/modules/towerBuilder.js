@@ -41,6 +41,7 @@ Crafty.c (TOWER_BUILDER, {
     },
     playerRightClicked: function (e) {
         if (e.mouseButton === Crafty.mouseButtons.RIGHT) {
+            removeTowerRangeInfo();
             $.toverBuilderLock = false;
             $ ('#panel-main *').removeAttr ('disabled');
             $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
