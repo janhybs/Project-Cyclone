@@ -21,6 +21,11 @@ html {
     user-select: none;
 }
 
+#levelChoose {
+    margin-top: 0em;
+    padding-top: 2em;
+}
+
 .levels li {
     display: inline-block;
     width: 140px;
@@ -189,7 +194,6 @@ html {
 }
 
 .levelBut {
-    margin-top: 5px;
     width: 140px;
     height: 112px;
     display: block;
@@ -197,7 +201,6 @@ html {
 
 .tableLevels {
     position: relative;
-    margin-top: 3em;
     left: 20.8em;
     text-align: center;
 }
