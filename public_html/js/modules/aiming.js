@@ -1,13 +1,13 @@
 /*** AIMING MODULE ***/
 
 /*** Component - closest mob ***/
-Crafty.c(AIMING_CLOSEST, {
-    getElement: function(elems, startPoint) {
+Crafty.c (AIMING_CLOSEST, {
+    getElement: function (elems, startPoint) {
         var minDistance = Number.MAX_VALUE;
         var element = 0;
         var tempDist;
         for (var i in elems) {
-            tempDist = distance(elems[i].center, startPoint);
+            tempDist = distance (elems[i].center, startPoint);
             if (tempDist < minDistance) {
                 minDistance = tempDist;
                 element = elems[i].center;
@@ -18,13 +18,13 @@ Crafty.c(AIMING_CLOSEST, {
 });
 
 /*** Component - furthest mob ***/
-Crafty.c(AIMING_FURTHEST, {
-    getElement: function(elems, startPoint) {
+Crafty.c (AIMING_FURTHEST, {
+    getElement: function (elems, startPoint) {
         var maxDistance = Number.MIN_VALUE;
         var element = 0;
         var tempDist;
         for (var i in elems) {
-            tempDist = distance(elems[i].center, startPoint);
+            tempDist = distance (elems[i].center, startPoint);
             if (tempDist > maxDistance) {
                 maxDistance = tempDist;
                 element = elems[i].center;
@@ -35,13 +35,13 @@ Crafty.c(AIMING_FURTHEST, {
 });
 
 /*** Component - most health mob ***/
-Crafty.c(AIMING_MOST_HEALTH, {
-    getElement: function(elems, startPoint) {
+Crafty.c (AIMING_MOST_HEALTH, {
+    getElement: function (elems, startPoint) {
         var maxHealth = Number.MIN_VALUE;
         var element = 0;
         var tempHealth;
         for (var i in elems) {
-            tempHealth = elems[i].getHealth() + elems[i].getShield();
+            tempHealth = elems[i].getHealth () + elems[i].getShield ();
             if (tempHealth > maxHealth) {
                 maxHealth = tempHealth;
                 element = elems[i].center;
@@ -52,13 +52,13 @@ Crafty.c(AIMING_MOST_HEALTH, {
 });
 
 /*** Component - least health mob ***/
-Crafty.c(AIMING_LEAST_HEALTH, {
-    getElement: function(elems, startPoint) {
+Crafty.c (AIMING_LEAST_HEALTH, {
+    getElement: function (elems, startPoint) {
         var minHealth = Number.MAX_VALUE;
         var element = 0;
         var tempHealth;
         for (var i in elems) {
-            tempHealth = elems[i].getHealth() + elems[i].getShield();
+            tempHealth = elems[i].getHealth () + elems[i].getShield ();
             if (tempHealth < minHealth) {
                 minHealth = tempHealth;
                 element = elems[i].center;
@@ -69,10 +69,10 @@ Crafty.c(AIMING_LEAST_HEALTH, {
 });
 
 /*** Component - least health mob ***/
-Crafty.c(AIMING_NO_FREEZE, {
-    getElement: function(elems, startPoint) {
+Crafty.c (AIMING_NO_FREEZE, {
+    getElement: function (elems, startPoint) {
         for (var i in elems)
-            if (elems[i].slowShot === null) 
+            if (elems[i].slowShot === null)
                 return elems[i];
         return null;
     }
@@ -86,7 +86,7 @@ var noFreeze = Crafty.e (AIMING_NO_FREEZE);
 
 /*** Define as global object ***/
 window.aiming = {
-    get: function(type) {
+    get: function (type) {
         switch (type) {
             case AIMING_CLOSEST:
                 return closest;

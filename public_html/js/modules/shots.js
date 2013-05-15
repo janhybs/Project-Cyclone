@@ -248,7 +248,7 @@ Crafty.c (SHOT_LASER, {
     },
     //#
     setImage: function (avatar) {
-        this.laser = Crafty.e ("2D, Canvas, Image, {0}".format(avatar));
+        this.laser = Crafty.e ("2D, Canvas, Image, {0}".format (avatar));
         this.laser.visible = false;
         return this;
     },
@@ -263,9 +263,10 @@ Crafty.c (SHOT_LASER, {
 
 
 Crafty.c (SHOT_HOMING, {
-    create: function (speed, curving) {
+    create: function (speed, curving, aim) {
         this.speed = speed !== undefined ? speed : NaN;
         this.curving = curving !== undefined ? curving : 30;
+        this.aim = aim !== undefined ? aim : null;
         this.angle = NaN;
     },
     //#
@@ -306,7 +307,7 @@ Crafty.c (SHOT_HOMING, {
         var elems = getEntities (ENEMY_ABS, this, 1 * 1000 * 1000);
         if (elems.length === 0)
             return;
-        var aim = aiming.get (AIMING_FURTHEST);
+        var aim = aiming.get (this.aim);
         this.endPoint = aim.getElement (elems, this.startPoint);
     },
     //# when destroyed, release SPLASH shot
@@ -350,7 +351,7 @@ Crafty.c (SHOT_SPLASH, {
         this.radius = radius !== undefined ? radius : 100;
         this.w = this.h = this.radius;
         this.nextIsInvalid = false;
-        this.validExpiration = 5;
+        this.validExpiration = 2;
     },
     //#
     enterFrame: function () {

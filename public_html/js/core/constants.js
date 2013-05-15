@@ -244,21 +244,18 @@ var TOWER_MACHINEGUN_PROPS = {
     price: 100,
     upgradePrice: 100,
     aimStyle: 'ClosestAim',
-    
     damage1: toDamage (10),
     speed1: 5,
     range1: 100,
     spreading1: 0,
     ttl1: 30,
     frameRate1: 12,
-    
     damage2: toDamage (15),
     speed2: 5,
     range2: 110,
     spreading2: 0,
     ttl2: 30,
     frameRate2: 10,
-    
     damage3: toDamage (25),
     speed3: 5,
     range3: 125,
@@ -270,23 +267,20 @@ var TOWER_MACHINEGUN_PROPS = {
 var TOWER_CANNON = 'CannonTower';
 var TOWER_CANNON_PROPS = {
     price: 200,
-    upgradePrice: 100,
+    upgradePrice: 150,
     aimStyle: 'MostHealthAim',
-    
-    damage1: toDamage (50),
+    damage1: toDamage (49),
     speed1: 5,
     range1: 200,
     spreading1: 0,
     ttl1: 60,
     frameRate1: 45,
-    
     damage2: toDamage (75),
     speed2: 6,
     range2: 250,
     spreading2: 0,
     ttl2: 60,
     frameRate2: 40,
-    
     damage3: toDamage (125),
     speed3: 7,
     range3: 300,
@@ -300,22 +294,19 @@ var TOWER_FLAMETHROWER_PROPS = {
     price: 150,
     upgradePrice: 120,
     aimStyle: 'ClosestAim',
-    
-    damage1: setMerge (toDamage (2, 2), {period: 10, repeat: 10, value: 5}),
+    damage1: setMerge (toDamage (1, 1), {period: 10, repeat: 6, value: 5}),
     speed1: 3,
     range1: 80,
     spreading1: 20,
     ttl1: 30,
     frameRate1: 2,
-    
-    damage2: setMerge (toDamage (3, 3), {period: 10, repeat: 10, value: 7}),
+    damage2: setMerge (toDamage (2, 2), {period: 8, repeat: 6, value: 7}),
     speed2: 4,
     range2: 96,
     spreading2: 30,
     ttl2: 30,
     frameRate2: 1,
-    
-    damage3: setMerge (toDamage (5, 5), {period: 10, repeat: 10, value: 10}),
+    damage3: setMerge (toDamage (4, 4), {period: 5, repeat: 6, value: 10}),
     speed3: 5,
     range3: 112,
     spreading3: 40,
@@ -329,116 +320,156 @@ var TOWER_ICE_DART_PROPS = {
     price: 50,
     upgradePrice: 60,
     aimStyle: 'NoFreezeAim',
-    
     damage1: setMerge (toDamage (0), {slow: .7, chance: .9, duration: 25}),
     speed1: 3,
     range1: 80,
-    spreading1: 20,
+    spreading1: 0,
     ttl1: 30,
     frameRate1: 45,
-    
     damage2: setMerge (toDamage (0), {slow: .8, chance: .95, duration: 35}),
     speed2: 4,
     range2: 96,
-    spreading2: 30,
+    spreading2: 0,
     ttl2: 30,
     frameRate2: 45,
-    
     damage3: setMerge (toDamage (0), {slow: .9, chance: 1, duration: 50}),
     speed3: 5,
     range3: 112,
-    spreading3: 40,
+    spreading3: 0,
     ttl3: 30,
     frameRate3: 40
 };
 
 var TOWER_BEAM_LASER = 'BeamLaserTower';
-var L_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
-var L_RATE = 1;
-var L_RANGE = 200;
-var L_TTL = 100;
-var L_PRICE = 200;
-var L_UPGRADE_PRICE = 50;
-var L_RATE_2 = 2;
-var L_RANGE_2 = 210;
-var L_DAMAGE_2 = [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0];
-var L_RATE_3 = 3;
-var L_RANGE_3 = 220;
-var L_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
-var L_FRAME_RATE = 5;
-var L_AIM_STYLE = 'ClosestAim';
+var TOWER_BEAM_LASER_PROPS = {
+    price: 150,
+    upgradePrice: 120,
+    aimStyle: 'ClosestAim',
+    damage1: setMerge (toDamage (.5), {electric: .7}),
+    speed1: 0,
+    range1: 80,
+    spreading1: 0,
+    ttl1: 10000,
+    frameRate1: 5,
+    damage2: setMerge (toDamage (1), {electric: 1.4}),
+    speed2: 0,
+    range2: 96,
+    spreading2: 0,
+    ttl2: 10000,
+    frameRate2: 5,
+    damage3: setMerge (toDamage (3), {electric: 4}),
+    speed3: 0,
+    range3: 112,
+    spreading3: 0,
+    ttl3: 10000,
+    frameRate3: 5
+};
 
 var TOWER_CHAIN_LASER = 'ChainLaserTower';
-var CHL_CHAIN = 2;
-var CHL_DAMAGE = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
-var CHL_RATE = 2;
-var CHL_RANGE = 120;
-var CHL_TTL = 40;
-var CHL_PRICE = 300;
-var CHL_UPGRADE_PRICE = 50;
-var CHL_RATE_2 = 6;
-var CHL_RANGE_2 = 150;
-var CHL_DAMAGE_2 = [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0];
-var CHL_RATE_3 = 8;
-var CHL_RANGE_3 = 200;
-var CHL_DAMAGE_3 = [0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
-var CHL_FRAME_RATE = 5;
-var CHL_CHAIN_2 = 3;
-var CHL_CHAIN_3 = 4;
-var CHL_AIM_STYLE = 'MostHealthAim';
+var TOWER_CHAIN_LASER_PROPS = {
+    price: 250,
+    upgradePrice: 400,
+    aimStyle: 'FurthestAim',
+    damage1: setMerge (toDamage (.35), {electric: .35}),
+    speed1: 0,
+    range1: 96,
+    spreading1: 0,
+    ttl1: 10000,
+    frameRate1: 5,
+    chain1: 2,
+    damage2: setMerge (toDamage (.7), {electric: .7}),
+    speed2: 0,
+    range2: 112,
+    spreading2: 0,
+    ttl2: 10000,
+    frameRate2: 5,
+    chain2: 3,
+    damage3: setMerge (toDamage (2), {electric: 2}),
+    speed3: 0,
+    range3: 128,
+    spreading3: 0,
+    ttl3: 10000,
+    frameRate3: 5,
+    chain3: 5
+};
 
 var TOWER_HOMING_MISSILE = 'HomingMissileTower';
-var HM_DAMAGE = [100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var HM_RATE = 5;
-var HM_RANGE = 300;
-var HM_TTL = 300;
-var HM_PRICE = 500;
-var HM_CURVING = 30;
-var HM_UPGRADE_PRICE = 50;
-var HM_RATE_2 = 6;
-var HM_RANGE_2 = 350;
-var HM_DAMAGE_2 = [120, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var HM_RATE_3 = 8;
-var HM_RANGE_3 = 400;
-var HM_DAMAGE_3 = [140, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var HM_FRAME_RATE = 1;
-var HM_AIM_STYLE = 'MostHealthAim';
+var TOWER_HOMING_MISSILE_PROPS = {
+    price: 250,
+    upgradePrice: 400,
+    aimStyle: 'MostHealthAim',
+    damage1: toDamage (10),
+    speed1: 3,
+    range1: 200,
+    spreading1: 0,
+    ttl1: 100,
+    frameRate1: 45,
+    curving1: 30,
+    damage2: toDamage (15),
+    speed2: 3,
+    range2: 250,
+    spreading2: 0,
+    ttl2: 150,
+    frameRate2: 40,
+    curving2: 30,
+    damage3: toDamage (30),
+    speed3: 4,
+    range3: 300,
+    spreading3: 0,
+    ttl3: 250,
+    frameRate3: 30,
+    curving3: 20
+};
 
 var TOWER_ELECTRIC_AURA = 'ElectricAuraTower';
-var EA_DAMAGE = [10, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0];
-var EA_RATE = 10;
-var EA_TTL = 100;
-var EA_PRICE = 300;
-var EA_GROWTH = 100;
-var EA_RADIUS = 100;
-var EA_UPGRADE_PRICE = 50;
-var EA_RATE_2 = 11;
-var EA_RADIUS_2 = 150;
-var EA_GROWTH_2 = 150;
-var EA_DAMAGE_2 = [12, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0];
-var EA_RATE_3 = 12;
-var EA_RADIUS_3 = 200;
-var EA_GROWTH_3 = 200;
-var EA_DAMAGE_3 = [15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0];
-var EA_FRAME_RATE = 1;
+var TOWER_ELECTRIC_AURA_PROPS = {
+    price: 200,
+    upgradePrice: 150,
+    aimStyle: 'ClosestAim',
+    damage1: setMerge (toDamage (2), {electric: 8}),
+    speed1: 0,
+    range1: 128,
+    spreading1: 0,
+    ttl1: 75 - 1,
+    frameRate1: 75,
+    damage2: setMerge (toDamage (4), {electric: 16}),
+    speed2: 0,
+    range2: 150,
+    spreading2: 0,
+    ttl2: 65 - 1,
+    frameRate2: 65,
+    damage3: setMerge (toDamage (5), {electric: 35}),
+    speed3: 0,
+    range3: 182,
+    spreading3: 0,
+    ttl3: 50 - 1,
+    frameRate3: 50
+};
 
 var TOWER_SLOW_AURA = 'SlowAuraTower';
-var SA_DAMAGE = [0, 0, 0, 0, 0, 1, 1, 1, 0.3, 1, 0.1];
-var SA_RATE = 10;
-var SA_TTL = 100;
-var SA_PRICE = 300;
-var SA_GROWTH = 100;
-var SA_RADIUS = 100;
-var SA_UPGRADE_PRICE = 50;
-var SA_RATE_2 = 11;
-var SA_RADIUS_2 = 150;
-var SA_GROWTH_2 = 150;
-var SA_DAMAGE_2 = [0, 0, 0, 0, 0, 1, 1, 1, 0.5, 1, 0.1];
-var SA_RATE_3 = 12;
-var SA_RADIUS_3 = 200;
-var SA_GROWTH_3 = 200;
-var SA_DAMAGE_3 = [0, 0, 0, 0, 0, 1, 1, 3, 0.6, 1, 0.1];
-var SA_FRAME_RATE = 1;
+var TOWER_SLOW_AURA_PROPS = {
+    price: 200,
+    upgradePrice: 150,
+    aimStyle: 'ClosestAim',
+    damage1: setMerge (toDamage (1), {poison: .5}, {period: 10, repeat: 5, value: 0.5}, {slow: .3, chance: 1, duration: 25}),
+    speed1: 0,
+    range1: 128,
+    spreading1: 0,
+    ttl1: 75 - 1,
+    frameRate1: 75,
+    damage2: setMerge (toDamage (2), {poison: 1}, {period: 10, repeat: 5, value: 0.7}, {slow: .4, chance: 1, duration: 35}),
+    speed2: 0,
+    range2: 150,
+    spreading2: 0,
+    ttl2: 65 - 1,
+    frameRate2: 65,
+    damage3: setMerge (toDamage (3), {poison: 2}, {period: 10, repeat: 5, value: 1.0}, {slow: .5, chance: 1, duration: 50}),
+    speed3: 0,
+    range3: 182,
+    spreading3: 0,
+    ttl3: 50 - 1,
+    frameRate3: 50
+};
 
 var TOWER_IMAGE_ARRAY = {MachineGunTower: ['images/cat.gif'], CannonTower: ['images/cat.gif'],
     FlamethrowerTower: ['images/cat.gif'], IceDartTower: ['images/cat.gif'],
