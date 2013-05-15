@@ -4,6 +4,7 @@ var infoName;
 var infoDamage;
 var infoRange;
 var infoRate;
+var infoPrice;
 var towerUpgrade;
 var towerDelete;
 var wavePause;
@@ -13,14 +14,14 @@ $.selectedTower = undefined;
 
 var items = {
     machineGun: [TOWER_MACHINEGUN, TOWER_MACHINEGUN_PROPS],
-    flame: [TOWER_FLAMETHROWER, "FT"],
-    laserGun: [TOWER_BEAM_LASER, "L"],
-    homingGun: [TOWER_HOMING_MISSILE, "HM"],
-    cannon: [TOWER_CANNON, "C"],
-    electricAura: [TOWER_ELECTRIC_AURA, "EA"],
-    laserChain: [TOWER_CHAIN_LASER, "CHL"],
-    iceDart: [TOWER_ICE_DART, "ID"],
-    slowAura: [TOWER_SLOW_AURA, "SA"],
+    flame: [TOWER_FLAMETHROWER, TOWER_FLAMETHROWER_PROPS],
+    /*laserGun: [TOWER_BEAM_LASER, TOWER_BEAM_LASER],
+    homingGun: [TOWER_HOMING_MISSILE, TOWER_HOMING_MISSILE_PROPS],
+    cannon: [TOWER_CANNON, TOWER_CANNON_PROPS],
+    electricAura: [TOWER_ELECTRIC_AURA, TOWER_ELECTRIC_AURA_PROPS],
+    laserChain: [TOWER_CHAIN_LASER, TOWER_CHAIN_LASER_PROPS],
+    iceDart: [TOWER_ICE_DART, TOWER_ICE_DART_PROPS],
+    slowAura: [TOWER_SLOW_AURA, TOWER_SLOW_AURA_PROPS],*/
 };
 
 
@@ -31,6 +32,7 @@ function loadDivs () {
     infoDamage = $ ('#infoDamage');
     infoRange = $ ('#infoRange');
     infoRate = $ ('#infoRate');
+    infoPrice = $ ('#infoPrice');
 
     towerUpgrade = $ ('#towerUpgrade');
     towerDelete = $ ('#towerDelete');
@@ -60,9 +62,11 @@ function bindActions () {
             towerMenu.hide ();
 
             showInfo ('{0} (lvl{1})'.format (getTowerName (items[p][0]), 1),
-                    getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
-                    items[p][1].range,
-                    window["{0}_RATE".format (items[p][1])]);
+                    getDamageSum (items[p][1].damage1),
+                    items[p][1].range1,
+                    items[p][1].rate1,
+                    items[p][1].price
+                );
         });
         e.bind ('mouseover', p, function (event) {
             if ($.toverBuilderLock || Crafty.isPaused ())
@@ -73,9 +77,10 @@ function bindActions () {
             towerMenu.hide ();
 
             showInfo ('{0} (lvl {1})'.format (getTowerName (items[p][0]), 1),
-                    getDamageSum (window["{0}_DAMAGE".format (items[p][1])]),
-                    window["{0}_RANGE".format (items[p][1])],
-                    window["{0}_RATE".format (items[p][1])]);
+                    getDamageSum (items[p][1].damage1),
+                    items[p][1].range1,
+                    items[p][1].rate1,
+                    items[p][1].price);
         });
         e.bind ('mouseout', function (event) {
             if ($.toverBuilderLock || Crafty.isPaused ())
@@ -94,20 +99,21 @@ function startNextWave () {
     generator.nextWave ();
 }
 
-function showInfo (name, damage, range, rate) {
+function showInfo (name, damage, range, rate, price) {
     loadDivs ();
 
     infoName.html (name);
     infoDamage.html (damage);
     infoRange.html (range);
     infoRate.html (rate);
+    infoPrice.html (price);
 }
 
 function getDamageSum (dmg) {
     var ps = ['basic', 'fire', 'electric', 'poison', 'ice'];
     var sum = 0;
     for (var p in ps)
-        sum += dmg[p];
+        sum += dmg[ps[p]];
     return sum;
 }
 
@@ -130,7 +136,9 @@ function towerClicked (tower) {
     showInfo ('{0} (lvl {1})'.format (getTowerName (tower.getType ()), tower.getLevel ()),
             getDamageSum (tower.getDamage ()),
             tower.getRange (),
-            tower.getRate ());
+            tower.getFrameRate (),
+            tower.getUpgradePrice() * (tower.getLevel()));
+     
 }
 
 function setupTowerActions () {
