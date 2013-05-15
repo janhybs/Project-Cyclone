@@ -71,6 +71,7 @@ function bindActions () {
         e.bind ('mouseover', p, function (event) {
             if ($.toverBuilderLock || Crafty.isPaused ())
                 return;
+            removeTowerRangeInfo();
             var p = event.data;
 
             towerInfo.show ();
@@ -125,11 +126,15 @@ function getTowerName (name) {
 function towerClicked (tower) {
     if (Crafty.isPaused ())
         return;
+    
+    removeTowerRangeInfo();
+    showTowerRange(tower.getStartPoint().x, tower.getStartPoint().y, tower.getRange());
+    
     loadDivs ();
 
     towerInfo.show ();
     towerMenu.show ();
-
+    
     $.selectedTower = tower;
     setupTowerActions ();
 
@@ -185,4 +190,20 @@ function deleteSelectedTower () {
     $.selectedTower = undefined;
     towerInfo.hide ();
     towerMenu.hide ();
+}
+
+function showTowerRange(pX, pY, r) {
+    var x = pX + W/2;
+    var y = pY + H/2;
+    var range = r;
+    console.log(range);
+    $.towerRangeInfo = Crafty.e("2D, Canvas, radius")
+            .attr({w: range*2, h: range*2, x: x-range, y: y-range, z: Z_TOWER_RANGE_INFO});
+}
+
+function removeTowerRangeInfo() {
+    if($.towerRangeInfo) {
+        $.towerRangeInfo.destroy();
+        $.towerRangeInfo = false;
+    }
 }

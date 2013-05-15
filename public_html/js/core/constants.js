@@ -7,6 +7,7 @@ var ALWAYS_DRAW_ALL = true;
 var Z_BOARD = 1;
 var Z_ENEMY = 2;
 var Z_PLAYER = 1000;
+var Z_TOWER_RANGE_INFO = 1001;
 var Z_TOWER_BODY = 10 * 1000;
 var Z_TOWER_LEVEL = 50 * 1000;
 var Z_TOWER_HEAD = 100 * 1000;

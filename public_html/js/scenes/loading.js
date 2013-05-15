@@ -21,7 +21,8 @@ Crafty.scene (SCENE_LOADING, function () {
         //
         'images/levels/target.png',
         'images/enemy.png',
-        'images/crosshair.png'];
+        'images/crosshair.png',
+        'images/radius.png'];
 
     //sound files
     var sounds = [
@@ -57,6 +58,10 @@ Crafty.scene (SCENE_LOADING, function () {
 
 Crafty.sprite (48, 'images/shield.png', {
     shield: [0, 0]
+});
+
+Crafty.sprite (256, 'images/radius.png', {
+    radius: [0, 0]
 });
 
 Crafty.sprite (32, 'images/exp-simple.png', {
