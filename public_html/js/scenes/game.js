@@ -2,8 +2,6 @@ Crafty.scene (SCENE_GAME, function () {
 
     activateCanvas ();
     loadPage ('gamePanel', 'panel-main', function () {
-        //load money info
-        refreshMoney ();
         bindActions ();
     });
 
@@ -17,10 +15,11 @@ Crafty.scene (SCENE_GAME, function () {
 
     jQuery.get ('levels/level-0{0}.xml'.format ($.actualLevel), function (data) {
         var xmlData = $.xml2json (data);
-
+        
         var levelBoard = parseBoard (xmlData.board);
         var levelPaths = parsePaths (xmlData.paths);
-
+        PlayerUtils.setPlayerMoney(parseInt(xmlData.money));
+        refreshMoney();
         board.showBoard (levelBoard);
         board.showPortals (levelPaths);
         board.showGates (levelPaths);
