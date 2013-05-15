@@ -9,7 +9,7 @@ window.player = {
         switch (type) {
             default:
                 var result = Crafty.e('2D, Canvas, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
-                        .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0});
+                        .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: SCENE_LIMIT, y: SCENE_LIMIT});
                 return result;
         }
     }
@@ -44,22 +44,22 @@ Crafty.c('PlayerControls', {
                 return;
             }
             var move = this.move;
-            if (this.lastKey === RIGHT_DIRECTION) {
+            if (this.lastKey === RIGHT_DIRECTION && !this.isOverScreen(this.x + this.speedPX, this.y)) {
                 this.x += this.speedPX;
                 this.collisionRect.x += this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             }
-            else if (this.lastKey === LEFT_DIRECTION) {
+            else if (this.lastKey === LEFT_DIRECTION && !this.isOverScreen(this.x - this.speedPX, this.y)) {
                 this.x -= this.speedPX;
                 this.collisionRect.x -= this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             }
-            else if (this.lastKey === UP_DIRECTION) {
+            else if (this.lastKey === UP_DIRECTION && !this.isOverScreen(this.x, this.y - this.speedPX)) {
                 this.y -= this.speedPX;
                 this.collisionRect.y -= this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
             }
-            else if (this.lastKey === DOWN_DIRECTION) {
+            else if (this.lastKey === DOWN_DIRECTION && !this.isOverScreen(this.x, this.y + this.speedPX)) {
                 this.y += this.speedPX;
                 this.collisionRect.y += this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
@@ -122,6 +122,11 @@ Crafty.c('PlayerControls', {
         this.bind(MOUSE_MOVE, function() {
             this.rotation = Math.atan2(this.y + this.h/2 - mousePos.y, this.x + this.w/2 - mousePos.x) * 180 / Math.PI + 180;
         });
+    },
+            
+    //overscreen protection        
+    isOverScreen: function(x, y) {
+        return x < SCENE_LIMIT || x > SCREEN_WIDTH - PLAYER_WIDTH - SCENE_LIMIT - PANEL_WIDTH || y < SCENE_LIMIT || y > SCREEN_HEIGHT - PLAYER_HEIGHT - SCENE_LIMIT;
     }
 });
 
@@ -300,11 +305,6 @@ Crafty.c(PLAYER_ABS, {
                 this.collisionRect.attr({x: fromX, y: fromY-1});
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, move);
             }
-        }
-        
-        //over screen protection
-        if (this.x < 0 || this.x > SCREEN_WIDTH - PLAYER_WIDTH || this.y < 0 || this.y > SCREEN_HEIGHT - PLAYER_HEIGHT) {
-            this.attr({x: fromX, y: fromY});
         }
     },
     //set position method    

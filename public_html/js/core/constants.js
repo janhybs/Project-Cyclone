@@ -122,6 +122,8 @@ var SCREEN_HEIGHT = 640;
 var W = 32;
 var H = 32;
 
+var SCENE_LIMIT = 15;
+
 /**********
  * SHOOTS *
  **********
