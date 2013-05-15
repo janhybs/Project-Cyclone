@@ -68,7 +68,7 @@ Crafty.c (AIMING_LEAST_HEALTH, {
     }
 });
 
-/*** Component - least health mob ***/
+/*** Component - no freeze mob ***/
 Crafty.c (AIMING_NO_FREEZE, {
     getElement: function (elems, startPoint) {
         for (var i in elems)
@@ -78,11 +78,23 @@ Crafty.c (AIMING_NO_FREEZE, {
     }
 });
 
+/*** Component - shielded mob ***/
+Crafty.c (AIMING_SHIELD, {
+    getElement: function (elems, startPoint) {
+        for (var i in elems) {
+            if (elems[i].shield !== 0)
+                return elems[i];
+        }
+        return elems[0];
+    }
+});
+
 var closest = Crafty.e (AIMING_CLOSEST);
 var furthest = Crafty.e (AIMING_FURTHEST);
 var mostHealth = Crafty.e (AIMING_MOST_HEALTH);
 var leastHealth = Crafty.e (AIMING_LEAST_HEALTH);
 var noFreeze = Crafty.e (AIMING_NO_FREEZE);
+var shield = Crafty.e(AIMING_SHIELD);
 
 /*** Define as global object ***/
 window.aiming = {
@@ -98,6 +110,8 @@ window.aiming = {
                 return leastHealth;
             case AIMING_NO_FREEZE:
                 return noFreeze;
+            case AIMING_SHIELD:
+                return shield;
         }
     }
 };
