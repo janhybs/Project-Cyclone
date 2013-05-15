@@ -80,8 +80,11 @@ Crafty.c (ENEMY_ABS, {
         if (reason === 'end') {
             Crafty.audio.play ("death_end");
             Crafty.trigger (ENEMY_SLIP);
-        } else
+        } else {
+            PlayerUtils.addPlayerMoney (Math.floor ((this.maxHealth + this.maxShield) / MONEY_BALANCE[$.actualLevel]));
+            refreshMoney ();
             Crafty.audio.play ("death_0" + Crafty.math.randomInt (1, 5));
+        }
     },
     //#
     processHit: function (shots) {
