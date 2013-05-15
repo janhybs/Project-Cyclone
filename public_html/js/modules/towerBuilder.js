@@ -62,7 +62,7 @@ Crafty.c (TOWER_BUILDER, {
             this.towerImg.x = xPos * W;
             this.towerImg.y = yPos * H;
             removeTowerRangeInfo();
-            showTowerRange(xPos * W, xPos * W, towerBrain.getRange(this.towerType));
+            showTowerRange(xPos * W, yPos * W, towerBrain.getRange(this.towerType));
         }
     },
     setTowerType: function (type) {
