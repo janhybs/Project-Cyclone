@@ -74,7 +74,30 @@ Crafty.c (TOWER_BRAIN, {
         }
         return Crafty.e ('2D, Canvas, {0}'.format(result))
                 .attr ({w: W, h: H, alpha: 0.8, z: 2});
-    }
+    },
+        
+    getRange: function (type){
+        switch (type) {
+            case TOWER_MACHINEGUN:
+                return TOWER_MACHINEGUN_PROPS.range1;
+            case TOWER_CANNON:
+                return TOWER_CANNON_PROPS.range1;
+            case TOWER_FLAMETHROWER:
+                return TOWER_FLAMETHROWER_PROPS.range1;
+            case TOWER_ICE_DART:
+                return TOWER_ICE_DART_PROPS.range1;
+            case TOWER_BEAM_LASER:
+                return TOWER_BEAM_LASER_PROPS.range1;
+            case TOWER_CHAIN_LASER:
+                return TOWER_CHAIN_LASER_PROPS.range1;
+            case TOWER_HOMING_MISSILE:
+                return TOWER_HOMING_MISSILE_PROPS.range1;
+            case TOWER_ELECTRIC_AURA:
+                return TOWER_ELECTRIC_AURA_PROPS.range1;
+            case TOWER_SLOW_AURA:
+                return TOWER_SLOW_AURA_PROPS.range1;
+        }
+    }        
 });
 
 window.towerBrain = Crafty.e (TOWER_BRAIN);

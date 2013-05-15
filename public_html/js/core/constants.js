@@ -345,7 +345,7 @@ var TOWER_BEAM_LASER = 'BeamLaserTower';
 var TOWER_BEAM_LASER_PROPS = {
     price: 150,
     upgradePrice: 120,
-    aimStyle: 'ClosestAim',
+    aimStyle: 'ShieldAim',
     damage1: setMerge (toDamage (.5), {electric: .7}),
     speed1: 0,
     range1: 80,
@@ -515,6 +515,7 @@ var AIMING_LEAST_HEALTH = 'LeastHealthAim';
 var AIMING_CLOSEST = 'ClosestAim';
 var AIMING_FURTHEST = 'FurthestAim';
 var AIMING_NO_FREEZE = 'NoFreezeAim';
+var AIMING_SHIELD = 'ShieldAim';
 
 /********************
  * PLAYER CONSTANTS *
