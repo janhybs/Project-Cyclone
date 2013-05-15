@@ -72,7 +72,7 @@ Crafty.c (SHOT_ABS, {
 
 
 Crafty.c (SHOT_P2P, {
-    create: function (speed, angle, spreading) {
+    create: function (speed, spreading, angle) {
         this.speed = speed !== undefined ? speed : NaN;
         this.angle = angle !== undefined ? angle : NaN;
         this.spreading = spreading !== undefined ? (spreading / 180) * PI : 0;
