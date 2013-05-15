@@ -196,7 +196,6 @@ function showTowerRange(pX, pY, r) {
     var x = pX + W/2;
     var y = pY + H/2;
     var range = r;
-    console.log(range);
     $.towerRangeInfo = Crafty.e("2D, Canvas, radius")
             .attr({w: range*2, h: range*2, x: x-range, y: y-range, z: Z_TOWER_RANGE_INFO});
 }
