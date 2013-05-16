@@ -88,7 +88,7 @@
                         "image":"brown",
                         "speed":"lvl2",
 						"wobble":"lvl3",
-						"health":"lvl2",
+						"health":"lvl3",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -108,7 +108,7 @@
 						"resistance":"fire2",
                         "speed":"lvl3",
 						"wobble":"lvl3",
-						"health":"lvl3",
+						"health":"lvl4",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -133,7 +133,7 @@
                         "image":"brown",
                         "speed":"lvl2",
 						"wobble":"lvl2",
-						"health":"lvl4",
+						"health":"lvl5",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -153,7 +153,7 @@
 						"resistance":"poison2",
                         "speed":"lvl3",
 						"wobble":"lvl2",
-						"health":"lvl4",
+						"health":"lvl5",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -177,7 +177,7 @@
                         "image":"brown",
                         "speed":"lvl3",
 						"wobble":"lvl2",
-						"health":"lvl4",
+						"health":"lvl5",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -196,7 +196,7 @@
                         "image":"yellow",
                         "speed":"lvl4",
 						"wobble":"lvl4",
-						"health":"lvl2",
+						"health":"lvl3",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -220,7 +220,7 @@
                         "image":"brown",
                         "speed":"lvl2",
 						"wobble":"lvl2",
-						"health":"lvl4",
+						"health":"lvl5",
 						"shield":"lvl0",
 						"size":"lvl24"
 					}]]>
@@ -240,7 +240,7 @@
                         "speed":"lvl3",
 						"wobble":"lvl2",
 						"health":"lvl0",
-						"shield":"lvl2",
+						"shield":"lvl3",
 						"size":"lvl24"
 					}]]>
                 </generator>

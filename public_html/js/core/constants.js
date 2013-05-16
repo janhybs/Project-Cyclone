@@ -18,7 +18,7 @@ var Z_ENEMY_TARGET = 3;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
-var MONEY_BALANCE = [1, 20, 17, 15, 13, 10];
+var MONEY_BALANCE = [1, 20, 30, 15, 13, 10];
 
 /***************
  * GAME SCENES *
@@ -85,6 +85,13 @@ var ENEMY_SIZE = {
     lvl44: 44,
     lvl48: 48
 };
+
+var DIFFICULTY_EASY = 1.25;
+var DIFFICULTY_MEDIUM = 15;
+var DIFFICULTY_HARD = 2;
+
+
+var DIFFICULTY = DIFFICULTY_MEDIUM;
 
 //# health
 var ENEMY_HEALTH = {
