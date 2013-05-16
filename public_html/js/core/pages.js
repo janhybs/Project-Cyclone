@@ -185,7 +185,9 @@ function refreshMoney () {
 function deleteSelectedTower () {
     if ($.selectedTower === undefined)
         return;
-
+    removeTowerRangeInfo();
+    PlayerUtils.addPlayerMoney(($.selectedTower.getPrice() + $.selectedTower.getUpgradePrice() * ($.selectedTower.getLevel() - 1))/2);
+    refreshMoney();
     $.selectedTower.doDestroy ();
     $.selectedTower = undefined;
     towerInfo.hide ();
