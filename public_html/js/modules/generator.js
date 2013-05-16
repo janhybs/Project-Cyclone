@@ -29,14 +29,15 @@ window.generator = {
         if (!this.incWave ())
             return;
         this.nextPart ();
+        onWaveStartHandler ();
     },
     nextPart: function () {
         //# end wave
         if (!this.incPart ()) {
-            if (this.currentWave + 1 === this.totalWaves) {
+            if (this.currentWave + 1 === this.totalWaves)
                 this.everythingReleased = true;
-            }
-
+            onWaveEndHandler ();
+            
             if (this.autoPlay)
                 this.nextWave ();
             return;

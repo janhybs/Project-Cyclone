@@ -28,7 +28,7 @@ Crafty.scene (SCENE_GAME, function () {
         $.livesTotal = Number (xmlData.waves.tolerance);
         $.livesLeft = Number (xmlData.waves.tolerance);
         $.gameOver = false;
-        $ ('#livesInfo').html ("{0}/{1}".format ($.livesTotal, $.livesLeft));
+        $ ('#livesInfo').html ("{1}/{0}".format ($.livesTotal, $.livesLeft));
         generator.start (xmlData, levelPaths);
 
 
@@ -41,7 +41,7 @@ Crafty.scene (SCENE_GAME, function () {
                 $.gameOver = true;
                 Crafty.trigger (GAME_OVER, $.livesTotal);
             }
-            $ ('#livesInfo').html ("{0}/{1}".format ($.livesTotal, $.livesLeft));
+            $ ('#livesInfo').html ("{1}/{0}".format ($.livesTotal, $.livesLeft));
         });
 
 

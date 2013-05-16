@@ -154,14 +154,14 @@ html {
     z-index: 1;
 }
 
-#towerMenuInfo .prop {
+#towerInfo .prop {
     display: block;
     width: 150px;
     margin-left: 5px;
     font-size: 10px;
 }
 
-#towerMenuInfo .prop-name{
+#towerInfo .prop-name{
     font-weight: bold;
     font-size: 11px;
 }
@@ -171,13 +171,26 @@ html {
     position: relative;
 }
 
+#towerMenu {
+    display: block;
+    position: absolute;
+    text-align: center;
+    width: 160px;
+    right: 0;
+    padding: 9px 0;
+    bottom: 66px;
+}
+
 #controls {
     display: block;
     position: absolute;
     text-align: center;
     width: 160px;
     right: 0;
-    bottom: 9px;
+    bottom: 0;
+    padding: 9px 0;
+    border-top: 1px solid #000;
+    background: rgba(11, 15, 20, 0.8);
 }
 
 
@@ -304,11 +317,15 @@ html {
 /*
     ------------ PANEL-TOWERS ------------
 */
-
 #panel-main-towers, #panel-main-towers li {
     margin: 0;
     padding: 0;
 }
+
+#panel-main-towers {
+    margin-left: 5px;
+}
+
 #panel-main-towers li {
     display: inline-block;
     width: 48px;
@@ -346,4 +363,17 @@ td {
 #moneyInfo {
     font-weight: lighter;
     font-size: 0.7em;
+}
+
+
+.towerMenu-action-disabled {
+    opacity: 0.5;
+}
+
+.towerMenu-action {
+    cursor: pointer;
+}
+
+.towerMenu-action:hover, #panel-main-towers img:hover {
+    box-shadow: 0 0 10px #0CF;
 }

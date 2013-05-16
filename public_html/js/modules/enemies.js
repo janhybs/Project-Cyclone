@@ -19,6 +19,8 @@ Crafty.c (ENEMY_ABS, {
         this.shield = (shield !== undefined ? shield : 0) * DIFFICULTY;
         this.wobble = wobble !== undefined ? wobble : 10;
         this.money = money !== undefined ? money : 0;
+        this.bx = (this.w - W) / 2;
+        this.by = (this.h - H) / 2;
         this.shieldActor = null;
     },
     init: function () {
@@ -57,8 +59,8 @@ Crafty.c (ENEMY_ABS, {
         if (this.path !== null) {
             this._bi = 0;
             this._cp = this.path[0];
-            this.x = this._cp.x;
-            this.y = this._cp.y;
+            this.x = this._cp.x - this.bx;
+            this.y = this._cp.y - this.bx;
             this.findDirection (this._bi);
         }
 
@@ -204,8 +206,8 @@ Crafty.c (ENEMY_ABS, {
 
         //# randomness in movement
         this.coords = {x: this._np.x, y: this._np.y};
-        this.coords.x = this._np.x + Crafty.math.randomInt (-this.wobble, +this.wobble);
-        this.coords.y = this._np.y + Crafty.math.randomInt (-this.wobble, +this.wobble);
+        this.coords.x = this._np.x + Crafty.math.randomInt (-this.wobble, +this.wobble) - this.bx;
+        this.coords.y = this._np.y + Crafty.math.randomInt (-this.wobble, +this.wobble) - this.by;
 
         //# angle and x/y step
         this.angle = Math.atan2 (this.coords.y - this.y, this.coords.x - this.x);

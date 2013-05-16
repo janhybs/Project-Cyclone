@@ -87,8 +87,9 @@ Crafty.c ('HealthBar', {
             var c = _this.maxShield === 0 || _this.shield === 0 ? _this.healthbarColor : _this.healthbarShieldColor;
             var t = _this.maxShield === 0 || _this.shield === 0 ? _this.health / _this.maxHealth : _this.shield / _this.maxShield;
             t = (t > 1 ? 1 : t < 0 ? 0 : t);
-            
-            if (t === 1) return;
+
+            if (t === 1)
+                return;
 
             //# match position
             _this.healthbar.x = _this.x;
@@ -463,5 +464,27 @@ Crafty.c ("Collision2", {
 });
 
 
+Crafty.c ('Skipper', {
+    init: function () {
+        this.frameSkip = 0;
+        this.prevSkip = this.frameSkip;
+        this.bind ('EnterFrame', this.enterFrame);
+    },
+    skip: function (frameSkip) {
+        this.frameSkip = frameSkip || 0;
+        this.prevSkip = this.frameSkip;
+    },
+    enterFrame: function () {
+        if (this.frameSkip <= 0)
+            return;
 
+        this.prevSkip--;
+        if (this.prevSkip === 0) {
+            this.prevSkip = this.frameSkip + 1;
+            Crafty.timer.simulateFrames (this.frameSkip);
+        }
+    }
+});
+
+window.skipper = Crafty.e ('Skipper');
 window.timer = Crafty.e ('Framer');
