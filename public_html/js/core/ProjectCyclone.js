@@ -10,7 +10,7 @@ ProjectCyclone = {
         });
 
         $ ('#cr-stage').before ($ ('<div id="webview"></div>')[0]);
-        $ ('#cr-stage').after ($ ('<div id="gamePanel">ahoj</div>')[0]);
+        $ ('#cr-stage').after ($ ('<div id="gamePanel"></div>')[0]);
         $ ('#webview').before ($ ('<div id="header"></div>')[0]);
         $ ('#webview').after ($ ('<div id="header-bg"></div>')[0]);
         onResizeHandler (null);
