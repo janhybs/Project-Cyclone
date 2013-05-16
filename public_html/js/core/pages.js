@@ -145,14 +145,15 @@ function onWaveEndHandler () {
     nextWave.show ();
     nextWaveDisabled.hide ();
 
-    currentMoney = PlayerUtils.getPlayerMoney ();
-    targetMoney = currentMoney + (currentMoney > 500 ? 50 : currentMoney * 0.1);
-    PlayerUtils.setPlayerMoney (targetMoney);
+    currentMoney = 0;
+    targetMoney = PlayerUtils.getPlayerMoney ();
+    targetMoney = Math.floor ((targetMoney > 500 ? 50 : targetMoney * 0.1));
+    PlayerUtils.setPlayerMoney (PlayerUtils.getPlayerMoney () + targetMoney);
     $ (window).animate ({currentMoney: targetMoney}, {duration: 2000, progress: upgradeMoney});
 }
 
 function upgradeMoney () {
-    $ ('#availableMoney').html (Math.floor (currentMoney));
+    $ ('#availableMoney').html (PlayerUtils.getPlayerMoney () + Math.floor (currentMoney) - targetMoney);
 }
 
 function onWaveStartHandler () {
