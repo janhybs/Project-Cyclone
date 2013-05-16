@@ -10,7 +10,7 @@ div, form, body, html, h1, h2, h3, h4, h5 {
 }
 
 html {
-    background: url('../images/pages/background.jpg');
+    background: url('../images/pages/background.jpg') top center;
     width: 960px;
     margin: 0 auto;
     position: relative;
@@ -39,11 +39,23 @@ html {
     padding-right: 160px;
 }
 
+#header-main h1 {
+    padding-top: 5px;
+    padding-bottom: 45px;
+    text-align: left;
+}
+
+#header-main h2 {
+    padding-top: 35px;
+    text-align: left;
+    color: #999;
+    font-weight: normal;
+}
+
 #header {
     width: 100%;
-    height: 140px;
+    height: 210px;
     text-align: center;
-    background: rgba(11, 15, 20, 0.5);
     padding-top: 5px;
 }
 
@@ -74,17 +86,17 @@ html {
 
 .buttons button, .buttons-small button {
     font-weight: bold;
-    color: #09F;
+    color: #0C9;
     display: inline-block;
     border: none;
     background: none;
     font-size: 16px;
     border: none;
-    height: 60px;
+    height: 48px;
 }
 
 .buttons button:hover {
-    background: #06F;
+    background: #0C9;
     color: #FFF;
 }
 
@@ -136,7 +148,7 @@ html {
     height: 640px;
     margin: 0 auto;
     left: 800px;
-    top: 145px;
+    top: 215px;
     background: rgba(11, 15, 20, 0.5);
     position: absolute;
     z-index: 1;
@@ -266,7 +278,7 @@ html {
 .sceneMode {
     padding: 0 2em;
     padding-bottom: 1em;
-    margin-top: -2px;
+    margin-top: -3px;
     background: rgba(11, 15, 20, 0.8);
 }
 

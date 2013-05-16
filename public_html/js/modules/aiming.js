@@ -73,8 +73,8 @@ Crafty.c (AIMING_NO_FREEZE, {
     getElement: function (elems, startPoint) {
         for (var i in elems)
             if (elems[i].slowShot === null)
-                return elems[i];
-        return null;
+                return elems[i].center;
+        return elems[0].center;
     }
 });
 
@@ -83,9 +83,9 @@ Crafty.c (AIMING_SHIELD, {
     getElement: function (elems, startPoint) {
         for (var i in elems) {
             if (elems[i].shield !== 0)
-                return elems[i];
+                return elems[i].center;
         }
-        return elems[0];
+        return elems[0].center;
     }
 });
 

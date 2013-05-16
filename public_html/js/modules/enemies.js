@@ -15,8 +15,8 @@ Crafty.c (ENEMY_ABS, {
         this.path = path !== undefined ? path : null;
         this.speed = speed !== undefined ? speed : 3;
         this.resistance = resistance !== undefined ? toDamage (resistance) : toDamage (0);
-        this.health = health !== undefined ? health : 100;
-        this.shield = shield !== undefined ? shield : 0;
+        this.health = (health !== undefined ? health : 100) * DIFFICULTY;
+        this.shield = (shield !== undefined ? shield : 0) * DIFFICULTY;
         this.wobble = wobble !== undefined ? wobble : 10;
         this.money = money !== undefined ? money : 0;
         this.shieldActor = null;
