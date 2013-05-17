@@ -139,6 +139,8 @@ function pauseGame () {
 
 function startNextWave () {
     generator.nextWave ();
+    $.currentWave++;
+    refreshWave ();
 }
 
 function onWaveEndHandler () {
@@ -271,4 +273,8 @@ function removeTowerRangeInfo () {
         $.towerRangeInfo.destroy ();
         $.towerRangeInfo = false;
     }
+}
+
+function refreshWave () {
+    $ ('#waveInfo').html ('{0}/{1}'.format ($.currentWave, $.totalWaves));
 }

@@ -182,7 +182,7 @@ html {
     width: 160px;
     right: 0;
     padding: 9px 0;
-    bottom: 66px;
+    bottom: 92px;
 }
 
 #controls {
@@ -197,7 +197,7 @@ html {
     background: rgba(11, 15, 20, 0.8);
 }
 
-#controls * {
+#controls > img {
     width: 32px;
     height: 32px;
 }
@@ -397,6 +397,16 @@ td {
 #info img {
     vertical-align: middle;
 }
+
+#waveInfoHolder  * {
+    display: inline;
+    text-align: center;
+}
+
+#waveInfoHolder {
+    padding-bottom: 10px;
+}
+
 
 
 .towerMenu-action-disabled {
