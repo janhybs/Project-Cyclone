@@ -356,6 +356,10 @@ html {
     padding: 0;
 }
 
+.aboutUs{
+    font-size: 0.8em;
+}
+
 img.brown {
     width: 32px;
     height: 32px;

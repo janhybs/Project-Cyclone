@@ -38,6 +38,7 @@ var SCENE_STORY_MESSAGE = 'gameStoryMessage';
 var SCENE_GAME_WIN = 'gameWin';
 var SCENE_ENEMIES = 'gameEnemies';
 var SCENE_TOWERS = 'gameTowers';
+var SCENE_ABOUT_US = 'aboutUs';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
