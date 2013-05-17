@@ -328,6 +328,66 @@ html {
     font-size: 0.8em;
 }
 
+.enemiesScene ul, li {
+    list-style-type: none;
+    text-align: left;
+    padding-bottom: 0.2em;
+}
+
+.enemiesScene img {
+    vertical-align: middle;
+}
+
+.enemiesScene p {
+    font-size: 0.8em;
+    display: inline;
+    padding-left: 3em;
+}
+
+.enemiesScene .bold{
+    font-weight: bold;
+}
+
+.enemiesScene p .right{
+    float:right;
+}
+
+img.brown {
+    width: 32px;
+    height: 32px;
+    background: url(../images/enemies.png) -196px -88px;
+}
+
+img.red {
+    width: 32px;
+    height: 32px;
+    background: url(../images/enemies.png) -196px -120px;
+}
+
+img.blue {
+    width: 32px;
+    height: 32px;
+    background: url(../images/enemies.png) 0px -224px;
+}
+
+img.green {
+    width: 32px;
+    height: 32px;
+    background: url(../images/enemies.png) -76px -216px;
+}
+
+img.yellow {
+    width: 32px;
+    height: 32px;
+    background: url(../images/enemies.png) -160px -160px;
+}
+
+img.purple {
+    width: 32px;
+    height: 32px;
+    background: url(../images/enemies.png) -124px -168px;
+}
+
 /*
     ------------ PANEL-TOWERS ------------
 */

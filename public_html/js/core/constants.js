@@ -36,6 +36,7 @@ var SCENE_GAME_OVER = 'gameOverScene';
 var SCENE_GAME_SUCCESS = 'gameMenuSuccess';
 var SCENE_STORY_MESSAGE = 'gameStoryMessage';
 var SCENE_GAME_WIN = 'gameWin';
+var SCENE_ENEMIES = 'gameEnemies';
 
 //events
 var SCENE_MOUSE_CLICK_EVENT = "sceneMouseClickEvent";
