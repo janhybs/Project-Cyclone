@@ -322,6 +322,10 @@ html {
     padding-top: 1.5em;
 }
 
+.sceneMode img {
+    padding: 10px 0;
+}
+
 #story p {
     text-align: justify;
     text-indent:3em;
