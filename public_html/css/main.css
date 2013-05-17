@@ -340,20 +340,35 @@ html {
 
 .enemiesScene img, .towerScene img {
     vertical-align: middle;
+    float:left;
+    width: 32px;
+    height: 32px;
 }
 
 .enemiesScene p, .towerScene p {
     font-size: 0.8em;
     display: inline;
-    padding-left: 3em;
+}
+
+.enemiesScene .description, .towerScene .description {
+    float:left;
+    width:70%;
 }
 
 .enemiesScene .bold, .towerScene .bold{
     font-weight: bold;
+    float:left;
+    width:20%;
+    padding-left: 3em;
 }
 
 .enemiesScene img, .towerScene img{
     padding: 0;
+}
+
+.enemies Scene .clear, .towerScene .clear{
+    clear:both;
+    display:none;
 }
 
 .aboutUs{
