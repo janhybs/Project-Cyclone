@@ -75,6 +75,10 @@ Crafty.scene (SCENE_GAME, function () {
         Crafty.audio.stop ();
         $.enemyLosts = slips;
         console.log('game success');
-        Crafty.scene(SCENE_GAME_SUCCESS);
+        
+        if($.actualLevel === 5)
+            Crafty.scene(SCENE_GAME_WIN);
+        else
+            Crafty.scene(SCENE_GAME_SUCCESS);
     });
 });

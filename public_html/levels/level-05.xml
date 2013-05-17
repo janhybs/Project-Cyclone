@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
-    <money>15</money>
+    <money>1500</money>
     <board>
         <![CDATA[
 			1111111111111111111111111
@@ -41,7 +41,7 @@
 		</path>
     </paths>
 	
-	    <waves tolerance="1500">
+	    <waves tolerance="15">
         
 		<!-- 1 -->
 		<wave>
