@@ -9,21 +9,22 @@
         <!-- NEW GAME -->
         <div id="scene-new-game" class="page">
             <div class="sceneMode" style="padding: 0em" >
-            <h4>Name your</h4>
-            <h1>Heroes</h1>
+                <h4>Name your</h4>
+                <h1>Heroes</h1>
 
-            <form>
-                <div id="scene-new-game-p2p">
-                    <img src="images/pages/gun-256.png" />
-                    <input type="text" class="scene-input" id="gunManName" value="GunMan" name="scene-new-game-p2p" />
-                </div>
-                <div id="scene-new-game-laser">
-                    <img src="images/pages/diamond-256.png" />
-                    <input type="text" class="scene-input" id="laserManName" value="LaserMan" name="scene-new-game-laser" />
-                </div>
-            </form>
+                <form>
+                    <div id="scene-new-game-p2p">
+                        <img src="images/pages/gun-256.png" />
+                        <input type="text" class="scene-input" id="gunManName" value="GunMan" name="scene-new-game-p2p" />
+                    </div>
+                    <div id="scene-new-game-laser">
+                        <img src="images/pages/diamond-256.png" />
+                        <input type="text" class="scene-input" id="laserManName" value="LaserMan" name="scene-new-game-laser" />
+                    </div>
+                </form>
 
-            <button id="scene-new-game-next" class="scene-button" style="margin-bottom: 1em" onclick="PlayerUtils.newGameInitialize($('#gunManName').val(), $ ('#laserManName').val());Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+                <button id="scene-new-game-next" class="scene-button" style="margin-bottom: 1em" onclick="PlayerUtils.newGameInitialize ($ ('#gunManName').val (), $ ('#laserManName').val ());
+                        Crafty.scene (SCENE_GAME_MENU)">Continue</button>
             </div>
         </div>
 
@@ -31,29 +32,29 @@
         <!-- LEVEL UPG -->
         <div id="scene-level-up" class="page">
             <div class="sceneMode">
-            <img id="levelUpImg" src="images/pages/level-up.png" />
-            <h4 id="actPlayer"></h4>
-            <h3 id="actLevel"></h3>
-            <table>
-                <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" class="scene-button" onclick="
-                    PlayerUtils.addDamagePoint ();
-                    $ ('#damage').html (PlayerUtils.getDamagePoints ());
-                    $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
-                    $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
-                <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" class="scene-button" onclick="
-                    PlayerUtils.addRangePoint ();
-                    $ ('#range').html (PlayerUtils.getRangePoints ());
-                    $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
-                    $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
-            </table>
-            <button id="scene-level-up-but" class="scene-button" disabled="disabled" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+                <img id="levelUpImg" src="images/pages/level-up.png" />
+                <h4 id="actPlayer"></h4>
+                <h3 id="actLevel"></h3>
+                <table>
+                    <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" class="scene-button" onclick="
+                        PlayerUtils.addDamagePoint ();
+                        $ ('#damage').html (PlayerUtils.getDamagePoints ());
+                        $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
+                        $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
+                    <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" class="scene-button" onclick="
+                        PlayerUtils.addRangePoint ();
+                        $ ('#range').html (PlayerUtils.getRangePoints ());
+                        $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
+                        $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
+                </table>
+                <button id="scene-level-up-but" class="scene-button" disabled="disabled" onclick="Crafty.scene (SCENE_GAME_MENU)">Continue</button>
             </div>
         </div>
 
         <!-- MAIN MENU -->
         <div id="scene-menu" class="page">
             <div class="buttons-small">
-             </div>
+            </div>
         </div>
 
         <!-- HEADER -->
@@ -65,58 +66,61 @@
                 <button id="scene-menu-to-game-menu" onclick="Crafty.scene (SCENE_GAME_MENU);">CONTINUE</button>
                 <!--<button id="scene-menu-to-level-up" onclick="Crafty.scene (SCENE_LEVEL_UP);">LEVEL UP (debug)</button>-->
                 <button id="scene-menu-to-story" onclick="Crafty.scene (SCENE_STORY_MESSAGE);">STORY</button>
-<!--                <button id="scene-menu-sii" onclick="Crafty.timer.simulateFrames (100);">SII</button>
-                <button id="scene-menu-wii" onclick="Crafty.timer.simulateFrames (1000);">WII</button>-->
+                <!--                <button id="scene-menu-sii" onclick="Crafty.timer.simulateFrames (100);">SII</button>
+                                <button id="scene-menu-wii" onclick="Crafty.timer.simulateFrames (1000);">WII</button>-->
             </div>
         </div>
 
         <!-- GAME MENU -->
         <div id="scene-game-menu" class="page">
             <div class="sceneMode">
-            <ul id = "levelChoose" class="levels">
-            <li><img id="level1" class="levelBut" src="images/levels/level-01_small.png" /><div class="bestScore" id="levelscore1">&nbsp;</div></li>
-            <li><img id="level2" class="levelBut" src="images/levels/level-02_small.png" /><div class="bestScore" id="levelscore2">&nbsp;</div></li>
-            <li><img id="level3" class="levelBut" src="images/levels/level-03_small.png" /><div class="bestScore" id="levelscore3">&nbsp;</div></li>
-            <li><img id="level4" class="levelBut" src="images/levels/level-04_small.png" /><div class="bestScore" id="levelscore4">&nbsp;</div></li>
-            <li><img id="level5" class="levelBut" src="images/levels/level-05_small.png" /><div class="bestScore" id="levelscore5">&nbsp;</div></li>
-            </ul>    
-            <table class="tableLevels">
-                <tr><td class="playerSelect" id="soldierPart" onclick="PlayerUtils.setActualPlayer(GUN_PLAYER)"><div id="soldierName" class="names"></div><img src="images/player/soldier.png" /><div id="soldierLevelInfo" class="bestScore"></div></td><td class="playerSelect" id="laserPart" onclick="PlayerUtils.setActualPlayer(LASER_PLAYER)"><div id="laserName" class="names"></div><img src="images/player/laser.png" /><div id="laserLevelInfo" class="bestScore"></div></td></tr>
-            </table>
+                <ul id = "levelChoose" class="levels">
+                    <li><img id="level1" class="levelBut" src="images/levels/level-01_small.png" /><div class="bestScore" id="levelscore1">&nbsp;</div></li>
+                    <li><img id="level2" class="levelBut" src="images/levels/level-02_small.png" /><div class="bestScore" id="levelscore2">&nbsp;</div></li>
+                    <li><img id="level3" class="levelBut" src="images/levels/level-03_small.png" /><div class="bestScore" id="levelscore3">&nbsp;</div></li>
+                    <li><img id="level4" class="levelBut" src="images/levels/level-04_small.png" /><div class="bestScore" id="levelscore4">&nbsp;</div></li>
+                    <li><img id="level5" class="levelBut" src="images/levels/level-05_small.png" /><div class="bestScore" id="levelscore5">&nbsp;</div></li>
+                </ul>    
+                <table class="tableLevels">
+                    <tr><td class="playerSelect" id="soldierPart" onclick="PlayerUtils.setActualPlayer (GUN_PLAYER)"><div id="soldierName" class="names"></div><img src="images/player/soldier.png" /><div id="soldierLevelInfo" class="bestScore"></div></td><td class="playerSelect" id="laserPart" onclick="PlayerUtils.setActualPlayer (LASER_PLAYER)"><div id="laserName" class="names"></div><img src="images/player/laser.png" /><div id="laserLevelInfo" class="bestScore"></div></td></tr>
+                </table>
             </div>
         </div>
 
-         <!-- story -->
+        <!-- story -->
         <div id="scene-story" class="page">
             <div class="sceneMode">
-            <h1 style="padding-top: 1em">Story of Project Cyclone</h1>
-            <div id="story"></div>
+                <h1 style="padding-top: 1em">Story of Project Cyclone</h1>
+                <div id="story"></div>
             </div>
         </div>
-        
+
         <!-- GAME OVER -->
         <div id="scene-game-over" class="page">
             <div class="sceneMode">
                 <h1>GAME OVER</h1>
                 <h4>You can try it again!</h4>
-                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene(SCENE_GAME_MENU)">Continue</button>
+                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_GAME_MENU)">Continue</button>
             </div>
-            </div>
-        
+        </div>
+
         <!-- LEVEL COMPLETE -->
         <div id="scene-game-complete" class="page">
             <div class="sceneMode">
                 <h1 style="padding-top: 2em;">LEVEL COMPLETE!</h1>
-                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene(SCENE_LEVEL_UP)">Continue</button>
+                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
             </div>
         </div>
-        
+
         <!-- GAME PANEL -->
         <div id="panel-main" class="panel">
-            
-            <span id="livesInfo"></span>
-            
-            <h1>Towers</h1>
+
+            <div id="info">
+                <span id="livesInfo"></span><img src="images/pages/life.png" />
+                <span>&nbsp;</span>
+                <span id="availableMoney"></span><img src="images/pages/money.png" />
+            </div>
+
             <ul id="panel-main-towers">
                 <li id="machineGun"><img src="images/towers/tower-02.png" title="Machine Gun"/></li>
                 <li id="flame"><img src="images/towers/tower-04.png" title="Flame" /></li>
@@ -128,7 +132,6 @@
                 <li id="iceDart"><img src="images/towers/tower-08.png" title="Ice dart" /></li>
                 <li id="slowAura"><img src="images/towers/tower-09.png" title="Slow Aura"/></li>
             </ul>
-            <div id="moneyInfo">Available money: <span id="availableMoney"></span></div>
             <div id="towerInfo">
                 <span class="prop">
                     <span class="prop-name" id="infoName">Machine gun</span>
@@ -158,16 +161,16 @@
             <div id="controls">
                 <img src="images/pages/pause.png" id="gamePause" class="towerMenu-action"/>
                 <img src="images/pages/resume.png" id="gameResume" class="towerMenu-action"/>
-                
+
                 <img src="images/pages/1x.png" id="x1" class="towerMenu-action"/>
                 <img src="images/pages/2x.png" id="x2" class="towerMenu-action"/>
                 <img src="images/pages/3x.png" id="x3" class="towerMenu-action"/>
                 <img src="images/pages/4x.png" id="x4" class="towerMenu-action"/>
-                
+
                 <img src="images/pages/next.png" id="nextWave" class="towerMenu-action" />
                 <img src="images/pages/next.png" id="nextWaveDisabled" class="towerMenu-action-disabled" />
             </div>
 
-    </div>
+        </div>
     </body>
 </html>
