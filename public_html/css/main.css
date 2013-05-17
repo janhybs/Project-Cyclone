@@ -362,7 +362,7 @@ td {
     font-size: 1.0em;
 }
 
-#levelUpImg {
+#levelUpImg, gameCompImg, levelCompImg, levelFailImg {
     position: relative;
     left: 180px;
     display: block;

@@ -98,8 +98,8 @@
         <!-- GAME OVER -->
         <div id="scene-game-over" class="page">
             <div class="sceneMode">
-                <h1>GAME OVER</h1>
-                <h4>You can try it again!</h4>
+                <img id="levelFailImg" src="images/pages/mission-failed.png" />
+                <h5>Pain is temporary. Quittinq lasts forever.</h5>
                 <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_GAME_MENU)">Continue</button>
             </div>
         </div>
@@ -107,7 +107,8 @@
         <!-- LEVEL COMPLETE -->
         <div id="scene-game-complete" class="page">
             <div class="sceneMode">
-                <h1 style="padding-top: 2em;">LEVEL COMPLETED!</h1>
+                <img id="levelCompImg" src="images/pages/mission-completed.png" />
+                <h5>Winning isn't everything, but the will to win is everything.</h5>
                 <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
             </div>
         </div>
@@ -115,7 +116,7 @@
         <!-- LEVEL WIN -->
         <div id="scene-game-win" class="page">
             <div class="sceneMode">
-                <h1 style="padding-top: 2em;">CONGRATULATIONS!</h1>
+                <img id="gameCompImg" src="images/pages/game-completed.png" />
                 <h5>You've just saved New Earth, Akum Kakim and his loyal servents are defeated. You are the only true hero!</h5>
                 <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
             </div>
