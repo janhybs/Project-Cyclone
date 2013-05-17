@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
-    
+    <money>15</money>
     <board>
         <![CDATA[
 			1111111111111111111111111
@@ -41,78 +41,283 @@
 		</path>
     </paths>
 	
-	    <waves tolerance="8">
-        <wave>
+	    <waves tolerance="1500">
+        
+		<!-- 1 -->
+		<wave>
             <item>
-                <count>5</count>               
-                <delay>25</delay>
-                <repeat>5</repeat>
+                <delay>400</delay>
+                <repeat>2</repeat>
+			
+                <count>3</count>
+                <frame>35</frame>
                 <generator>
                     <![CDATA[{
-                        "preset":"normal_normal_normal",
-                        "image":"enemy_purple",
-						"shield":"normal",
-						"wobble":"drunk"
+                        "image":"red",
+						"resistance":"fire3",
+                        "speed":"lvl2",
+						"wobble":"lvl2",
+						"health":"lvl5",
+						"shield":"lvl5",
+						"size":"lvl24"
 					}]]>
                 </generator>
             </item>
-            <item>
-                <count>10</count>               
-                <delay>25</delay>
-                <repeat>3</repeat>
+			<item>
+				<pause>200</pause>
+				
+                <delay>400</delay>
+                <repeat>2</repeat>
+			
+                <count>3</count>
+                <frame>35</frame>
                 <generator>
                     <![CDATA[{
-                        "preset":"fast_normal_normal",
-                        "image":"enemy_yellow",
-						"shield":"normal",
-						"wobble":"high"
+                        "image":"green",
+                        "speed":"lvl2",
+						"resistance":"poison3",
+						"wobble":"lvl2",
+						"health":"lvl5",
+						"shield":"lvl5",
+						"size":"lvl24"
+					}]]>
+                </generator>
+            </item>
+			<item>
+				<pause>400</pause>
+				
+                <delay>500</delay>
+                <repeat>2</repeat>
+			
+                <count>3</count>
+                <frame>35</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"blue",
+                        "speed":"lvl2",
+						"resistance":"electric",
+						"wobble":"lvl2",
+						"health":"lvl5",
+						"shield":"lvl5",
+						"size":"lvl24"
 					}]]>
                 </generator>
             </item>
         </wave>
-        <wave>
+		
+
+		<!-- 2 -->
+		<wave>
             <item>
-                <count>10</count>
-                <frame>5</frame>
-                
-                <delay>25</delay>
-                <repeat>3</repeat>
+                <delay>150</delay>
+                <repeat>2</repeat>
+			
+                <count>1</count>
+                <frame>35</frame>
                 <generator>
                     <![CDATA[{
-                        "preset":"normal_normal_strong",
-                        "image":"enemy_red",
-						"shield":"strong",
-						"wobble":"high"
+                        "image":"brown",
+                        "speed":"lvl3",
+						"resistance":"normal3",
+						"wobble":"lvl2",
+						"health":"lvl7",
+						"shield":"lvl5",
+						"size":"lvl24"
 					}]]>
                 </generator>
             </item>
-            <item>
-                <count>10</count>
-                <frame>5</frame>
-                
-                <delay>25</delay>
-                <repeat>3</repeat>
+			<item>
+				<pause>400</pause>
+				
+                <delay>400</delay>
+                <repeat>2</repeat>
+			
+                <count>4</count>
+                <frame>50</frame>
                 <generator>
                     <![CDATA[{
-                        "preset":"fast_normal_strong",
-                        "image":"enemy_green",
-						"shield":"strong",
-						"wobble":"high"
+                        "image":"purple",
+                        "speed":"lvl3",
+						"resistance":"electric1",
+						"wobble":"lvl2",
+						"health":"lvl0",
+						"shield":"lvl7",
+						"size":"lvl24"
 					}]]>
                 </generator>
             </item>
+        </wave>
+		
+		<!-- 3 -->
+		<wave>
             <item>
+                <delay>150</delay>
+                <repeat>1</repeat>
+			
+                <count>5</count>
+                <frame>75</frame>
                 <generator>
                     <![CDATA[{
-                        "size":"boss",
-						"speed":"snail",
-                        "image":"enemy_green",
+                        "image":"yellow",
+						"money":20,
+                        "speed":"lvl5",
+						"wobble":"lvl2",
+						"health":"lvl5",
+						"shield":"lvl1",
+						"size":"lvl24"
+					}]]>
+                </generator>
+            </item>
+			<item>
+				<pause>400</pause>
+				
+                <delay>800</delay>
+                <repeat>2</repeat>
+			
+                <count>1</count>
+                <frame>35</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"brown",
+						"money":50,
+                        "speed":"lvl2",
+						"resistance":"normal3",
+						"wobble":"lvl2",
+						"health":"lvl10",
+						"shield":"lvl1",
+						"size":"lvl36"
+					}]]>
+                </generator>
+            </item>
+        </wave>
+		
+		<!-- 4 -->
+		<wave>
+            <item>
+                <delay>500</delay>
+                <repeat>3</repeat>
+			
+                <count>1</count>
+                <frame>50</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"red",
+						"money":5,
+                        "speed":"lvl3",
+						"resistance": "fire3",
+						"wobble":"lvl3",
+						"health":"lvl8",
+						"shield":"lvl7",
+						"size":"lvl32"
+					}]]>
+                </generator>
+            </item>
+			<item>
+				<pause>200</pause>
+			
+                <delay>500</delay>
+                <repeat>3</repeat>
+			
+                <count>1</count>
+                <frame>50</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"blue",
+						"money":5,
+                        "speed":"lvl3",
+						"resistance": "electric3",
+						"wobble":"lvl3",
+						"health":"lvl8",
+						"shield":"lvl7",
+						"size":"lvl32"
+					}]]>
+                </generator>
+            </item>
+			<item>
+				<pause>200</pause>
+			
+                <delay>500</delay>
+                <repeat>3</repeat>
+			
+                <count>1</count>
+                <frame>50</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"green",
+						"money":5,
+                        "speed":"lvl3",
+						"resistance": "posion3",
+						"wobble":"lvl3",
+						"health":"lvl8",
+						"shield":"lvl7",
+						"size":"lvl32"
+					}]]>
+                </generator>
+            </item>
+			<item>
+				<pause>200</pause>
+			
+                <delay>500</delay>
+                <repeat>3</repeat>
+			
+                <count>1</count>
+                <frame>50</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"purple",
+						"money":5,
+                        "speed":"lvl3",
+						"wobble":"lvl3",
+						"health":"lvl0",
+						"shield":"lvl10",
+						"size":"lvl32"
+					}]]>
+                </generator>
+            </item>
+        </wave>
+			
+		<!-- 5 -->
+ 		<wave>
+            <item>
+                <delay>200</delay>
+                <repeat>5</repeat>
+			
+                <count>1</count>
+                <frame>50</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"yellow",
+						"money":5,
+                        "speed":"lvl6",
+						"wobble":"lvl3",
+						"health":"lvl7",
+						"shield":"lvl1",
+						"size":"lvl32"
+					}]]>
+                </generator>
+            </item>
+			<item>
+				<pause>400</pause>
+				
+                <delay>800</delay>
+                <repeat>2</repeat>
+			
+                <count>1</count>
+                <frame>35</frame>
+                <generator>
+                    <![CDATA[{
+                        "image":"brown",
+						"money":100,
+                        "speed":"lvl2",
+						"resistance":"normal3",
+						"wobble":"lvl2",
 						"health":"boss",
-						"shield":"boss"
+						"shield":"boss",
+						"size":"lvl48"
 					}]]>
                 </generator>
             </item>
         </wave>
     </waves>
-    
+        
 </level>
