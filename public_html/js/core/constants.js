@@ -18,7 +18,7 @@ var Z_ENEMY_TARGET = 3;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
-var MONEY_BALANCE = [1, 20, 30, 25, 13, 10];
+var MONEY_BALANCE = [1, 20, 30, 25, 25, 10];
 
 /***************
  * GAME SCENES *
