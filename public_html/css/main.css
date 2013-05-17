@@ -332,27 +332,27 @@ html {
     font-size: 0.8em;
 }
 
-.enemiesScene ul, li {
+.enemiesScene ul, li, .towerScene ul, li {
     list-style-type: none;
     text-align: left;
     padding-bottom: 0.2em;
 }
 
-.enemiesScene img {
+.enemiesScene img, .towerScene img {
     vertical-align: middle;
 }
 
-.enemiesScene p {
+.enemiesScene p, .towerScene p {
     font-size: 0.8em;
     display: inline;
     padding-left: 3em;
 }
 
-.enemiesScene .bold{
+.enemiesScene .bold, .towerScene .bold{
     font-weight: bold;
 }
 
-.enemiesScene img{
+.enemiesScene img, .towerScene img{
     padding: 0;
 }
 
@@ -423,7 +423,7 @@ table {
 td {
     text-align: left;
     font-weight: bold;
-    font-size: 1.0em;
+    font-size: 0.8em;
 }
 
 #levelUpImg, gameCompImg, levelCompImg, levelFailImg {

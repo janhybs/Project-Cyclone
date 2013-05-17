@@ -9,6 +9,7 @@
         <!-- NEW GAME -->
         <div id="scene-new-game" class="page">
             <div class="sceneMode" style="padding: 0em" >
+                <h5>All things truly wicked start from innocence.</h5>
                 <h4>Name your</h4>
                 <h1>Heroes</h1>
 
@@ -33,8 +34,9 @@
         <div id="scene-level-up" class="page">
             <div class="sceneMode">
                 <img id="levelUpImg" src="images/pages/level-up.png" />
-                <h4 id="actPlayer"></h4>
-                <h3 id="actLevel"></h3>
+                <h5>Do not pray for easy lives. Pray to be stronger man.</h5>
+                <h5 id="actPlayer"></h5>
+                <h5 id="actLevel"></h5>
                 <table>
                     <tr><td>Damage</td><td id="damage" class="r"></td><td><button id="addDamage" class="scene-button" onclick="
                         PlayerUtils.addDamagePoint ();
@@ -65,8 +67,9 @@
                 <button id="scene-menu-to-new-game" onclick="Crafty.scene (SCENE_NEW_GAME);">NEW GAME</button>
                 <button id="scene-menu-to-game-menu" onclick="Crafty.scene (SCENE_GAME_MENU);">CONTINUE</button>
                 <!--<button id="scene-menu-to-level-up" onclick="Crafty.scene (SCENE_LEVEL_UP);">LEVEL UP (debug)</button>-->
-                <button id="scene-menu-to-story" onclick="Crafty.scene (SCENE_STORY_MESSAGE);">STORY</button>
                 <button id="scene-menu-to-enemies" onclick="Crafty.scene (SCENE_ENEMIES);">ENEMIES</button>
+                <button id="scene-menu-to-towers" onclick="Crafty.scene (SCENE_TOWERS);">TOWERS</button>
+                <button id="scene-menu-to-story" onclick="Crafty.scene (SCENE_STORY_MESSAGE);">STORY</button>
                 <!--                <button id="scene-menu-sii" onclick="Crafty.timer.simulateFrames (100);">SII</button>
                                 <button id="scene-menu-wii" onclick="Crafty.timer.simulateFrames (1000);">WII</button>-->
             </div>
@@ -75,6 +78,7 @@
         <!-- GAME MENU -->
         <div id="scene-game-menu" class="page">
             <div class="sceneMode">
+                <h5>I never fall down. I always fight.</h5>
                 <ul id = "levelChoose" class="levels">
                     <li><img id="level1" class="levelBut" src="images/levels/level-01_small.png" /><div class="bestScore" id="levelscore1">&nbsp;</div></li>
                     <li><img id="level2" class="levelBut" src="images/levels/level-02_small.png" /><div class="bestScore" id="levelscore2">&nbsp;</div></li>
@@ -92,6 +96,7 @@
         <div id="scene-story" class="page">
             <div class="sceneMode">
                 <h1 style="padding-top: 1em">Story of Project Cyclone</h1>
+                <h5>Every story has it's beginning.</h5>
                 <div id="story"></div>
             </div>
         </div>
@@ -115,6 +120,36 @@
                             <p>Running used to be very popular sport on Cyclone. Now they run for your life!</p></li>
                         <li><img class="purple" src="images/trans.gif" width="1" height="1" /><p class="bold">Purple Cillons</p>
                             <p>Machines built by Cyclonians possesing enormous shield power. And yes, they have a plan!</p></li>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+        
+        <!-- TOWERS -->
+        <div id="scene-towers" class="page">
+            <div class="sceneMode">
+                <h1 style="padding-top: 1em">Towers</h1>
+                <h5>I don't even call it violence when it's in self defense. I call it intelligence.</h5>
+                <div class="towerScene">
+                    <ul>
+                        <li><img src="images/towers/tower-02.png" width="32" height="32" /><p class="bold">Machine Gun</p>
+                            <p>Poor Cyclonians are served with cold-blooded bullets from high rate shooting Machine Guns.</p></li>
+                        <li><img src="images/towers/tower-04.png" width="32" height="32" /><p class="bold">Flamethrower</p>
+                            <p>Someone famous once said: Burn in hell!</p></li>
+                        <li><img src="images/towers/tower-03.png" width="32" height="32" /><p class="bold">Laser</p>
+                            <p>Light Amplification by Stimulated Emission of Radiation, everyday you learn something new.</p></li>
+                        <li><img src="images/towers/tower-07.png" width="32" height="32" /><p class="bold">Homing Missile</p>
+                            <p>Once you get in huge range of Homing Missile, start saving for your funeral!</p></li>
+                        <li><img src="images/towers/tower-01.png" width="32" height="32" /><p class="bold">Cannon</p>
+                            <p>These long-ranged weapon used to determine war winners centuries ago. They still do.</p></li>
+                        <li><img src="images/towers/tower-06.png" width="32" height="32" /><p class="bold">Electric Aura</p>
+                            <p>Did you hear that? No? Ouch, you are bleeding from your ears. Served to multiple targets!</p></li>
+                        <li><img src="images/towers/tower-05.png" width="32" height="32" /><p class="bold">Chain Laser</p>
+                            <p>Is something better than laser? This weapon chains from one enemy to another! WHAT?</p></li>
+                        <li><img src="images/towers/tower-08.png" width="32" height="32" /><p class="bold">Ice Dart</p>
+                            <p>Serving you immobile enemies ice cold since 2301.</p></li>
+                        <li><img src="images/towers/tower-09.png" width="32" height="32" /><p class="bold">Slow Aura</p>
+                            <p>It's not slow at all. It makes you slow, now you get it.</p></li>
                     </ul> 
                 </div>
             </div>
