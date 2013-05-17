@@ -154,6 +154,10 @@ html {
     z-index: 1;
 }
 
+#towerInfo {
+    padding-top: 10px;
+    clear: both;
+}
 #towerInfo .prop {
     display: block;
     width: 150px;
@@ -395,5 +399,5 @@ td {
 }
 
 .towerMenu-action:hover, #panel-main-towers img:hover {
-    box-shadow: 0 0 10px #0CF;
+    box-shadow: 0 0 10px #FFF;
 }
