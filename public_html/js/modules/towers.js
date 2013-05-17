@@ -655,7 +655,6 @@ Crafty.c (TOWER_CHAIN_LASER, {
                 }
 
             }, this.frameRate, this);
-            console.log (this.s);
         }
     },
     doDestroy: function () {
