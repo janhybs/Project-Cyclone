@@ -3,7 +3,8 @@ Crafty.scene (SCENE_MENU,
 
             activateWebview ();
             loadPage ('webview', 'scene-menu', function () {
-                $ ('#scene-menu-to-continue').attr ('disabled', 'disabled');
+                if (PlayerUtils.getActualPlayer () === null)
+                    $ ('#scene-menu-to-game-menu').hide ();
             });
         },
         function () {

@@ -15,11 +15,17 @@ Crafty.scene (SCENE_GAME, function () {
 
     jQuery.get ('levels/level-0{0}.xml'.format ($.actualLevel), function (data) {
         var xmlData = $.xml2json (data);
-        
+
         var levelBoard = parseBoard (xmlData.board);
         var levelPaths = parsePaths (xmlData.paths);
-        PlayerUtils.setPlayerMoney(parseInt(xmlData.money));
-        refreshMoney();
+        PlayerUtils.setPlayerMoney (parseInt (xmlData.money));
+        $.totalWaves = xmlData.waves.wave.length;
+        $.currentWave = 1;
+
+        refreshMoney ();
+        refreshWave ();
+        $.currentWave = 0;
+
         board.showBoard (levelBoard);
         board.showPortals (levelPaths);
         board.showGates (levelPaths);
@@ -53,32 +59,32 @@ Crafty.scene (SCENE_GAME, function () {
 
     //lock for towerbuilder
     $.toverBuilderLock = false;
-    
+
     //binds for ending game
-    Crafty.bind(GAME_OVER, function() {
-        enemyBrain.clearEnemies();
-        towerBrain.clearTowers();
-        timer.clear();
-        Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
-        PLAYER_ABS, TOWER_ABS)).destroy();
+    Crafty.bind (GAME_OVER, function () {
+        enemyBrain.clearEnemies ();
+        towerBrain.clearTowers ();
+        timer.clear ();
+        Crafty ("{0}, {1}, {2}".format (ENEMY_ABS,
+                PLAYER_ABS, TOWER_ABS)).destroy ();
         Crafty.audio.stop ();
-        console.log("game over");
-        Crafty.scene(SCENE_GAME_OVER);
+        console.log ("game over");
+        Crafty.scene (SCENE_GAME_OVER);
     });
-    
-    Crafty.bind(GAME_END, function(slips) {
-        enemyBrain.clearEnemies();
-        towerBrain.clearTowers();
-        timer.clear();
-        Crafty("{0}, {1}, {2}".format(ENEMY_ABS, 
-        PLAYER_ABS, TOWER_ABS)).destroy();
+
+    Crafty.bind (GAME_END, function (slips) {
+        enemyBrain.clearEnemies ();
+        towerBrain.clearTowers ();
+        timer.clear ();
+        Crafty ("{0}, {1}, {2}".format (ENEMY_ABS,
+                PLAYER_ABS, TOWER_ABS)).destroy ();
         Crafty.audio.stop ();
         $.enemyLosts = slips;
-        console.log('game success');
-        
-        if($.actualLevel === 5)
-            Crafty.scene(SCENE_GAME_WIN);
+        console.log ('game success');
+
+        if ($.actualLevel === 5)
+            Crafty.scene (SCENE_GAME_WIN);
         else
-            Crafty.scene(SCENE_GAME_SUCCESS);
+            Crafty.scene (SCENE_GAME_SUCCESS);
     });
 });
