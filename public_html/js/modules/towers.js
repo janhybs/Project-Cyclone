@@ -748,7 +748,7 @@ Crafty.c (TOWER_ELECTRIC_AURA, {
         s.setStartPoint ([this.startPoint.x, this.startPoint.y]);
         s.setDamage (this.damage);
         s.setTTL (this.ttl);
-        s.create (this.range);
+        s.create (this.range*2);
         s.z = Z_TOWER_SHOT;
         Crafty.audio.play (TOWER_SOUND_NAME.electric, 1);
         s.start ();
@@ -794,7 +794,7 @@ Crafty.c (TOWER_SLOW_AURA, {
         s.setStartPoint ([this.startPoint.x, this.startPoint.y]);
         s.setDamage (this.damage);
         s.setTTL (this.ttl);
-        s.create (this.range);
+        s.create (this.range*2);
         s.z = Z_TOWER_SHOT;
         Crafty.audio.play (TOWER_SOUND_NAME.slow, 1);
         s.start ();

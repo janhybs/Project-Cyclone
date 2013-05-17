@@ -18,7 +18,7 @@ var Z_ENEMY_TARGET = 3;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
-var MONEY_BALANCE = [1, 20, 30, 15, 13, 10];
+var MONEY_BALANCE = [1, 20, 30, 25, 13, 10];
 
 /***************
  * GAME SCENES *
@@ -450,19 +450,19 @@ var TOWER_ELECTRIC_AURA_PROPS = {
     aimStyle: 'ClosestAim',
     damage1: setMerge (toDamage (2), {electric: 8}),
     speed1: 0,
-    range1: 128,
+    range1: 64, //radius
     spreading1: 0,
     ttl1: 75 - 1,
     frameRate1: 75,
     damage2: setMerge (toDamage (4), {electric: 16}),
     speed2: 0,
-    range2: 150,
+    range2: 80,
     spreading2: 0,
     ttl2: 65 - 1,
     frameRate2: 65,
     damage3: setMerge (toDamage (5), {electric: 35}),
     speed3: 0,
-    range3: 182,
+    range3: 96,
     spreading3: 0,
     ttl3: 50 - 1,
     frameRate3: 50
@@ -475,19 +475,19 @@ var TOWER_SLOW_AURA_PROPS = {
     aimStyle: 'ClosestAim',
     damage1: setMerge (toDamage (1), {poison: .5}, {period: 10, repeat: 5, value: 0.5}, {slow: .3, chance: 1, duration: 25}),
     speed1: 0,
-    range1: 128,
+    range1: 64,
     spreading1: 0,
     ttl1: 75 - 1,
     frameRate1: 75,
     damage2: setMerge (toDamage (2), {poison: 1}, {period: 10, repeat: 5, value: 0.7}, {slow: .4, chance: 1, duration: 35}),
     speed2: 0,
-    range2: 150,
+    range2: 80,
     spreading2: 0,
     ttl2: 65 - 1,
     frameRate2: 65,
     damage3: setMerge (toDamage (3), {poison: 2}, {period: 10, repeat: 5, value: 1.0}, {slow: .5, chance: 1, duration: 50}),
     speed3: 0,
-    range3: 182,
+    range3: 96,
     spreading3: 0,
     ttl3: 50 - 1,
     frameRate3: 50
