@@ -107,7 +107,16 @@
         <!-- LEVEL COMPLETE -->
         <div id="scene-game-complete" class="page">
             <div class="sceneMode">
-                <h1 style="padding-top: 2em;">LEVEL COMPLETE!</h1>
+                <h1 style="padding-top: 2em;">LEVEL COMPLETED!</h1>
+                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
+            </div>
+        </div>
+        
+        <!-- LEVEL WIN -->
+        <div id="scene-game-win" class="page">
+            <div class="sceneMode">
+                <h1 style="padding-top: 2em;">CONGRATULATIONS!</h1>
+                <h5>You've just saved New Earth, Akum Kakim and his loyal servents are defeated. You are the only true hero!</h5>
                 <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
             </div>
         </div>

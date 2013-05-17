@@ -317,6 +317,11 @@ html {
     padding-top: 1em;
 }
 
+.sceneMode h5 {
+    font-size: 0.8em;
+    padding-top: 1.5em;
+}
+
 #story p {
     text-align: justify;
     text-indent:3em;
