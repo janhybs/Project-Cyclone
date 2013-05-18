@@ -83,7 +83,7 @@ function bindActions () {
             towerInfo.show ();
             towerMenu.hide ();
 
-            showInfo ('{0} (lvl{1})'.format (getTowerName (items[p][0]), 1),
+            showInfo ('{0} (lvl {1})'.format (getTowerName (items[p][0]), 1),
                     getDamageSum (items[p][1].damage1),
                     items[p][1].range1,
                     items[p][1].rate1,
