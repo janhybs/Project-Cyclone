@@ -99,9 +99,9 @@ window.parsePaths = function (data) {
 window.onMouseMoveHandler = function (e) {
     mousePos.x = e.x - offset.left + window.pageXOffset;
     mousePos.y = e.y - offset.top + window.pageYOffset;
-    
+
     if (Crafty)
-        Crafty.trigger(MOUSE_MOVE);
+        Crafty.trigger (MOUSE_MOVE);
 };
 
 window.onResizeHandler = function (e) {
@@ -265,8 +265,11 @@ window.getEntities = function (selector, startPoint, radius) {
     var rad = radius * radius;
     for (var i = 0, l = e.length; i < l; i++) {
         //# watch out for center
-        t = Crafty (e[i]).center;
-        deltaX = s.x - t.x,
+        t = Crafty (e[i]);
+        if (!t.active)
+            continue;
+        t = t.center;
+        deltaX = s.x - t.x;
         deltaY = s.y - t.y;
 
         if ((deltaX * deltaX + deltaY * deltaY) <= rad) {
