@@ -291,7 +291,7 @@ html {
     margin-right: 150px;
 }
 
-#scene-new-game-next, #scene-level-up-but {
+#scene-new-game-next, #scene-level-up-but, #scene-new-game-new, #scene-new-game-comp, #scene-new-game-repeat {
     margin-top: 30px;
     width: 320px;
     height: 60px;

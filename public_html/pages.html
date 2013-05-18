@@ -9,9 +9,9 @@
         <!-- NEW GAME -->
         <div id="scene-new-game" class="page">
             <div class="sceneMode" style="padding: 0em" >
+                <h1 style="padding-top: 1em">New Game</h1>
                 <h5>All things truly wicked start from innocence.</h5>
-                <h4>Name your</h4>
-                <h1>Heroes</h1>
+                <h5 style="padding-bottom: 0.5em">Name your Heroes</h5>
 
                 <form>
                     <div id="scene-new-game-p2p">
@@ -79,6 +79,7 @@
         <!-- GAME MENU -->
         <div id="scene-game-menu" class="page">
             <div class="sceneMode">
+                <h1 style="padding-top: 1em">Game Menu</h1>
                 <h5>I never fall down. I always fight.</h5>
                 <ul id = "levelChoose" class="levels">
                     <li><img id="level1" class="levelBut" src="images/levels/level-01_small.png" /><div class="bestScore" id="levelscore1">&nbsp;<br />&nbsp;</div></li>
@@ -189,6 +190,7 @@
          <!-- ABOUT US -->
         <div id="scene-about-us" class="page">
             <div class="sceneMode">
+                <h1 style="padding-top: 1em">About us</h1>
                 <h5>The strength of the team is each individual member. The strength of each member is the team.</h5>
                 <div class="aboutUs">
                     <p>Created for The Faculty of Mechatronics and Interdisciplinary Engineering Studies of Technical University
@@ -204,7 +206,7 @@
             <div class="sceneMode">
                 <img id="levelFailImg" src="images/pages/mission-failed.png" />
                 <h5>Pain is temporary. Quittinq lasts forever.</h5>
-                <button class="scene-button" onclick="Crafty.scene (SCENE_GAME_MENU);">Continue</button>
+                <button id="scene-new-game-repeat" class="scene-button" onclick="Crafty.scene (SCENE_GAME_MENU);">Continue</button>
             </div>
         </div>
 
@@ -213,7 +215,7 @@
             <div class="sceneMode">
                 <img id="levelCompImg" src="images/pages/mission-completed.png" />
                 <h5>Winning isn't everything, but the will to win is everything.</h5>
-                <button class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP);">Continue</button>
+                <button id="scene-new-game-new" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP);">Continue</button>
             </div>
         </div>
         
@@ -222,7 +224,7 @@
             <div class="sceneMode">
                 <img id="gameCompImg" src="images/pages/game-completed.png" />
                 <h5>You've just saved New Earth, Akum Kakim and his loyal servents are defeated. You are the only true hero!</h5>
-                <button class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP);">Continue</button>
+                <button id="scene-new-game-comp" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP);">Continue</button>
             </div>
         </div>
 
