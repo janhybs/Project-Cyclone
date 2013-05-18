@@ -616,6 +616,12 @@ var PANEL_WIDTH = 5 * 32;
 var PANEL_BG_COLOR = "#888888";
 
 
+/*******************
+ * CYCLONE TRAITOR *
+ *******************
+ */
+var CYCLONE_TRAITOR = "cycloneTraitor";
+
 /********************************
  * LOCAL STORAGE DATA CONSTANTS *
  ********************************
