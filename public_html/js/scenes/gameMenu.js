@@ -11,12 +11,16 @@ Crafty.scene (SCENE_GAME_MENU,
                 for(var i = 1; i <= maxLev && i <= 5; i++) {
                     $('#level'+i).attr('style', 'cursor:pointer');
                     $('#level'+i).attr('onclick', '$.actualLevel = {0};Crafty.scene(SCENE_GAME);'.format(i));
-                    $('#level'+i).mouseover(i, function(event) {$('#level'+event.data).animate({opacity: 1}, 1000);});
-                    $('#level'+i).mouseout(i, function(event) {$('#level'+event.data).animate({opacity: 0.3}, 500);});
+                    $('#level'+i).mouseover(i, function(event) {$('#level'+event.data).stop ().animate({opacity: 1}, 1000);});
+                    $('#level'+i).mouseout(i, function(event) {$('#level'+event.data).stop ().animate({opacity: 0.3}, 500);});
                 }
                 //add best score about
                 for(var i = 1; i <=maxLev-1  && i < 5; i++) {
-                    $('#levelscore'+i).html('Your best score: ' + PlayerUtils.getBestScoreByLevel(i) + ' lost');
+                    var score = PlayerUtils.getBestScoreByLevel(i);
+                    console.log (score);
+                    if (score !== null && typeof score === 'object')
+                        $('#levelscore'+i).html('Total score: {0}<br /> {1} enemies slipped'
+                                .format (score.points, score.slips));
                 }
                 //names of players
                 $('#soldierName').html(PlayerUtils.getPlayerNameByType(PLAYER_SOLDIER));
@@ -26,24 +30,24 @@ Crafty.scene (SCENE_GAME_MENU,
                 $('#laserLevelInfo').html("Level: " + PlayerUtils.getActualLevelByPlayerType(LASER_PLAYER));
                 //select actual player
                 if(PlayerUtils.getActualPlayer() === GUN_PLAYER) {
-                    $('#laserPart').animate({opacity: 0.3}, 500);
+                    $('#laserPart').stop ().animate({opacity: 0.3}, 500);
                 } else {
-                    $('#soldierPart').animate({opacity: 0.3}, 500);
+                    $('#soldierPart').stop ().animate({opacity: 0.3}, 500);
                 }
                 //player animate
                 $('#soldierPart').mouseenter(function() {
-                        $('#soldierPart').animate({opacity: 1}, 1000); 
-                        $('#laserPart').animate({opacity: 0.3}, 200);});
+                        $('#soldierPart').stop ().animate({opacity: 1}, 1000); 
+                        $('#laserPart').stop ().animate({opacity: 0.3}, 200);});
                 $('#soldierPart').mouseleave(function() {if(PlayerUtils.getActualPlayerType() !== PLAYER_SOLDIER) {
-                        $('#soldierPart').animate({opacity: 0.3}, 200);
-                        $('#laserPart').animate({opacity: 1}, 1000);
+                        $('#soldierPart').stop ().animate({opacity: 0.3}, 200);
+                        $('#laserPart').stop ().animate({opacity: 1}, 1000);
                     }});
                 $('#laserPart').mouseenter(function() {
-                        $('#laserPart').animate({opacity: 1}, 1000);
-                        $('#soldierPart').animate({opacity: 0.3}, 200);});
+                        $('#laserPart').stop ().animate({opacity: 1}, 1000);
+                        $('#soldierPart').stop ().animate({opacity: 0.3}, 200);});
                 $('#laserPart').mouseleave(function() {if(PlayerUtils.getActualPlayerType() === PLAYER_SOLDIER) { 
-                        $('#laserPart').animate({opacity: 0.3}, 200);
-                        $('#soldierPart').animate({opacity: 1}, 1000);
+                        $('#laserPart').stop ().animate({opacity: 0.3}, 200);
+                        $('#soldierPart').stop ().animate({opacity: 1}, 1000);
                     }});
             });
         },

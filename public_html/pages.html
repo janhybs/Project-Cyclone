@@ -25,7 +25,7 @@
                 </form>
 
                 <button id="scene-new-game-next" class="scene-button" style="margin-bottom: 1em" onclick="PlayerUtils.newGameInitialize ($ ('#gunManName').val (), $ ('#laserManName').val ());
-                        Crafty.scene (SCENE_GAME_MENU)">Continue</button>
+                        Crafty.scene (SCENE_GAME_MENU);">Continue</button>
             </div>
         </div>
 
@@ -42,12 +42,12 @@
                         PlayerUtils.addDamagePoint ();
                         $ ('#damage').html (PlayerUtils.getDamagePoints ());
                         $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
-                        $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
+                        $ ('#scene-level-up-but').removeAttr ('disabled');">+</button></td></tr>
                     <tr><td>Range</td><td id="range" class="r"></td><td><button id="addRange" class="scene-button" onclick="
                         PlayerUtils.addRangePoint ();
                         $ ('#range').html (PlayerUtils.getRangePoints ());
                         $ ('#addDamage,#addRange').attr ('disabled', 'disabled');
-                        $ ('#scene-level-up-but').removeAttr ('disabled')">+</button></td></tr>
+                        $ ('#scene-level-up-but').removeAttr ('disabled');">+</button></td></tr>
                 </table>
                 <button id="scene-level-up-but" class="scene-button" disabled="disabled" onclick="Crafty.scene (SCENE_GAME_MENU)">Continue</button>
             </div>
@@ -81,14 +81,14 @@
             <div class="sceneMode">
                 <h5>I never fall down. I always fight.</h5>
                 <ul id = "levelChoose" class="levels">
-                    <li><img id="level1" class="levelBut" src="images/levels/level-01_small.png" /><div class="bestScore" id="levelscore1">&nbsp;</div></li>
-                    <li><img id="level2" class="levelBut" src="images/levels/level-02_small.png" /><div class="bestScore" id="levelscore2">&nbsp;</div></li>
-                    <li><img id="level3" class="levelBut" src="images/levels/level-03_small.png" /><div class="bestScore" id="levelscore3">&nbsp;</div></li>
-                    <li><img id="level4" class="levelBut" src="images/levels/level-04_small.png" /><div class="bestScore" id="levelscore4">&nbsp;</div></li>
-                    <li><img id="level5" class="levelBut" src="images/levels/level-05_small.png" /><div class="bestScore" id="levelscore5">&nbsp;</div></li>
+                    <li><img id="level1" class="levelBut" src="images/levels/level-01_small.png" /><div class="bestScore" id="levelscore1">&nbsp;<br />&nbsp;</div></li>
+                    <li><img id="level2" class="levelBut" src="images/levels/level-02_small.png" /><div class="bestScore" id="levelscore2">&nbsp;<br />&nbsp;</div></li>
+                    <li><img id="level3" class="levelBut" src="images/levels/level-03_small.png" /><div class="bestScore" id="levelscore3">&nbsp;<br />&nbsp;</div></li>
+                    <li><img id="level4" class="levelBut" src="images/levels/level-04_small.png" /><div class="bestScore" id="levelscore4">&nbsp;<br />&nbsp;</div></li>
+                    <li><img id="level5" class="levelBut" src="images/levels/level-05_small.png" /><div class="bestScore" id="levelscore5">&nbsp;<br />&nbsp;</div></li>
                 </ul>    
                 <table class="tableLevels">
-                    <tr><td class="playerSelect" id="soldierPart" onclick="PlayerUtils.setActualPlayer (GUN_PLAYER)"><div id="soldierName" class="names"></div><img src="images/player/soldier.png" /><div id="soldierLevelInfo" class="bestScore"></div></td><td class="playerSelect" id="laserPart" onclick="PlayerUtils.setActualPlayer (LASER_PLAYER)"><div id="laserName" class="names"></div><img src="images/player/laser.png" /><div id="laserLevelInfo" class="bestScore"></div></td></tr>
+                    <tr><td class="playerSelect" id="soldierPart" onclick="PlayerUtils.setActualPlayer (GUN_PLAYER);"><div id="soldierName" class="names"></div><img src="images/player/soldier.png" /><div id="soldierLevelInfo" class="bestScore"></div></td><td class="playerSelect" id="laserPart" onclick="PlayerUtils.setActualPlayer (LASER_PLAYER)"><div id="laserName" class="names"></div><img src="images/player/laser.png" /><div id="laserLevelInfo" class="bestScore"></div></td></tr>
                 </table>
             </div>
         </div>
@@ -204,7 +204,7 @@
             <div class="sceneMode">
                 <img id="levelFailImg" src="images/pages/mission-failed.png" />
                 <h5>Pain is temporary. Quittinq lasts forever.</h5>
-                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_GAME_MENU)">Continue</button>
+                <button class="scene-button" onclick="Crafty.scene (SCENE_GAME_MENU);">Continue</button>
             </div>
         </div>
 
@@ -213,7 +213,7 @@
             <div class="sceneMode">
                 <img id="levelCompImg" src="images/pages/mission-completed.png" />
                 <h5>Winning isn't everything, but the will to win is everything.</h5>
-                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
+                <button class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP);">Continue</button>
             </div>
         </div>
         
@@ -222,7 +222,7 @@
             <div class="sceneMode">
                 <img id="gameCompImg" src="images/pages/game-completed.png" />
                 <h5>You've just saved New Earth, Akum Kakim and his loyal servents are defeated. You are the only true hero!</h5>
-                <button id="scene-new-game-next" class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP)">Continue</button>
+                <button class="scene-button" onclick="Crafty.scene (SCENE_LEVEL_UP);">Continue</button>
             </div>
         </div>
 

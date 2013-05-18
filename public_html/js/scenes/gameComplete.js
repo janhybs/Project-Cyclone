@@ -5,7 +5,12 @@ Crafty.scene (SCENE_GAME_SUCCESS,
             loadPage ('webview', 'scene-game-complete', function () {
                 if($.actualLevel === PlayerUtils.getMaxOpenLevel())
                     PlayerUtils.openNextLevel();
-                PlayerUtils.setBestScoreByLevel($.actualLevel, ($.livesTotal- $.livesLeft));
+                
+                var score = {
+                    points: Math.floor ((PlayerUtils.getPlayerMoney () * 10) * ($.livesLeft / $.livesTotal)),
+                    slips: Math.floor (($.livesTotal- $.livesLeft))
+                };
+                PlayerUtils.setBestScoreByLevel($.actualLevel, score);
             });
         },
         function () {
