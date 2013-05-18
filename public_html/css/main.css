@@ -245,6 +245,12 @@ html {
     font-size: 0.55em;
 }
 
+.bestScorePlayer {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.85em;
+}
+
 .playerSelect {
     text-align: center;
     border: 1px solid grey;
@@ -262,10 +268,6 @@ html {
     opacity: 0.7;
 }
 
-.names {
-    font-size: 1.3em;
-    font-family: Arial;
-}
 /*
     --------------- NEW GAME ----------------
 */
