@@ -2,11 +2,11 @@ window.enemy = {};
 enemy.create = function (generator) {
 
     var o = setMerge (enemy.preset (), generator);
-
     var e = Crafty.e ('2D, Canvas, Image, {0}, {1}'.format (ENEMY_ABS, o.image));
     e.create (o.path, o.speed, o.resistance, o.health, o.shield, o.wobble, o.money);
     return e;
 };
+
 
 
 
@@ -39,6 +39,7 @@ Crafty.c (ENEMY_ABS, {
         this.maxHealth = 0;
         this.previousHealth = 0;
         this._health = 100;
+        this.active = false;
         this.__defineGetter__ ('health', this.getHealth);
         this.__defineSetter__ ('health', this.setHealth);
         this.__defineGetter__ ('center', function () {
@@ -54,6 +55,11 @@ Crafty.c (ENEMY_ABS, {
         //# block index (starting at zeroth)
         this._bi = 0;
     },
+    addShield: function () {
+        if (this.shield > 0)
+            this.shieldActor = Crafty.e ("Shield").attr ({enemy: this}).start ();
+        return this;
+    },
     start: function () {
         //# assigning first two path blocks
         if (this.path !== null) {
@@ -64,22 +70,28 @@ Crafty.c (ENEMY_ABS, {
             this.findDirection (this._bi);
         }
 
-        if (this.shield > 0)
-            this.shieldActor = Crafty.e ("Shield").attr ({enemy: this}).start ();
+        this.addShield ();
+
 
         this.maxHealth = this.health;
         this.maxShield = this.shield;
+        this.active = true;
         this.requires ('Collision2');
         enemyBrain.add (this);
         this.onHit (SHOT_ABS, this.processHit);
     },
-    processDeath: function (reason) {
-        effects.create (this.center, 'exp_complex', 48).alpha = 0.35;
+    doDestroy: function () {
+        this.isNull = true;
         if (this.shieldActor)
             this.shieldActor.destroy ();
-        this.trigger ('Death', null);
         this.destroy ();
-        this.isNull = true;
+    },
+    processDeath: function (reason) {
+        effects.create (this.center, 'exp_complex', 48).alpha = 0.35;
+
+        this.trigger ('Death', null);
+        this.doDestroy ();        
+        
         if (reason === 'end') {
             Crafty.audio.play ("death_end");
             Crafty.trigger (ENEMY_SLIP);
