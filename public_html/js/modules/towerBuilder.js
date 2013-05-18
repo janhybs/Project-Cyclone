@@ -58,7 +58,7 @@ Crafty.c (TOWER_BUILDER, {
     },        
             
     closeTowerBuilder: function () {
-        activeSceneCursor ('url(/Project-Cyclone/images/crosshair.png),default');
+        activeSceneCursor ('url(/images/crosshair.png),default');
         $.playerFreeze = false;
         console.log ("tower builder close...");
         this.transBG.destroy ();
