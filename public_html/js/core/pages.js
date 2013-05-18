@@ -73,13 +73,14 @@ function bindActions () {
 
     for (var p in items) {
         var e = $ ('#{0}'.format (p));
-        e.bind ('click', p, function (event) {
+        e.bind ('mousedown', p, function (event) {
             if ($.toverBuilderLock || Crafty.isPaused ())
                 return;
             var p = event.data;
 
-            if (PlayerUtils.getPlayerMoney () >= items[p][1].price)
+            if (PlayerUtils.getPlayerMoney () >= items[p][1].price) {
                 towerBuilder.create (items[p][0]);
+            }
             towerInfo.show ();
             towerMenu.hide ();
 

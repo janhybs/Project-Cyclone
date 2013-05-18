@@ -518,7 +518,7 @@ var TOWER_IMAGE_NAME = {
     slowAuraBody: 'body_09'
 };
 
-//tower bilder
+//tower builder
 var TOWER_BUILDER = 'towerBuilderComp';
 
 //enemy generator

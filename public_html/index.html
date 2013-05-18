@@ -48,6 +48,8 @@
         <script>
             $(document).ready(function() {
                 ProjectCyclone.start();
+                //disable drag on items
+                window.ondragstart = function() { return false; };
             });
         </script>
         <link rel="stylesheet" type="text/css" href="css/main.css">
