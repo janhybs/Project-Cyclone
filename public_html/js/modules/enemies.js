@@ -6,10 +6,6 @@ enemy.create = function (generator) {
     e.create (o.path, o.speed, o.resistance, o.health, o.shield, o.wobble, o.money);
     return e;
 };
-
-
-
-
 Crafty.c (ENEMY_ABS, {
     create: function (path, speed, resistance, health, shield, wobble, money) {
         this.path = path !== undefined ? path : null;
@@ -72,13 +68,13 @@ Crafty.c (ENEMY_ABS, {
 
         this.addShield ();
 
-
         this.maxHealth = this.health;
         this.maxShield = this.shield;
         this.active = true;
         this.requires ('Collision2');
         enemyBrain.add (this);
         this.onHit (SHOT_ABS, this.processHit);
+        return this;
     },
     doDestroy: function () {
         this.isNull = true;
@@ -89,9 +85,9 @@ Crafty.c (ENEMY_ABS, {
     processDeath: function (reason) {
         effects.create (this.center, 'exp_complex', 48).alpha = 0.35;
 
-        this.trigger ('Death', null);
-        this.doDestroy ();        
-        
+        Crafty.trigger ('Death', null);
+        this.doDestroy ();
+
         if (reason === 'end') {
             Crafty.audio.play ("death_end");
             Crafty.trigger (ENEMY_SLIP);
@@ -280,5 +276,71 @@ Crafty.c (ENEMY_ABS, {
     setWobble: function (value) {
         this.wobble = value;
         return this;
+    }
+});
+Crafty.c (MULTI_FREEZE, {
+    init: function () {
+        this.s1 = Crafty.e ('2D, Canvas, Image, Mouse').attr ({w: 52, h: 52, z: Z_MULTI_FREEZE}).image ('images/multi-freeze.png');
+        this.s2 = Crafty.e ('2D, Canvas, Image').attr ({w: 52, h: 52, z: Z_MULTI_FREEZE, alpha: .5}).image ('images/multi-freeze.png');
+        this.s3 = Crafty.e ('2D, Canvas, Image').attr ({w: 52, h: 52, z: Z_MULTI_FREEZE, alpha: .5}).image ('images/multi-freeze.png');
+        this.setProgress (0);
+        this.chargeStep = 0.05;
+        this.step = 0.05;
+        this.interval = 5;
+        this.stopValue = 0.25;
+        this.frameCount = (((1 - this.stopValue) + this.step) / this.step);
+        this.delay = this.interval * this.frameCount;
+        this.s1.x = this.s2.x = this.s3.x = SCREEN_WIDTH - PANEL_WIDTH - 74;
+        this.s1.y = this.s2.y = this.s3.y = SCREEN_HEIGHT - 74;
+
+        var that = this;
+        this.s1.bind ('Click', function () {
+            that.fire ();
+        });
+
+        timer.repeat (this.charge, 25, this);
+    },
+    setProgress: function (value) {
+        this.progress = value;
+        this.s1.visible = this.progress === 1;
+        this.s2.visible = this.progress !== 1;
+        this.s2.h = 52 * this.progress;
+        return this;
+    },
+    charge: function () {
+        if ($.buildPhase)
+            return;
+        var val = this.progress + this.chargeStep;
+        if (val >= 1)
+            val = 1;
+        this.setProgress (val);
+    },
+    recharge: function () {
+        this.setProgress (100);
+    },
+    fire: function () {
+        if ($.buildPhase)
+            return;
+        this.setProgress (0);
+        this.fireStart ();
+    },
+    fireStart: function () {
+        enemySpeed = 1;
+        timer.repeat (this.decSpeed, this.interval, this, this.frameCount);
+        timer.delay (this.fireReverse, this.delay * 2, this);
+    },
+    fireReverse: function () {
+        enemySpeed = this.stopValue;
+        timer.repeat (this.incSpeed, this.interval, this, this.frameCount);
+        timer.delay (this.fireEnd, this.delay, this);
+    },
+    fireEnd: function () {
+        enemySpeed = 1;
+    },
+    decSpeed: function () {
+        enemySpeed -= this.step;
+    },
+    incSpeed: function () {
+        enemySpeed += this.step;
     }
 });

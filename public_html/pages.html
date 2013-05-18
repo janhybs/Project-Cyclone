@@ -279,8 +279,8 @@
                 <img src="images/pages/delete.png" alt="delete" id="towerDelete" class="towerMenu-action" />
             </div>
             <div id="controls">
-                <div id="waveInfoHolder">
-                    <span id="waveInfo">cascascsa</span>
+                <div id="waveInfoHolder" onmouseover="showWavePreview();" onmouseout="hideWavePreview();">
+                    <span id="waveInfo"></span>
                     <img src="images/pages/wave.png" />
                 </div>
                 <img src="images/pages/pause.png" id="gamePause" class="towerMenu-action"/>
@@ -291,7 +291,7 @@
                 <img src="images/pages/3x.png" id="x3" class="towerMenu-action"/>
                 <img src="images/pages/4x.png" id="x4" class="towerMenu-action"/>
 
-                <img src="images/pages/next.png" id="nextWave" class="towerMenu-action" />
+                <img src="images/pages/next.png" id="nextWave" class="towerMenu-action"  onmouseover="showWavePreview();" onmouseout="hideWavePreview();" />
                 <img src="images/pages/next.png" id="nextWaveDisabled" class="towerMenu-action-disabled" />
             </div>
 

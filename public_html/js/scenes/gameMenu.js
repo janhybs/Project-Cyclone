@@ -17,7 +17,6 @@ Crafty.scene (SCENE_GAME_MENU,
                 //add best score about
                 for(var i = 1; i <=maxLev-1  && i < 5; i++) {
                     var score = PlayerUtils.getBestScoreByLevel(i);
-                    console.log (score);
                     if (score !== null && typeof score === 'object')
                         $('#levelscore'+i).html('Total score: {0}<br /> {1} enemies slipped'
                                 .format (score.points, score.slips));

@@ -143,20 +143,8 @@ Crafty.c ('WavePreview', {
 
 
         this.bind ('EnterFrame', this.update);
-        this.bind ('MouseOver', this.showItems);
-        this.bind ('MouseOut', this.hideItems);
-    },
-    hideItems: function (d) {
-        $ (window).stop ().animate ({wavePreviewAlpha: 0,
-            wavePreviewSpeed: 0.1,
-            wavePreviewRadius: 0.5},
-        {duration: d || 200});
-    },
-    showItems: function (d) {
-        $ (window).stop ().animate ({wavePreviewAlpha: 1,
-            wavePreviewSpeed: 0.0,
-            wavePreviewRadius: 1},
-        {duration: d || 200});
+        this.bind ('MouseOver', showWavePreview);
+        this.bind ('MouseOut', hideWavePreview);
     },
     setItems: function (value) {
         if (this.items.length !== 0) {
@@ -169,7 +157,7 @@ Crafty.c ('WavePreview', {
             this.items[i].alpha = wavePreviewAlpha;
         this.shift = 0;
         this.step = (2 * PI) / (360 * 10 / (10 - this.items.length));
-        this.hideItems (2000);
+        hideWavePreview (2000);
         return this;
     },
     update: function () {
@@ -187,6 +175,20 @@ Crafty.c ('WavePreview', {
 
     }
 });
+
+function showWavePreview (d) {
+    $ (window).stop ().animate ({wavePreviewAlpha: 1,
+        wavePreviewSpeed: 0.0,
+        wavePreviewRadius: 1},
+    {duration: d || 200});
+}
+
+function hideWavePreview (d) {
+    $ (window).stop ().animate ({wavePreviewAlpha: 0,
+        wavePreviewSpeed: 0.1,
+        wavePreviewRadius: 0.5},
+    {duration: d || 200});
+}
 /**@
  * #Collision
  * @category 2D

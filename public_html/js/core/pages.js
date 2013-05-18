@@ -152,9 +152,14 @@ function onWaveEndHandler (items) {
 
     for (var j = 0; j < $.gates.length; j++) {
         var es = [];
+        var e;
         if (items !== undefined)
-            for (var i = 0; i < items.length * 1; i++)
-                es.push (enemy.create (enemy.parse (items[i])).addShield ());
+            for (var i = 0; i < items.length * 1; i++) {
+                e = enemy.create (enemy.parse (items[i])).addShield ().attr ({z: Z_MULTI_FREEZE});
+                if (e.shieldActor)
+                    e.shieldActor.z = Z_MULTI_FREEZE - 1;
+                es.push (e);
+            }
         $.gates[j].setItems (es);
     }
 }

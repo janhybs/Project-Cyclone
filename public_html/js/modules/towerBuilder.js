@@ -51,6 +51,7 @@ Crafty.c (TOWER_BUILDER, {
                 $.toverBuilderLock = false;
                 $ ('#panel-main *').removeAttr ('disabled');
                 $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
+                towerClicked (t);
                 this.closeTowerBuilder ();
             } else {
                 t.doDestroy ();

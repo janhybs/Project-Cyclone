@@ -50,8 +50,10 @@ Crafty.scene (SCENE_GAME, function () {
             }
             $ ('#livesInfo').html ("{1}/{0}".format ($.livesTotal, $.livesLeft));
         });
-        
-        
+
+        $.freeze = Crafty.e (MULTI_FREEZE);
+
+
 
         Crafty.viewport.reload ();
 
@@ -65,29 +67,23 @@ Crafty.scene (SCENE_GAME, function () {
 
     //binds for ending game
     Crafty.bind (GAME_OVER, function () {
-        enemyBrain.clearEnemies ();
-        towerBrain.clearTowers ();
-        timer.clear ();
-        Crafty ("{0}, {1}, {2}".format (ENEMY_ABS,
-                PLAYER_ABS, TOWER_ABS)).destroy ();
-        Crafty.audio.stop ();
-        console.log ("game over");
         Crafty.scene (SCENE_GAME_OVER);
     });
 
     Crafty.bind (GAME_END, function (slips) {
-        enemyBrain.clearEnemies ();
-        towerBrain.clearTowers ();
-        timer.clear ();
-        Crafty ("{0}, {1}, {2}".format (ENEMY_ABS,
-                PLAYER_ABS, TOWER_ABS)).destroy ();
-        Crafty.audio.stop ();
         $.enemyLosts = slips;
-        console.log ('game success');
 
         if ($.actualLevel === 5)
             Crafty.scene (SCENE_GAME_WIN);
         else
             Crafty.scene (SCENE_GAME_SUCCESS);
     });
+}, function () {
+    //# clean up when we are leaving this scene
+    enemyBrain.clearEnemies ();
+    towerBrain.clearTowers ();
+    timer.clear ();
+    Crafty ("{0}, {1}, {2}".format (ENEMY_ABS,
+            PLAYER_ABS, TOWER_ABS)).destroy ();
+    Crafty.audio.stop ();
 });

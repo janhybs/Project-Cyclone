@@ -19,7 +19,7 @@ Crafty.c (ENEMY_BRAIN, {
         }
     },
     enemyEnterFrame: function (e) {
-        e.spd = e.speed;
+        e.spd = e.speed * enemySpeed;
 
         //# slow shot
         if (e.slowShot !== null) {
@@ -87,9 +87,11 @@ Crafty.c (ENEMY_BRAIN, {
             
     clearEnemies: function () {
         this.items = [];
+        Crafty (MULTI_FREEZE).destroy ();
     }
 
 
 });
 
+window.enemySpeed = 1;
 window.enemyBrain = Crafty.e (ENEMY_BRAIN);

@@ -19,6 +19,7 @@ Crafty.scene (SCENE_LOADING, function () {
         //# shots packed
         'images/shots.png',
         //
+        'images/multi-freeze.png',
         'images/levels/target.png',
         'images/enemy.png',
         'images/crosshair.png',
@@ -72,8 +73,11 @@ Crafty.sprite (32, 'images/exp-complex.png', {
     exp_complex: [0, 0]
 });
 
-Crafty.sprite (96, 'images/levels/target.png', {
+Crafty.sprite (56, 'images/levels/target.png', {
     gate: [0, 0]
+});
+Crafty.sprite (52, 'images/multi-freeze.png', {
+    multi_freeze: [0, 0]
 });
 
 

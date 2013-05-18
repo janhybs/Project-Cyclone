@@ -14,6 +14,7 @@ var Z_TOWER_HEAD = 100 * 1000;
 var Z_PLAYER_SHOT = Z_PLAYER - 1;
 var Z_TOWER_SHOT = Z_TOWER_BODY + 1;
 var Z_EFFECTS = 1000 * 1000;
+var Z_MULTI_FREEZE = 1000 * 1000 * 10;
 var Z_ENEMY_TARGET = 3;
 var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
@@ -54,6 +55,7 @@ var MOUSE_MOVE = "playerMouseMove";
  */
 var ENEMY_ABS = 'enemyAbstract';
 var ENEMY_BRAIN = 'enemyBrain';
+var MULTI_FREEZE = 'multiFreeze';
 
 //# types
 var ENEMY_RES_HIGH = .8;
