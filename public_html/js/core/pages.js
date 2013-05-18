@@ -14,9 +14,6 @@ var nextWave;
 var nextWaveDisabled;
 var turbo;
 
-var currentMoney;
-var targetMoney;
-
 $.selectedTower = undefined;
 
 var items = {
@@ -140,23 +137,27 @@ function pauseGame () {
 function startNextWave () {
     generator.nextWave ();
     $.currentWave++;
+
+    var bonus = PlayerUtils.getPlayerMoney () * MONEY_WAVE_BONUS;
+    PlayerUtils.addPlayerMoney (Math.floor (bonus > 100 ? 100 : bonus));
+
     refreshWave ();
+    refreshMoney ();
 }
 
-function onWaveEndHandler () {
+function onWaveEndHandler (items) {
     nextWave.show ();
     nextWaveDisabled.hide ();
 
-    currentMoney = 0;
-    targetMoney = PlayerUtils.getPlayerMoney ();
-    targetMoney = Math.floor ((targetMoney > 500 ? 50 : targetMoney * 0.1));
-    PlayerUtils.setPlayerMoney (PlayerUtils.getPlayerMoney () + targetMoney);
-    $ (window).animate ({currentMoney: targetMoney}, {duration: 2000, progress: upgradeMoney});
+    for (var j = 0; j < $.gates.length; j++) {
+        var es = [];
+        if (items !== undefined)
+            for (var i = 0; i < items.length * 1; i++)
+                es.push (enemy.create (enemy.parse (items[i])).addShield ());
+        $.gates[j].setItems (es);
+    }
 }
 
-function upgradeMoney () {
-    $ ('#availableMoney').html (PlayerUtils.getPlayerMoney () + Math.floor (currentMoney) - targetMoney);
-}
 
 function onWaveStartHandler () {
     nextWave.hide ();

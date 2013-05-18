@@ -16,23 +16,24 @@ Crafty.scene (SCENE_GAME, function () {
     jQuery.get ('levels/level-0{0}.xml'.format ($.actualLevel), function (data) {
         var xmlData = $.xml2json (data);
 
+        $.totalWaves = Number (xmlData.waves.wave.length);
+        $.currentWave = 1;
+        $.livesTotal = Number (xmlData.tolerance);
+        $.livesLeft = Number (xmlData.tolerance);
+
         var levelBoard = parseBoard (xmlData.board);
         var levelPaths = parsePaths (xmlData.paths);
         PlayerUtils.setPlayerMoney (parseInt (xmlData.money));
-        $.totalWaves = xmlData.waves.wave.length;
-        $.currentWave = 1;
+
 
         refreshMoney ();
         refreshWave ();
-        $.currentWave = 0;
 
         board.showBoard (levelBoard);
         board.showPortals (levelPaths);
-        board.showGates (levelPaths);
-        window.levelData = xmlData;
+        $.gates = board.showGates (levelPaths);
 
-        $.livesTotal = Number (xmlData.waves.tolerance);
-        $.livesLeft = Number (xmlData.waves.tolerance);
+        $.currentWave = 0;
         $.gameOver = false;
         $ ('#livesInfo').html ("{1}/{0}".format ($.livesTotal, $.livesLeft));
         generator.start (xmlData, levelPaths);
@@ -49,8 +50,10 @@ Crafty.scene (SCENE_GAME, function () {
             }
             $ ('#livesInfo').html ("{1}/{0}".format ($.livesTotal, $.livesLeft));
         });
+        
+        
 
-
+        Crafty.viewport.reload ();
 
     }, null, 'text');
 

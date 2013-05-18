@@ -19,6 +19,7 @@ var GAME_OVER = 'gameOver';
 var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
 var MONEY_BALANCE = [1, 20, 30, 25, 25, 20];
+var MONEY_WAVE_BONUS = 0.2;
 
 /***************
  * GAME SCENES *

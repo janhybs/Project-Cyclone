@@ -14,7 +14,6 @@ Crafty.c ("Framer", {
                 return;
             for (var index in this._delays) {
                 var item = this._delays[index];
-
                 if (item && item.repeat !== 0 && --item.count === 0) {
                     item.func.call (item.ctx);
                     if (--item.repeat !== 0) {
@@ -60,9 +59,6 @@ Crafty.c ("Framer", {
         this.paused = false;
     }
 });
-
-
-
 /**@
  * #Crafty HealthBar
  * @category Utilities
@@ -76,26 +72,21 @@ Crafty.c ('HealthBar', {
         this.healthbarColor = "#C00";
         this.healthbarShieldColor = "#00C";
         var _this = this;
-
         this.bind ('Death', function () {
             _this.healthbar.destroy ();
         });
-
         this.healthbar.draw = function (e) {
             var ctx = Crafty.canvas.context;
             var x = _this.x + (_this.w - _this.healthbarWidth) / 2;
             var c = _this.maxShield === 0 || _this.shield === 0 ? _this.healthbarColor : _this.healthbarShieldColor;
             var t = _this.maxShield === 0 || _this.shield === 0 ? _this.health / _this.maxHealth : _this.shield / _this.maxShield;
             t = (t > 1 ? 1 : t < 0 ? 0 : t);
-
             if (t === 1)
                 return;
-
             //# match position
             _this.healthbar.x = _this.x;
             _this.healthbar.y = _this.y;
             _this.healthbar.z = _this.z + 1;
-
             //# draw
             ctx.beginPath ();
             ctx.setFillColor ('#333');
@@ -106,13 +97,10 @@ Crafty.c ('HealthBar', {
             ctx.fillRect (x, _this.y + _this.healthbarPosition, _this.healthbarWidth * t, _this.healthbarHeight);
             ctx.closePath ();
         };
-
         this.bind ('Move', this.healthbar.draw);
         this.bind ('HealthChanged', this.healthbar.draw);
     }
 });
-
-
 Crafty.c ('Shield', {
     init: function () {
         this.requires ('2D');
@@ -131,18 +119,74 @@ Crafty.c ('Shield', {
     },
     update: function () {
         this.visible = this.enemy.visible;
+        if (this.alpha !== this.enemy.alpha)
+            this.alpha = this.enemy.alpha;
         this.x = this.enemy.center.x - this.w / 2;
         this.y = this.enemy.center.y - this.h / 2;
-
         if (this.enemy.shield <= 0) {
             this.enemy.shieldActor = null;
             this.destroy ();
         }
     }
 });
+var wavePreviewAlpha = 1;
+var wavePreviewSpeed = 0;
+var wavePreviewRadius = 1;
+Crafty.c ('WavePreview', {
+    init: function () {
+        this.r = 50;
+        this.items = [];
+        this.shift = 0;
+        this.sx = this.x + this.w / 2;
+        this.sy = this.y + this.h / 2;
+        this.step = 0;
 
 
+        this.bind ('EnterFrame', this.update);
+        this.bind ('MouseOver', this.showItems);
+        this.bind ('MouseOut', this.hideItems);
+    },
+    hideItems: function (d) {
+        $ (window).stop ().animate ({wavePreviewAlpha: 0,
+            wavePreviewSpeed: 0.1,
+            wavePreviewRadius: 0.5},
+        {duration: d || 200});
+    },
+    showItems: function (d) {
+        $ (window).stop ().animate ({wavePreviewAlpha: 1,
+            wavePreviewSpeed: 0.0,
+            wavePreviewRadius: 1},
+        {duration: d || 200});
+    },
+    setItems: function (value) {
+        if (this.items.length !== 0) {
+            for (var i in this.items)
+                this.items[i].doDestroy ();
+        }
 
+        this.items = value;
+        for (var i in this.items)
+            this.items[i].alpha = wavePreviewAlpha;
+        this.shift = 0;
+        this.step = (2 * PI) / (360 * 10 / (10 - this.items.length));
+        this.hideItems (2000);
+        return this;
+    },
+    update: function () {
+        if (wavePreviewAlpha === 0)
+            return;
+        this.shift += this.step + wavePreviewSpeed;
+        var l = this.items.length;
+        for (var i = 0; i < l; i++) {
+            var item = this.items[i];
+            var a = (i / l) * 2 * PI + this.shift;
+            item.x = this.sx + Math.sin (a) * this.r * wavePreviewRadius - item.w / 2;
+            item.y = this.sy + Math.cos (a) * this.r * wavePreviewRadius - item.h / 2;
+            item.alpha = wavePreviewAlpha;
+        }
+
+    }
+});
 /**@
  * #Collision
  * @category 2D
@@ -166,7 +210,6 @@ Crafty.c ("Collision2", {
     init: function () {
         this.requires ("2D");
         var area = this._mbr || this;
-
         poly = new Crafty.polygon ([0, 0], [area._w, 0], [area._w, area._h], [0, area._h]);
         this.map = poly;
         this.attach (this.map);
@@ -204,13 +247,12 @@ Crafty.c ("Collision2", {
      */
     collision: function (poly) {
         var area = this._mbr || this;
-
         if (!poly) {
             poly = new Crafty.polygon ([0, 0], [area._w, 0], [area._w, area._h], [0, area._h]);
         }
 
         if (arguments.length > 1) {
-            //convert args to array to create polygon
+//convert args to array to create polygon
             var args = Array.prototype.slice.call (arguments, 0);
             poly = new Crafty.polygon (args);
         }
@@ -218,7 +260,6 @@ Crafty.c ("Collision2", {
         this.map = poly;
         this.attach (this.map);
         this.map.shift (area._x, area._y);
-
         return this;
     },
     /**@
@@ -253,7 +294,6 @@ Crafty.c ("Collision2", {
                 id, obj, oarea, key,
                 hasMap = ('map' in this && 'containsPoint' in this.map),
                 finalresult = [];
-
         if (!l) {
             return false;
         }
@@ -265,7 +305,6 @@ Crafty.c ("Collision2", {
             if (!obj)
                 continue;
             id = obj[0];
-
             //check if not added to hash and that actually intersects
             if (!dupes[id] && this[0] !== id && obj.__c[comp] &&
                     oarea._x < area._x + area._w && oarea._x + oarea._w > area._x &&
@@ -275,7 +314,6 @@ Crafty.c ("Collision2", {
 
         for (key in dupes) {
             obj = dupes[key];
-
             if (hasMap && 'map' in obj) {
                 var SAT = this._SAT (this.map, obj.map);
                 SAT.obj = obj;
@@ -310,7 +348,6 @@ Crafty.c ("Collision2", {
         this.bind ("EnterFrame", function () {
             if (++this.collisionCounter % this.collisionSkip !== 0)
                 return;
-
             var hitdata = this.hit (comp);
             if (hitdata) {
                 justHit = true;
@@ -340,25 +377,20 @@ Crafty.c ("Collision2", {
                 dot,
                 nextPoint,
                 currentPoint;
-
         //loop through the edges of Polygon 1
         for (; i < l; i++) {
             nextPoint = points1[(i == l - 1 ? 0 : i + 1)];
             currentPoint = points1[i];
-
             //generate the normal for the current edge
             normal.x = -(nextPoint[1] - currentPoint[1]);
             normal.y = (nextPoint[0] - currentPoint[0]);
-
             //normalize the vector
             length = Math.sqrt (normal.x * normal.x + normal.y * normal.y);
             normal.x /= length;
             normal.y /= length;
-
             //default min max
             min1 = min2 = -1;
             max1 = max2 = -1;
-
             //project all vertices from poly1 onto axis
             for (j = 0; j < l; ++j) {
                 dot = points1[j][0] * normal.x + points1[j][1] * normal.y;
@@ -368,7 +400,7 @@ Crafty.c ("Collision2", {
                     min1 = dot;
             }
 
-            //project all vertices from poly2 onto axis
+//project all vertices from poly2 onto axis
             for (j = 0; j < k; ++j) {
                 dot = points2[j][0] * normal.x + points2[j][1] * normal.y;
                 if (dot > max2 || max2 === -1)
@@ -377,17 +409,16 @@ Crafty.c ("Collision2", {
                     min2 = dot;
             }
 
-            //calculate the minimum translation vector should be negative
+//calculate the minimum translation vector should be negative
             if (min1 < min2) {
                 interval = min2 - max1;
-
                 normal.x = -normal.x;
                 normal.y = -normal.y;
             } else {
                 interval = min1 - max2;
             }
 
-            //exit early if positive
+//exit early if positive
             if (interval >= 0) {
                 return false;
             }
@@ -398,24 +429,20 @@ Crafty.c ("Collision2", {
             }
         }
 
-        //loop through the edges of Polygon 2
+//loop through the edges of Polygon 2
         for (i = 0; i < k; i++) {
             nextPoint = points2[(i == k - 1 ? 0 : i + 1)];
             currentPoint = points2[i];
-
             //generate the normal for the current edge
             normal.x = -(nextPoint[1] - currentPoint[1]);
             normal.y = (nextPoint[0] - currentPoint[0]);
-
             //normalize the vector
             length = Math.sqrt (normal.x * normal.x + normal.y * normal.y);
             normal.x /= length;
             normal.y /= length;
-
             //default min max
             min1 = min2 = -1;
             max1 = max2 = -1;
-
             //project all vertices from poly1 onto axis
             for (j = 0; j < l; ++j) {
                 dot = points1[j][0] * normal.x + points1[j][1] * normal.y;
@@ -425,7 +452,7 @@ Crafty.c ("Collision2", {
                     min1 = dot;
             }
 
-            //project all vertices from poly2 onto axis
+//project all vertices from poly2 onto axis
             for (j = 0; j < k; ++j) {
                 dot = points2[j][0] * normal.x + points2[j][1] * normal.y;
                 if (dot > max2 || max2 === -1)
@@ -434,19 +461,16 @@ Crafty.c ("Collision2", {
                     min2 = dot;
             }
 
-            //calculate the minimum translation vector should be negative
+//calculate the minimum translation vector should be negative
             if (min1 < min2) {
                 interval = min2 - max1;
-
                 normal.x = -normal.x;
                 normal.y = -normal.y;
             } else {
                 interval = min1 - max2;
-
-
             }
 
-            //exit early if positive
+//exit early if positive
             if (interval >= 0) {
                 return false;
             }
@@ -462,8 +486,6 @@ Crafty.c ("Collision2", {
         return {overlap: MTV2, normal: MN};
     }
 });
-
-
 Crafty.c ('Skipper', {
     init: function () {
         this.frameSkip = 0;
@@ -477,7 +499,6 @@ Crafty.c ('Skipper', {
     enterFrame: function () {
         if (this.frameSkip <= 0)
             return;
-
         this.prevSkip--;
         if (this.prevSkip === 0) {
             this.prevSkip = this.frameSkip + 1;
@@ -485,6 +506,5 @@ Crafty.c ('Skipper', {
         }
     }
 });
-
 window.skipper = Crafty.e ('Skipper');
 window.timer = Crafty.e ('Framer');

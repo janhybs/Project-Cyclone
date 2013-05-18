@@ -23,6 +23,13 @@ window.generator = {
 
         for (var i = 0; i < levelPaths.length; i++)
             this.paths.push (enlargePath (levelPaths[i]));
+
+        var items = [];
+        for (var i = 0; i < this.xmlData.waves.wave[0].item.length; i++) {
+            var o = JSON.parse (this.xmlData.waves.wave[0].item[i].generator);
+            items.push ({image: o.image, shield: o.shield, size: o.size});
+        }
+        onWaveEndHandler (items);
     },
     nextWave: function () {
         //# end round
@@ -36,8 +43,17 @@ window.generator = {
         if (!this.incPart ()) {
             if (this.currentWave + 1 === this.totalWaves)
                 this.everythingReleased = true;
-            onWaveEndHandler ();
-            
+
+            if (this.xmlData.waves.wave[this.currentWave + 1]) {
+                var items = [];
+                for (var i = 0; i < this.xmlData.waves.wave[this.currentWave + 1].item.length; i++) {
+                    var o = JSON.parse (this.xmlData.waves.wave[this.currentWave + 1].item[i].generator);
+                    items.push ({image: o.image, shield: o.shield, size: o.size});
+                }
+            }
+
+            onWaveEndHandler (items);
+
             if (this.autoPlay)
                 this.nextWave ();
             return;

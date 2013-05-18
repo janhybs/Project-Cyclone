@@ -27,16 +27,18 @@ window.board = {
     },
     showGates: function (data) {
         var p, points = {};
+        var r = [];
 
         for (var i = 0, l = data.length; i < l; i++) {
 
             p = data[i][data[i].length - 1];
 
             if (!points.hasOwnProperty (p.x + '-' + p.y)) {
-                this.createGate (p);
+                r.push(this.createGate (p));
                 points[p.x + '-' + p.y] = true;
             }
         }
+        return r;
     },
     createPortal: function (point) {
         var p = toPoint (point);
@@ -44,12 +46,13 @@ window.board = {
     },
     createGate: function (point) {
         var p = toPoint (point);
-        var e = Crafty.e ("2D, Canvas, gate").attr ({x: p.x * W, y: p.y * H, z: Z_ENEMY_TARGET});
+        var e = Crafty.e ("2D, Canvas, Mouse, gate").attr ({x: p.x * W, y: p.y * H, z: Z_ENEMY_TARGET});
         e.bind('EnterFrame', function () {
            this.rotation++;
         });
         e.origin ('center');
         e.attr ({x: e.x - e.w / 2 + W / 2, y: e.y - e.h / 2 + H / 2});
+        e.requires ('WavePreview');
         return e;
     }
 };
