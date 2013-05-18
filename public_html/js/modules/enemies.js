@@ -86,6 +86,7 @@ Crafty.c (ENEMY_ABS, {
         effects.create (this.center, 'exp_complex', 48).alpha = 0.35;
 
         Crafty.trigger ('Death', null);
+        this.trigger ('Death-shield', null);
         this.doDestroy ();
 
         if (reason === 'end') {
@@ -278,6 +279,9 @@ Crafty.c (ENEMY_ABS, {
         return this;
     }
 });
+
+
+
 Crafty.c (MULTI_FREEZE, {
     init: function () {
         this.s1 = Crafty.e ('2D, Canvas, Image, Mouse').attr ({w: 52, h: 52, z: Z_MULTI_FREEZE}).image ('images/multi-freeze.png');

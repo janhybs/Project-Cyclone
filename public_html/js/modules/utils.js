@@ -72,7 +72,7 @@ Crafty.c ('HealthBar', {
         this.healthbarColor = "#C00";
         this.healthbarShieldColor = "#00C";
         var _this = this;
-        this.bind ('Death', function () {
+        this.bind ('Death-shield', function () {
             _this.healthbar.destroy ();
         });
         this.healthbar.draw = function (e) {
