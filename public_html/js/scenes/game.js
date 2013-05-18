@@ -23,8 +23,6 @@ Crafty.scene (SCENE_GAME, function () {
 
         var levelBoard = parseBoard (xmlData.board);
         var levelPaths = parsePaths (xmlData.paths);
-        $.actualPath = levelPaths;
-        console.log(levelPaths);
         PlayerUtils.setPlayerMoney (parseInt (xmlData.money));
 
 
