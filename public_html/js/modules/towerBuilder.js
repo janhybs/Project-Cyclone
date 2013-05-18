@@ -21,35 +21,44 @@ Crafty.c (TOWER_BUILDER, {
         this.h = SCREEN_HEIGHT;
         this.transBG = Crafty.e ("2D, Canvas, Image").attr ({w: SCREEN_WIDTH - PANEL_WIDTH, h: SCREEN_HEIGHT, alpha: 0.05, z: 1}).image ("images/sq.jpg", "repeat");
         this.bind ('MouseMove', this.positionControl);
-        this.bind ('Click', this.playerClicked);
-        this.bind ('MouseUp', this.playerRightClicked);
+        this.bind ('MouseDown', this.playerMouseDown);
+        this.bind ('MouseUp', this.playerMouseUp);
         //lock panel
         $ ('#panel-main *').attr ('disabled', 'disabled');
         $ ('#panel-main-towers *').animate ({opacity: 0.5}, 1000);
         $.toverBuilderLock = true;
     },
-    playerClicked: function () {
-        var t = towerBrain.add (this.towerType, [this.towerImg.x, this.towerImg.y]);
-        if (buyStuff (t.price)) {
-            $.toverBuilderLock = false;
-            $ ('#panel-main *').removeAttr ('disabled');
-            $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
-            this.closeTowerBuilder ();
-        } else {
-            t.doDestroy ();
+    playerMouseDown: function (e) {
+        if (e.mouseButton === Crafty.mouseButtons.LEFT) {
+            this.buyAndBuild();
         }
     },
-    playerRightClicked: function (e) {
+    playerMouseUp: function (e) {
         if (e.mouseButton === Crafty.mouseButtons.RIGHT) {
             removeTowerRangeInfo();
             $.toverBuilderLock = false;
             $ ('#panel-main *').removeAttr ('disabled');
             $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
             this.closeTowerBuilder ();
+        } else {
+            this.buyAndBuild();
         }
     },
+    
+    buyAndBuild: function() {
+        var t = towerBrain.add (this.towerType, [this.towerImg.x, this.towerImg.y]);
+            if (buyStuff (t.price)) {
+                $.toverBuilderLock = false;
+                $ ('#panel-main *').removeAttr ('disabled');
+                $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
+                this.closeTowerBuilder ();
+            } else {
+                t.doDestroy ();
+            }
+    },        
+            
     closeTowerBuilder: function () {
-        activeSceneCursor ('url(/Project-Cyclone/images/crosshair.png),default');
+        activeSceneCursor ('url(/images/crosshair.png),default');
         $.playerFreeze = false;
         console.log ("tower builder close...");
         this.transBG.destroy ();
