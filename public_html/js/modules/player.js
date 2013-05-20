@@ -6,12 +6,9 @@
 //define as global object
 window.player = {
     create: function(type) {
-        switch (type) {
-            default:
-                var result = Crafty.e('2D, Canvas, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
-                        .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: SCENE_LIMIT, y: SCENE_LIMIT});
-                return result;
-        }
+        var result = Crafty.e('2D, Canvas, KeyBoard, PlayerControls, PlayerAnimate, PlayerSounds, PlayerFire, {0}, {1}'.format(PLAYER_ABS, type))
+                           .attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: SCENE_LIMIT, y: SCENE_LIMIT});
+        return result;
     }
 };
 
@@ -47,21 +44,25 @@ Crafty.c('PlayerControls', {
                 this.x += this.speedPX;
                 this.collisionRect.x += this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
+                Crafty.trigger(MOUSE_MOVE);
             }
             else if (this.lastKey === LEFT_DIRECTION && !this.isOverScreen(this.x - this.speedPX, this.y)) {
                 this.x -= this.speedPX;
                 this.collisionRect.x -= this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
+                Crafty.trigger(MOUSE_MOVE);
             }
             else if (this.lastKey === UP_DIRECTION && !this.isOverScreen(this.x, this.y - this.speedPX)) {
                 this.y -= this.speedPX;
                 this.collisionRect.y -= this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
+                Crafty.trigger(MOUSE_MOVE);
             }
             else if (this.lastKey === DOWN_DIRECTION && !this.isOverScreen(this.x, this.y + this.speedPX)) {
                 this.y += this.speedPX;
                 this.collisionRect.y += this.speedPX;
                 this.repairPosition(this.collisionRect.x, this.collisionRect.y, this.lastKey);
+                Crafty.trigger(MOUSE_MOVE);
             } else if(this.lastKey === NO_DIRECTION) {
                 Crafty.trigger(PLAYER_STOP_MOVE);
             }
@@ -338,6 +339,6 @@ Crafty.c(PLAYER_LASER, {
     init: function() {
         this.speedPX = 6;
         this.actualWeapon = SHOT_LASER;
-        this.image('images/player/soldier.png');
+        this.image('images/player/laser.png');
     }
 });

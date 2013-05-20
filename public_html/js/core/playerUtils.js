@@ -16,6 +16,10 @@ PlayerUtils.newGameInitialize = function(nameGunPlayer, nameLaserPlayer) {
     $.jStorage.set(PLAYER_MONEY, PLAYER_START_MONEY_PACK);
     $.jStorage.set(MAX_OPENED_LEVEL, 1);
     $.actualLevel = 1;
+    //best scores
+    for(var i = 1; i <=5; i++) {
+        $.jStorage.set(window['BEST_SCORE_LEVEL'+i], 0);
+    }
 };
 
 //method returns actualLevel of actual player
