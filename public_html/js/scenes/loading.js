@@ -23,7 +23,19 @@ Crafty.scene (SCENE_LOADING, function () {
         'images/levels/target.png',
         'images/enemy.png',
         'images/crosshair.png',
-        'images/radius.png'];
+        'images/radius.png',
+        //# levels
+        'images/levels/level-01.png',
+        'images/levels/level-01_small.png',
+        'images/levels/level-02.png',
+        'images/levels/level-02_small.png',
+        'images/levels/level-03.png',
+        'images/levels/level-03_small.png',
+        'images/levels/level-04.png',
+        'images/levels/level-04_small.png',
+        'images/levels/level-05.png',
+        'images/levels/level-05_small.png'
+    ];
 
     //sound files
     var sounds = [

@@ -54,7 +54,7 @@ html {
 
 #header {
     width: 100%;
-    height: 210px;
+    height: 209px;
     text-align: center;
     padding-top: 5px;
 }
@@ -148,7 +148,7 @@ html {
     height: 640px;
     margin: 0 auto;
     left: 800px;
-    top: 215px;
+    top: 214px;
     background: rgba(11, 15, 20, 0.75);
     position: absolute;
     z-index: 1;
@@ -500,4 +500,9 @@ td {
 
 .towerMenu-action:hover, #panel-main-towers img:hover, .selected {
     box-shadow: 0 0 10px #FFF;
+}
+
+
+.expensive {
+    opacity: 0.25;
 }

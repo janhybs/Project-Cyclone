@@ -25,7 +25,7 @@ Crafty.c (TOWER_BUILDER, {
         this.bind ('MouseUp', this.playerMouseUp);
         //lock panel
         $ ('#panel-main *').attr ('disabled', 'disabled');
-        $ ('#panel-main-towers *').animate ({opacity: 0.5}, 1000);
+        $ ('#panel-main-towers li').animate ({opacity: 0.5}, 1000);
         $.toverBuilderLock = true;
     },
     playerMouseDown: function (e) {
@@ -38,7 +38,7 @@ Crafty.c (TOWER_BUILDER, {
             removeTowerRangeInfo();
             $.toverBuilderLock = false;
             $ ('#panel-main *').removeAttr ('disabled');
-            $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
+            $ ('#panel-main-towers li').animate ({opacity: 1}, 1000);
             this.closeTowerBuilder ();
         } else {
             this.buyAndBuild();
@@ -50,7 +50,7 @@ Crafty.c (TOWER_BUILDER, {
             if (buyStuff (t.price)) {
                 $.toverBuilderLock = false;
                 $ ('#panel-main *').removeAttr ('disabled');
-                $ ('#panel-main-towers *').animate ({opacity: 1}, 1000);
+                $ ('#panel-main-towers li').animate ({opacity: 1}, 1000);
                 towerClicked (t);
                 this.closeTowerBuilder ();
             } else {

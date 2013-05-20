@@ -192,6 +192,10 @@ function showInfo (name, damage, range, rate, price) {
     infoRange.html (range);
     infoRate.html (rate);
     infoPrice.html (price);
+    if (price === -1)
+        infoPrice.parent ().hide ();
+    else
+        infoPrice.parent ().show ();
 }
 
 function getDamageSum (dmg) {
@@ -227,8 +231,20 @@ function towerClicked (tower) {
             getDamageSum (tower.getDamage ()),
             tower.getRange (),
             tower.getFrameRate (),
-            tower.getUpgradePrice () * (tower.getLevel ()));
+            tower.getLevel () === 3 ? -1 : tower.getUpgradePrice () * (tower.getLevel ()));
+}
 
+function moneyChanged () {
+    console.log ('money!');
+    var money = PlayerUtils.getPlayerMoney ();
+    $ ('#panel-main-towers img').addClass ('expensive');
+    for (var i in items) {
+        var tower = $ ('#{0} img'.format (i));
+        if (tower && items[i][1].price <= money) {
+            tower.removeClass ('expensive');
+            console.log (i);
+        }
+    }
 }
 
 function setupTowerActions () {
