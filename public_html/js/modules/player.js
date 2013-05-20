@@ -34,7 +34,6 @@ Crafty.c('PlayerControls', {
     init: function() {
         this.collisionRect = Crafty.e("2D, Rectangle, Collision").attr({w: PLAYER_WIDTH, h: PLAYER_HEIGHT, x: 0, y: 0});
         this.requires('KeyBoard');
-        console.log("Player controls loaded.");
         //center for rotation
         this.origin(16, 14);
         //move with new frames
@@ -165,7 +164,7 @@ Crafty.c('PlayerFire', {
     },
     
     doP2PFire: function() {
-        Crafty.audio.play(PLAYER_GUN_SOUND, 1);
+        Crafty.audio.play(PLAYER_GUN_SOUND, 1, VOLUME);
         this.actualShot = false;
         this.actualShot = shot.get(SHOT_P2P, P2P_IMAGE_NAME.playerSoldier);
         this.actualShot.setStartPoint([$.player.x + $.player.w / 2, $.player.y + $.player.h / 2]);
@@ -191,7 +190,7 @@ Crafty.c('PlayerFire', {
             this.actualShot.setStartPoint([this.x + this.w / 2, this.y + this.h / 2]);
         });
         this.actualShot.start();
-        Crafty.audio.play(PLAYER_LASER_SOUND, -1);
+        Crafty.audio.play(PLAYER_LASER_SOUND, -1, VOLUME/2);
     },
     
     //method for stop fire        
@@ -251,7 +250,7 @@ Crafty.c('PlayerSounds', {
         this.bind(PLAYER_START_MOVE, function() {
             if(!this.isStepping) {
                 this.isStepping = true;
-                Crafty.audio.play(PLAYER_STEP_SOUND, -1);
+                Crafty.audio.play(PLAYER_STEP_SOUND, -1, VOLUME/2);
             }
         });
         //player stops move

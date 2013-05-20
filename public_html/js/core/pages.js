@@ -90,7 +90,8 @@ function bindActions () {
             }
             towerInfo.show ();
             towerMenu.hide ();
-
+            
+            $.selectedTower = null;
             showInfo ('{0} (lvl {1})'.format (getTowerName (items[p][0]), 1),
                     getDamageSum (items[p][1].damage1),
                     items[p][1].range1,
@@ -107,6 +108,7 @@ function bindActions () {
             towerInfo.show ();
             towerMenu.hide ();
 
+            $.selectedTower = null;
             showInfo ('{0} (lvl {1})'.format (getTowerName (items[p][0]), 1),
                     getDamageSum (items[p][1].damage1),
                     items[p][1].range1,
@@ -235,24 +237,26 @@ function towerClicked (tower) {
 }
 
 function moneyChanged () {
-    console.log ('money!');
     var money = PlayerUtils.getPlayerMoney ();
     $ ('#panel-main-towers img').addClass ('expensive');
     for (var i in items) {
         var tower = $ ('#{0} img'.format (i));
         if (tower && items[i][1].price <= money) {
             tower.removeClass ('expensive');
-            console.log (i);
         }
     }
+
+    setupTowerActions ()
 }
 
 function setupTowerActions () {
-    if ($.selectedTower === undefined)
+    if ($.selectedTower === undefined || $.selectedTower === null)
         return;
     loadDivs ();
+    var money = PlayerUtils.getPlayerMoney ();
+    var price = $.selectedTower.getLevel () * $.selectedTower.upgradePrice;
 
-    if ($.selectedTower.getLevel () === 3) {
+    if ($.selectedTower.getLevel () === 3 || money < price) {
         towerUpgrade.hide ();
         towerUpgradeDisabled.show ();
     } else {
@@ -262,7 +266,7 @@ function setupTowerActions () {
 }
 
 function upgradeSelectedTower () {
-    if ($.selectedTower === undefined)
+    if ($.selectedTower === undefined || $.selectedTower === null)
         return;
 
     var price = $.selectedTower.getLevel () * $.selectedTower.upgradePrice;
@@ -287,7 +291,7 @@ function refreshMoney () {
 }
 
 function deleteSelectedTower () {
-    if ($.selectedTower === undefined)
+    if ($.selectedTower === undefined || $.selectedTower === null)
         return;
     removeTowerRangeInfo ();
     PlayerUtils.addPlayerMoney (($.selectedTower.getPrice () + $.selectedTower.getUpgradePrice () * ($.selectedTower.getLevel () - 1)) / 2);

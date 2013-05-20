@@ -21,6 +21,9 @@ var GAME_END = 'gameEnd';
 var ENEMY_SLIP = 'enemySlip';
 var MONEY_BALANCE = [1, 20, 30, 25, 25, 20];
 var MONEY_WAVE_BONUS = 0.2;
+var VOLUME = 0.2;
+
+var LASER_PENALTY = 8;
 
 /***************
  * GAME SCENES *
@@ -567,34 +570,24 @@ var LEFT_DIRECTION = 4;
 //player damage & range
 var PLAYER_DAMAGES = {
     0: 0,
-    1: 5,
+    1: 10,
     2: 15,
-    3: 35,
-    4: 60,
-    5: 100,
-    6: 150,
-    7: 200,
-    8: 275,
-    9: 350,
-    10: 500
+    3: 100,
+    4: 125,
+    5: 150
 };
 
 var PLAYER_RANGES = {
     0: 0.00,
     1: 32 * 2.50,
-    2: 32 * 3.00,
-    3: 32 * 3.50,
-    4: 32 * 4.00,
-    5: 32 * 6.00,
-    6: 32 * 7.00,
-    7: 32 * 8.00,
-    8: 32 * 9.00,
-    9: 32 * 10.00,
-    10: 32 * 15.00
+    2: 32 * 3.50,
+    3: 32 * 4.50,
+    4: 32 * 5.50,
+    5: 32 * 6.50
 };
 
-var PLAYER_MAX_RANGE = 10;
-var PLAYER_MAX_DAMAGE = 10;
+var PLAYER_MAX_RANGE = 5;
+var PLAYER_MAX_DAMAGE = 5;
 
 //sounds
 var PLAYER_STEP_SOUND = "step";

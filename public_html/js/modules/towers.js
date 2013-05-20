@@ -262,7 +262,7 @@ Crafty.c (TOWER_MACHINEGUN, {
         s.setTTL (this.ttl);
         s.create (this.speed);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.machineGun, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.machineGun, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {
@@ -316,7 +316,7 @@ Crafty.c (TOWER_CANNON, {
         s.setTTL (this.ttl);
         s.create (this.speed);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.cannon, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.cannon, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {
@@ -370,7 +370,7 @@ Crafty.c (TOWER_FLAMETHROWER, {
         s.setTTL (this.ttl);
         s.create (this.speed, this.spreading);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.flame, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.flame, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {
@@ -427,7 +427,7 @@ Crafty.c (TOWER_ICE_DART, {
         s.setTTL (this.ttl);
         s.create (this.speed);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.iceDart, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.iceDart, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {
@@ -492,7 +492,7 @@ Crafty.c (TOWER_BEAM_LASER, {
         this.s.setDamage (this.damage);
         this.s.setTTL (this.ttl);
         this.s.show ();
-        Crafty.audio.play (TOWER_SOUND_NAME.laser, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.laser, 1, VOLUME*2);
     },
     upgrade: function () {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -599,7 +599,7 @@ Crafty.c (TOWER_CHAIN_LASER, {
             this.s[i].setDamage (this.damage);
             this.s[i].setTTL (this.ttl);
         }
-        Crafty.audio.play (TOWER_SOUND_NAME.chain, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.chain, 1, VOLUME/3);
     },
     upgrade: function () {
         if ((this.level + 1) <= MAX_LEVEL) {
@@ -698,7 +698,7 @@ Crafty.c (TOWER_HOMING_MISSILE, {
         s.setTTL (this.ttl);
         s.create (this.speed, this.curving, this.aimStyle);
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.homing, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.homing, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {
@@ -748,8 +748,9 @@ Crafty.c (TOWER_ELECTRIC_AURA, {
         s.setDamage (this.damage);
         s.setTTL (this.ttl);
         s.create (this.range*2);
+        s.alpha = 0.5;
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.electric, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.electric, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {
@@ -794,8 +795,9 @@ Crafty.c (TOWER_SLOW_AURA, {
         s.setDamage (this.damage);
         s.setTTL (this.ttl);
         s.create (this.range*2);
+        s.alpha = 0.5;
         s.z = Z_TOWER_SHOT;
-        Crafty.audio.play (TOWER_SOUND_NAME.slow, 1);
+        Crafty.audio.play (TOWER_SOUND_NAME.slow, 1, VOLUME);
         s.start ();
     },
     upgrade: function () {

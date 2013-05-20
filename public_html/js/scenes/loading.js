@@ -42,6 +42,7 @@ Crafty.scene (SCENE_LOADING, function () {
         'sounds/player/step.wav',
         'sounds/cannon.ogg',
         'sounds/death-end.ogg',
+        'sounds/music.mp3',
         'sounds/death-01.ogg',
         'sounds/death-02.ogg',
         'sounds/death-03.ogg',
@@ -115,6 +116,7 @@ Crafty.audio.add ({
     death_03: ['sounds/death-03.ogg'],
     death_04: ['sounds/death-04.ogg'],
     death_05: ['sounds/death-05.ogg'],
+    music: ['sounds/music.mp3'],
     playerLaserSound: ['sounds/player_laser.ogg']
 });
 

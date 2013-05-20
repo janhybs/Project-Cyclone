@@ -70,13 +70,10 @@
             <div class="buttons">
                 <button id="scene-menu-to-new-game" onclick="Crafty.scene (SCENE_NEW_GAME);">NEW GAME</button>
                 <button id="scene-menu-to-game-menu" onclick="Crafty.scene (SCENE_GAME_MENU);">CONTINUE</button>
-                <!--<button id="scene-menu-to-level-up" onclick="Crafty.scene (SCENE_LEVEL_UP);">LEVEL UP (debug)</button>-->
                 <button id="scene-menu-to-enemies" onclick="Crafty.scene (SCENE_ENEMIES);">ENEMIES</button>
                 <button id="scene-menu-to-towers" onclick="Crafty.scene (SCENE_TOWERS);">TOWERS</button>
                 <button id="scene-menu-to-story" onclick="Crafty.scene (SCENE_STORY_MESSAGE);">STORY</button>
-                <button id="scene-menu-to-about-us" onclick="Crafty.scene (SCENE_ABOUT_US);">ABOUT US</button>
-                <!--                <button id="scene-menu-sii" onclick="Crafty.timer.simulateFrames (100);">SII</button>
-                                <button id="scene-menu-wii" onclick="Crafty.timer.simulateFrames (1000);">WII</button>-->
+                <button id="scene-menu-to-about-us" onclick="Crafty.scene (SCENE_ABOUT_US);">ABOUT</button>
             </div>
         </div>
 
@@ -194,13 +191,14 @@
          <!-- ABOUT US -->
         <div id="scene-about-us" class="page">
             <div class="sceneMode">
-                <h1 style="padding-top: 1em">About us</h1>
+                <h1 style="padding-top: 1em">About</h1>
                 <h5>The strength of the team is each individual member. The strength of each member is the team.</h5>
                 <div class="aboutUs">
                     <p>Created for The Faculty of Mechatronics and Interdisciplinary Engineering Studies of Technical University
                     of Liberec diploma project.</p>
                     <p>© 2o13 Jan Hybš, Pavel Novák, Lukáš Matějů</p>
-                    <p>Special thanks: Mgr. Jiří Vraný Ph.D., Karel Hybš DiS.
+                    <p>Special thanks: Mgr. Jiří Vraný Ph.D., Karel Hybš DiS.</p>
+                    <p>Music from Portal 2 © Valve, Music to test by.</p>
                 </div>
             </div>
         </div>
@@ -275,16 +273,16 @@
             </div>
             <div id="towerMenu">
                 <div>
-                    <img src="images/pages/upgrade.png" alt="upgrade" id="towerUpgrade" class="towerMenu-action"/>
-                    <img src="images/pages/upgrade.png" alt="upgrade" id="towerUpgradeDisabled" class="towerMenu-action-disabled"/>
-                    <img src="images/pages/delete.png" alt="delete" id="towerDelete" class="towerMenu-action" />
+                    <img src="images/pages/upgrade.png" title="Upgrade" id="towerUpgrade" class="towerMenu-action"/>
+                    <img src="images/pages/upgrade.png" title="Upgrade" id="towerUpgradeDisabled" class="towerMenu-action-disabled"/>
+                    <img src="images/pages/delete.png" title="Delete" id="towerDelete" class="towerMenu-action" />
                 </div>
                 <div id="aims">
-                    <img src="images/aim/aim_closest.png" id="ClosestAim" class="towerMenu-action"/>
-                    <img src="images/aim/aim_furthest.png" id="FurthestAim" class="towerMenu-action"/>
-                    <img src="images/aim/aim_least_health.png" id="LeastHealthAim" class="towerMenu-action"/>
-                    <img src="images/aim/aim_most_health.png" id="MostHealthAim" class="towerMenu-action"/>
-                    <img src="images/aim/aim_shield.png" id="ShieldAim" class="towerMenu-action"/>
+                    <img src="images/aim/aim_closest.png" title="Closest enemy" id="ClosestAim" class="towerMenu-action"/>
+                    <img src="images/aim/aim_furthest.png" title="Furthest enemy" id="FurthestAim" class="towerMenu-action"/>
+                    <img src="images/aim/aim_least_health.png" title="Enemy with the most health" id="LeastHealthAim" class="towerMenu-action"/>
+                    <img src="images/aim/aim_most_health.png" title="Enemy with the least health" id="MostHealthAim" class="towerMenu-action"/>
+                    <img src="images/aim/aim_shield.png" title="Enemy with a shield" id="ShieldAim" class="towerMenu-action"/>
                 </div>
             </div>
             <div id="controls">
@@ -292,16 +290,16 @@
                     <span id="waveInfo"></span>
                     <img src="images/pages/wave.png" />
                 </div>
-                <img src="images/pages/pause.png" id="gamePause" class="towerMenu-action"/>
-                <img src="images/pages/resume.png" id="gameResume" class="towerMenu-action"/>
+                <img src="images/pages/pause.png" title="Pause" id="gamePause" class="towerMenu-action"/>
+                <img src="images/pages/resume.png" title="Resume" id="gameResume" class="towerMenu-action"/>
 
-                <img src="images/pages/1x.png" id="x1" class="towerMenu-action"/>
-                <img src="images/pages/2x.png" id="x2" class="towerMenu-action"/>
-                <img src="images/pages/3x.png" id="x3" class="towerMenu-action"/>
-                <img src="images/pages/4x.png" id="x4" class="towerMenu-action"/>
+                <img src="images/pages/1x.png" title="Increase speed" id="x1" class="towerMenu-action"/>
+                <img src="images/pages/2x.png" title="Increase speed" id="x2" class="towerMenu-action"/>
+                <img src="images/pages/3x.png" title="Increase speed" id="x3" class="towerMenu-action"/>
+                <img src="images/pages/4x.png" title="Set speed to default" id="x4" class="towerMenu-action"/>
 
-                <img src="images/pages/next.png" id="nextWave" class="towerMenu-action"  onmouseover="showWavePreview();" onmouseout="hideWavePreview();" />
-                <img src="images/pages/next.png" id="nextWaveDisabled" class="towerMenu-action-disabled" />
+                <img src="images/pages/next.png" title="Next wave" id="nextWave" class="towerMenu-action"  onmouseover="showWavePreview();" onmouseout="hideWavePreview();" />
+                <img src="images/pages/next.png" title="Wave in progress" id="nextWaveDisabled" class="towerMenu-action-disabled" />
             </div>
 
         </div>

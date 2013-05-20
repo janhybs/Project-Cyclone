@@ -90,12 +90,12 @@ Crafty.c (ENEMY_ABS, {
         this.doDestroy ();
 
         if (reason === 'end') {
-            Crafty.audio.play ("death_end");
+            Crafty.audio.play ("death_end", 1, VOLUME/2);
             Crafty.trigger (ENEMY_SLIP);
         } else {
             PlayerUtils.addPlayerMoney (this.money + Math.floor ((this.maxHealth + this.maxShield) / MONEY_BALANCE[$.actualLevel]));
             refreshMoney ();
-            Crafty.audio.play ("death_0" + Crafty.math.randomInt (1, 5));
+            Crafty.audio.play ("death_0" + Crafty.math.randomInt (1, 5), 1, VOLUME);
         }
     },
     //#
@@ -288,7 +288,7 @@ Crafty.c (MULTI_FREEZE, {
         this.s2 = Crafty.e ('2D, Canvas, Image').attr ({w: 52, h: 52, z: Z_MULTI_FREEZE, alpha: .5}).image ('images/multi-freeze.png');
         this.s3 = Crafty.e ('2D, Canvas, Image').attr ({w: 52, h: 52, z: Z_MULTI_FREEZE, alpha: .5}).image ('images/multi-freeze.png');
         this.setProgress (0);
-        this.chargeStep = 0.05;
+        this.chargeStep = 0.005;
         this.step = 0.05;
         this.interval = 5;
         this.stopValue = 0.25;
