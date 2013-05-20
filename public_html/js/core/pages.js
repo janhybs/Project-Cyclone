@@ -13,6 +13,7 @@ var gameResume;
 var nextWave;
 var nextWaveDisabled;
 var turbo;
+var aim;
 
 $.selectedTower = undefined;
 
@@ -47,6 +48,12 @@ function loadDivs () {
     nextWave = $ ('#nextWave');
     nextWaveDisabled = $ ('#nextWaveDisabled');
     turbo = [$ ('#x1'), $ ('#x2'), $ ('#x3'), $ ('#x4')];
+    aim = {};
+    aim[AIMING_CLOSEST] = $ ('#{0}'.format (AIMING_CLOSEST));
+    aim[AIMING_FURTHEST] = $ ('#{0}'.format (AIMING_FURTHEST));
+    aim[AIMING_LEAST_HEALTH] = $ ('#{0}'.format (AIMING_LEAST_HEALTH));
+    aim[AIMING_MOST_HEALTH] = $ ('#{0}'.format (AIMING_MOST_HEALTH));
+    aim[AIMING_SHIELD] = $ ('#{0}'.format (AIMING_SHIELD));
 }
 
 function bindActions () {
@@ -59,6 +66,9 @@ function bindActions () {
     turbo.forEach (function (e) {
         e.bind ('click', cycleTurbo)
     });
+    for (var i in aim)
+        aim[i].bind ('click', changeAim);
+
     turbo[skipper.frameSkip].show ();
 
     towerUpgradeDisabled.hide ();
@@ -147,6 +157,8 @@ function startNextWave () {
 }
 
 function onWaveEndHandler (items) {
+    loadDivs ();
+
     nextWave.show ();
     nextWaveDisabled.hide ();
 
@@ -166,6 +178,8 @@ function onWaveEndHandler (items) {
 
 
 function onWaveStartHandler () {
+    loadDivs ();
+
     nextWave.hide ();
     nextWaveDisabled.show ();
 }
@@ -207,6 +221,7 @@ function towerClicked (tower) {
 
     $.selectedTower = tower;
     setupTowerActions ();
+    refreshAim ();
 
     showInfo ('{0} (lvl {1})'.format (getTowerName (tower.getType ()), tower.getLevel ()),
             getDamageSum (tower.getDamage ()),
@@ -284,4 +299,29 @@ function removeTowerRangeInfo () {
 
 function refreshWave () {
     $ ('#waveInfo').html ('{0}/{1}'.format ($.currentWave, $.totalWaves));
+}
+
+function changeAim () {
+    var aimStyle = this.id;
+    if ($.selectedTower !== null) {
+        $.selectedTower.setAimStyle (aimStyle);
+    }
+    refreshAim ();
+}
+
+function refreshAim () {
+    if ($.selectedTower !== null) {
+        switch ($.selectedTower.getType ()) {
+            case TOWER_ICE_DART:
+            case TOWER_SLOW_AURA:
+            case TOWER_ELECTRIC_AURA:
+                $ ('#aims img').hide ();
+                break;
+            default:
+                $ ('#aims img').show ();
+                $ ('#aims img').removeClass ('selected');
+                aim[$.selectedTower.getAimStyle ()].addClass ('selected');
+                break;
+        }
+    }
 }

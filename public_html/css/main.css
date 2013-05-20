@@ -498,6 +498,6 @@ td {
     cursor: pointer;
 }
 
-.towerMenu-action:hover, #panel-main-towers img:hover {
+.towerMenu-action:hover, #panel-main-towers img:hover, .selected {
     box-shadow: 0 0 10px #FFF;
 }
