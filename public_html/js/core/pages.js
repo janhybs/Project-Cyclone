@@ -83,6 +83,10 @@ function bindActions () {
         e.bind ('mousedown', p, function (event) {
             if ($.toverBuilderLock || Crafty.isPaused ())
                 return;
+            
+            //# position fix
+            Crafty.viewport.reload ();
+            
             var p = event.data;
 
             if (PlayerUtils.getPlayerMoney () >= items[p][1].price) {

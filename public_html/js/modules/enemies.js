@@ -312,7 +312,7 @@ Crafty.c (MULTI_FREEZE, {
         return this;
     },
     charge: function () {
-        if ($.buildPhase)
+        if ($.buildPhase())
             return;
         var val = this.progress + this.chargeStep;
         if (val >= 1)
@@ -323,7 +323,7 @@ Crafty.c (MULTI_FREEZE, {
         this.setProgress (100);
     },
     fire: function () {
-        if ($.buildPhase)
+        if ($.buildPhase())
             return;
         this.setProgress (0);
         this.fireStart ();

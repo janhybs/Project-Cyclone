@@ -1,6 +1,9 @@
 
 
-$.buildPhase = true;
+$.enemyCount = 0;
+$.buildPhase = function () {
+    return $.enemyCount === 0;
+}
 
 window.generator = {
     //-------------------------
@@ -20,11 +23,10 @@ window.generator = {
         this.autoPlay = false;
         this.totalWaves = this.xmlData.waves.wave.length;
         this.everythingReleased = false;
-        this.enemyCount = 0;
-        
-        var that = this;
+        $.enemyCount = 0;
+
         Crafty.bind ('Death', function () {
-            $.buildPhase = --that.enemyCount === 0;
+            $.enemyCount--;
         });
 
         for (var i = 0; i < levelPaths.length; i++)
@@ -84,9 +86,8 @@ window.generator = {
                 }, 1 + s * oFrame, this);
             }
         }, oDelay + oFrame * oCount, this, oRepeat, oPause);
-        
-        this.enemyCount += oCount * oRepeat;
-        $.buildPhase = false;
+
+        $.enemyCount += oCount * oRepeat;
 
 
         timer.delay (function () {
