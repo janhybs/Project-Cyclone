@@ -99,6 +99,8 @@ window.parsePaths = function (data) {
 window.onMouseMoveHandler = function (e) {
     mousePos.x = e.x - offset.left + window.pageXOffset;
     mousePos.y = e.y - offset.top + window.pageYOffset;
+    mousePosCursor.x = e.x - offset.left + window.pageXOffset + 12;
+    mousePosCursor.y = e.y - offset.top + window.pageYOffset + 12;
 
     if (Crafty)
         Crafty.trigger (MOUSE_MOVE);
@@ -110,6 +112,7 @@ window.onResizeHandler = function (e) {
 };
 
 window.mousePos = {x: 0, y: 0};
+window.mousePosCursor = {x: 0, y: 0};
 window.offset = {left: 0, top: 0};
 window.addEventListener ('mousemove', onMouseMoveHandler);
 window.addEventListener ('resize', onResizeHandler);
