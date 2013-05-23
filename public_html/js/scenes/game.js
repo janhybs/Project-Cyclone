@@ -1,6 +1,10 @@
 Crafty.scene (SCENE_GAME, function () {
 
     activateCanvas ();
+    
+    if (Crafty.isPaused())
+        Crafty.pause ();
+    
     loadPage ('gamePanel', 'panel-main', function () {
         bindActions ();
 
